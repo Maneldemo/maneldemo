@@ -32,12 +32,12 @@ _set_r800: equ 00004172h
 set_turbo_tr: equ 00004193h
 START: equ 000041A1h
 main_loop: equ 00004269h
-up: equ 000042FBh
-dwn: equ 00004308h
-right: equ 00004315h
-left: equ 00004325h
+up: equ 000042FEh
+dwn: equ 0000430Bh
+right: equ 00004318h
+left: equ 00004328h
 JIFFY: equ 0000FC9Eh
-_isr: equ 00004337h
+_isr: equ 0000433Ah
 powerup: equ 0000435Fh
 GTSTCK: equ 000000D5h
 GTTRIG: equ 000000D8h

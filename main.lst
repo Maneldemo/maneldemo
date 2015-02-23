@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.02.22 - 22:50:53]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.02.23 - 08:52:44]
 
 main.asm
 Errors: 0
@@ -494,7 +494,7 @@ Errors: 0
      107   00:41E5  FB                  		ei
      108   00:41E6                      			
      109   00:41E6  3E C3               		LD	A,0xC3
-     110   00:41E8  21 37 43            		LD	HL,_isr
+     110   00:41E8  21 3A 43            		LD	HL,_isr
      111   00:41EB  F3                  		DI
      112   00:41EC  32 9F FD            		LD	(0xFD9F),A
      113   00:41EF  22 A0 FD            		LD	(0xFDA0),HL
@@ -653,80 +653,80 @@ Errors: 0
      265   00:42D2                      		
      266   00:42D2  0D                  		dec		c
      267   00:42D3  20 CB               		jr	nz,2b
-     268   00:42D5                      
-     269   00:42D5  CD EC 45            		call	_print_fps
-     270   00:42D8                      
-     271   00:42D8  2A 16 C0            		ld		hl,(_nframes)
-     272   00:42DB  23                  		inc		hl
-     273   00:42DC  22 16 C0            		ld		(_nframes),hl
-     274   00:42DF                      
-     275   00:42DF                      		
-     276   00:42DF  CD 66 43            		call	_cursors
-     277   00:42E2  7D                  		ld		a,l
-     278   00:42E3  FE 01               		cp		1
-     279   00:42E5  CA FB 42            		jp		z,up
-     280   00:42E8  FE 03               		cp		3
-     281   00:42EA  CA 15 43            		jp		z,right
-     282   00:42ED  FE 05               		cp		5
-     283   00:42EF  CA 08 43            		jp		z,dwn
-     284   00:42F2  FE 07               		cp		7
-     285   00:42F4  CA 25 43            		jp		z,left
-     286   00:42F7                      		
-     287   00:42F7  C3 69 42            		jp      main_loop
-     288   00:42FA                      
-     289   00:42FA  C9                          ret
-     290   00:42FB                      
-     291   00:42FB  2A 1A C0            up:		ld		hl,(_levelmappos)
-     292   00:42FE  01 00 F8            		ld		bc,-mapWidth*8
-     293   00:4301  09                  		add		hl,bc
-     294   00:4302  22 1A C0            		ld		(_levelmappos),hl
-     295   00:4305  C3 69 42            		jp      main_loop
-     296   00:4308                      
-     297   00:4308  2A 1A C0            dwn:	ld		hl,(_levelmappos)
-     298   00:430B  01 00 08            		ld		bc,mapWidth*8
-     299   00:430E  09                  		add		hl,bc
-     300   00:430F  22 1A C0            		ld		(_levelmappos),hl
-     301   00:4312  C3 69 42            		jp      main_loop
-     302   00:4315                      		
-     303   00:4315  2A 1A C0            right:	ld		hl,(_levelmappos)
-     304   00:4318  3A 03 C0            		ld		a,(_ticxframe)
-     305   00:431B  4F                  		ld		c,a					; compensate frame rate
-     306   00:431C  06 00               		ld		b,0
-     307   00:431E  09                  		add		hl,bc
-     308   00:431F  22 1A C0            		ld		(_levelmappos),hl
-     309   00:4322  C3 69 42            		jp      main_loop
-     310   00:4325                      
-     311   00:4325  2A 1A C0            left:	ld		hl,(_levelmappos)
-     312   00:4328  3A 03 C0            		ld		a,(_ticxframe)
-     313   00:432B  ED 44               		neg
-     314   00:432D  4F                  		ld		c,a					; compensate frame rate
-     315   00:432E  06 FF               		ld		b,-1
-     316   00:4330  09                  		add		hl,bc
-     317   00:4331  22 1A C0            		ld		(_levelmappos),hl
-     318   00:4334  C3 69 42            		jp      main_loop
-     319   00:4337                      
-     320   00:4337                      ;-------------------------------------
-     321   00:4337  (00:FC9E)           JIFFY: equ 0xFC9E 
-     322   00:4337                      ;-------------------------------------
-     323   00:4337  E5                  _isr:	push	hl
-     324   00:4338  C5                  		push	bc
-     325   00:4339  2A 9E FC            		ld		hl,(JIFFY)
-     326   00:433C  01 CE FF            		ld		bc,-50			; PAL assumed
-     327   00:433F  09                  		add		hl,bc
-     328   00:4340  21 03 C0            		ld		hl,_ticxframe
-     329   00:4343  34                  		inc		(hl)
-     330   00:4344  C1                  		pop		bc
-     331   00:4345  E1                  		pop		hl
-     332   00:4346  D0                  		ret	nc
-     333   00:4347                      		
-     334   00:4347  E5                  		push	hl
-     335   00:4348  21 00 00            		ld		hl,0
-     336   00:434B  22 9E FC            		ld		(JIFFY),hl
-     337   00:434E  2A 16 C0            		ld		hl,(_nframes)
-     338   00:4351  22 14 C0            		ld		(_fps),hl
-     339   00:4354  21 00 00            		ld		hl,0
-     340   00:4357  22 16 C0            		ld		(_nframes),hl
-     341   00:435A  CD 0E 46            		call	_compute_fps
+     268   00:42D5                      		
+     269   00:42D5  CD 0E 46            		call	_compute_fps
+     270   00:42D8  CD EC 45            		call	_print_fps
+     271   00:42DB                      
+     272   00:42DB  2A 16 C0            		ld		hl,(_nframes)
+     273   00:42DE  23                  		inc		hl
+     274   00:42DF  22 16 C0            		ld		(_nframes),hl
+     275   00:42E2                      
+     276   00:42E2                      		
+     277   00:42E2  CD 66 43            		call	_cursors
+     278   00:42E5  7D                  		ld		a,l
+     279   00:42E6  FE 01               		cp		1
+     280   00:42E8  CA FE 42            		jp		z,up
+     281   00:42EB  FE 03               		cp		3
+     282   00:42ED  CA 18 43            		jp		z,right
+     283   00:42F0  FE 05               		cp		5
+     284   00:42F2  CA 0B 43            		jp		z,dwn
+     285   00:42F5  FE 07               		cp		7
+     286   00:42F7  CA 28 43            		jp		z,left
+     287   00:42FA                      		
+     288   00:42FA  C3 69 42            		jp      main_loop
+     289   00:42FD                      
+     290   00:42FD  C9                          ret
+     291   00:42FE                      
+     292   00:42FE  2A 1A C0            up:		ld		hl,(_levelmappos)
+     293   00:4301  01 00 F8            		ld		bc,-mapWidth*8
+     294   00:4304  09                  		add		hl,bc
+     295   00:4305  22 1A C0            		ld		(_levelmappos),hl
+     296   00:4308  C3 69 42            		jp      main_loop
+     297   00:430B                      
+     298   00:430B  2A 1A C0            dwn:	ld		hl,(_levelmappos)
+     299   00:430E  01 00 08            		ld		bc,mapWidth*8
+     300   00:4311  09                  		add		hl,bc
+     301   00:4312  22 1A C0            		ld		(_levelmappos),hl
+     302   00:4315  C3 69 42            		jp      main_loop
+     303   00:4318                      		
+     304   00:4318  2A 1A C0            right:	ld		hl,(_levelmappos)
+     305   00:431B  3A 03 C0            		ld		a,(_ticxframe)
+     306   00:431E  4F                  		ld		c,a					; compensate frame rate
+     307   00:431F  06 00               		ld		b,0
+     308   00:4321  09                  		add		hl,bc
+     309   00:4322  22 1A C0            		ld		(_levelmappos),hl
+     310   00:4325  C3 69 42            		jp      main_loop
+     311   00:4328                      
+     312   00:4328  2A 1A C0            left:	ld		hl,(_levelmappos)
+     313   00:432B  3A 03 C0            		ld		a,(_ticxframe)
+     314   00:432E  ED 44               		neg
+     315   00:4330  4F                  		ld		c,a					; compensate frame rate
+     316   00:4331  06 FF               		ld		b,-1
+     317   00:4333  09                  		add		hl,bc
+     318   00:4334  22 1A C0            		ld		(_levelmappos),hl
+     319   00:4337  C3 69 42            		jp      main_loop
+     320   00:433A                      
+     321   00:433A                      ;-------------------------------------
+     322   00:433A  (00:FC9E)           JIFFY: equ 0xFC9E 
+     323   00:433A                      ;-------------------------------------
+     324   00:433A  E5                  _isr:	push	hl
+     325   00:433B  C5                  		push	bc
+     326   00:433C  2A 9E FC            		ld		hl,(JIFFY)
+     327   00:433F  01 CE FF            		ld		bc,-50			; PAL assumed
+     328   00:4342  09                  		add		hl,bc
+     329   00:4343  21 03 C0            		ld		hl,_ticxframe
+     330   00:4346  34                  		inc		(hl)
+     331   00:4347  C1                  		pop		bc
+     332   00:4348  E1                  		pop		hl
+     333   00:4349  D0                  		ret	nc
+     334   00:434A                      		
+     335   00:434A  E5                  		push	hl
+     336   00:434B  21 00 00            		ld		hl,0
+     337   00:434E  22 9E FC            		ld		(JIFFY),hl
+     338   00:4351  2A 16 C0            		ld		hl,(_nframes)
+     339   00:4354  22 14 C0            		ld		(_fps),hl
+     340   00:4357  21 00 00            		ld		hl,0
+     341   00:435A  22 16 C0            		ld		(_nframes),hl
      342   00:435D  E1                  		pop		hl
      343   00:435E  C9                  		ret
      344   00:435F                      ;-------------------------------------
@@ -1462,12 +1462,12 @@ Errors: 0
 00:00004193   set_turbo_tr
 00:000041A1   START
 00:00004269   main_loop
-00:000042FB   up
-00:00004308   dwn
-00:00004315   right
-00:00004325   left
+00:000042FE   up
+00:0000430B   dwn
+00:00004318   right
+00:00004328   left
 00:0000FC9E   JIFFY
-00:00004337   _isr
+00:0000433A   _isr
 00:0000435F   powerup
 00:000000D5   GTSTCK
 00:000000D8 X GTTRIG

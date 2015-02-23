@@ -265,7 +265,8 @@ main_loop:
 		
 		dec		c
 		jr	nz,2b
-
+		
+		call	_compute_fps
 		call	_print_fps
 
 		ld		hl,(_nframes)
@@ -338,7 +339,6 @@ _isr:	push	hl
 		ld		(_fps),hl
 		ld		hl,0
 		ld		(_nframes),hl
-		call	_compute_fps
 		pop		hl
 		ret
 ;-------------------------------------
