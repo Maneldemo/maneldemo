@@ -3,20 +3,27 @@
 
         output "maneldem.rom"
 
+		defpage	0,0x4000, 0x4000		; page 0 main code + far call routines
+		defpage	1,0x8000, 0x4000		; swapped data 
+		defpage	2..15
+	
+_bank1	equ	0x6000
+_bank2	equ	0x7000
+		
+		page 0
+		
         org 4000h
         dw  4241h,START,0,0,0,0,0,0
 
 
 		include "header.asm"
-		
-
+	
 		include "rominit64.asm"
 
 rdslt	equ	0x000c
 CALSLT	equ	0x001c
 chgcpu	equ	0x0180	; change cpu mode
 exttbl	equ	0xfcc1	; main rom slot
-
 
 
 ; Switch to r800 rom mode
@@ -49,17 +56,10 @@ set_turbo_tr
 		ld	a,81h              	; R800 ROM mode
 		jp chgcpu
 		
-_cls:
-		call	_vdpsetvramwr
-		ld	bc,0
-1:		xor	a
-		out	(0x98),a
-		dec	bc
-		ld	a,b
-		or	c
-		jr	nz,1b
-		ret
 
+; make mapper guesser happy
+		ld	(_bank1),a
+		ld	(_bank2),a
 ;-------------------------------------
 ; Entry point
 ;-------------------------------------
@@ -69,6 +69,17 @@ START:
 
 		call 	_set_r800
         call    powerup
+
+		ld		de,0
+		ld		c,e
+		call	_vdpsetvramwr
+		ld		bc,0x8000
+1:		xor		a
+		out		(0x98),a
+		dec		bc
+		ld		a,b
+		or		c
+		jr	nz,1b
 		
 		di
 		// border color
@@ -76,6 +87,7 @@ START:
 		out		(0x99),a
 		ld		a,128+7
 		out		(0x99),a
+		
 		// Disable sprites + TP
 		ld		a,(0xFFE7)
 		or		2+32
@@ -93,15 +105,7 @@ START:
 		ld		a,128+9
 		out		(0x99),a
 		ei
-		
-		
-;Set VDP for writing at address CDE (17-bit) 
-
-		ld	c,0
- 		ld	de,0
-		call	_cls
-	
-		
+			
 		LD	A,0xC3
 		LD	HL,_isr
 		DI
@@ -112,11 +116,12 @@ START:
 		call	_clean_buffs
 
 		call	_SetPalet
-		ld		e,2
+		ld		e,0
         call	_setpage
 		
-		
 		; unpack level map (meta_tiles)
+		ld	a, :_level
+		ld	(_bank2),a
 		
 		xor	a
 		ld		(_vbit16 ),a
@@ -124,8 +129,8 @@ START:
 		ld		bc,0
 		call	_vuitpakker 
 		
-		xor	a
 		ld		de,0
+		ld		c,e
 		call	_vdpsetvramrd
 		ld		hl,_levelmap
 		ld		de,mapWidth*mapHeight*2
@@ -137,7 +142,9 @@ START:
 		jr	nz,1b
 
 		; unpack frame
-				
+		ld		a, :_frame
+		ld		(_bank2),a
+		
 		xor	a
 		ld		(_vbit16 ),a
 		ld		de,	_frame
@@ -148,11 +155,16 @@ START:
 		ld		bc,0x8000
 		call	_vuitpakker 
 		
+		ld		e,2
+        call	_setpage
+
 		; unpack tileset
+		ld		a, :_tiles
+		ld		(_bank2),a
 		
 		ld		a,1
 		ld		(_vbit16 ),a
-		ld		de,	SAMPLE_START
+		ld		de,	_tiles
 		ld		bc,0
 		call	_vuitpakker 
 
@@ -290,7 +302,7 @@ dwn:	ld		hl,(_levelmappos)
 		
 right:	ld		hl,(_levelmappos)
 		ld		a,(_ticxframe)
-		ld		c,a					; if less than 10 FPS skip a step
+		ld		c,a					; compensate frame rate
 		ld		b,0
 		add		hl,bc
 		ld		(_levelmappos),hl
@@ -299,7 +311,7 @@ right:	ld		hl,(_levelmappos)
 left:	ld		hl,(_levelmappos)
 		ld		a,(_ticxframe)
 		neg
-		ld		c,a					; if less than 10 FPS skip a step
+		ld		c,a					; compensate frame rate
 		ld		b,-1
 		add		hl,bc
 		ld		(_levelmappos),hl
@@ -339,10 +351,8 @@ powerup:
         ret
 
 ;-------------------------------------
-		
 
-; exttbl		equ	0xfcc1      ;main rom slot
-; CALSLT		equ	0x001c
+
 GTSTCK      equ 0x00D5      ;Returns the joystick status
 GTTRIG      equ 0x00D8      ;Returns current trigger status
 
@@ -383,221 +393,13 @@ _SetPalet:
 	ei
 	ret
 
-;-------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-_vuitpakker:
-    push iy
-    push ix
-
-    call  1f
-
-    pop ix
-    pop iy
-    ret
-
-1:
-; in de input
-; in bc VRAM output
-
-    ld h,d
-    ld l,e
-    ld d,b
-    ld e,c
-
-; pletter v0.5 msx unpacker
-
-;-----------------------------------------------------------
-; Pletter 0.5b VRAM Depacker - 64Kb version
-; HL = RAM/ROM source ; DE = VRAM destination
-;-----------------------------------------------------------
-    di
-
-; VRAM address setup
-;    ld  a,e
-;    out (0x99),a
-;    ld  a,d
-;    or  0x40
-;    out (0x99),a
-    call setVwrite
-
-; Initialization
-    ld  a,(hl)
-    inc hl
-    exx
-    ld  de,0
-    add a,a
-    inc a
-    rl  e
-    add a,a
-    rl  e
-    add a,a
-    rl  e
-    rl  e
-    ld  hl,__modes
-    add hl,de
-    ld  e,(hl)
-    db    0xdd
-    ld  l,e         ; ld ixl,e    
-    inc hl
-    ld  e,(hl)
-    db    0xdd
-    ld h,e          ; ld  ixh,e
-    ld  e,1
-    exx
-    ld  iy,__loop
-
-; Main depack loop
-_literal:ld  c,098h
-    outi
-    inc de
-__loop:   add a,a
-    call    z,_getbit
-    jr  nc,_literal
-
-; Compressed data
-    exx
-    ld  h,d
-    ld  l,e
-_getlen: add a,a
-    call    z,_getbitexx
-    jr  nc,lenok
-lus:    add a,a
-    call    z,_getbitexx
-    adc hl,hl
-    ret c
-    add a,a
-    call    z,_getbitexx
-    jr  nc,lenok
-    add a,a
-    call    z,_getbitexx
-    adc hl,hl
-    jp  c,Depack_out
-    add a,a
-    call    z,_getbitexx
-    jp  c,lus
-lenok:  inc hl
-    exx
-    ld  c,(hl)
-    inc hl
-    ld  b,0
-    bit 7,c
-    jp  z,offsok
-    jp  (ix)
-
-_mode7:  add a,a
-    call    z,_getbit
-    rl  b
-_mode6:  add a,a
-    call    z,_getbit
-    rl  b
-_mode5:  add a,a
-    call    z,_getbit
-    rl  b
-_mode4:  add a,a
-    call    z,_getbit
-    rl  b
-_mode3:  add a,a
-    call    z,_getbit
-    rl  b
-_mode2:  add a,a
-    call    z,_getbit
-    rl  b
-    add a,a
-    call    z,_getbit
-    jr  nc,offsok
-    or  a
-    inc b
-    res 7,c
-offsok: inc bc
-    push    hl
-    exx
-    push    hl
-    exx
-    ld  l,e
-    ld  h,d
-    sbc hl,bc
-    pop bc
-    push    af
-_loop: 
-;    ld  a,l
-;    out (0x99),a
-;    ld  a,h
-;    out (0x99),a
-    call setVread
-    
-    in  a,(0x98)
-    ex  af,af'
-;    ld  a,e
-;    out (0x99),a
-;    ld  a,d
-;    or  0x40
-;    out (0x99),a
-    call setVwrite
-    
-    ex  af,af'
-    out (0x98),a
-    inc de
-    cpi
-    jp  pe,_loop
-    pop af
-    pop hl
-    jp  (iy)
-;
-_getbit: ld  a,(hl)
-    inc hl
-    rla
-    ret
-
-_getbitexx:
-    exx
-    ld  a,(hl)
-    inc hl
-    exx
-    rla
-    ret
-
-; De-packer exit
-Depack_out:
-    ei
-    ret
-
-
-
-setVwrite:
-
-    push    de
-    push    bc
-    ld      bc,(_vbit16)
-    call    _vdpsetvramwr
-    pop     bc
-    pop     de
-
-    ret
-setVread:    
-
-    push    de
-    push    bc
-    ld      e,l
-    ld      d,h
-    ld      bc,(_vbit16)
-    call    _vdpsetvramrd
-    pop     bc
-    pop     de
-
-    ret
-
-__modes:
-    dw  offsok
-    dw  _mode2
-    dw  _mode3
-    dw  _mode4
-    dw  _mode5
-    dw  _mode6
-    dw  _mode7
+	include vuitpakker.asm
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	include plot_LMMM_tile.asm
+	include plot_tile.asm
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -671,56 +473,15 @@ _setpage:
 	ei            
 	ret
 
-
-; exttbl        equ     0xfcc1      ;main rom slot
-chgmod        equ     0x5f        ;change graphic mode
+chgmod        equ     0x005f      ;change graphic mode
 RDSLT         equ     0x000c      ;read address HL in slot A
-; CALSLT        equ     0x001c      ;call ix in slot (iy)
 KILBUF        equ     0x0156      ;clear keyboard buffer
 
 _scr:
 	ld  a,e
-	push    ix
-	push    iy
-	ld     iy,(exttbl-1)
-	ld     ix,chgmod
-	call     CALSLT
-	pop     iy
-	pop     ix
-	ei
+	call	chgmod
 	ret
 
-_msxtype:
-	ld    a,(exttbl)
-	ld    hl,0x002d
-	call  RDSLT
-	ld    l,a
-	ret
-
-_is_pal:
-	ld    a,(exttbl)
-	ld    hl,0x002b
-	call  RDSLT
-	and   128
-	ld    l,a
-	ret
-
-_kilbuf:
-	push    ix
-	push    iy
-	ld     iy,(exttbl-1)
-	ld     ix,KILBUF
-	call     CALSLT
-	pop     iy
-	pop     ix
-	ei
-	ret
-     
-_vpeek:     ; _address in de, _bit16 loaded in c
-	call	_vdpsetvramrd
-	in	a,(098h)
-	ld	l,a
-	ret	     
 
 _waitvdp:
 	di
@@ -800,31 +561,23 @@ Num2:
 	ld  (de),a
 	inc de
 	ret
-	
-
-;-------------------------------------
-; Sample data
-;-------------------------------------
-SAMPLE_START:
-        incbin "tiles_.bin"
-SAMPLE_END:
 
 _metatable:
-		incbin "metatable.bin"
+	incbin "metatable.bin"
 _backmap:
-		incbin "backmap.bin"
-_level:
-		incbin "metamap_.bin"			
+	incbin "backmap.bin"
+
+	page 1
 _frame:
-		incbin "frame_.bin"			
+	incbin "frame_.bin"			
+	
+	page 2
+_tiles:
+	incbin "tiles_.bin"
 
-;-------------------------------------
-; Padding, align rom image to a power of two.
-;-------------------------------------
-
-        if ($ <= 0C000h)
-			ds (0C000h - $)
-        endif
+	page 3
+_level:
+	incbin "metamap_.bin"			
 
 FINISH:
 
@@ -855,4 +608,3 @@ _shadow1:			#WinWidth*WinWidth*2
 
 _levelmap:			#mapWidth*mapHeight*2	
 	ENDMAP
-	

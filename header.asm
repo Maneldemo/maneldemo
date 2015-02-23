@@ -4,3 +4,5 @@ mapHeight:	equ	 16
 WinWidth:	equ	 28
 WinHeight:	equ	 16
 Transp:	equ	  0
+SolidTile:	equ	832
+SolidColor:	equ	  7

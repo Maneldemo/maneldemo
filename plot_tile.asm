@@ -36,7 +36,12 @@ plot_tile:
 	or		e
 	jp		nz,plot_foreground
 
-plot_background:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; input
+; hl  configured in window map 32x24
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; plot_background:
 
 	push	hl
 	ld		de,_backmap-32*4-2
@@ -45,10 +50,17 @@ plot_background:
 	inc		hl
 	ld		d,(hl)
 	pop		hl
-
+	
+	
 plot_foreground:
+	ld	a,low SolidTile
+	cp	e
+	jr	nz,1f
+	ld	a,high SolidTile
+	cp	d
+	jp	z,plot_solid_box
 
-	call 	vdp_conf
+1:	call 	vdp_conf
 
 	ld		a,0xD0
 	out 	(0x9B), a		; command
@@ -64,11 +76,20 @@ plot_foreground:
 
 plot_trasp_tile:
 
-	push	hl
 	push	de
-	call	plot_background
-	pop		de
+	push	hl
+					;	plot_background
+	ld		de,_backmap-32*4-2
+	add		hl,de
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+
 	pop		hl
+	push	hl
+	call	plot_foreground
+	pop		hl
+	pop		de
 
 	call	vdp_conf
 
@@ -146,3 +167,50 @@ vdp_conf:
 	out 	(0x9B), a
 	ret
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; input
+; hl configured in window map 32x24
+;  e color
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+plot_solid_box:
+	ld		e,SolidColor+16*SolidColor		; solid color
+
+[2]	add		hl,hl
+	ld		c,l			; C = dx*8
+	ld		a,h
+[3]	add		a,a
+	ld		b,a			; B = dy*8
+	push	bc			; dx*8 and dy*8 on the stack
+
+	di
+	ld 		a, 36
+	out 	(0x99),a
+	ld 		a, 17+128
+	out 	(0x99),a
+	ei
+
+	ld 		c, 0x9B
+	
+	call _waitvdp;
+	pop		hl			; recover dx*8,dy*8
+	
+	out 	(c), l 		; dx
+	xor a
+	out 	(0x9B), a	; dx (high)
+	out 	(c), h 		; dy
+	ld 		a,(_currentpage)	; destination page
+	out 	(0x9B), a	; dy (high-> page 0 or 1)
+
+	ld 		l,8 		; block size
+
+	out 	(c), l
+	xor a
+	out 	(0x9B), a
+	out 	(c), l
+	out 	(0x9B), a
+	out 	(c), e
+	out 	(0x9B), a
+	ld		l,11000000B
+	out 	(c), l
+	ret
