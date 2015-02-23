@@ -56,10 +56,15 @@ set_turbo_tr
 		ld	a,81h              	; R800 ROM mode
 		jp chgcpu
 		
-
-; make mapper guesser happy
-		ld	(_bank1),a
-		ld	(_bank2),a
+	
+checkkbd:
+	in	a,(0aah)
+	and 011110000B			; upper 4 bits contain info to preserve
+	or	e
+	out (0aah),a
+	in	a,(0a9h)
+	ld	l,a
+	ret
 ;-------------------------------------
 ; Entry point
 ;-------------------------------------
@@ -70,6 +75,11 @@ START:
 		call 	_set_r800
         call    powerup
 
+		ld	e,7
+		call	checkkbd
+		and	0x04
+		jp 	z,_mballon_start
+		
 		ld		de,0
 		ld		c,e
 		call	_vdpsetvramwr
@@ -567,6 +577,22 @@ _metatable:
 _backmap:
 	incbin "backmap.bin"
 
+; start
+_mballon_start
+	ld	de,0xc000
+	ld	hl,_relocate
+	ld	bc,_endrelocate-_relocate
+	ldir
+	jp	0xc000
+_relocate:
+	ld	a,:mballon
+	ld	(_bank1),a
+	inc	a
+	ld	(_bank2),a
+	ld	hl,(0x4002)
+	jp	(hl)
+_endrelocate:
+
 	page 1
 _frame:
 	incbin "frame_.bin"			
@@ -579,6 +605,11 @@ _tiles:
 _level:
 	incbin "metamap_.bin"			
 
+	page 4
+mballon:
+	incbin "MBALLOON.BIN",,0x4000	
+	page 5
+	incbin "MBALLOON.BIN",0x4000	
 FINISH:
 
 
