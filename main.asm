@@ -82,8 +82,9 @@ START:
 		
 		ld		de,0
 		ld		c,e
+		di
 		call	_vdpsetvramwr
-		ld		bc,0x8000
+		ld		bc,0x0000
 1:		xor		a
 		out		(0x98),a
 		dec		bc
@@ -414,9 +415,9 @@ _SetPalet:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 _clean_buffs:
-	ld	bc,2*32*24*2-1
+	ld	bc,2*WinWidth*WinWidth*2-1
 	ld	hl,_shadow0
-	ld	(hl),230
+	ld	(hl),-1
 	ld	de,_shadow0+1
 	ldir
 	ret
@@ -593,6 +594,9 @@ _relocate:
 	jp	(hl)
 _endrelocate:
 
+
+	include enemies.asm
+
 	page 1
 _frame:
 	incbin "frame_.bin"			
@@ -612,12 +616,12 @@ mballon:
 	incbin "MBALLOON.BIN",0x4000	
 FINISH:
 
-
 ;---------------------------------------------------------
 ; Variables
 ;---------------------------------------------------------
 
 
+	
 	MAP 0xC000
 slotvar				#1
 slotram				#1
@@ -638,4 +642,6 @@ _shadow0:			#WinWidth*WinWidth*2
 _shadow1:			#WinWidth*WinWidth*2
 
 _levelmap:			#mapWidth*mapHeight*2	
+
+enemylist:			#enemy*nenemies
 	ENDMAP
