@@ -75,9 +75,17 @@ START:
 		call 	_set_r800
         call    powerup
 
+		ld e,6
+		call	checkkbd
+		ld	a,1
+		rrc	l				; shift
+		jp	nc,_ntsc
+		xor	a
+_ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
+		
 		ld	e,7
 		call	checkkbd
-		and	0x04
+		and	0x04				; ESC
 		jp 	z,_mballon_start
 		
 		ld		de,0
@@ -108,10 +116,21 @@ START:
 		out		(0x99),a
 		
 		// Set 192 lines @50Hz (PAL assumed!)
-		ld		a,(0xFFE8)
+		ld	a,(SEL_NTSC)
+		and 	a
+		jr		nz,1f
+		
+		ld		a,(0xFFE8)		; PAL
 		and		127
 		or		2
 		ld		(0xFFE8),a
+		jr	2f
+1:		ld		a,(0xFFE8)		; NTSC
+		and		127
+		or		2
+		xor		2
+		ld		(0xFFE8),a
+2:	
 		out		(0x99),a
 		ld		a,128+9
 		out		(0x99),a
@@ -335,8 +354,17 @@ JIFFY: equ 0xFC9E
 _isr:	push	hl
 		push	bc
 		ld		hl,(JIFFY)
-		ld		bc,-50			; PAL assumed
-		add		hl,bc
+
+		ld	a,(SEL_NTSC)
+		and 	a
+		jr		nz,1f
+		
+		ld		bc,-50			; PAL 
+		jr	2f
+1:
+		ld		bc,-60			; NTSC
+		
+2:		add		hl,bc
 		ld		hl,_ticxframe
 		inc		(hl)
 		pop		bc
@@ -625,6 +653,7 @@ FINISH:
 	MAP 0xC000
 slotvar				#1
 slotram				#1
+SEL_NTSC			#1
 _dx					#1
 
 _ticxframe			#1
