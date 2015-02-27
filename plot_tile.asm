@@ -62,8 +62,8 @@ plot_foreground:
 
 1:	call 	vdp_conf
 
-	ld		a,0xD0
-	out 	(0x9B), a		; command
+	ld		a,11010000B
+	out 	(0x9B), a		; command HMMM
 	ret
 
 	
@@ -93,8 +93,8 @@ plot_trasp_tile:
 
 	call	vdp_conf
 
-	ld		a,0x98
-	out 	(0x9B), a		; command
+	ld		a,10011000B
+	out 	(0x9B), a		; command LMMM
 	ret
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -211,6 +211,6 @@ plot_solid_box:
 	out 	(0x9B), a
 	out 	(c), e
 	out 	(0x9B), a
-	ld		l,11000000B
+	ld		l,11000000B	; command HMMV
 	out 	(c), l
 	ret
