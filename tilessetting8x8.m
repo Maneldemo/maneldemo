@@ -153,7 +153,7 @@ fun = @(block_struct) transpose(block_struct.data);
 C = blockproc(B,[8 8],fun)';
 B = C;
 
-B((256+128+1):(256+128+32),:) = Fonts;
+B((256+128+1):(256+128+24),:) = Fonts;
 
 figure
 image(B)

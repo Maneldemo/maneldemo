@@ -58,13 +58,13 @@ set_turbo_tr
 		
 	
 checkkbd:
-	in	a,(0aah)
-	and 011110000B			; upper 4 bits contain info to preserve
-	or	e
-	out (0aah),a
-	in	a,(0a9h)
-	ld	l,a
-	ret
+		in	a,(0aah)
+		and 011110000B			; upper 4 bits contain info to preserve
+		or	e
+		out (0aah),a
+		in	a,(0a9h)
+		ld	l,a
+		ret
 ;-------------------------------------
 ; Entry point
 ;-------------------------------------
@@ -273,7 +273,7 @@ main_loop:
 		
 		inc		hl			; the screen in WinWidthxWinHeight
 		
-[2]		inc		de			; the levelmap is int
+[2]		inc		de			; the levelmap is uint
 		djnz	3b
 		
 		if (WinWidth<32)
@@ -295,6 +295,8 @@ main_loop:
 		
 		dec		c
 		jr	nz,2b
+		
+		call	testcode
 		
 		call	_compute_fps
 		call	_print_fps
