@@ -65,6 +65,11 @@ checkkbd:
 		in	a,(0a9h)
 		ld	l,a
 		ret
+		
+;-------------------------------------		
+		
+		include plot_frame.asm
+		
 ;-------------------------------------
 ; Entry point
 ;-------------------------------------
@@ -197,6 +202,8 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		de,	_tiles
 		ld		bc,0
 		call	_vuitpakker 
+		
+		call	int_sprites
 
 		; main init
 			
@@ -224,79 +231,19 @@ main_loop:
 		ld		hl,_shadow0
 1:		ld		(_shadowbuff),hl
 
-		ld		c,WinHeight
-		
-		ld		hl,(_levelmappos)
-		repeat 2
-		srl		h
-		rr		l
-		endrepeat
-		res		0,l
-		ld		de,_levelmap
-		add		hl,de
-		ex		de,hl			; de -> levelmap
-		ld		hl,2*32+2		; hl -> screen 
-		
-2:		ld		b,WinWidth
-		push	de
+		ld	ix,enemylist
+		call save_background
 
-3:		push	de
-		push	hl
-		
-		ex		de,hl
-		ld		e,(hl)
-		inc		hl
-		ld		d,(hl)		; DE = meta tile
-		
-		ex		de,hl
-[3]		add		hl,hl
-		
-		ld		de,_metatable
-		add		hl,de
-		ld		a,(_levelmappos)
-		and		00000110B
-		ld		d,0
-		ld		e,a
-		add		hl,de
-		ld		e,(hl)
-		inc		hl
-		ld		d,(hl)		; DE = tile
+		ld	ix,enemylist
+		call plot_sprite
 
-		pop		hl			; HL = screen position
-		push	hl
+		call	plot_frame
 
-		push	bc
-		call	plot_tile
-		pop		bc
-		pop		hl
-		pop		de
-		
-		inc		hl			; the screen in WinWidthxWinHeight
-		
-[2]		inc		de			; the levelmap is uint
-		djnz	3b
-		
-		if (WinWidth<32)
-			ld	de,32-WinWidth	; only if WinWidth<32
-			add	hl,de
-		endif
-		
-		pop		de
-		
-		if (mapWidth=256)
-[2]			inc d
-		else
-			push	hl
-			ld		hl,mapWidth*2
-			add		hl,de
-			ex		de,hl
-			pop		hl
-		endif
-		
-		dec		c
-		jr	nz,2b
-		
-		call	testcode
+		ld	ix,enemylist
+		call restore_background
+
+		ld	ix,enemylist
+		call	move_sprites
 		
 		call	_compute_fps
 		call	_print_fps
