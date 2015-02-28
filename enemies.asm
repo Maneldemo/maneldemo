@@ -20,6 +20,8 @@ buf		ds	sprite_size
 frames:
 		dw 01Ah,0EBh,0AAh
 		dw 01Ah,0EBh,0AAh
+		; dw 0EBh,0AAh
+		; dw 0EBh,0AAh
 
 [127]	ds	sprite_size
 

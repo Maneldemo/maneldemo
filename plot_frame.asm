@@ -31,6 +31,7 @@ plot_frame:
 		add		hl,de
 		ld		a,(_levelmappos)
 		and		00000110B
+		; and		00000000B
 		ld		d,0
 		ld		e,a
 		add		hl,de
