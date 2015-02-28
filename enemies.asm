@@ -16,7 +16,7 @@ ny		db
 buf		ds	sprite_size
 	endstruct
 	
-	page 6
+	page 7
 frames:
 		dw 01Ah,0EBh,0AAh
 		dw 01Ah,0EBh,0AAh
@@ -45,7 +45,7 @@ int_sprites
 move_sprites
 	ld	a,(ix+enemy.dx)
 	dec	a
-	and	15
+	and	3
 	ld	(ix+enemy.dx),a
 	ret	nz
 	

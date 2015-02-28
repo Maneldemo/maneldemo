@@ -15,6 +15,7 @@ pale = pale/7;
 
 [X,MAP] = imread('maprol.bmp','bmp');
 [Fonts,FontMAP] = imread('fonts.bmp','bmp');
+[Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
 
 if isempty(MAP)
     [A2,MAP] = rgb2ind(X,pale);
@@ -28,7 +29,8 @@ else
     MAP = pale;
 end
 Fonts = imapprox(Fonts,FontMAP,pale);
-    
+Sprites = imapprox(Sprites,SpriteMAP,pale);   
+
 B = A2(1:(8*16),:);
 Y = A2(129:256,1:256);  % background
 F = A2(257:416,1:256);  % frame
@@ -154,6 +156,7 @@ C = blockproc(B,[8 8],fun)';
 B = C;
 
 B((256+128+1):(256+128+24),:) = Fonts;
+B((256+1):(256+128),:) = Sprites;
 
 figure
 image(B)
@@ -192,8 +195,15 @@ image(A)
 colormap(MAP)
 axis equal;
 
-fid = fopen('tiles.bin','wb');
-for y=1:512
+fid = fopen('tiles0.bin','wb');
+for y=1:256
+    t = uint8(double(B(y,2:2:256))+double(B(y,1:2:256))*16);
+    fwrite(fid,t,'uchar');
+end
+fclose(fid);
+
+fid = fopen('tiles1.bin','wb');
+for y=257:512
     t = uint8(double(B(y,2:2:256))+double(B(y,1:2:256))*16);
     fwrite(fid,t,'uchar');
 end
@@ -206,7 +216,8 @@ for y=1:160
 end
 fclose(fid);
 
-!tools\pletter tiles.bin tiles_.bin
+!tools\pletter tiles0.bin tiles0_.bin
+!tools\pletter tiles1.bin tiles1_.bin
 !tools\pletter frame.bin frame_.bin
 
 palette = round(MAP(1:16,:)*7);

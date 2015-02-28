@@ -194,13 +194,22 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
         call	_setpage
 
 		; unpack tileset
-		ld		a, :_tiles
+		ld		a, :_tiles0
 		ld		(_bank2),a
 		
 		ld		a,1
 		ld		(_vbit16 ),a
-		ld		de,	_tiles
+		ld		de,	_tiles0
 		ld		bc,0
+		call	_vuitpakker 
+		
+		ld		a, :_tiles1
+		ld		(_bank2),a
+		
+		ld		a,1
+		ld		(_vbit16 ),a
+		ld		de,	_tiles1
+		ld		bc,0x8000
 		call	_vuitpakker 
 		
 		call	int_sprites
@@ -583,17 +592,21 @@ _frame:
 	incbin "frame_.bin"			
 	
 	page 2
-_tiles:
-	incbin "tiles_.bin"
-
+_tiles0:
+	incbin "tiles0_.bin"
+	
 	page 3
+_tiles1:
+	incbin "tiles1_.bin"
+
+	page 4
 _level:
 	incbin "metamap_.bin"			
 
-	page 4
+	page 5
 mballon:
 	incbin "MBALLOON.BIN",,0x4000	
-	page 5
+	page 6
 	incbin "MBALLOON.BIN",0x4000	
 FINISH:
 
