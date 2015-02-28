@@ -238,6 +238,8 @@ main_loop:
 		call plot_sprite
 
 		call	plot_frame
+		
+		call	enemies_LMMM
 
 		ld	ix,enemylist
 		call restore_background
@@ -573,6 +575,8 @@ _endrelocate:
 
 
 	include enemies.asm
+	
+	include enemies_LMMM.asm
 
 	page 1
 _frame:
