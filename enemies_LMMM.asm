@@ -12,7 +12,7 @@ enemies_LMMM:
 	
 	call _waitvdp;
 	
-	ld	hl,0+0*256
+	ld	hl,64+0*256
 	out		(c), l 		; sx
 	xor a
 	out		(0x9B), a 	; sx (high)
@@ -29,7 +29,7 @@ enemies_LMMM:
 	ld 		a,(_currentpage)	; destination page
 	out 	(0x9B), a	; dy (high-> page 0 or 1)
 
-	ld 		hl,64+64*256 		; block size
+	ld 		hl,128+64*256 		; block size
 
 	out 	(c), l
 	xor a
