@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.02.28 - 23:39:07]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.01 - 08:43:55]
 
 main.asm
 Errors: 0
@@ -1633,7 +1633,7 @@ Errors: 0
       12.  00:534A                      	
       13.  00:534A  CD 4C 46            	call _waitvdp;
       14.  00:534D                      	
-      15.  00:534D  21 00 00            	ld	hl,0+0*256
+      15.  00:534D  21 40 00            	ld	hl,64+0*256
       16.  00:5350  ED 69               	out		(c), l 		; sx
       17.  00:5352  AF                  	xor a
       18.  00:5353  D3 9B               	out		(0x9B), a 	; sx (high)
@@ -1650,7 +1650,7 @@ Errors: 0
       29.  00:5365  3A 1F C0            	ld 		a,(_currentpage)	; destination page
       30.  00:5368  D3 9B               	out 	(0x9B), a	; dy (high-> page 0 or 1)
       31.  00:536A                      
-      32.  00:536A  21 40 40            	ld 		hl,64+64*256 		; block size
+      32.  00:536A  21 80 20            	ld 		hl,128+32*256 		; block size
       33.  00:536D                      
       34.  00:536D  ED 69               	out 	(c), l
       35.  00:536F  AF                  	xor a
