@@ -88,10 +88,10 @@ START:
 		xor	a
 _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
-		ld	e,7
-		call	checkkbd
-		and	0x04				; ESC
-		jp 	z,_mballon_start
+		; ld	e,7
+		; call	checkkbd
+		; and	0x04				; ESC
+		; jp 	z,_mballon_start
 		
 		ld		de,0
 		ld		c,e
@@ -106,15 +106,23 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		jr	nz,1b
 		
 		di
+		// sprites 16x16
+		ld	a,(0xF3E0)
+		or	2
+		ld	(0xF3E0),a
+		out		(0x99),a
+		ld		a,128+1
+		out		(0x99),a
+
 		// border color
 		ld		a,0x55
 		out		(0x99),a
 		ld		a,128+7
 		out		(0x99),a
 		
-		// Disable sprites + TP
+		// enable sprites + TP
 		ld		a,(0xFFE7)
-		or		2+32
+		or		32
 		ld		(0xFFE7),a
 		out		(0x99),a
 		ld		a,128+8
@@ -140,7 +148,9 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		a,128+9
 		out		(0x99),a
 		ei
-			
+
+		call _hw_sprite_init
+		
 		LD	A,0xC3
 		LD	HL,_isr
 		DI
@@ -186,6 +196,9 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		bc,0
 		call	_vuitpakker 
 
+		ld		e,1
+        call	_setpage
+
 		ld		de,	_frame
 		ld		bc,0x8000
 		call	_vuitpakker 
@@ -203,6 +216,9 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		bc,0
 		call	_vuitpakker 
 		
+		ld		e,3
+        call	_setpage
+		
 		ld		a, :_tiles1
 		ld		(_bank2),a
 		
@@ -212,7 +228,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		bc,0x8000
 		call	_vuitpakker 
 		
-		call	int_sprites
+		; call	int_sprites
 
 		; main init
 			
@@ -240,21 +256,21 @@ main_loop:
 		ld		hl,_shadow0
 1:		ld		(_shadowbuff),hl
 
-		ld	ix,enemylist
-		call save_background
+		; ld	ix,enemylist
+		; call save_background
 
-		ld	ix,enemylist
-		call plot_sprite
+		; ld	ix,enemylist
+		; call plot_sprite
 
 		call	plot_frame
 		
-		call	enemies_LMMM
+		; call	enemies_LMMM
 
-		ld	ix,enemylist
-		call restore_background
+		; ld	ix,enemylist
+		; call restore_background
 
-		ld	ix,enemylist
-		call	move_sprites
+		; ld	ix,enemylist
+		; call	move_sprites
 		
 		call	_compute_fps
 		call	_print_fps
@@ -262,7 +278,6 @@ main_loop:
 		ld		hl,(_nframes)
 		inc		hl
 		ld		(_nframes),hl
-
 		
 		call	_cursors
 		ld		a,l
@@ -503,9 +518,10 @@ _waitvdp:
 
 	
 _print_fps:
-	ld	de,(_buffer+3)
+	ld	a,(_buffer+3)
+	ld	e,a
 	ld	d,0
-	ld	hl,1024+512-'0'+16
+	ld	hl,32*(64-3)-'0'+16
 	add	hl,de
 	ex	de,hl
 	
@@ -515,7 +531,7 @@ _print_fps:
 	ld	a,(_buffer+4)
 	ld	e,a
 	ld	d,0
-	ld	hl,1024+512-'0'+16
+	ld	hl,32*(64-3)-'0'+16
 	add	hl,de
 	ex	de,hl
 	
@@ -567,25 +583,26 @@ _backmap:
 	incbin "backmap.bin"
 
 ; start
-_mballon_start
-	ld	de,0xc000
-	ld	hl,_relocate
-	ld	bc,_endrelocate-_relocate
-	ldir
-	jp	0xc000
-_relocate:
-	ld	a,:mballon
-	ld	(_bank1),a
-	inc	a
-	ld	(_bank2),a
-	ld	hl,(0x4002)
-	jp	(hl)
-_endrelocate:
+; _mballon_start
+	; ld	de,0xc000
+	; ld	hl,_relocate
+	; ld	bc,_endrelocate-_relocate
+	; ldir
+	; jp	0xc000
+; _relocate:
+	; ld	a,:mballon
+	; ld	(_bank1),a
+	; inc	a
+	; ld	(_bank2),a
+	; ld	hl,(0x4002)
+	; jp	(hl)
+; _endrelocate:
 
 
-	include enemies.asm
+	; include enemies.asm
+	include hwsprites.asm
 	
-	include enemies_LMMM.asm
+	; include enemies_LMMM.asm
 
 	page 1
 _frame:
@@ -602,12 +619,10 @@ _tiles1:
 	page 4
 _level:
 	incbin "metamap_.bin"			
-
+	
 	page 5
-mballon:
-	incbin "MBALLOON.BIN",,0x4000	
-	page 6
-	incbin "MBALLOON.BIN",0x4000	
+sprtdata
+	include 	SPROL.ASM
 FINISH:
 
 ;---------------------------------------------------------
@@ -638,5 +653,5 @@ _shadow1:			#WinWidth*WinWidth*2
 
 _levelmap:			#mapWidth*mapHeight*2	
 
-enemylist:			#enemy*nenemies
+; enemylist:			#enemy*nenemies
 	ENDMAP

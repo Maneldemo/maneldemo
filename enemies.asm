@@ -16,7 +16,7 @@ ny		db
 buf		ds	sprite_size
 	endstruct
 	
-	page 7
+	page 6
 frames:
 		dw 01Ah,0EBh,0AAh
 		dw 01Ah,0EBh,0AAh

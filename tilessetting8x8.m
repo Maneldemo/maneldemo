@@ -15,7 +15,9 @@ pale = pale/7;
 
 [X,MAP] = imread('maprol.bmp','bmp');
 [Fonts,FontMAP] = imread('fonts.bmp','bmp');
-[Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
+% [Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
+[Background,BackgroundMAP] = imread('Background.bmp','bmp');
+[Frame,FrameMAP] = imread('frame.bmp','bmp');
 
 if isempty(MAP)
     [A2,MAP] = rgb2ind(X,pale);
@@ -29,11 +31,13 @@ else
     MAP = pale;
 end
 Fonts = imapprox(Fonts,FontMAP,pale);
-Sprites = imapprox(Sprites,SpriteMAP,pale);   
+% Sprites = imapprox(Sprites,SpriteMAP,pale);   
+Background = imapprox(Background,BackgroundMAP,pale);   
+Frame = imapprox(Frame,FrameMAP,pale);   
 
 B = A2(1:(8*16),:);
-Y = A2(129:256,1:256);  % background
-F = A2(257:416,1:256);  % frame
+Y = Background;          % background
+F = Frame;               % frame
 
 H = size(B,1);
 W = size(B,2);
@@ -155,8 +159,8 @@ fun = @(block_struct) transpose(block_struct.data);
 C = blockproc(B,[8 8],fun)';
 B = C;
 
-B((256+128+1):(256+128+24),:) = Fonts;
-B((256+1):(256+128),:) = Sprites;
+B((512-24+1):end,:) = Fonts;
+%B((256+1):(256+128),:) = Sprites;
 
 figure
 image(B)
