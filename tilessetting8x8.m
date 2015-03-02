@@ -13,9 +13,9 @@ end
 fclose(fid);
 pale = pale/7;
 
-[X,MAP] = imread('maprol.bmp','bmp');
+[X,MAP] = imread('map2.bmp','bmp');
 [Fonts,FontMAP] = imread('fonts.bmp','bmp');
-% [Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
+[Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
 [Background,BackgroundMAP] = imread('Background.bmp','bmp');
 [Frame,FrameMAP] = imread('frame.bmp','bmp');
 
@@ -31,11 +31,11 @@ else
     MAP = pale;
 end
 Fonts = imapprox(Fonts,FontMAP,pale);
-% Sprites = imapprox(Sprites,SpriteMAP,pale);   
+Sprites = imapprox(Sprites,SpriteMAP,pale);   
 Background = imapprox(Background,BackgroundMAP,pale);   
 Frame = imapprox(Frame,FrameMAP,pale);   
 
-B = A2(1:(8*16),:);
+B = A2(1:256,:);
 Y = Background;          % background
 F = Frame;               % frame
 
@@ -164,7 +164,7 @@ C = blockproc(B,[8 8],fun)';
 B = C;
 
 B((512-24+1):end,:) = Fonts;
-%B((256+1):(256+128),:) = Sprites;
+B((512-24-16+1):(512-24),:) = Sprites(1:16,:);
 
 figure
 image(B)

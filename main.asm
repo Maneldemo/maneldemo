@@ -25,6 +25,9 @@ CALSLT	equ	0x001c
 chgcpu	equ	0x0180	; change cpu mode
 exttbl	equ	0xfcc1	; main rom slot
 
+; _levelmap:			#mapWidth*mapHeight*2	
+
+_levelmap equ	0x8000	; ram in page 1
 
 ; Switch to r800 rom mode
 	
@@ -174,6 +177,8 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		bc,0
 		call	_vuitpakker 
 		
+		call	setrampage2
+		
 		ld		de,0
 		ld		c,e
 		call	_vdpsetvramrd
@@ -186,6 +191,8 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		or	e
 		jr	nz,1b
 
+		call	setrompage2
+				
 		; unpack frame
 		ld		a, :_frame
 		ld		(_bank2),a
@@ -231,14 +238,17 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		; call	int_sprites
 
 		; main init
-			
+		
+		call	setrampage2
+		ei
+		
 		ld		hl,0
 		ld		(_levelmappos),hl
 		ld		(_nframes),hl
 		ld		a,h
 		ld		(_currentpage),a
-		ld		(_dx),a
-		
+		ld		(_mcdx),a
+		ld		(_mcframe),a
 main_loop:
 		xor		a
 		ld		(_ticxframe),a
@@ -264,7 +274,7 @@ main_loop:
 
 		call	plot_frame
 		
-		; call	enemies_LMMM
+		call	enemies_LMMM
 
 		; ld	ix,enemylist
 		; call restore_background
@@ -289,7 +299,8 @@ main_loop:
 		jp		z,dwn
 		cp		7
 		jp		z,left
-		
+		xor		a
+		ld		(_mcdx),a
 		jp      main_loop
 
         ret
@@ -308,19 +319,25 @@ dwn:	ld		hl,(_levelmappos)
 		
 right:	ld		hl,(_levelmappos)
 		ld		a,(_ticxframe)
+		ld		(_mcdx),a
 		ld		c,a					; compensate frame rate
 		ld		b,0
 		add		hl,bc
 		ld		(_levelmappos),hl
+		ld	a,1
+		ld	(_mcstate),a
 		jp      main_loop
 
 left:	ld		hl,(_levelmappos)
 		ld		a,(_ticxframe)
 		neg
+		ld		(_mcdx),a
 		ld		c,a					; compensate frame rate
 		ld		b,-1
 		add		hl,bc
 		ld		(_levelmappos),hl
+		xor	a
+		ld	(_mcstate),a
 		jp      main_loop
 
 ;-------------------------------------
@@ -361,8 +378,9 @@ _isr:	push	hl
 ;-------------------------------------
 powerup:
         call    search_slot
-		call	setrompage2
-        ret
+        call    search_slotram
+		jp		setrompage2
+        
 
 ;-------------------------------------
 
@@ -598,11 +616,11 @@ _backmap:
 	; jp	(hl)
 ; _endrelocate:
 
+	include enemies.asm
 
-	; include enemies.asm
 	include hwsprites.asm
 	
-	; include enemies_LMMM.asm
+	include enemies_LMMM.asm
 
 	page 1
 _frame:
@@ -635,7 +653,13 @@ FINISH:
 slotvar				#1
 slotram				#1
 SEL_NTSC			#1
-_dx					#1
+_mcdx				#1
+_mcdy				#1
+_mcx				#2
+_mcy				#2
+_mcframe			#1
+_mcstate			#1
+
 
 _ticxframe			#1
 
@@ -651,7 +675,5 @@ _currentpage:		#1
 _shadow0:			#WinWidth*WinWidth*2
 _shadow1:			#WinWidth*WinWidth*2
 
-_levelmap:			#mapWidth*mapHeight*2	
-
-; enemylist:			#enemy*nenemies
+enemylist:			#enemy*nenemies
 	ENDMAP

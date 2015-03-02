@@ -54,6 +54,7 @@ _hw_sprite_init:
 		ret
 		
 hwsprt_test
+		db	0xd8
 		db	64,128,0,15
 		db	64,128,4,15
 		db	64,128,8,15
@@ -61,4 +62,4 @@ hwsprt_test
 		db	32,128,12,15
 		db	32,128,16,15
 		db	32,128,20,15
-		db	0xd9
+		db	0xd8
