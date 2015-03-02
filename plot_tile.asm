@@ -53,14 +53,33 @@ plot_tile:
 	
 	
 plot_foreground:
-	ld	a,low SolidTile
+	; ld	a,low SolidTile0
+	; cp	e
+	; jr	nz,1f
+	; ld	a,high SolidTile0
+	; cp	d
+	; ld	a,17*SolidColor0		; solid color0
+	; jp	z,plot_solid_box
+; 1:
+	ld	a,low SolidTile1
 	cp	e
 	jr	nz,1f
-	ld	a,high SolidTile
+	ld	a,high SolidTile1
 	cp	d
+	ld	a,17*SolidColor1		; solid color1
 	jp	z,plot_solid_box
+1:	
+	ld	a,low SolidTile2
+	cp	e
+	jr	nz,1f
+	ld	a,high SolidTile2
+	cp	d
+	ld	a,17*SolidColor2		; solid color2
+	jp	z,plot_solid_box
+1:		
+	
 
-1:	call 	vdp_conf
+	call 	vdp_conf
 
 	ld		a,11010000B
 	out 	(0x9B), a		; command HMMM
@@ -170,11 +189,11 @@ vdp_conf:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; input
 ; hl configured in window map 32x24
-;  e color
+;  a color
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 plot_solid_box:
-	ld		e,SolidColor+16*SolidColor		; solid color
+	ld		e,a		; solid color
 
 [2]	add		hl,hl
 	ld		c,l			; C = dx*8

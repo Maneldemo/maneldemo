@@ -1,8 +1,12 @@
-n_tiles: equ 1548
+n_tiles: equ 1601
 mapWidth:	equ	256
 mapHeight:	equ	 16
 WinWidth:	equ	 28
 WinHeight:	equ	 16
 Transp:	equ	  0
-SolidTile:	equ	1432
-SolidColor:	equ	  8
+SolidTile0	equ	  0
+SolidTile1	equ	1280
+SolidTile2	equ	1485
+SolidColor0	equ	  0
+SolidColor1	equ	  7
+SolidColor2	equ	  8

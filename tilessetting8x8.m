@@ -63,6 +63,8 @@ C = blockproc(double(UniqueTiles),[1 64],fun);
 [~,i] = sort(C,1); 
 UniqueTiles = UniqueTiles(i,:);
 
+solid_tile = [];
+solid_color = [];
 transparentset = [];
 for i = 1:size(UniqueTiles,1);
     j = find (UniqueTiles(i,:)==0);
@@ -71,10 +73,12 @@ for i = 1:size(UniqueTiles,1);
     end
     
     if all(UniqueTiles(i,:)==UniqueTiles(i,1))
-        solid_tile = i-1;
-        solid_color = UniqueTiles(i,1);
+        solid_tile = [solid_tile i-1];
+        solid_color = [solid_color UniqueTiles(i,1)];
     end
 end
+solid_tile 
+solid_color
        
 
 BackTiles = im2col(Y,'indexed',[8 8],'distinct');
@@ -141,8 +145,8 @@ fprintf(fid,'WinHeight:	equ	%3d\n',	16);
 
 fprintf(fid,'Transp:	equ	%3d\n',	UniqueMetaTiles(MM(1),1)-1);
 
-fprintf(fid,'SolidTile:	equ	%3d\n',	solid_tile);
-fprintf(fid,'SolidColor:	equ	%3d\n',	solid_color);
+fprintf(fid,'SolidTile%d	equ	%3d\n',[[0:size(solid_tile,2)-1]' solid_tile']');
+fprintf(fid,'SolidColor%d	equ	%3d\n',[[0:size(solid_tile,2)-1]' solid_color']');
 
 fclose(fid);
 
