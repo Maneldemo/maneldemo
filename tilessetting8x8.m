@@ -13,7 +13,7 @@ end
 fclose(fid);
 pale = pale/7;
 
-[X,MAP] = imread('map2.bmp','bmp');
+[X,MAP] = imread('map3.bmp','bmp');
 [Fonts,FontMAP] = imread('fonts.bmp','bmp');
 [Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
 [Background,BackgroundMAP] = imread('Background.bmp','bmp');
@@ -47,9 +47,9 @@ colormap(MAP);
 axis equal;
 
 InpTiles0 = im2col(B,'indexed',[8 8],'distinct');
-InpTiles1 = im2col(B(:,3:end),'indexed',[8 8],'distinct');
+InpTiles1 = im2col(B(5:end,:),'indexed',[8 8],'distinct');      %InpTiles1 = im2col(B(:,3:end),'indexed',[8 8],'distinct');
 InpTiles2 = im2col(B(:,5:end),'indexed',[8 8],'distinct');
-InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
+InpTiles3 = im2col(B(5:end,5:end),'indexed',[8 8],'distinct');  %InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
 
 InpTilesBK = im2col(Y,'indexed',[8 8],'distinct');
 

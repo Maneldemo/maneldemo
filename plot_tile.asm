@@ -77,22 +77,22 @@ plot_foreground:
 	ld	a,17*SolidColor2		; solid color2
 	jp	z,plot_solid_box
 1:		
-	ld	a,low SolidTile3
-	cp	e
-	jr	nz,1f
-	ld	a,high SolidTile3
-	cp	d
-	ld	a,17*SolidColor3		; solid color3
-	jp	z,plot_solid_box
-1:		
-	ld	a,low SolidTile4
-	cp	e
-	jr	nz,1f
-	ld	a,high SolidTile4
-	cp	d
-	ld	a,17*SolidColor4		; solid color4
-	jp	z,plot_solid_box
-1:		
+	; ld	a,low SolidTile3
+	; cp	e
+	; jr	nz,1f
+	; ld	a,high SolidTile3
+	; cp	d
+	; ld	a,17*SolidColor3		; solid color3
+	; jp	z,plot_solid_box
+; 1:		
+	; ld	a,low SolidTile4
+	; cp	e
+	; jr	nz,1f
+	; ld	a,high SolidTile4
+	; cp	d
+	; ld	a,17*SolidColor4		; solid color4
+	; jp	z,plot_solid_box
+; 1:		
 	
 
 	call 	vdp_conf

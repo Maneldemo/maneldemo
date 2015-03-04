@@ -3,8 +3,10 @@ plot_frame:
 		ld		c,WinHeight
 		
 		ld		hl,(_levelmappos)	; pixel scale
+		ld		a,(_levelmappos+2)	
 		repeat 2
-		srl		h
+		srl		a
+		rr		h
 		rr		l
 		endrepeat
 		res		0,l
@@ -29,10 +31,14 @@ plot_frame:
 		
 		ld		de,_metatable
 		add		hl,de
-		ld		a,(_levelmappos)
-		and		00000110B
-		; and		00000000B
 		ld		d,0
+		ld		a,(_levelmappos)
+		and		00000100B
+		ld		e,a
+		ld		a,(_levelmappos+1)
+[3]		rra
+		and		00000010B
+		add		a,e
 		ld		e,a
 		add		hl,de
 		ld		e,(hl)
