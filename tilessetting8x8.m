@@ -13,7 +13,7 @@ end
 fclose(fid);
 pale = pale/7;
 
-[X,MAP] = imread('map3.bmp','bmp');
+[X,MAP] = imread('map5.bmp');
 [Fonts,FontMAP] = imread('fonts.bmp','bmp');
 [Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
 [Background,BackgroundMAP] = imread('Background.bmp','bmp');

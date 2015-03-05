@@ -2,18 +2,41 @@
 plot_frame:
 		ld		c,WinHeight
 		
-		ld		hl,(_levelmappos)	; pixel scale
-		ld		a,(_levelmappos+2)	
-		repeat 2
-		srl		a
-		rr		h
-		rr		l
+		ld	hl,0
+		ld	a,(_ymappos)
+; [3]		srl	a
+		; jr	z,2f
+		; ld	de,mapWidth*2
+; 1:		add		hl,de
+		; dec	a
+		; jr	nz,1b
+; 2:
+[2]		rra
+		and	00111110B				; ONLY IF mapWidth=256
+		ld	h,a
+
+		ld	de,(_xmappos)
+		repeat 2		; X /8 * 2
+		srl		d
+		rr		e
 		endrepeat
-		res		0,l
+		res		0,e
+		add		hl,de
+		
 		ld		de,_levelmap		; byte scale
 		add		hl,de
 		ex		de,hl			; de -> levelmap
 		ld		hl,2*32+2		; hl -> screen 
+		
+		ld		a,(_xmappos)
+		and		00000100B
+		ld		b,a
+		ld		a,(_ymappos)
+		and		00000100B
+		rra
+		add		a,b
+		ex		af,af'			; a' -> scroll offset
+		
 		
 2:		ld		b,WinWidth
 		push	de
@@ -32,14 +55,11 @@ plot_frame:
 		ld		de,_metatable
 		add		hl,de
 		ld		d,0
-		ld		a,(_levelmappos)
-		and		00000100B
+
+		ex		af,af'
 		ld		e,a
-		ld		a,(_levelmappos+1)
-[3]		rra
-		and		00000010B
-		add		a,e
-		ld		e,a
+		ex		af,af'
+
 		add		hl,de
 		ld		e,(hl)
 		inc		hl

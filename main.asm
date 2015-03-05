@@ -246,6 +246,9 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		a,h
 		ld		(_levelmappos),hl
 		ld		(_levelmappos+2),a
+		ld		(_ymappos),a
+		ld		(_xmappos),hl
+		
 		ld		(_nframes),hl
 		ld		(_currentpage),a
 		ld		(_mcdx),a
@@ -306,48 +309,53 @@ main_loop:
 
         ret
 
-up:		ld		hl,(_levelmappos)
-		ld		bc,mapWidth*8
-		and		a
-		sbc		hl,bc
-		ld		(_levelmappos),hl
-		ld		a,(_levelmappos+2)
-		sbc		a,0
-		ld		(_levelmappos+2),a
+up:		
+		ld		a,(_ymappos)
+		ld		b,a
+		ld		a,(_ticxframe)
+		neg
+		add		a,b
+		ld		(_ymappos),a
 		jp      main_loop
 
-dwn:	ld		hl,(_levelmappos)
-		ld		bc,mapWidth*8
-		add		hl,bc
-		ld		(_levelmappos),hl
-		ld		a,(_levelmappos+2)
-		adc		a,0
-		ld		(_levelmappos+2),a
+dwn:	
+		ld		a,(_ymappos)
+		ld		b,a
+		ld		a,(_ticxframe)
+		add		a,b
+		ld		(_ymappos),a
 		jp      main_loop
 		
-right:	ld		hl,(_levelmappos)
-		; ld		a,(_ticxframe)
+right:	
 		ld		a,4
 		ld		(_mcdx),a
-		ld		c,a					; compensate frame rate
-		ld		b,0
-		add		hl,bc
-		ld		(_levelmappos),hl
+
 		ld	a,1
 		ld	(_mcstate),a
+
+		ld		a,(_ticxframe)
+		ld		c,a
+		ld		b,0
+		ld		hl,(_xmappos)
+		add		hl,bc
+		ld		(_xmappos),hl
 		jp      main_loop
 
-left:	ld		hl,(_levelmappos)
-		; ld		a,(_ticxframe)
+left:	
 		ld		a,4
 		neg
 		ld		(_mcdx),a
-		ld		c,a					; compensate frame rate
-		ld		b,-1
-		add		hl,bc
-		ld		(_levelmappos),hl
+
 		xor	a
 		ld	(_mcstate),a
+		
+		ld		a,(_ticxframe)
+		neg
+		ld		c,a
+		ld		b,-1
+		ld		hl,(_xmappos)
+		add		hl,bc
+		ld		(_xmappos),hl
 		jp      main_loop
 
 ;-------------------------------------
@@ -678,6 +686,9 @@ _fps:				#2
 _nframes:			#2
 _vbit16:			#2
 _levelmappos:		#3
+
+_ymappos:			#1
+_xmappos:			#2
 
 _shadowbuff:		#2
 _currentpage:		#1
