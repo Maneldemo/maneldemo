@@ -148,6 +148,7 @@ fprintf(fid,'Transp:	equ	%3d\n',	UniqueMetaTiles(MM(1),1)-1);
 fprintf(fid,'SolidTile%d	equ	%3d\n',[[0:size(solid_tile,2)-1]' solid_tile']');
 fprintf(fid,'SolidColor%d	equ	%3d\n',[[0:size(solid_tile,2)-1]' solid_color']');
 
+fprintf(fid,'NSolidColors	equ	%3d\n',size(solid_color,2));
 fclose(fid);
 
 

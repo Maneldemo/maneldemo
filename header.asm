@@ -14,3 +14,4 @@ SolidColor1	equ	  1
 SolidColor2	equ	  4
 SolidColor3	equ	  7
 SolidColor4	equ	  8
+NSolidColors	equ	  5

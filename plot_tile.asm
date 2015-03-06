@@ -1,34 +1,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; input
-; hl  configured in window map 32x24
+; hl  configured in window map 32x24 of uints
 ; de  tile to be plot
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 plot_tile:
-	add		hl,hl		; now HL is aiming to uints
-
-	push	hl
-	ld		bc,(_shadowbuff)
-	add		hl,bc		; HL = pointer to the shadow map
-	
-	ld		a,(hl)		; Avoid writing the same tile
-	cp		e
-	jr		nz,1f
-	inc		hl
-	ld		a,(hl)
-	cp		d
-	dec		hl
-	jr		nz,1f
-
-	pop		hl
-	ret
-	
-1:	ld		(hl),e		; rewrite the position with the actual tile in shadowbuffer
-	inc		hl
-	ld		(hl),d
-	
-	pop		hl			; HL relative position in 32x24*2
-						; DE new 16 tile to be plotted
-						
+							
 	bit 	7,d			; test for LMMMM	
 	jp		nz,plot_trasp_tile
 	
@@ -53,47 +29,19 @@ plot_tile:
 	
 	
 plot_foreground:
-	; ld	a,low SolidTile0
-	; cp	e
-	; jr	nz,1f
-	; ld	a,high SolidTile0
-	; cp	d
-	; ld	a,17*SolidColor0		; solid color0
-	; jp	z,plot_solid_box
-; 1:
-	ld	a,low SolidTile1
+
+counter:=1
+	while counter<NSolidColors
+	ld	a,low SolidTile@#
 	cp	e
 	jr	nz,1f
-	ld	a,high SolidTile1
+	ld	a,high SolidTile@#
 	cp	d
-	ld	a,17*SolidColor1		; solid color1
+	ld	a,17*SolidColor@#		; solid color1
 	jp	z,plot_solid_box
 1:	
-	ld	a,low SolidTile2
-	cp	e
-	jr	nz,1f
-	ld	a,high SolidTile2
-	cp	d
-	ld	a,17*SolidColor2		; solid color2
-	jp	z,plot_solid_box
-1:		
-	; ld	a,low SolidTile3
-	; cp	e
-	; jr	nz,1f
-	; ld	a,high SolidTile3
-	; cp	d
-	; ld	a,17*SolidColor3		; solid color3
-	; jp	z,plot_solid_box
-; 1:		
-	; ld	a,low SolidTile4
-	; cp	e
-	; jr	nz,1f
-	; ld	a,high SolidTile4
-	; cp	d
-	; ld	a,17*SolidColor4		; solid color4
-	; jp	z,plot_solid_box
-; 1:		
-	
+counter:=counter+1
+	endwhile	
 
 	call 	vdp_conf
 

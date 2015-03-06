@@ -2,15 +2,9 @@
 plot_frame:
 		ld		c,WinHeight
 		
-		ld	hl,0
+		ld	l,0
 		ld	a,(_ymappos)
-; [3]		srl	a
-		; jr	z,2f
-		; ld	de,mapWidth*2
-; 1:		add		hl,de
-		; dec	a
-		; jr	nz,1b
-; 2:
+
 [2]		rra
 		and	00111110B				; ONLY IF mapWidth=256
 		ld	h,a
@@ -25,8 +19,8 @@ plot_frame:
 		
 		ld		de,_levelmap		; byte scale
 		add		hl,de
-		ex		de,hl			; de -> levelmap
-		ld		hl,2*32+2		; hl -> screen 
+		ex		de,hl				; de -> levelmap
+		ld		hl,2*(2*32+2)		; hl -> screen 
 		
 		ld		a,(_xmappos)
 		and		00000100B
@@ -35,7 +29,7 @@ plot_frame:
 		and		00000100B
 		rra
 		add		a,b
-		ex		af,af'			; a' -> scroll offset
+		ld		ixl,a			; ixl -> scroll offset
 		
 		
 2:		ld		b,WinWidth
@@ -52,15 +46,13 @@ plot_frame:
 		ex		de,hl
 [3]		add		hl,hl
 		
+		ld	a,ixl
+		or	l
+		ld	l,a
+		
 		ld		de,_metatable
 		add		hl,de
-		ld		d,0
 
-		ex		af,af'
-		ld		e,a
-		ex		af,af'
-
-		add		hl,de
 		ld		e,(hl)
 		inc		hl
 		ld		d,(hl)		; DE = tile
@@ -69,18 +61,38 @@ plot_frame:
 		push	hl
 
 		push	bc
+		
+		ld		bc,(_shadowbuff)
+		add		hl,bc		; HL = pointer to the shadow map
+		
+		ld		a,(hl)		; Avoid writing the same tile
+		cp		e
+		inc		hl
+		jp		nz,1f
+		ld		a,(hl)
+		cp		d
+		jp		nz,1f
+		jp		4f
+1:
+		ld		(hl),d		; rewrite the position with the actual tile in shadowbuffer
+		dec		hl
+		ld		(hl),e
+		and		a
+		sbc		hl,bc		; HL relative position in 32x24*2
+							; DE new 16 tile to be plotted
 		call	plot_tile
+4:		
 		pop		bc
 		pop		hl
 		pop		de
 		
-		inc		hl			; the screen in WinWidthxWinHeight
+[2]		inc		hl			; the screen in WinWidthxWinHeight of uints
 		
 [2]		inc		de			; the levelmap is uint
 		djnz	3b
 		
 		if (WinWidth<32)
-			ld	de,32-WinWidth	; only if WinWidth<32
+			ld	de,2*(32-WinWidth)	; only if WinWidth<32
 			add	hl,de
 		endif
 		

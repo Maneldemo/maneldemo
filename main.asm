@@ -303,8 +303,8 @@ main_loop:
 		jp		z,dwn
 		cp		7
 		jp		z,left
-		xor		a
-		ld		(_mcdx),a
+		ld		a,-1
+		ld		(_mcframe),a
 		jp      main_loop
 
         ret
@@ -316,6 +316,8 @@ up:
 		neg
 		add		a,b
 		ld		(_ymappos),a
+		ld	a,2
+		ld	(_mcstate),a
 		jp      main_loop
 
 dwn:	
@@ -324,6 +326,8 @@ dwn:
 		ld		a,(_ticxframe)
 		add		a,b
 		ld		(_ymappos),a
+		ld	a,3
+		ld	(_mcstate),a
 		jp      main_loop
 		
 right:	
@@ -357,6 +361,7 @@ left:
 		add		hl,bc
 		ld		(_xmappos),hl
 		jp      main_loop
+
 
 ;-------------------------------------
 JIFFY: equ 0xFC9E 
@@ -693,8 +698,8 @@ _xmappos:			#2
 _shadowbuff:		#2
 _currentpage:		#1
 
-_shadow0:			#WinWidth*WinWidth*2
-_shadow1:			#WinWidth*WinWidth*2
+_shadow0:			#32*24*2
+_shadow1:			#32*24*2
 
 enemylist:			#enemy*nenemies
 	ENDMAP
