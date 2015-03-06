@@ -210,6 +210,16 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		bc,0x8000
 		call	_vuitpakker 
 		
+		; unpack mc frames
+		ld		a, :_mc_sprites
+		ld		(_bank2),a
+		
+		xor	a
+		ld		(_vbit16 ),a
+		ld		de,	_mc_sprites
+		ld		bc,192*128+256*128
+		call	_vuitpakker 
+				
 		ld		e,2
         call	_setpage
 
@@ -562,7 +572,8 @@ _print_fps:
 	ld	a,(_buffer+3)
 	ld	e,a
 	ld	d,0
-	ld	hl,32*(64-3)-'0'+16
+	; ld	hl,32*(64-3)-'0'+16
+	ld	hl,32*(64-2)-'0'
 	add	hl,de
 	ex	de,hl
 	
@@ -572,7 +583,8 @@ _print_fps:
 	ld	a,(_buffer+4)
 	ld	e,a
 	ld	d,0
-	ld	hl,32*(64-3)-'0'+16
+	; ld	hl,32*(64-3)-'0'+16
+	ld	hl,32*(64-2)-'0'
 	add	hl,de
 	ex	de,hl
 	
@@ -647,19 +659,21 @@ _backmap:
 
 	page 1
 _frame:
-	incbin "frame_.bin"			
+	incbin "_frame.bin"
+_mc_sprites:	
+	incbin "_sprites.bin"			
 	
 	page 2
 _tiles0:
-	incbin "tiles0_.bin"
+	incbin "_tiles0.bin"
 	
 	page 3
 _tiles1:
-	incbin "tiles1_.bin"
+	incbin "_tiles1.bin"
 
 	page 4
 _level:
-	incbin "metamap_.bin"			
+	incbin "_metamap.bin"			
 	
 	page 5
 sprtdata

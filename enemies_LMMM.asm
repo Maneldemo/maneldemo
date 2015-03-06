@@ -59,13 +59,13 @@ enemies_LMMM:
 	add	hl,de
 	ld	l,(hl)
 
-	ld		h,216
+	ld		h,192
 	out		(c), l 		; sx
 	xor a
 	out		(0x9B), a 	; sx (high)
 	
 	out		(c), h 		; sy
-	ld		a,3			; source page for sprites
+	ld		a,1			; source page for sprites
 	out 	(0x9B), a 	; sy (high-> page 3)
 	
 	ld		a,(_mcx)

@@ -13,8 +13,8 @@ end
 fclose(fid);
 pale = pale/7;
 
-[X,MAP] = imread('map5.bmp');
-[Fonts,FontMAP] = imread('fonts.bmp','bmp');
+[X,MAP] = imread('map6.bmp');
+[Fonts,FontMAP] = imread('Fonts_small.bmp','bmp');
 [Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
 [Background,BackgroundMAP] = imread('Background.bmp','bmp');
 [Frame,FrameMAP] = imread('frame.bmp','bmp');
@@ -118,7 +118,6 @@ for i=1:size(UniqueMetaTiles,1)
 end
 fclose(fid);
 
-!tools\pletter metamap.bin metamap_.bin
 
 [~,BackMap] = ismember(BackTiles',UniqueTiles,'rows');
 
@@ -164,8 +163,16 @@ fun = @(block_struct) transpose(block_struct.data);
 C = blockproc(B,[8 8],fun)';
 B = C;
 
-B((512-24+1):end,:) = Fonts;
-B((512-24-16+1):(512-24),:) = Sprites(1:16,:);
+B((512-16+1):end,:) = Fonts;
+%B((512-24-16+1):(512-24),:) = Sprites(1:16,:);
+
+fid = fopen('sprites.bin','wb');
+for y=1:64
+    t = uint8(double(Sprites(y,2:2:256))+double(Sprites(y,1:2:256))*16);
+    fwrite(fid,t,'uchar');
+end
+fclose(fid);
+
 
 figure
 image(B)
@@ -225,9 +232,11 @@ for y=1:160
 end
 fclose(fid);
 
-!tools\pletter tiles0.bin tiles0_.bin
-!tools\pletter tiles1.bin tiles1_.bin
-!tools\pletter frame.bin frame_.bin
+!tools\pletter metamap.bin  _metamap.bin
+!tools\pletter tiles0.bin   _tiles0.bin
+!tools\pletter tiles1.bin   _tiles1.bin
+!tools\pletter frame.bin    _frame.bin
+!tools\pletter sprites.bin  _sprites.bin
 
 palette = round(MAP(1:16,:)*7);
 
