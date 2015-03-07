@@ -137,14 +137,12 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		jr		nz,1f
 		
 		ld		a,(0xFFE8)		; PAL
-		and		127
+		and		01111111B
 		or		2
 		ld		(0xFFE8),a
 		jr	2f
 1:		ld		a,(0xFFE8)		; NTSC
-		and		127
-		or		2
-		xor		2
+		and		01111101B
 		ld		(0xFFE8),a
 2:	
 		out		(0x99),a
@@ -177,7 +175,6 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ldir
 
 		; unpack level map (meta_tiles)
-		
 		ld	a, :_level
 		ld	(_bank2),a
 		
@@ -314,15 +311,16 @@ main_loop:
 		ld		(_nframes),hl
 		
 		call	_cursors
-		ld		a,l
-		cp		1
-		jp		z,up
-		cp		3
-		jp		z,right
-		cp		5
-		jp		z,dwn
-		cp		7
-		jp		z,left
+
+		bit		0,(ix)
+		call	z,up
+		bit		3,(ix)
+		call	z,right
+		bit		1,(ix)
+		call	z,dwn
+		bit		2,(ix)
+		call	z,left
+		
 		ld		a,-1
 		ld		(_mcframe),a
 		jp      main_loop
@@ -338,7 +336,7 @@ up:
 		ld		(_ymappos),a
 		ld	a,2
 		ld	(_mcstate),a
-		jp      main_loop
+		ret
 
 dwn:	
 		ld		a,(_ymappos)
@@ -348,7 +346,7 @@ dwn:
 		ld		(_ymappos),a
 		ld	a,3
 		ld	(_mcstate),a
-		jp      main_loop
+		ret
 		
 right:	
 		ld		a,4
@@ -363,7 +361,7 @@ right:
 		ld		hl,(_xmappos)
 		add		hl,bc
 		ld		(_xmappos),hl
-		jp      main_loop
+		ret
 
 left:	
 		ld		a,-4
@@ -379,7 +377,7 @@ left:
 		ld		hl,(_xmappos)
 		add		hl,bc
 		ld		(_xmappos),hl
-		jp      main_loop
+		ret
 
 
 ;-------------------------------------
@@ -401,6 +399,10 @@ _isr:	push	hl
 2:		add		hl,bc
 		ld		hl,_ticxframe
 		inc		(hl)
+		
+		; ld		a,4
+		; ld		(hl),a
+		
 		pop		bc
 		pop		hl
 		ret	nc
@@ -433,17 +435,72 @@ GTTRIG      equ 0x00D8      ;Returns current trigger status
 
 _cursors:
 
-	xor     a
-	call	GTSTCK
-	push	af		;return the cursors
-	ld		a,1
-	call	GTSTCK
-	pop		hl		;return the joystick
-	or		h
-	ld		l,a
-	ret
+	; xor     a
+	; call	GTSTCK
+	; push	af		;return the cursors
+	; ld		a,1
+	; call	GTSTCK
+	; pop		hl		;return the joystick
+	; or		h
+	; ld		l,a
+	; ret
 	
+; PSG I/O port A (r#14) – read-only
+; Bit	Description	Comment
+; 0	Input joystick pin 1	(up)
+; 1	Input joystick pin 2	(down)
+; 2	Input joystick pin 3	(left)
+; 3	Input joystick pin 4	(right)
+; 4	Input joystick pin 6	(trigger A)
+; 5	Input joystick pin 7	(trigger B)
+; 6	Japanese keyboard layout bit	(1=JIS, 0=ANSI)
+; 7	Cassette input signal	
 
+.rd_joy:
+	ld	a,#0f
+	out	(#a0),a
+	ld	a,0x8F
+	out	(#a1),a		; select port A
+	ld	a,#0e
+	out	(#a0),a
+	in	a,(#a2)
+.rd_key:	
+	ld	ix,joystick
+	ld	(ix),a
+	
+	ld  e,8
+    call    checkkbd
+	bit	0,a				; space
+	jr	nz,1f
+	res	4,(ix)			; (trigger A)
+1:
+	bit	7,a				; RIGHT
+	jr	nz,1f
+	res	3,(ix)			; (right joy)
+1:
+	bit	6,a				; DOWN
+	jr	nz,1f
+	res	1,(ix)			; (down joy)
+1:
+	bit	5,a				; UP
+	jr	nz,1f
+	res	0,(ix)			; (up joy)
+1:
+	bit	4,a				; LEFT
+	jr	nz,1f
+	res	2,(ix)			; (left joy)
+1:
+	ld  e,5
+    call    checkkbd
+	bit	5,a				; X
+	jr	nz,1f
+	res	5,(ix)			; (trigger B)
+1:
+	bit	7,a				; Z
+	jr	nz,1f
+	res	4,(ix)			; (trigger A)
+1:
+	ret
 
         
 ;-------------------------------------
@@ -725,6 +782,9 @@ FINISH:
 slotvar				#1
 slotram				#1
 SEL_NTSC			#1
+
+joystick			#1
+
 _mcdx				#1
 _mcdy				#1
 _mcx				#2
