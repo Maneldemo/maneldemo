@@ -7,7 +7,9 @@
 		defpage	1,0x8000, 0x4000		; swapped data 
 		defpage	2..15
 	
-_bank1	equ	0x6000
+	;	ascii 16
+	
+_bank1	equ	0x6000 
 _bank2	equ	0x7000
 		
 		page 0
@@ -151,13 +153,20 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ei
 
 		call _hw_sprite_init
-		
-		LD	A,0xC3
-		LD	HL,_isr
-		DI
-		LD	(0xFD9F),A
-		LD	(0xFDA0),HL
-		EI
+
+	;clear RAM (first kb only)
+		; ld	bc,1024
+		; ld	hl,0xc000
+		; ld	de,0xc001
+
+		; ld	(hl),0
+		; ldir
+	
+	;--- initialise demo song
+		ld	a, :demo_song
+		ld	(_bank2),a
+		ld	hl,demo_song
+		call	replay_init
 
 		call	_clean_buffs
 
@@ -258,6 +267,13 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
 		call	setrampage2
 		ei
+
+		LD	A,0xC3
+		LD	HL,_isr
+		DI
+		LD	(0xFD9F),A
+		LD	(0xFDA0),HL
+		EI
 		
 		ld		hl,0
 		ld		a,h
@@ -314,13 +330,18 @@ main_loop:
 
 		bit		0,(ix)
 		call	z,up
-		bit		3,(ix)
-		call	z,right
 		bit		1,(ix)
 		call	z,dwn
+		bit		3,(ix)
+		call	z,right
 		bit		2,(ix)
 		call	z,left
 		
+		ld		a,(ix)
+		and		15
+		cp		15
+		jp      nz,main_loop
+				
 		ld		a,-1
 		ld		(_mcframe),a
 		jp      main_loop
@@ -385,6 +406,15 @@ JIFFY: equ 0xFC9E
 ;-------------------------------------
 _isr:	push	hl
 		push	bc
+
+		call	setrompage2
+		ld	a, :demo_song
+		ld	(_bank2),a
+		call	replay_route		; first outout data
+		call	replay_play			; calculate next output		
+		call	setrampage2
+		ei
+
 		ld		hl,(JIFFY)
 
 		ld	a,(SEL_NTSC)
@@ -434,16 +464,6 @@ GTTRIG      equ 0x00D8      ;Returns current trigger status
 
 
 _cursors:
-
-	; xor     a
-	; call	GTSTCK
-	; push	af		;return the cursors
-	; ld		a,1
-	; call	GTSTCK
-	; pop		hl		;return the joystick
-	; or		h
-	; ld		l,a
-	; ret
 	
 ; PSG I/O port A (r#14) – read-only
 ; Bit	Description	Comment
@@ -746,7 +766,8 @@ _backmap:
 	
 	include enemies_LMMM.asm
 	include probe_level.asm
-	
+
+
 	page 1
 _frame:
 	incbin "_frame.bin"
@@ -770,7 +791,15 @@ _level_bf:
 	page 5
 sprtdata
 	include 	SPROL.ASM
+	
+	page 7
+	include	"..\code\ttreplay.asm"
+	include	"..\code\ttreplayDAT.asm"
+demo_song:
+	include	".\JUDAGEAR.asm"
+
 FINISH:
+
 
 ;---------------------------------------------------------
 ; Variables
@@ -779,6 +808,8 @@ FINISH:
 
 	
 	MAP 0xC000
+	include	"..\code\ttreplayRAM.asm"
+	
 slotvar				#1
 slotram				#1
 SEL_NTSC			#1

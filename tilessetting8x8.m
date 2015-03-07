@@ -16,8 +16,9 @@ pale = pale/7;
 [X,MAP] = imread('map6.png');
 [BitField,MAP] = imread('map6_bitfiled.bmp');
 [Fonts,FontMAP] = imread('Fonts_small.bmp','bmp');
-%[Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
-[Sprites,SpriteMAP] = imread('Sprites_256x64_probe.bmp','bmp');
+[Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
+%[Sprites,SpriteMAP] = imread('Sprites_256x64_probe.bmp','bmp');
+%[Sprites,SpriteMAP] = imread('Sprites_256x64.bmp','bmp');
 
 [Background,BackgroundMAP] = imread('Background.bmp','bmp');
 [Frame,FrameMAP] = imread('frame.bmp','bmp');
