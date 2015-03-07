@@ -366,8 +366,7 @@ right:
 		jp      main_loop
 
 left:	
-		ld		a,4
-		neg
+		ld		a,-4
 		ld		(_mcdx),a
 
 		xor	a
@@ -584,39 +583,39 @@ _print_probe
 	add	hl,de
 	ex	de,hl
 	ld	hl,2*(23*32+0)
+	call 	plot_foreground
+	
+	ld	de,(_ticxframe)
+	ld	d,0
+	ld	bc,_buffer
+	call	int2ascii
+	
+	ld	a,(_buffer+2)
+	ld	e,a
+	ld	d,0
+	ld	hl,32*(64-2)-'0'
+	add	hl,de
+	ex	de,hl
+	ld	hl,2*(22*32)
+	call 	plot_foreground
+
+	ld	a,(_buffer+3)
+	ld	e,a
+	ld	d,0
+	ld	hl,32*(64-2)-'0'
+	add	hl,de
+	ex	de,hl
+	ld	hl,2*(22*32+1)
+	call 	plot_foreground
+
+	ld	a,(_buffer+4)
+	ld	e,a
+	ld	d,0
+	ld	hl,32*(64-2)-'0'
+	add	hl,de
+	ex	de,hl
+	ld	hl,2*(22*32+2)
 	jp 	plot_foreground
-	
-	; ld	de,(_mcprobe)
-	; ld	d,0
-	; ld	bc,_buffer
-	; call	int2ascii
-	
-	; ld	a,(_buffer+2)
-	; ld	e,a
-	; ld	d,0
-	; ld	hl,32*(64-2)-'0'
-	; add	hl,de
-	; ex	de,hl
-	; ld	hl,2*(22*32)
-	; call 	plot_foreground
-
-	; ld	a,(_buffer+3)
-	; ld	e,a
-	; ld	d,0
-	; ld	hl,32*(64-2)-'0'
-	; add	hl,de
-	; ex	de,hl
-	; ld	hl,2*(22*32+1)
-	; call 	plot_foreground
-
-	; ld	a,(_buffer+4)
-	; ld	e,a
-	; ld	d,0
-	; ld	hl,32*(64-2)-'0'
-	; add	hl,de
-	; ex	de,hl
-	; ld	hl,2*(22*32+2)
-	; jp 	plot_foreground
 	
 	
 _print_fps:
