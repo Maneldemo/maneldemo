@@ -167,7 +167,17 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		e,0
         call	_setpage
 		
+		; unpack level map (bit field for collisions)
+		ld	a, :_level_bf
+		ld	(_bank2),a
+		
+		ld	bc,mapWidth*mapHeight/2
+		ld	hl,	_level_bf
+		ld	de,	_cur_level_bf
+		ldir
+
 		; unpack level map (meta_tiles)
+		
 		ld	a, :_level
 		ld	(_bank2),a
 		
@@ -254,8 +264,6 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
 		ld		hl,0
 		ld		a,h
-		ld		(_levelmappos),hl
-		ld		(_levelmappos+2),a
 		ld		(_ymappos),a
 		ld		(_xmappos),hl
 		
@@ -298,7 +306,9 @@ main_loop:
 		
 		call	_compute_fps
 		call	_print_fps
-
+		call	probe_level
+		call	_print_probe
+		
 		ld		hl,(_nframes)
 		inc		hl
 		ld		(_nframes),hl
@@ -566,13 +576,53 @@ _waitvdp:
 	ei
 	ret
 
+_print_probe
+	ld	a,(_mcprobeb)
+	ld	e,a
+	ld	d,0
+	ld	hl,32*(64-2)
+	add	hl,de
+	ex	de,hl
+	ld	hl,2*(23*32+0)
+	jp 	plot_foreground
+	
+	; ld	de,(_mcprobe)
+	; ld	d,0
+	; ld	bc,_buffer
+	; call	int2ascii
+	
+	; ld	a,(_buffer+2)
+	; ld	e,a
+	; ld	d,0
+	; ld	hl,32*(64-2)-'0'
+	; add	hl,de
+	; ex	de,hl
+	; ld	hl,2*(22*32)
+	; call 	plot_foreground
 
+	; ld	a,(_buffer+3)
+	; ld	e,a
+	; ld	d,0
+	; ld	hl,32*(64-2)-'0'
+	; add	hl,de
+	; ex	de,hl
+	; ld	hl,2*(22*32+1)
+	; call 	plot_foreground
+
+	; ld	a,(_buffer+4)
+	; ld	e,a
+	; ld	d,0
+	; ld	hl,32*(64-2)-'0'
+	; add	hl,de
+	; ex	de,hl
+	; ld	hl,2*(22*32+2)
+	; jp 	plot_foreground
+	
 	
 _print_fps:
 	ld	a,(_buffer+3)
 	ld	e,a
 	ld	d,0
-	; ld	hl,32*(64-3)-'0'+16
 	ld	hl,32*(64-2)-'0'
 	add	hl,de
 	ex	de,hl
@@ -583,7 +633,6 @@ _print_fps:
 	ld	a,(_buffer+4)
 	ld	e,a
 	ld	d,0
-	; ld	hl,32*(64-3)-'0'+16
 	ld	hl,32*(64-2)-'0'
 	add	hl,de
 	ex	de,hl
@@ -635,28 +684,13 @@ _metatable:
 _backmap:
 	incbin "backmap.bin"
 
-; start
-; _mballon_start
-	; ld	de,0xc000
-	; ld	hl,_relocate
-	; ld	bc,_endrelocate-_relocate
-	; ldir
-	; jp	0xc000
-; _relocate:
-	; ld	a,:mballon
-	; ld	(_bank1),a
-	; inc	a
-	; ld	(_bank2),a
-	; ld	hl,(0x4002)
-	; jp	(hl)
-; _endrelocate:
-
 	include enemies.asm
 
 	include hwsprites.asm
 	
 	include enemies_LMMM.asm
-
+	include probe_level.asm
+	
 	page 1
 _frame:
 	incbin "_frame.bin"
@@ -673,7 +707,9 @@ _tiles1:
 
 	page 4
 _level:
-	incbin "_metamap.bin"			
+	incbin "_metamap.bin"
+_level_bf:	
+	incbin "BitField.bin"	
 	
 	page 5
 sprtdata
@@ -694,9 +730,15 @@ _mcdx				#1
 _mcdy				#1
 _mcx				#2
 _mcy				#2
+
+_mclx				#2
+_mcly				#2
+
 _mcframe			#1
 _mcstate			#1
 
+_mcprobe:			#1
+_mcprobeb:			#1
 
 _ticxframe			#1
 
@@ -704,7 +746,6 @@ _buffer:			#16
 _fps:				#2
 _nframes:			#2
 _vbit16:			#2
-_levelmappos:		#3
 
 _ymappos:			#1
 _xmappos:			#2
@@ -714,6 +755,8 @@ _currentpage:		#1
 
 _shadow0:			#32*24*2
 _shadow1:			#32*24*2
+
+_cur_level_bf:		#mapWidth*mapHeight/2
 
 enemylist:			#enemy*nenemies
 	ENDMAP

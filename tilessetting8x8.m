@@ -13,9 +13,12 @@ end
 fclose(fid);
 pale = pale/7;
 
-[X,MAP] = imread('map6.bmp');
+[X,MAP] = imread('map6.png');
+[BitField,MAP] = imread('map6_bitfiled.bmp');
 [Fonts,FontMAP] = imread('Fonts_small.bmp','bmp');
-[Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
+%[Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
+[Sprites,SpriteMAP] = imread('Sprites_256x64_probe.bmp','bmp');
+
 [Background,BackgroundMAP] = imread('Background.bmp','bmp');
 [Frame,FrameMAP] = imread('frame.bmp','bmp');
 
@@ -79,7 +82,20 @@ for i = 1:size(UniqueTiles,1);
 end
 solid_tile 
 solid_color
-       
+
+BitField = im2col(BitField,'indexed',[4 4],'distinct');
+BitField = reshape(mode(double(BitField)),64,512)>1;
+
+figure
+image(BitField);
+
+fid = fopen('BitField.bin','wb');
+for y=1:64
+    %t = uint8(double(BitField(y,1:8:end)*128+BitField(y,2:8:end)*64+BitField(y,3:8:end)*32+BitField(y,4:8:end)*16+BitField(y,5:8:end)*8+BitField(y,6:8:end)*4+BitField(y,7:8:end)*2+BitField(y,8:8:end)*1));
+    t = uint8(double(BitField(y,8:8:end)*128+BitField(y,7:8:end)*64+BitField(y,6:8:end)*32+BitField(y,5:8:end)*16+BitField(y,4:8:end)*8+BitField(y,3:8:end)*4+BitField(y,2:8:end)*2+BitField(y,1:8:end)*1));
+    fwrite(fid,t,'uchar');
+end
+fclose(fid);
 
 BackTiles = im2col(Y,'indexed',[8 8],'distinct');
 
@@ -90,7 +106,7 @@ BackTiles = im2col(Y,'indexed',[8 8],'distinct');
 
 InpMap = InpMap0;
 
-FullMetaMap = [InpMap0 InpMap1 InpMap2 InpMap3]; %MetaMap = [InpMap0 InpMap2];
+FullMetaMap = [InpMap0 InpMap1 InpMap2 InpMap3]; 
 
 UniqueMetaTiles = unique(FullMetaMap,'rows');
 
