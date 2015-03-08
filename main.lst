@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.08 - 18:16:57]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.08 - 22:58:08]
 
 main.asm
 Errors: 0
@@ -50,17 +50,17 @@ Errors: 0
       44   00:4010                      
       45   00:4010                      
       46   00:4010                      		include "header.asm"
-       1.  00:4010  (00:065F)           n_tiles: equ 1631
+       1.  00:4010  (00:07B7)           n_tiles: equ 1975
        2.  00:4010  (00:0100)           mapWidth:	equ	256
        3.  00:4010  (00:0020)           mapHeight:	equ	 32
        4.  00:4010  (00:001C)           WinWidth:	equ	 28
        5.  00:4010  (00:0010)           WinHeight:	equ	 16
-       6.  00:4010  (00:03C1)           Transp:	equ	961
+       6.  00:4010  (00:04C7)           Transp:	equ	1223
        7.  00:4010  (00:0000)           SolidTile0	equ	  0
-       8.  00:4010  (00:0018)           SolidTile1	equ	 24
-       9.  00:4010  (00:03E6)           SolidTile2	equ	998
-      10.  00:4010  (00:04ED)           SolidTile3	equ	1261
-      11.  00:4010  (00:05CD)           SolidTile4	equ	1485
+       8.  00:4010  (00:004B)           SolidTile1	equ	 75
+       9.  00:4010  (00:04F1)           SolidTile2	equ	1265
+      10.  00:4010  (00:0645)           SolidTile3	equ	1605
+      11.  00:4010  (00:0725)           SolidTile4	equ	1829
       12.  00:4010  (00:0000)           SolidColor0	equ	  0
       13.  00:4010  (00:0001)           SolidColor1	equ	  1
       14.  00:4010  (00:0004)           SolidColor2	equ	  4
@@ -548,7 +548,7 @@ Errors: 0
       50.  00:41E7  B5                  		or	l
       51.  00:41E8  6F                  		ld	l,a
       52.  00:41E9                      		
-      53.  00:41E9  11 2C 48            		ld		de,_metatable
+      53.  00:41E9  11 00 60            		ld		de,_metatable
       54.  00:41EC  19                  		add		hl,de
       55.  00:41ED                      
       56.  00:41ED  5E                  		ld		e,(hl)
@@ -578,7 +578,7 @@ Errors: 0
       80.  00:4209  A7                  		and		a
       81.  00:420A  ED 42               		sbc		hl,bc		; HL relative position in 32x24*2
       82.  00:420C                      							; DE new 16 tile to be plotted
-      83.  00:420C  CD 2E 46            		call	plot_tile
+      83.  00:420C  CD 36 46            		call	plot_tile
       84.  00:420F                      4:		
       85.  00:420F  C1                  		pop		bc
       86.  00:4210  E1                  		pop		hl
@@ -607,1152 +607,1159 @@ Errors: 0
      105   00:4223                      ;-------------------------------------
      106   00:4223                      START:
      107   00:4223  1E 05                       ld		e,5
-     108   00:4225  CD 6F 47            		call	_scr
+     108   00:4225  CD 77 47            		call	_scr
      109   00:4228                      
      110   00:4228  CD 72 41            		call 	_set_r800
-     111   00:422B  CD A2 44                    call    powerup
+     111   00:422B  CD AA 44                    call    powerup
      112   00:422E                      
-     113   00:422E  1E 06               		ld e,6
-     114   00:4230  CD 9B 41            		call	checkkbd
-     115   00:4233  3E 01               		ld	a,1
-     116   00:4235  CB 0D               		rrc	l				; shift
-     117   00:4237  D2 3B 42            		jp	nc,_ntsc
-     118   00:423A  AF                  		xor	a
-     119   00:423B  32 C9 C2            _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
-     120   00:423E                      		
-     121   00:423E                      		; ld	e,7
-     122   00:423E                      		; call	checkkbd
-     123   00:423E                      		; and	0x04				; ESC
-     124   00:423E                      		; jp 	z,_mballon_start
-     125   00:423E                      		
-     126   00:423E  11 00 00            		ld		de,0
-     127   00:4241  4B                  		ld		c,e
-     128   00:4242  F3                  		di
-     129   00:4243  CD 2A 47            		call	_vdpsetvramwr
-     130   00:4246  01 00 00            		ld		bc,0x0000
-     131   00:4249  AF                  1:		xor		a
-     132   00:424A  D3 98               		out		(0x98),a
-     133   00:424C  0B                  		dec		bc
-     134   00:424D  78                  		ld		a,b
-     135   00:424E  B1                  		or		c
-     136   00:424F  20 F8               		jr	nz,1b
-     137   00:4251                      		
-     138   00:4251  F3                  		di
-     139   00:4252                      		// sprites 16x16
-     140   00:4252  3A E0 F3            		ld	a,(0xF3E0)
-     141   00:4255  F6 02               		or	2
-     142   00:4257  32 E0 F3            		ld	(0xF3E0),a
-     143   00:425A  D3 99               		out		(0x99),a
-     144   00:425C  3E 81               		ld		a,128+1
-     145   00:425E  D3 99               		out		(0x99),a
-     146   00:4260                      
-     147   00:4260                      		// border color
-     148   00:4260  3E 55               		ld		a,0x55
+     113   00:422E  AF                  		xor	a
+     114   00:422F  32 00 50            		ld	(_kBank1),a
+     115   00:4232  3C                  		inc	a
+     116   00:4233  32 00 70            		ld	(_kBank2),a
+     117   00:4236                      
+     118   00:4236                      
+     119   00:4236  1E 06               		ld e,6
+     120   00:4238  CD 9B 41            		call	checkkbd
+     121   00:423B  3E 01               		ld	a,1
+     122   00:423D  CB 0D               		rrc	l				; shift
+     123   00:423F  D2 43 42            		jp	nc,_ntsc
+     124   00:4242  AF                  		xor	a
+     125   00:4243  32 C9 C2            _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
+     126   00:4246                      		
+     127   00:4246                      		; ld	e,7
+     128   00:4246                      		; call	checkkbd
+     129   00:4246                      		; and	0x04				; ESC
+     130   00:4246                      		; jp 	z,_mballon_start
+     131   00:4246                      		
+     132   00:4246  11 00 00            		ld		de,0
+     133   00:4249  4B                  		ld		c,e
+     134   00:424A  F3                  		di
+     135   00:424B  CD 32 47            		call	_vdpsetvramwr
+     136   00:424E  01 00 00            		ld		bc,0x0000
+     137   00:4251  AF                  1:		xor		a
+     138   00:4252  D3 98               		out		(0x98),a
+     139   00:4254  0B                  		dec		bc
+     140   00:4255  78                  		ld		a,b
+     141   00:4256  B1                  		or		c
+     142   00:4257  20 F8               		jr	nz,1b
+     143   00:4259                      		
+     144   00:4259  F3                  		di
+     145   00:425A                      		// sprites 16x16
+     146   00:425A  3A E0 F3            		ld	a,(0xF3E0)
+     147   00:425D  F6 02               		or	2
+     148   00:425F  32 E0 F3            		ld	(0xF3E0),a
      149   00:4262  D3 99               		out		(0x99),a
-     150   00:4264  3E 87               		ld		a,128+7
+     150   00:4264  3E 81               		ld		a,128+1
      151   00:4266  D3 99               		out		(0x99),a
-     152   00:4268                      		
-     153   00:4268                      		// enable sprites + TP
-     154   00:4268  3A E7 FF            		ld		a,(0xFFE7)
-     155   00:426B  F6 20               		or		32
-     156   00:426D  32 E7 FF            		ld		(0xFFE7),a
-     157   00:4270  D3 99               		out		(0x99),a
-     158   00:4272  3E 88               		ld		a,128+8
-     159   00:4274  D3 99               		out		(0x99),a
-     160   00:4276                      		
-     161   00:4276                      		// Set 192 lines @50Hz (PAL assumed!)
-     162   00:4276  3A C9 C2            		ld	a,(SEL_NTSC)
-     163   00:4279  A7                  		and 	a
-     164   00:427A  20 0C               		jr		nz,1f
-     165   00:427C                      		
-     166   00:427C  3A E8 FF            		ld		a,(0xFFE8)		; PAL
-     167   00:427F  E6 7F               		and		01111111B
-     168   00:4281  F6 02               		or		2
-     169   00:4283  32 E8 FF            		ld		(0xFFE8),a
-     170   00:4286  18 08               		jr	2f
-     171   00:4288  3A E8 FF            1:		ld		a,(0xFFE8)		; NTSC
-     172   00:428B  E6 7D               		and		01111101B
-     173   00:428D  32 E8 FF            		ld		(0xFFE8),a
-     174   00:4290                      2:	
-     175   00:4290  D3 99               		out		(0x99),a
-     176   00:4292  3E 89               		ld		a,128+9
-     177   00:4294  D3 99               		out		(0x99),a
-     178   00:4296  FB                  		ei
-     179   00:4297                      
-     180   00:4297  CD A3 60            		call _hw_sprite_init
-     181   00:429A                      
-     182   00:429A                      	;clear RAM (first kb only)
-     183   00:429A                      		; ld	bc,1024
-     184   00:429A                      		; ld	hl,0xc000
-     185   00:429A                      		; ld	de,0xc001
-     186   00:429A                      
-     187   00:429A                      		; ld	(hl),0
-     188   00:429A                      		; ldir
-     189   00:429A                      	
-     190   00:429A                      	;--- initialise demo song
-     191   00:429A  3E 0E               		ld	a, :demo_song
-     192   00:429C                      		setpage_a
-     192   00:429C  32 00 90          >   ld (_kBank3),a
-     192   00:429F  3C                >   inc a
-     192   00:42A0  32 00 B0          >   ld (_kBank4),a
-     193   00:42A3                      		
-     194   00:42A3  21 00 80            		ld	hl,demo_song
-     195   00:42A6  CD 00 A0            		call	replay_init
-     196   00:42A9                      
-     197   00:42A9  CD 1C 47            		call	_clean_buffs
-     198   00:42AC                      
-     199   00:42AC  CD 23 45            		call	_SetPalet
-     200   00:42AF  1E 00               		ld		e,0
-     201   00:42B1  CD 5E 47                    call	_setpage
-     202   00:42B4                      		
-     203   00:42B4                      		; unpack level map (bit field for collisions)
-     204   00:42B4  3E 08               		ld	a, :_level_bf
-     205   00:42B6                      		setpage_a
-     205   00:42B6  32 00 90          >   ld (_kBank3),a
-     205   00:42B9  3C                >   inc a
-     205   00:42BA  32 00 B0          >   ld (_kBank4),a
-     206   00:42BD                      		
-     207   00:42BD  01 00 10            		ld	bc,mapWidth*mapHeight/2
-     208   00:42C0  21 2C 8A            		ld	hl,	_level_bf
-     209   00:42C3  11 F6 CE            		ld	de,	_cur_level_bf
-     210   00:42C6  ED B0               		ldir
-     211   00:42C8                      
-     212   00:42C8                      		; unpack level map (meta_tiles)
-     213   00:42C8  3E 08               		ld	a, :_level
-     214   00:42CA                      		setpage_a
-     214   00:42CA  32 00 90          >   ld (_kBank3),a
-     214   00:42CD  3C                >   inc a
-     214   00:42CE  32 00 B0          >   ld (_kBank4),a
-     215   00:42D1                      		
-     216   00:42D1  AF                  		xor	a
-     217   00:42D2  32 EE C2            		ld		(_vbit16 ),a
-     218   00:42D5  11 00 80            		ld		de,	_level
-     219   00:42D8  01 00 00            		ld		bc,0
-     220   00:42DB  CD 35 45            		call	_vuitpakker 
-     221   00:42DE                      		
-     222   00:42DE  CD 61 40            		call	setrampage2
-     223   00:42E1                      		
-     224   00:42E1  11 00 00            		ld		de,0
-     225   00:42E4  4B                  		ld		c,e
-     226   00:42E5  CD 44 47            		call	_vdpsetvramrd
-     227   00:42E8  21 00 80            		ld		hl,_levelmap
-     228   00:42EB  11 00 40            		ld		de,mapWidth*mapHeight*2
-     229   00:42EE  0E 98               		ld		c,0x98
-     230   00:42F0  ED A2               1:		ini
-     231   00:42F2  1B                  		dec	de
-     232   00:42F3  7A                  		ld	a,d
-     233   00:42F4  B3                  		or	e
-     234   00:42F5  20 F9               		jr	nz,1b
-     235   00:42F7                      
-     236   00:42F7  CD 5B 40            		call	setrompage2
-     237   00:42FA                      				
-     238   00:42FA                      		; unpack frame
-     239   00:42FA  3E 02               		ld		a, :_frame
-     240   00:42FC                      		setpage_a
-     240   00:42FC  32 00 90          >   ld (_kBank3),a
-     240   00:42FF  3C                >   inc a
-     240   00:4300  32 00 B0          >   ld (_kBank4),a
-     241   00:4303                      		
-     242   00:4303  AF                  		xor	a
-     243   00:4304  32 EE C2            		ld		(_vbit16 ),a
-     244   00:4307  11 00 80            		ld		de,	_frame
-     245   00:430A  01 00 00            		ld		bc,0
-     246   00:430D  CD 35 45            		call	_vuitpakker 
-     247   00:4310                      
-     248   00:4310  1E 01               		ld		e,1
-     249   00:4312  CD 5E 47                    call	_setpage
-     250   00:4315                      
-     251   00:4315  11 00 80            		ld		de,	_frame
-     252   00:4318  01 00 80            		ld		bc,0x8000
-     253   00:431B  CD 35 45            		call	_vuitpakker 
-     254   00:431E                      		
-     255   00:431E                      		; unpack mc frames
-     256   00:431E  3E 02               		ld		a, :_mc_sprites
-     257   00:4320                      		setpage_a
-     257   00:4320  32 00 90          >   ld (_kBank3),a
-     257   00:4323  3C                >   inc a
-     257   00:4324  32 00 B0          >   ld (_kBank4),a
-     258   00:4327                      		
-     259   00:4327  AF                  		xor	a
-     260   00:4328  32 EE C2            		ld		(_vbit16 ),a
-     261   00:432B  11 51 89            		ld		de,	_mc_sprites
-     262   00:432E  01 00 E0            		ld		bc,192*128+256*128
-     263   00:4331  CD 35 45            		call	_vuitpakker 
-     264   00:4334                      				
-     265   00:4334  1E 02               		ld		e,2
-     266   00:4336  CD 5E 47                    call	_setpage
-     267   00:4339                      
-     268   00:4339                      		; unpack tileset
-     269   00:4339  3E 04               		ld		a, :_tiles0
-     270   00:433B                      		setpage_a
-     270   00:433B  32 00 90          >   ld (_kBank3),a
-     270   00:433E  3C                >   inc a
-     270   00:433F  32 00 B0          >   ld (_kBank4),a
-     271   00:4342                      		
-     272   00:4342  3E 01               		ld		a,1
-     273   00:4344  32 EE C2            		ld		(_vbit16 ),a
-     274   00:4347  11 00 80            		ld		de,	_tiles0
-     275   00:434A  01 00 00            		ld		bc,0
-     276   00:434D  CD 35 45            		call	_vuitpakker 
-     277   00:4350                      		
-     278   00:4350  1E 03               		ld		e,3
-     279   00:4352  CD 5E 47                    call	_setpage
-     280   00:4355                      		
-     281   00:4355  3E 06               		ld		a, :_tiles1
-     282   00:4357                      		setpage_a
-     282   00:4357  32 00 90          >   ld (_kBank3),a
-     282   00:435A  3C                >   inc a
-     282   00:435B  32 00 B0          >   ld (_kBank4),a
-     283   00:435E                      		
-     284   00:435E  3E 01               		ld		a,1
-     285   00:4360  32 EE C2            		ld		(_vbit16 ),a
-     286   00:4363  11 00 80            		ld		de,	_tiles1
-     287   00:4366  01 00 80            		ld		bc,0x8000
-     288   00:4369  CD 35 45            		call	_vuitpakker 
-     289   00:436C                      		
-     290   00:436C                      		; call	int_sprites
-     291   00:436C                      
-     292   00:436C                      		; main init
-     293   00:436C                      		
-     294   00:436C  CD 61 40            		call	setrampage2
-     295   00:436F  FB                  		ei
-     296   00:4370                      
-     297   00:4370  3E C3               		LD	A,0xC3
-     298   00:4372  21 53 44            		LD	HL,_isr
-     299   00:4375  F3                  		DI
-     300   00:4376  32 9F FD            		LD	(0xFD9F),A
-     301   00:4379  22 A0 FD            		LD	(0xFDA0),HL
-     302   00:437C  FB                  		EI
-     303   00:437D                      		
-     304   00:437D  21 00 00            		ld		hl,0
-     305   00:4380  7C                  		ld		a,h
-     306   00:4381  32 F0 C2            		ld		(_ymappos),a
-     307   00:4384  22 F1 C2            		ld		(_xmappos),hl
-     308   00:4387                      		
-     309   00:4387  22 EC C2            		ld		(_nframes),hl
-     310   00:438A  32 F5 C2            		ld		(_currentpage),a
-     311   00:438D  32 CB C2            		ld		(_mcdx),a
-     312   00:4390  32 D5 C2            		ld		(_mcframe),a
-     313   00:4393                      main_loop:
-     314   00:4393  AF                  		xor		a
-     315   00:4394  32 D9 C2            		ld		(_ticxframe),a
-     316   00:4397                      
-     317   00:4397  3A F5 C2            		ld		a,(_currentpage)
-     318   00:439A  EE 01               		xor		1
-     319   00:439C  32 F5 C2            		ld		(_currentpage),a
-     320   00:439F  EE 01               		xor		1
-     321   00:43A1  5F                  		ld		e,a
-     322   00:43A2  76                  		halt
-     323   00:43A3  CD 5E 47                    call	_setpage
-     324   00:43A6  CB 43               		bit		0,e
-     325   00:43A8  21 F6 C8            		ld		hl,_shadow1
-     326   00:43AB  20 03               		jr		nz,1f
-     327   00:43AD  21 F6 C2            		ld		hl,_shadow0
-     328   00:43B0  22 F3 C2            1:		ld		(_shadowbuff),hl
-     329   00:43B3                      
-     330   00:43B3                      		; ld	ix,enemylist
-     331   00:43B3                      		; call save_background
-     332   00:43B3                      
-     333   00:43B3                      		; ld	ix,enemylist
-     334   00:43B3                      		; call plot_sprite
-     335   00:43B3                      
-     336   00:43B3  CD A6 41            		call	plot_frame
-     337   00:43B6                      		
-     338   00:43B6  CD 20 61            		call	enemies_LMMM
-     339   00:43B9                      
-     340   00:43B9                      		; ld	ix,enemylist
-     341   00:43B9                      		; call restore_background
-     342   00:43B9                      
-     343   00:43B9                      		; ld	ix,enemylist
-     344   00:43B9                      		; call	move_sprites
-     345   00:43B9                      		
-     346   00:43B9  CD FE 47            		call	_compute_fps
-     347   00:43BC  CD DC 47            		call	_print_fps
-     348   00:43BF  CD C4 61            		call	probe_level
-     349   00:43C2  CD 8C 47            		call	_print_probe
-     350   00:43C5                      		
-     351   00:43C5  2A EC C2            		ld		hl,(_nframes)
-     352   00:43C8  23                  		inc		hl
-     353   00:43C9  22 EC C2            		ld		(_nframes),hl
-     354   00:43CC                      		
-     355   00:43CC  CD AB 44            		call	_cursors
-     356   00:43CF                      
-     357   00:43CF  DD CB 00 46         		bit		0,(ix)
-     358   00:43D3  CC FE 43            		call	z,up
-     359   00:43D6  DD CB 00 4E         		bit		1,(ix)
-     360   00:43DA  CC 11 44            		call	z,dwn
-     361   00:43DD  DD CB 00 5E         		bit		3,(ix)
-     362   00:43E1  CC 22 44            		call	z,right
-     363   00:43E4  DD CB 00 56         		bit		2,(ix)
-     364   00:43E8  CC 3A 44            		call	z,left
-     365   00:43EB                      		
-     366   00:43EB  DD 7E 00            		ld		a,(ix)
-     367   00:43EE  E6 0F               		and		15
-     368   00:43F0  FE 0F               		cp		15
-     369   00:43F2  C2 93 43            		jp      nz,main_loop
-     370   00:43F5                      				
-     371   00:43F5  3E FF               		ld		a,-1
-     372   00:43F7  32 D5 C2            		ld		(_mcframe),a
-     373   00:43FA  C3 93 43            		jp      main_loop
-     374   00:43FD                      
-     375   00:43FD  C9                          ret
-     376   00:43FE                      
-     377   00:43FE                      up:		
-     378   00:43FE  3A F0 C2            		ld		a,(_ymappos)
-     379   00:4401  47                  		ld		b,a
-     380   00:4402  3A D9 C2            		ld		a,(_ticxframe)
-     381   00:4405  ED 44               		neg
-     382   00:4407  80                  		add		a,b
-     383   00:4408  32 F0 C2            		ld		(_ymappos),a
-     384   00:440B  3E 02               		ld	a,2
-     385   00:440D  32 D6 C2            		ld	(_mcstate),a
-     386   00:4410  C9                  		ret
-     387   00:4411                      
-     388   00:4411                      dwn:	
-     389   00:4411  3A F0 C2            		ld		a,(_ymappos)
-     390   00:4414  47                  		ld		b,a
-     391   00:4415  3A D9 C2            		ld		a,(_ticxframe)
-     392   00:4418  80                  		add		a,b
-     393   00:4419  32 F0 C2            		ld		(_ymappos),a
-     394   00:441C  3E 03               		ld	a,3
-     395   00:441E  32 D6 C2            		ld	(_mcstate),a
-     396   00:4421  C9                  		ret
-     397   00:4422                      		
-     398   00:4422                      right:	
-     399   00:4422  3E 04               		ld		a,4
-     400   00:4424  32 CB C2            		ld		(_mcdx),a
-     401   00:4427                      
-     402   00:4427  3E 01               		ld	a,1
-     403   00:4429  32 D6 C2            		ld	(_mcstate),a
-     404   00:442C                      
-     405   00:442C  3A D9 C2            		ld		a,(_ticxframe)
-     406   00:442F  4F                  		ld		c,a
-     407   00:4430  06 00               		ld		b,0
-     408   00:4432  2A F1 C2            		ld		hl,(_xmappos)
-     409   00:4435  09                  		add		hl,bc
-     410   00:4436  22 F1 C2            		ld		(_xmappos),hl
-     411   00:4439  C9                  		ret
-     412   00:443A                      
-     413   00:443A                      left:	
-     414   00:443A  3E FC               		ld		a,-4
-     415   00:443C  32 CB C2            		ld		(_mcdx),a
-     416   00:443F                      
-     417   00:443F  AF                  		xor	a
-     418   00:4440  32 D6 C2            		ld	(_mcstate),a
-     419   00:4443                      		
-     420   00:4443  3A D9 C2            		ld		a,(_ticxframe)
-     421   00:4446  ED 44               		neg
-     422   00:4448  4F                  		ld		c,a
-     423   00:4449  06 FF               		ld		b,-1
-     424   00:444B  2A F1 C2            		ld		hl,(_xmappos)
-     425   00:444E  09                  		add		hl,bc
-     426   00:444F  22 F1 C2            		ld		(_xmappos),hl
-     427   00:4452  C9                  		ret
-     428   00:4453                      
-     429   00:4453                      
-     430   00:4453                      ;-------------------------------------
-     431   00:4453  (00:FC9E)           JIFFY: equ 0xFC9E 
-     432   00:4453                      ;-------------------------------------
-     433   00:4453  E5                  _isr:	push	hl
-     434   00:4454  C5                  		push	bc
-     435   00:4455                      
-     436   00:4455  CD 5B 40            		call	setrompage2
-     437   00:4458  3E 0E               		ld	a, :demo_song
-     438   00:445A                      		setpage_a
-     438   00:445A  32 00 90          >   ld (_kBank3),a
-     438   00:445D  3C                >   inc a
-     438   00:445E  32 00 B0          >   ld (_kBank4),a
-     439   00:4461  CD 20 AA            		call	replay_route		; first outout data
-     440   00:4464  3E 0E               		ld	a, :demo_song
-     441   00:4466                      		setpage_a
-     441   00:4466  32 00 90          >   ld (_kBank3),a
-     441   00:4469  3C                >   inc a
-     441   00:446A  32 00 B0          >   ld (_kBank4),a
-     442   00:446D  CD D3 A0            		call	replay_play			; calculate next output		
-     443   00:4470  CD 61 40            		call	setrampage2
-     444   00:4473  FB                  		ei
-     445   00:4474                      
-     446   00:4474  2A 9E FC            		ld		hl,(JIFFY)
-     447   00:4477                      
-     448   00:4477  3A C9 C2            		ld	a,(SEL_NTSC)
-     449   00:447A  A7                  		and 	a
-     450   00:447B  20 05               		jr		nz,1f
-     451   00:447D                      		
-     452   00:447D  01 CE FF            		ld		bc,-50			; PAL 
-     453   00:4480  18 03               		jr	2f
-     454   00:4482                      1:
-     455   00:4482  01 C4 FF            		ld		bc,-60			; NTSC
-     456   00:4485                      		
-     457   00:4485  09                  2:		add		hl,bc
-     458   00:4486  21 D9 C2            		ld		hl,_ticxframe
-     459   00:4489  34                  		inc		(hl)
-     460   00:448A                      		
-     461   00:448A                      		; ld		a,4
-     462   00:448A                      		; ld		(hl),a
-     463   00:448A                      		
-     464   00:448A  C1                  		pop		bc
-     465   00:448B  E1                  		pop		hl
-     466   00:448C  D0                  		ret	nc
-     467   00:448D                      		
-     468   00:448D  E5                  		push	hl
-     469   00:448E  21 00 00            		ld		hl,0
-     470   00:4491  22 9E FC            		ld		(JIFFY),hl
-     471   00:4494  2A EC C2            		ld		hl,(_nframes)
-     472   00:4497  22 EA C2            		ld		(_fps),hl
-     473   00:449A  21 00 00            		ld		hl,0
-     474   00:449D  22 EC C2            		ld		(_nframes),hl
-     475   00:44A0  E1                  		pop		hl
-     476   00:44A1  C9                  		ret
-     477   00:44A2                      ;-------------------------------------
-     478   00:44A2                      ;   Power-up routine for 32K ROM
-     479   00:44A2                      ;   set pages and sub slot
-     480   00:44A2                      ;-------------------------------------
-     481   00:44A2                      powerup:
-     482   00:44A2  CD 10 40                    call    search_slot
-     483   00:44A5  CD 2F 40                    call    search_slotram
-     484   00:44A8  C3 5B 40            		jp		setrompage2
-     485   00:44AB                              
-     486   00:44AB                      
-     487   00:44AB                      ;-------------------------------------
-     488   00:44AB                      
-     489   00:44AB                      
-     490   00:44AB  (00:00D5)           GTSTCK      equ 0x00D5      ;Returns the joystick status
-     491   00:44AB  (00:00D8)           GTTRIG      equ 0x00D8      ;Returns current trigger status
-     492   00:44AB                      
-     493   00:44AB                      
-     494   00:44AB                      _cursors:
-     495   00:44AB                      	
-     496   00:44AB                      ; PSG I/O port A (r#14) – read-only
-     497   00:44AB                      ; Bit	Description	Comment
-     498   00:44AB                      ; 0	Input joystick pin 1	(up)
-     499   00:44AB                      ; 1	Input joystick pin 2	(down)
-     500   00:44AB                      ; 2	Input joystick pin 3	(left)
-     501   00:44AB                      ; 3	Input joystick pin 4	(right)
-     502   00:44AB                      ; 4	Input joystick pin 6	(trigger A)
-     503   00:44AB                      ; 5	Input joystick pin 7	(trigger B)
-     504   00:44AB                      ; 6	Japanese keyboard layout bit	(1=JIS, 0=ANSI)
-     505   00:44AB                      ; 7	Cassette input signal	
-     506   00:44AB                      
-     507   00:44AB                      .rd_joy:
-     508   00:44AB  3E 0F               	ld	a,#0f
-     509   00:44AD  D3 A0               	out	(#a0),a
-     510   00:44AF  3E 8F               	ld	a,0x8F
-     511   00:44B1  D3 A1               	out	(#a1),a		; select port A
-     512   00:44B3  3E 0E               	ld	a,#0e
-     513   00:44B5  D3 A0               	out	(#a0),a
-     514   00:44B7  DB A2               	in	a,(#a2)
-     515   00:44B9                      .rd_key:	
-     516   00:44B9  DD 21 CA C2         	ld	ix,joystick
-     517   00:44BD  DD 77 00            	ld	(ix),a
-     518   00:44C0                      	
-     519   00:44C0  1E 08               	ld  e,8
-     520   00:44C2  CD 9B 41                call    checkkbd
-     521   00:44C5  CB 47               	bit	0,a				; space
-     522   00:44C7  20 04               	jr	nz,1f
-     523   00:44C9  DD CB 00 A6         	res	4,(ix)			; (trigger A)
-     524   00:44CD                      1:
-     525   00:44CD  CB 7F               	bit	7,a				; RIGHT
-     526   00:44CF  20 04               	jr	nz,1f
-     527   00:44D1  DD CB 00 9E         	res	3,(ix)			; (right joy)
-     528   00:44D5                      1:
-     529   00:44D5  CB 77               	bit	6,a				; DOWN
-     530   00:44D7  20 04               	jr	nz,1f
-     531   00:44D9  DD CB 00 8E         	res	1,(ix)			; (down joy)
-     532   00:44DD                      1:
-     533   00:44DD  CB 6F               	bit	5,a				; UP
-     534   00:44DF  20 04               	jr	nz,1f
-     535   00:44E1  DD CB 00 86         	res	0,(ix)			; (up joy)
-     536   00:44E5                      1:
-     537   00:44E5  CB 67               	bit	4,a				; LEFT
-     538   00:44E7  20 04               	jr	nz,1f
-     539   00:44E9  DD CB 00 96         	res	2,(ix)			; (left joy)
-     540   00:44ED                      1:
-     541   00:44ED  1E 05               	ld  e,5
-     542   00:44EF  CD 9B 41                call    checkkbd
-     543   00:44F2  CB 6F               	bit	5,a				; X
-     544   00:44F4  20 04               	jr	nz,1f
-     545   00:44F6  DD CB 00 AE         	res	5,(ix)			; (trigger B)
-     546   00:44FA                      1:
-     547   00:44FA  CB 7F               	bit	7,a				; Z
-     548   00:44FC  20 04               	jr	nz,1f
-     549   00:44FE  DD CB 00 A6         	res	4,(ix)			; (trigger A)
-     550   00:4502                      1:
-     551   00:4502  C9                  	ret
-     552   00:4503                      
-     553   00:4503                              
-     554   00:4503                      ;-------------------------------------
-     555   00:4503                      		
-     556   00:4503  (00:0099)           vdpport1 equ 0x99
-     557   00:4503  (00:009A)           vdpport2 equ 0x9A
-     558   00:4503                      
-     559   00:4503                      levelcolors:
-     560   00:4503  (0020)              	incbin "palette.bin"
-     561   00:4523                      
-     562   00:4523                      _SetPalet:   
-     563   00:4523  F3                  	di
-     564   00:4524  AF                  	xor a 			;Set pointer to zero.
-     565   00:4525  D3 99               	out (vdpport1),a        
-     566   00:4527  3E 90               	ld  a,16 | 010000000B
-     567   00:4529  D3 99               	out (vdpport1),a
-     568   00:452B                      
-     569   00:452B  21 03 45            	ld  hl,levelcolors
-     570   00:452E  01 9A 20            	ld bc,vdpport2+32*256
-     571   00:4531  ED B3               	otir
-     572   00:4533  FB                  	ei
-     573   00:4534  C9                  	ret
-     574   00:4535                      
-     575   00:4535                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     576   00:4535                      
-     577   00:4535                      	include vuitpakker.asm
-       1.  00:4535                      
-       2.  00:4535                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-       3.  00:4535                      
-       4.  00:4535                      
-       5.  00:4535                      _vuitpakker:
-       6.  00:4535  FD E5                   push iy
-       7.  00:4537  DD E5                   push ix
-       8.  00:4539                      
-       9.  00:4539  CD 41 45                call  1f
-      10.  00:453C                      
-      11.  00:453C  DD E1                   pop ix
-      12.  00:453E  FD E1                   pop iy
-      13.  00:4540  C9                      ret
-      14.  00:4541                      
-      15.  00:4541                      1:
-      16.  00:4541                      ; in de input
-      17.  00:4541                      ; in bc VRAM output
-      18.  00:4541                      
-      19.  00:4541  62                      ld h,d
-      20.  00:4542  6B                      ld l,e
-      21.  00:4543  50                      ld d,b
-      22.  00:4544  59                      ld e,c
-      23.  00:4545                      
-      24.  00:4545                      ; pletter v0.5 msx unpacker
-      25.  00:4545                      
-      26.  00:4545                      ;-----------------------------------------------------------
-      27.  00:4545                      ; Pletter 0.5b VRAM Depacker - 64Kb version
-      28.  00:4545                      ; HL = RAM/ROM source ; DE = VRAM destination
-      29.  00:4545                      ;-----------------------------------------------------------
-      30.  00:4545  F3                      di
-      31.  00:4546                      
-      32.  00:4546                      ; VRAM address setup
-      33.  00:4546                      ;    ld  a,e
-      34.  00:4546                      ;    out (0x99),a
-      35.  00:4546                      ;    ld  a,d
-      36.  00:4546                      ;    or  0x40
-      37.  00:4546                      ;    out (0x99),a
-      38.  00:4546  CD 06 46                call setVwrite
-      39.  00:4549                      
-      40.  00:4549                      ; Initialization
-      41.  00:4549  7E                      ld  a,(hl)
-      42.  00:454A  23                      inc hl
-      43.  00:454B  D9                      exx
-      44.  00:454C  11 00 00                ld  de,0
-      45.  00:454F  87                      add a,a
-      46.  00:4550  3C                      inc a
-      47.  00:4551  CB 13                   rl  e
-      48.  00:4553  87                      add a,a
-      49.  00:4554  CB 13                   rl  e
-      50.  00:4556  87                      add a,a
-      51.  00:4557  CB 13                   rl  e
-      52.  00:4559  CB 13                   rl  e
-      53.  00:455B  21 20 46                ld  hl,__modes
-      54.  00:455E  19                      add hl,de
-      55.  00:455F  5E                      ld  e,(hl)
-      56.  00:4560  DD                      db    0xdd
-      57.  00:4561  6B                      ld  l,e         ; ld ixl,e    
-      58.  00:4562  23                      inc hl
-      59.  00:4563  5E                      ld  e,(hl)
-      60.  00:4564  DD                      db    0xdd
-      61.  00:4565  63                      ld h,e          ; ld  ixh,e
-      62.  00:4566  1E 01                   ld  e,1
-      63.  00:4568  D9                      exx
-      64.  00:4569  FD 21 72 45             ld  iy,__loop
-      65.  00:456D                      
-      66.  00:456D                      ; Main depack loop
-      67.  00:456D  0E 98               _literal:ld  c,098h
-      68.  00:456F  ED A3                   outi
-      69.  00:4571  13                      inc de
-      70.  00:4572  87                  __loop:   add a,a
-      71.  00:4573  CC FA 45                call    z,_getbit
-      72.  00:4576  30 F5                   jr  nc,_literal
-      73.  00:4578                      
-      74.  00:4578                      ; Compressed data
-      75.  00:4578  D9                      exx
-      76.  00:4579  62                      ld  h,d
-      77.  00:457A  6B                      ld  l,e
-      78.  00:457B  87                  _getlen: add a,a
-      79.  00:457C  CC FE 45                call    z,_getbitexx
-      80.  00:457F  30 1D                   jr  nc,lenok
-      81.  00:4581  87                  lus:    add a,a
-      82.  00:4582  CC FE 45                call    z,_getbitexx
-      83.  00:4585  ED 6A                   adc hl,hl
-      84.  00:4587  D8                      ret c
-      85.  00:4588  87                      add a,a
-      86.  00:4589  CC FE 45                call    z,_getbitexx
-      87.  00:458C  30 10                   jr  nc,lenok
-      88.  00:458E  87                      add a,a
-      89.  00:458F  CC FE 45                call    z,_getbitexx
-      90.  00:4592  ED 6A                   adc hl,hl
-      91.  00:4594  DA 04 46                jp  c,Depack_out
-      92.  00:4597  87                      add a,a
-      93.  00:4598  CC FE 45                call    z,_getbitexx
-      94.  00:459B  DA 81 45                jp  c,lus
-      95.  00:459E  23                  lenok:  inc hl
-      96.  00:459F  D9                      exx
-      97.  00:45A0  4E                      ld  c,(hl)
-      98.  00:45A1  23                      inc hl
-      99.  00:45A2  06 00                   ld  b,0
-     100.  00:45A4  CB 79                   bit 7,c
-     101.  00:45A6  CA D9 45                jp  z,offsok
-     102.  00:45A9  DD E9                   jp  (ix)
-     103.  00:45AB                      
-     104.  00:45AB  87                  _mode7:  add a,a
-     105.  00:45AC  CC FA 45                call    z,_getbit
-     106.  00:45AF  CB 10                   rl  b
-     107.  00:45B1  87                  _mode6:  add a,a
-     108.  00:45B2  CC FA 45                call    z,_getbit
-     109.  00:45B5  CB 10                   rl  b
-     110.  00:45B7  87                  _mode5:  add a,a
-     111.  00:45B8  CC FA 45                call    z,_getbit
-     112.  00:45BB  CB 10                   rl  b
-     113.  00:45BD  87                  _mode4:  add a,a
-     114.  00:45BE  CC FA 45                call    z,_getbit
-     115.  00:45C1  CB 10                   rl  b
-     116.  00:45C3  87                  _mode3:  add a,a
-     117.  00:45C4  CC FA 45                call    z,_getbit
-     118.  00:45C7  CB 10                   rl  b
-     119.  00:45C9  87                  _mode2:  add a,a
-     120.  00:45CA  CC FA 45                call    z,_getbit
-     121.  00:45CD  CB 10                   rl  b
-     122.  00:45CF  87                      add a,a
-     123.  00:45D0  CC FA 45                call    z,_getbit
-     124.  00:45D3  30 04                   jr  nc,offsok
-     125.  00:45D5  B7                      or  a
-     126.  00:45D6  04                      inc b
-     127.  00:45D7  CB B9                   res 7,c
-     128.  00:45D9  03                  offsok: inc bc
-     129.  00:45DA  E5                      push    hl
-     130.  00:45DB  D9                      exx
-     131.  00:45DC  E5                      push    hl
-     132.  00:45DD  D9                      exx
-     133.  00:45DE  6B                      ld  l,e
-     134.  00:45DF  62                      ld  h,d
-     135.  00:45E0  ED 42                   sbc hl,bc
-     136.  00:45E2  C1                      pop bc
-     137.  00:45E3  F5                      push    af
-     138.  00:45E4                      _loop: 
-     139.  00:45E4                      ;    ld  a,l
-     140.  00:45E4                      ;    out (0x99),a
-     141.  00:45E4                      ;    ld  a,h
-     142.  00:45E4                      ;    out (0x99),a
-     143.  00:45E4  CD 12 46                call setVread
-     144.  00:45E7                          
-     145.  00:45E7  DB 98                   in  a,(0x98)
-     146.  00:45E9  08                      ex  af,af'
-     147.  00:45EA                      ;    ld  a,e
-     148.  00:45EA                      ;    out (0x99),a
-     149.  00:45EA                      ;    ld  a,d
-     150.  00:45EA                      ;    or  0x40
-     151.  00:45EA                      ;    out (0x99),a
-     152.  00:45EA  CD 06 46                call setVwrite
-     153.  00:45ED                          
-     154.  00:45ED  08                      ex  af,af'
-     155.  00:45EE  D3 98                   out (0x98),a
-     156.  00:45F0  13                      inc de
-     157.  00:45F1  ED A1                   cpi
-     158.  00:45F3  EA E4 45                jp  pe,_loop
-     159.  00:45F6  F1                      pop af
-     160.  00:45F7  E1                      pop hl
-     161.  00:45F8  FD E9                   jp  (iy)
-     162.  00:45FA                      ;
-     163.  00:45FA  7E                  _getbit: ld  a,(hl)
-     164.  00:45FB  23                      inc hl
-     165.  00:45FC  17                      rla
-     166.  00:45FD  C9                      ret
-     167.  00:45FE                      
-     168.  00:45FE                      _getbitexx:
-     169.  00:45FE  D9                      exx
-     170.  00:45FF  7E                      ld  a,(hl)
-     171.  00:4600  23                      inc hl
-     172.  00:4601  D9                      exx
-     173.  00:4602  17                      rla
-     174.  00:4603  C9                      ret
-     175.  00:4604                      
-     176.  00:4604                      ; De-packer exit
-     177.  00:4604                      Depack_out:
-     178.  00:4604  FB                      ei
-     179.  00:4605  C9                      ret
-     180.  00:4606                      
-     181.  00:4606                      
-     182.  00:4606                      
-     183.  00:4606                      setVwrite:
-     184.  00:4606                      
-     185.  00:4606  D5                      push    de
-     186.  00:4607  C5                      push    bc
-     187.  00:4608  ED 4B EE C2             ld      bc,(_vbit16)
-     188.  00:460C  CD 2A 47                call    _vdpsetvramwr
-     189.  00:460F  C1                      pop     bc
-     190.  00:4610  D1                      pop     de
-     191.  00:4611                      
-     192.  00:4611  C9                      ret
-     193.  00:4612                      setVread:    
-     194.  00:4612                      
-     195.  00:4612  D5                      push    de
-     196.  00:4613  C5                      push    bc
-     197.  00:4614  5D                      ld      e,l
-     198.  00:4615  54                      ld      d,h
-     199.  00:4616  ED 4B EE C2             ld      bc,(_vbit16)
-     200.  00:461A  CD 44 47                call    _vdpsetvramrd
-     201.  00:461D  C1                      pop     bc
-     202.  00:461E  D1                      pop     de
-     203.  00:461F                      
-     204.  00:461F  C9                      ret
-     205.  00:4620                      
-     206.  00:4620                      __modes:
-     207.  00:4620  D9 45                   dw  offsok
-     208.  00:4622  C9 45                   dw  _mode2
-     209.  00:4624  C3 45                   dw  _mode3
-     210.  00:4626  BD 45                   dw  _mode4
-     211.  00:4628  B7 45                   dw  _mode5
-     212.  00:462A  B1 45                   dw  _mode6
-     213.  00:462C  AB 45                   dw  _mode7
-     578   00:462E                      
-     579   00:462E                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     580   00:462E                      
-     581   00:462E                      	include plot_tile.asm
-       1.  00:462E                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-       2.  00:462E                      ; input
-       3.  00:462E                      ; hl  configured in window map 32x24 of uints
-       4.  00:462E                      ; de  tile to be plot
-       5.  00:462E                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-       6.  00:462E                      plot_tile:
-       7.  00:462E                      							
-       8.  00:462E  CB 7A               	bit 	7,d			; test for LMMMM	
-       9.  00:4630  C2 7D 46            	jp		nz,plot_trasp_tile
-      10.  00:4633                      	
-      11.  00:4633  7A                  	ld		a,d
-      12.  00:4634  B3                  	or		e
-      13.  00:4635  C2 41 46            	jp		nz,plot_foreground
-      14.  00:4638                      
-      15.  00:4638                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-      16.  00:4638                      ; input
-      17.  00:4638                      ; hl  configured in window map 32x24
-      18.  00:4638                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-      19.  00:4638                      
-      20.  00:4638                      ; plot_background:
-      21.  00:4638                      
-      22.  00:4638  E5                  	push	hl
-      23.  00:4639  11 62 5A            	ld		de,_backmap-32*4-2
-      24.  00:463C  19                  	add		hl,de
-      25.  00:463D  5E                  	ld		e,(hl)
-      26.  00:463E  23                  	inc		hl
-      27.  00:463F  56                  	ld		d,(hl)
-      28.  00:4640  E1                  	pop		hl
-      29.  00:4641                      	
-      30.  00:4641                      	
-      31.  00:4641                      plot_foreground:
-      32.  00:4641                      
-      33.  00:4641  (00:0001)           counter:=1
-      34.  00:4641                      	while counter<NSolidColors
-      35.  00:4641                    < 	ld	a,low SolidTile@#
-      36.  00:4641                    < 	cp	e
-      37.  00:4641                    < 	jr	nz,1f
-      38.  00:4641                    < 	ld	a,high SolidTile@#
-      39.  00:4641                    < 	cp	d
-      40.  00:4641                    < 	ld	a,17*SolidColor@#		; solid color1
-      41.  00:4641                    < 	jp	z,plot_solid_box
-      42.  00:4641                    < 1:	
-      43.  00:4641                    < counter:=counter+1
-      44.  00:4641                    < 	endwhile	
-      44.  00:4641  3E 00 BB 20 08 3E 00 BA 3E 00 CA E2 46 3E 18 BB 
-      44.  00:4651  20 08 3E 00 BA 3E 11 CA E2 46 3E E6 BB 20 08 3E 
-      44.  00:4661  03 BA 3E 44 CA E2 46 3E ED BB 20 08 3E 04 BA 3E 
-      44.  00:4671  77 CA E2 46 
-      45.  00:4675                      
-      46.  00:4675  CD 95 46            	call 	vdp_conf
-      47.  00:4678                      
-      48.  00:4678  3E D0               	ld		a,11010000B
-      49.  00:467A  D3 9B               	out 	(0x9B), a		; command HMMM
-      50.  00:467C  C9                  	ret
-      51.  00:467D                      
-      52.  00:467D                      	
-      53.  00:467D                      	
-      54.  00:467D                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-      55.  00:467D                      ; input
-      56.  00:467D                      ; hl   configured in window map 32x24
-      57.  00:467D                      ; de  tile to be plot
-      58.  00:467D                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-      59.  00:467D                      
-      60.  00:467D                      plot_trasp_tile:
-      61.  00:467D                      
-      62.  00:467D  D5                  	push	de
-      63.  00:467E  E5                  	push	hl
-      64.  00:467F                      					;	plot_background
-      65.  00:467F  11 62 5A            	ld		de,_backmap-32*4-2
-      66.  00:4682  19                  	add		hl,de
-      67.  00:4683  5E                  	ld		e,(hl)
-      68.  00:4684  23                  	inc		hl
-      69.  00:4685  56                  	ld		d,(hl)
-      70.  00:4686                      
-      71.  00:4686  E1                  	pop		hl
-      72.  00:4687  E5                  	push	hl
-      73.  00:4688  CD 41 46            	call	plot_foreground
-      74.  00:468B  E1                  	pop		hl
-      75.  00:468C  D1                  	pop		de
-      76.  00:468D                      
-      77.  00:468D  CD 95 46            	call	vdp_conf
-      78.  00:4690                      
-      79.  00:4690  3E 98               	ld		a,10011000B
-      80.  00:4692  D3 9B               	out 	(0x9B), a		; command LMMM
-      81.  00:4694  C9                  	ret
-      82.  00:4695                      
-      83.  00:4695                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-      84.  00:4695                      ; input
-      85.  00:4695                      ; hl   configured in window map 32x24
-      86.  00:4695                      ; de  tile to be plot
-      87.  00:4695                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-      88.  00:4695                      
-      89.  00:4695                      vdp_conf:	
-      90.  00:4695                      	
-      91.  00:4695  29 29               [2]	add		hl,hl
-      92.  00:4697  4D                  	ld		c,l			; C = dx*8
-      93.  00:4698  7C                  	ld		a,h
-      94.  00:4699  87 87 87            [3]	add		a,a
-      95.  00:469C  47                  	ld		b,a			; B = dy*8
-      96.  00:469D  C5                  	push	bc			; dx*8 and dy*8 on the stack
-      97.  00:469E                      	
-      98.  00:469E                      	; de has the 16 bit tile
-      99.  00:469E                      	; de = 10 bits = 5 bits for y and 5 bits for x
-     100.  00:469E                      
-     101.  00:469E  EB                  	ex		de,hl
-     102.  00:469F  29 29 29            [3]	add		hl,hl
-     103.  00:46A2                      	
-     104.  00:46A2                      	; now l is sx*8 and h is sy
-     105.  00:46A2                      		
-     106.  00:46A2  7C                  	ld		a,h
-     107.  00:46A3  87 87 87            [3]	add		a,a
-     108.  00:46A6  67                  	ld		h,a
-     109.  00:46A7  F5                  	push	af
-     110.  00:46A8                      	
-     111.  00:46A8                      	; now h is sy*8
-     112.  00:46A8  F3                  	di
-     113.  00:46A9  3E 20               	ld 		a, 32
-     114.  00:46AB  D3 99               	out 	(0x99),a
-     115.  00:46AD  3E 91               	ld 		a, 17+128
-     116.  00:46AF  D3 99               	out 	(0x99),a
-     117.  00:46B1  FB                  	ei
-     118.  00:46B2                      
-     119.  00:46B2  0E 9B               	ld 		c, 0x9B
-     120.  00:46B4                      	
-     121.  00:46B4  CD 74 47            	call _waitvdp;
-     122.  00:46B7                      	
-     123.  00:46B7  ED 69               	out		(c), l 		; sx
-     124.  00:46B9  AF                  	xor a
-     125.  00:46BA  D3 9B               	out		(0x9B), a 	; sx (high)
-     126.  00:46BC                      	
-     127.  00:46BC  ED 61               	out		(c), h 		; sy
-     128.  00:46BE  F1                  	pop		af
-     129.  00:46BF  3E 02               	ld		a,2			; source page for tiles 32x32=1024 tiles
-     130.  00:46C1  CE 00               	adc		a,0
-     131.  00:46C3  D3 9B               	out 	(0x9B), a 	; sy (high-> page 2)
-     132.  00:46C5                      
-     133.  00:46C5  E1                  	pop		hl			; recover dx*8,dy*8
-     134.  00:46C6                      	
-     135.  00:46C6  ED 69               	out 	(c), l 		; dx
-     136.  00:46C8  AF                  	xor a
-     137.  00:46C9  D3 9B               	out 	(0x9B), a	; dx (high)
-     138.  00:46CB  ED 61               	out 	(c), h 		; dy
-     139.  00:46CD  3A F5 C2            	ld 		a,(_currentpage)	; destination page
-     140.  00:46D0  D3 9B               	out 	(0x9B), a	; dy (high-> page 0 or 1)
-     141.  00:46D2                      
-     142.  00:46D2  2E 08               	ld 		l,8 		; block size
-     143.  00:46D4                      
-     144.  00:46D4  ED 69               	out 	(c), l
-     145.  00:46D6  AF                  	xor a
-     146.  00:46D7  D3 9B               	out 	(0x9B), a
-     147.  00:46D9  ED 69               	out 	(c), l
-     148.  00:46DB  D3 9B               	out 	(0x9B), a
-     149.  00:46DD  D3 9B               	out 	(0x9B), a
-     150.  00:46DF  D3 9B               	out 	(0x9B), a
-     151.  00:46E1  C9                  	ret
-     152.  00:46E2                      
-     153.  00:46E2                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     154.  00:46E2                      ; input
-     155.  00:46E2                      ; hl configured in window map 32x24
-     156.  00:46E2                      ;  a color
-     157.  00:46E2                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     158.  00:46E2                      
-     159.  00:46E2                      plot_solid_box:
-     160.  00:46E2  5F                  	ld		e,a		; solid color
-     161.  00:46E3                      
-     162.  00:46E3  29 29               [2]	add		hl,hl
-     163.  00:46E5  4D                  	ld		c,l			; C = dx*8
-     164.  00:46E6  7C                  	ld		a,h
-     165.  00:46E7  87 87 87            [3]	add		a,a
-     166.  00:46EA  47                  	ld		b,a			; B = dy*8
-     167.  00:46EB  C5                  	push	bc			; dx*8 and dy*8 on the stack
-     168.  00:46EC                      
-     169.  00:46EC  F3                  	di
-     170.  00:46ED  3E 24               	ld 		a, 36
-     171.  00:46EF  D3 99               	out 	(0x99),a
-     172.  00:46F1  3E 91               	ld 		a, 17+128
-     173.  00:46F3  D3 99               	out 	(0x99),a
-     174.  00:46F5  FB                  	ei
-     175.  00:46F6                      
-     176.  00:46F6  0E 9B               	ld 		c, 0x9B
-     177.  00:46F8                      	
-     178.  00:46F8  CD 74 47            	call _waitvdp;
-     179.  00:46FB  E1                  	pop		hl			; recover dx*8,dy*8
-     180.  00:46FC                      	
-     181.  00:46FC  ED 69               	out 	(c), l 		; dx
-     182.  00:46FE  AF                  	xor a
-     183.  00:46FF  D3 9B               	out 	(0x9B), a	; dx (high)
-     184.  00:4701  ED 61               	out 	(c), h 		; dy
-     185.  00:4703  3A F5 C2            	ld 		a,(_currentpage)	; destination page
-     186.  00:4706  D3 9B               	out 	(0x9B), a	; dy (high-> page 0 or 1)
-     187.  00:4708                      
-     188.  00:4708  2E 08               	ld 		l,8 		; block size
-     189.  00:470A                      
-     190.  00:470A  ED 69               	out 	(c), l
-     191.  00:470C  AF                  	xor a
-     192.  00:470D  D3 9B               	out 	(0x9B), a
-     193.  00:470F  ED 69               	out 	(c), l
-     194.  00:4711  D3 9B               	out 	(0x9B), a
-     195.  00:4713  ED 59               	out 	(c), e
-     196.  00:4715  D3 9B               	out 	(0x9B), a
-     197.  00:4717  2E C0               	ld		l,11000000B	; command HMMV
-     198.  00:4719  ED 69               	out 	(c), l
-     199.  00:471B  C9                  	ret
-     582   00:471C                      
-     583   00:471C                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     584   00:471C                      
-     585   00:471C                      _clean_buffs:
-     586   00:471C  01 3F 0C            	ld	bc,2*WinWidth*WinWidth*2-1
-     587   00:471F  21 F6 C2            	ld	hl,_shadow0
-     588   00:4722  36 FF               	ld	(hl),-1
-     589   00:4724  11 F7 C2            	ld	de,_shadow0+1
-     590   00:4727  ED B0               	ldir
-     591   00:4729  C9                  	ret
-     592   00:472A                      	
-     593   00:472A                      ;Set VDP for writing at address CDE (17-bit) 
-     594   00:472A                      
-     595   00:472A                      _vdpsetvramwr:
-     596   00:472A  79                  	ld a,c
-     597   00:472B                      ;Set VDP for writing at address ADE (17-bit) ;
-     598   00:472B  CB 02               	rlc d
-     599   00:472D  17                  	rla
-     600   00:472E  CB 02               	rlc d
-     601   00:4730  17                  	rla
-     602   00:4731  CB 3A               	srl d ; primo shift, il secondo dopo la out
-     603   00:4733                      
-     604   00:4733  D3 99               	out (0x99),a ;set bits 14-16
-     605   00:4735  3E 8E               	ld a,14+128
-     606   00:4737  D3 99               	out (0x99),a
-     607   00:4739                      
-     608   00:4739  CB 3A               	srl d ; secondo shift.            
-     609   00:473B  7B                  	ld a,e ;set bits 0-7
-     610   00:473C  D3 99               	out (0x99),a
-     611   00:473E  7A                  	ld a,d ;set bits 8-13
-     612   00:473F  F6 40               	or 0x40 ; + write access
-     613   00:4741  D3 99               	out (0x99),a
-     614   00:4743  C9                  	ret
-     615   00:4744                      	
-     616   00:4744                      ;Set VDP port #98 to start reading at address CDE (17-bit) ;
-     617   00:4744                      
-     618   00:4744                      _vdpsetvramrd:
-     619   00:4744  79                  	ld a,c
-     620   00:4745                      ;Set VDP port #98 to start reading at address ADE (17-bit) ;
-     621   00:4745  CB 02               	rlc d
-     622   00:4747  17                  	rla
-     623   00:4748  CB 02               	rlc d
-     624   00:474A  17                  	rla
-     625   00:474B  CB 3A               	srl d ; primo shift, il secondo dopo la out
-     626   00:474D                      
-     627   00:474D  D3 99               	out (0x99),a ;set bits 14-16
-     628   00:474F  3E 8E               	ld a,14+128
-     629   00:4751  D3 99               	out (0x99),a
-     630   00:4753                      
-     631   00:4753  CB 3A               	srl d ; secondo shift.            
-     632   00:4755  7B                  	ld a,e ;set bits 0-7
-     633   00:4756  D3 99               	out (0x99),a
-     634   00:4758  7A                  	ld a,d ;set bits 8-13
-     635   00:4759  E6 3F               	and 0x3F
-     636   00:475B  D3 99               	out (0x99),a
-     637   00:475D  C9                  	ret
-     638   00:475E                      
-     639   00:475E                      ;Display page E in screen 5
-     640   00:475E                      _setpage:
-     641   00:475E  7B                  	ld a,e
-     642   00:475F  87                  	add a,a ;x32
-     643   00:4760  87                  	add a,a
-     644   00:4761  87                  	add a,a
-     645   00:4762  87                  	add a,a
-     646   00:4763  87                  	add a,a
-     647   00:4764  C6 1F               	add a,31
-     648   00:4766  F3                  	di
-     649   00:4767  D3 99               	out (0x99),a
-     650   00:4769  3E 82               	ld a,2+128
-     651   00:476B  D3 99               	out (0x99),a
-     652   00:476D  FB                  	ei            
-     653   00:476E  C9                  	ret
-     654   00:476F                      
-     655   00:476F  (00:005F)           chgmod        equ     0x005f      ;change graphic mode
-     656   00:476F  (00:000C)           RDSLT         equ     0x000c      ;read address HL in slot A
-     657   00:476F  (00:0156)           KILBUF        equ     0x0156      ;clear keyboard buffer
-     658   00:476F                      
-     659   00:476F                      _scr:
-     660   00:476F  7B                  	ld  a,e
-     661   00:4770  CD 5F 00            	call	chgmod
-     662   00:4773  C9                  	ret
-     663   00:4774                      
-     664   00:4774                      
-     665   00:4774                      _waitvdp:
-     666   00:4774  F3                  	di
-     667   00:4775  3E 02               	ld a,2
-     668   00:4777  D3 99               	out (0x99),a
-     669   00:4779  3E 8F               	ld a, 0x8f
-     670   00:477B  D3 99               	out (0x99),a
-     671   00:477D                      
-     672   00:477D  DB 99               1:  in a,(0x99)
-     673   00:477F  0F                  	rrca
-     674   00:4780  DA 7D 47            	jp c, 1b
-     675   00:4783                      
-     676   00:4783  AF                  	xor a
-     677   00:4784  D3 99               	out (0x99),a
-     678   00:4786  3E 8F               	ld a, 0x8f
-     679   00:4788  D3 99               	out (0x99),a
-     680   00:478A  FB                  	ei
-     681   00:478B  C9                  	ret
-     682   00:478C                      
-     683   00:478C                      _print_probe
-     684   00:478C  3A D8 C2            	ld	a,(_mcprobeb)
-     685   00:478F  5F                  	ld	e,a
-     686   00:4790  16 00               	ld	d,0
-     687   00:4792  21 C0 07            	ld	hl,32*(64-2)
-     688   00:4795  19                  	add	hl,de
-     689   00:4796  EB                  	ex	de,hl
-     690   00:4797  21 C0 05            	ld	hl,2*(23*32+0)
-     691   00:479A  CD 41 46            	call 	plot_foreground
-     692   00:479D                      	
-     693   00:479D  ED 5B D9 C2         	ld	de,(_ticxframe)
-     694   00:47A1  16 00               	ld	d,0
-     695   00:47A3  01 DA C2            	ld	bc,_buffer
-     696   00:47A6  CD 05 48            	call	int2ascii
-     697   00:47A9                      	
-     698   00:47A9  3A DC C2            	ld	a,(_buffer+2)
-     699   00:47AC  5F                  	ld	e,a
-     700   00:47AD  16 00               	ld	d,0
-     701   00:47AF  21 90 07            	ld	hl,32*(64-2)-'0'
-     702   00:47B2  19                  	add	hl,de
-     703   00:47B3  EB                  	ex	de,hl
-     704   00:47B4  21 80 05            	ld	hl,2*(22*32)
-     705   00:47B7  CD 41 46            	call 	plot_foreground
-     706   00:47BA                      
-     707   00:47BA  3A DD C2            	ld	a,(_buffer+3)
-     708   00:47BD  5F                  	ld	e,a
-     709   00:47BE  16 00               	ld	d,0
-     710   00:47C0  21 90 07            	ld	hl,32*(64-2)-'0'
-     711   00:47C3  19                  	add	hl,de
-     712   00:47C4  EB                  	ex	de,hl
-     713   00:47C5  21 82 05            	ld	hl,2*(22*32+1)
-     714   00:47C8  CD 41 46            	call 	plot_foreground
-     715   00:47CB                      
-     716   00:47CB  3A DE C2            	ld	a,(_buffer+4)
-     717   00:47CE  5F                  	ld	e,a
-     718   00:47CF  16 00               	ld	d,0
-     719   00:47D1  21 90 07            	ld	hl,32*(64-2)-'0'
-     720   00:47D4  19                  	add	hl,de
-     721   00:47D5  EB                  	ex	de,hl
-     722   00:47D6  21 84 05            	ld	hl,2*(22*32+2)
-     723   00:47D9  C3 41 46            	jp 	plot_foreground
-     724   00:47DC                      	
-     725   00:47DC                      	
-     726   00:47DC                      _print_fps:
-     727   00:47DC  3A DD C2            	ld	a,(_buffer+3)
-     728   00:47DF  5F                  	ld	e,a
-     729   00:47E0  16 00               	ld	d,0
-     730   00:47E2  21 90 07            	ld	hl,32*(64-2)-'0'
-     731   00:47E5  19                  	add	hl,de
-     732   00:47E6  EB                  	ex	de,hl
-     733   00:47E7                      	
-     734   00:47E7  21 FC 05            	ld	hl,2*(23*32+30)
-     735   00:47EA  CD 41 46            	call 	plot_foreground
-     736   00:47ED                      
-     737   00:47ED  3A DE C2            	ld	a,(_buffer+4)
-     738   00:47F0  5F                  	ld	e,a
-     739   00:47F1  16 00               	ld	d,0
-     740   00:47F3  21 90 07            	ld	hl,32*(64-2)-'0'
-     741   00:47F6  19                  	add	hl,de
-     742   00:47F7  EB                  	ex	de,hl
-     743   00:47F8                      	
-     744   00:47F8  21 FE 05            	ld	hl,2*(23*32+31)
-     745   00:47FB  C3 41 46            	jp 	plot_foreground
-     746   00:47FE                      	
-     747   00:47FE                      
-     748   00:47FE                      ;-------------------------------------
-     749   00:47FE                      _compute_fps:
-     750   00:47FE  ED 5B EA C2         	ld	de,(_fps)
-     751   00:4802  01 DA C2            	ld	bc,_buffer
-     752   00:4805                      
-     753   00:4805                      int2ascii:
-     754   00:4805                      	
-     755   00:4805                      ; in de input 
-     756   00:4805                      ; in bc output
-     757   00:4805                      
-     758   00:4805  EB                  	ex  de,hl
-     759   00:4806  59                  	ld  e,c
-     760   00:4807  50                  	ld  d,b
-     761   00:4808                      
-     762   00:4808                      Num2asc:
-     763   00:4808  01 F0 D8            	ld  bc,-10000
-     764   00:480B  CD 21 48            	call    Num1
-     765   00:480E  01 18 FC            	ld  bc,-1000
-     766   00:4811  CD 21 48            	call    Num1
-     767   00:4814  01 9C FF            	ld  bc,-100
-     768   00:4817  CD 21 48            	call    Num1
-     769   00:481A  0E F6               	ld  c,-10
-     770   00:481C  CD 21 48            	call    Num1
-     771   00:481F  0E FF               	ld  c,-1
-     772   00:4821                      
-     773   00:4821                      Num1:   
-     774   00:4821  3E 2F               	ld  a,'0'-1  ; '0' in the tileset
-     775   00:4823                      
-     776   00:4823                      Num2:   
-     777   00:4823  3C                  	inc a
-     778   00:4824  09                  	add hl,bc
-     779   00:4825  38 FC               	jr  c,Num2
-     780   00:4827  ED 42               	sbc hl,bc
-     781   00:4829                      
-     782   00:4829  12                  	ld  (de),a
-     783   00:482A  13                  	inc de
-     784   00:482B  C9                  	ret
-     785   00:482C                      
-     786   00:482C                      _metatable:
-     787   00:482C  (12B8)              	incbin "metatable.bin"
-     788   00:5AE4                      _backmap:
-     789   00:5AE4  (0400)              	incbin "backmap.bin"
-     790   00:5EE4                      
-     791   00:5EE4                      	include enemies.asm
-       1.  00:5EE4                      
-       2.  00:5EE4  (00:0008)           nenemies 	equ	8
-       3.  00:5EE4  (00:0080)           sprite_size	equ	8*8*2
-       4.  00:5EE4                      
-       5.  00:5EE4                      		struct enemy
-       6.  00:5EE4                    < type 	db
-       7.  00:5EE4                    < state 	db
-       8.  00:5EE4                    < frame 	db
-       9.  00:5EE4                    < x		dw	
-      10.  00:5EE4                    < y		dw
-      11.  00:5EE4                    < mappos	dw
-      12.  00:5EE4                    < dx		dw
-      13.  00:5EE4                    < dy		dw
-      14.  00:5EE4                    < nx		db
-      15.  00:5EE4                    < ny		db
-      16.  00:5EE4                    < buf		ds	sprite_size
-      17.  00:5EE4                    < 	endstruct
-      18.  00:5EE4                      	
-      19.  00:5EE4                      	page 12,13
+     152   00:4268                      
+     153   00:4268                      		// border color
+     154   00:4268  3E 55               		ld		a,0x55
+     155   00:426A  D3 99               		out		(0x99),a
+     156   00:426C  3E 87               		ld		a,128+7
+     157   00:426E  D3 99               		out		(0x99),a
+     158   00:4270                      		
+     159   00:4270                      		// enable sprites + TP
+     160   00:4270  3A E7 FF            		ld		a,(0xFFE7)
+     161   00:4273  F6 22               		or		32+2
+     162   00:4275  32 E7 FF            		ld		(0xFFE7),a
+     163   00:4278  D3 99               		out		(0x99),a
+     164   00:427A  3E 88               		ld		a,128+8
+     165   00:427C  D3 99               		out		(0x99),a
+     166   00:427E                      		
+     167   00:427E                      		// Set 192 lines @50Hz (PAL assumed!)
+     168   00:427E  3A C9 C2            		ld	a,(SEL_NTSC)
+     169   00:4281  A7                  		and 	a
+     170   00:4282  20 0C               		jr		nz,1f
+     171   00:4284                      		
+     172   00:4284  3A E8 FF            		ld		a,(0xFFE8)		; PAL
+     173   00:4287  E6 7F               		and		01111111B
+     174   00:4289  F6 02               		or		2
+     175   00:428B  32 E8 FF            		ld		(0xFFE8),a
+     176   00:428E  18 08               		jr	2f
+     177   00:4290  3A E8 FF            1:		ld		a,(0xFFE8)		; NTSC
+     178   00:4293  E6 7D               		and		01111101B
+     179   00:4295  32 E8 FF            		ld		(0xFFE8),a
+     180   00:4298                      2:	
+     181   00:4298  D3 99               		out		(0x99),a
+     182   00:429A  3E 89               		ld		a,128+9
+     183   00:429C  D3 99               		out		(0x99),a
+     184   00:429E  FB                  		ei
+     185   00:429F                      
+     186   00:429F  CD D7 48            		call _hw_sprite_init
+     187   00:42A2                      
+     188   00:42A2                      	;clear RAM (first kb only)
+     189   00:42A2                      		; ld	bc,1024
+     190   00:42A2                      		; ld	hl,0xc000
+     191   00:42A2                      		; ld	de,0xc001
+     192   00:42A2                      
+     193   00:42A2                      		; ld	(hl),0
+     194   00:42A2                      		; ldir
+     195   00:42A2                      	
+     196   00:42A2                      	;--- initialise demo song
+     197   00:42A2  3E 0E               		ld	a, :demo_song
+     198   00:42A4                      		setpage_a
+     198   00:42A4  32 00 90          >   ld (_kBank3),a
+     198   00:42A7  3C                >   inc a
+     198   00:42A8  32 00 B0          >   ld (_kBank4),a
+     199   00:42AB                      		
+     200   00:42AB  21 00 80            		ld	hl,demo_song
+     201   00:42AE  CD 00 A0            		call	replay_init
+     202   00:42B1                      
+     203   00:42B1  CD 24 47            		call	_clean_buffs
+     204   00:42B4                      
+     205   00:42B4  CD 2B 45            		call	_SetPalet
+     206   00:42B7  1E 00               		ld		e,0
+     207   00:42B9  CD 66 47                    call	_setpage
+     208   00:42BC                      		
+     209   00:42BC                      		; unpack level map (bit field for collisions)
+     210   00:42BC  3E 08               		ld	a, :_level_bf
+     211   00:42BE                      		setpage_a
+     211   00:42BE  32 00 90          >   ld (_kBank3),a
+     211   00:42C1  3C                >   inc a
+     211   00:42C2  32 00 B0          >   ld (_kBank4),a
+     212   00:42C5                      		
+     213   00:42C5  01 00 10            		ld	bc,mapWidth*mapHeight/2
+     214   00:42C8  21 B5 8A            		ld	hl,	_level_bf
+     215   00:42CB  11 F6 CE            		ld	de,	_cur_level_bf
+     216   00:42CE  ED B0               		ldir
+     217   00:42D0                      
+     218   00:42D0                      		; unpack level map (meta_tiles)
+     219   00:42D0  3E 08               		ld	a, :_level
+     220   00:42D2                      		setpage_a
+     220   00:42D2  32 00 90          >   ld (_kBank3),a
+     220   00:42D5  3C                >   inc a
+     220   00:42D6  32 00 B0          >   ld (_kBank4),a
+     221   00:42D9                      		
+     222   00:42D9  AF                  		xor	a
+     223   00:42DA  32 EE C2            		ld		(_vbit16 ),a
+     224   00:42DD  11 00 80            		ld		de,	_level
+     225   00:42E0  01 00 00            		ld		bc,0
+     226   00:42E3  CD 3D 45            		call	_vuitpakker 
+     227   00:42E6                      		
+     228   00:42E6  CD 61 40            		call	setrampage2
+     229   00:42E9                      		
+     230   00:42E9  11 00 00            		ld		de,0
+     231   00:42EC  4B                  		ld		c,e
+     232   00:42ED  CD 4C 47            		call	_vdpsetvramrd
+     233   00:42F0  21 00 80            		ld		hl,_levelmap
+     234   00:42F3  11 00 40            		ld		de,mapWidth*mapHeight*2
+     235   00:42F6  0E 98               		ld		c,0x98
+     236   00:42F8  ED A2               1:		ini
+     237   00:42FA  1B                  		dec	de
+     238   00:42FB  7A                  		ld	a,d
+     239   00:42FC  B3                  		or	e
+     240   00:42FD  20 F9               		jr	nz,1b
+     241   00:42FF                      
+     242   00:42FF  CD 5B 40            		call	setrompage2
+     243   00:4302                      				
+     244   00:4302                      		; unpack frame
+     245   00:4302  3E 02               		ld		a, :_frame
+     246   00:4304                      		setpage_a
+     246   00:4304  32 00 90          >   ld (_kBank3),a
+     246   00:4307  3C                >   inc a
+     246   00:4308  32 00 B0          >   ld (_kBank4),a
+     247   00:430B                      		
+     248   00:430B  AF                  		xor	a
+     249   00:430C  32 EE C2            		ld		(_vbit16 ),a
+     250   00:430F  11 00 80            		ld		de,	_frame
+     251   00:4312  01 00 00            		ld		bc,0
+     252   00:4315  CD 3D 45            		call	_vuitpakker 
+     253   00:4318                      
+     254   00:4318  1E 01               		ld		e,1
+     255   00:431A  CD 66 47                    call	_setpage
+     256   00:431D                      
+     257   00:431D  11 00 80            		ld		de,	_frame
+     258   00:4320  01 00 80            		ld		bc,0x8000
+     259   00:4323  CD 3D 45            		call	_vuitpakker 
+     260   00:4326                      		
+     261   00:4326                      		; unpack mc frames
+     262   00:4326  3E 02               		ld		a, :_mc_sprites
+     263   00:4328                      		setpage_a
+     263   00:4328  32 00 90          >   ld (_kBank3),a
+     263   00:432B  3C                >   inc a
+     263   00:432C  32 00 B0          >   ld (_kBank4),a
+     264   00:432F                      		
+     265   00:432F  AF                  		xor	a
+     266   00:4330  32 EE C2            		ld		(_vbit16 ),a
+     267   00:4333  11 51 89            		ld		de,	_mc_sprites
+     268   00:4336  01 00 E0            		ld		bc,192*128+256*128
+     269   00:4339  CD 3D 45            		call	_vuitpakker 
+     270   00:433C                      				
+     271   00:433C  1E 02               		ld		e,2
+     272   00:433E  CD 66 47                    call	_setpage
+     273   00:4341                      
+     274   00:4341                      		; unpack tileset
+     275   00:4341  3E 04               		ld		a, :_tiles0
+     276   00:4343                      		setpage_a
+     276   00:4343  32 00 90          >   ld (_kBank3),a
+     276   00:4346  3C                >   inc a
+     276   00:4347  32 00 B0          >   ld (_kBank4),a
+     277   00:434A                      		
+     278   00:434A  3E 01               		ld		a,1
+     279   00:434C  32 EE C2            		ld		(_vbit16 ),a
+     280   00:434F  11 00 80            		ld		de,	_tiles0
+     281   00:4352  01 00 00            		ld		bc,0
+     282   00:4355  CD 3D 45            		call	_vuitpakker 
+     283   00:4358                      		
+     284   00:4358  1E 03               		ld		e,3
+     285   00:435A  CD 66 47                    call	_setpage
+     286   00:435D                      		
+     287   00:435D  3E 06               		ld		a, :_tiles1
+     288   00:435F                      		setpage_a
+     288   00:435F  32 00 90          >   ld (_kBank3),a
+     288   00:4362  3C                >   inc a
+     288   00:4363  32 00 B0          >   ld (_kBank4),a
+     289   00:4366                      		
+     290   00:4366  3E 01               		ld		a,1
+     291   00:4368  32 EE C2            		ld		(_vbit16 ),a
+     292   00:436B  11 00 80            		ld		de,	_tiles1
+     293   00:436E  01 00 80            		ld		bc,0x8000
+     294   00:4371  CD 3D 45            		call	_vuitpakker 
+     295   00:4374                      		
+     296   00:4374                      		; call	int_sprites
+     297   00:4374                      
+     298   00:4374                      		; main init
+     299   00:4374                      		
+     300   00:4374  CD 61 40            		call	setrampage2
+     301   00:4377  FB                  		ei
+     302   00:4378                      
+     303   00:4378  3E C3               		LD	A,0xC3
+     304   00:437A  21 5B 44            		LD	HL,_isr
+     305   00:437D  F3                  		DI
+     306   00:437E  32 9F FD            		LD	(0xFD9F),A
+     307   00:4381  22 A0 FD            		LD	(0xFDA0),HL
+     308   00:4384  FB                  		EI
+     309   00:4385                      		
+     310   00:4385  21 00 00            		ld		hl,0
+     311   00:4388  7C                  		ld		a,h
+     312   00:4389  32 F0 C2            		ld		(_ymappos),a
+     313   00:438C  22 F1 C2            		ld		(_xmappos),hl
+     314   00:438F                      		
+     315   00:438F  22 EC C2            		ld		(_nframes),hl
+     316   00:4392  32 F5 C2            		ld		(_currentpage),a
+     317   00:4395  32 CB C2            		ld		(_mcdx),a
+     318   00:4398  32 D5 C2            		ld		(_mcframe),a
+     319   00:439B                      main_loop:
+     320   00:439B  AF                  		xor		a
+     321   00:439C  32 D9 C2            		ld		(_ticxframe),a
+     322   00:439F                      
+     323   00:439F  3A F5 C2            		ld		a,(_currentpage)
+     324   00:43A2  EE 01               		xor		1
+     325   00:43A4  32 F5 C2            		ld		(_currentpage),a
+     326   00:43A7  EE 01               		xor		1
+     327   00:43A9  5F                  		ld		e,a
+     328   00:43AA  76                  		halt
+     329   00:43AB  CD 66 47                    call	_setpage
+     330   00:43AE  CB 43               		bit		0,e
+     331   00:43B0  21 F6 C8            		ld		hl,_shadow1
+     332   00:43B3  20 03               		jr		nz,1f
+     333   00:43B5  21 F6 C2            		ld		hl,_shadow0
+     334   00:43B8  22 F3 C2            1:		ld		(_shadowbuff),hl
+     335   00:43BB                      
+     336   00:43BB                      		; ld	ix,enemylist
+     337   00:43BB                      		; call save_background
+     338   00:43BB                      
+     339   00:43BB                      		; ld	ix,enemylist
+     340   00:43BB                      		; call plot_sprite
+     341   00:43BB                      
+     342   00:43BB  CD A6 41            		call	plot_frame
+     343   00:43BE                      		
+     344   00:43BE  CD 54 49            		call	enemies_LMMM
+     345   00:43C1                      
+     346   00:43C1                      		; ld	ix,enemylist
+     347   00:43C1                      		; call restore_background
+     348   00:43C1                      
+     349   00:43C1                      		; ld	ix,enemylist
+     350   00:43C1                      		; call	move_sprites
+     351   00:43C1                      		
+     352   00:43C1  CD 06 48            		call	_compute_fps
+     353   00:43C4  CD E4 47            		call	_print_fps
+     354   00:43C7  CD F8 49            		call	probe_level
+     355   00:43CA  CD 94 47            		call	_print_probe
+     356   00:43CD                      		
+     357   00:43CD  2A EC C2            		ld		hl,(_nframes)
+     358   00:43D0  23                  		inc		hl
+     359   00:43D1  22 EC C2            		ld		(_nframes),hl
+     360   00:43D4                      		
+     361   00:43D4  CD B3 44            		call	_cursors
+     362   00:43D7                      
+     363   00:43D7  DD CB 00 46         		bit		0,(ix)
+     364   00:43DB  CC 06 44            		call	z,up
+     365   00:43DE  DD CB 00 4E         		bit		1,(ix)
+     366   00:43E2  CC 19 44            		call	z,dwn
+     367   00:43E5  DD CB 00 5E         		bit		3,(ix)
+     368   00:43E9  CC 2A 44            		call	z,right
+     369   00:43EC  DD CB 00 56         		bit		2,(ix)
+     370   00:43F0  CC 42 44            		call	z,left
+     371   00:43F3                      		
+     372   00:43F3  DD 7E 00            		ld		a,(ix)
+     373   00:43F6  E6 0F               		and		15
+     374   00:43F8  FE 0F               		cp		15
+     375   00:43FA  C2 9B 43            		jp      nz,main_loop
+     376   00:43FD                      				
+     377   00:43FD  3E FF               		ld		a,-1
+     378   00:43FF  32 D5 C2            		ld		(_mcframe),a
+     379   00:4402  C3 9B 43            		jp      main_loop
+     380   00:4405                      
+     381   00:4405  C9                          ret
+     382   00:4406                      
+     383   00:4406                      up:		
+     384   00:4406  3A F0 C2            		ld		a,(_ymappos)
+     385   00:4409  47                  		ld		b,a
+     386   00:440A  3A D9 C2            		ld		a,(_ticxframe)
+     387   00:440D  ED 44               		neg
+     388   00:440F  80                  		add		a,b
+     389   00:4410  32 F0 C2            		ld		(_ymappos),a
+     390   00:4413  3E 02               		ld	a,2
+     391   00:4415  32 D6 C2            		ld	(_mcstate),a
+     392   00:4418  C9                  		ret
+     393   00:4419                      
+     394   00:4419                      dwn:	
+     395   00:4419  3A F0 C2            		ld		a,(_ymappos)
+     396   00:441C  47                  		ld		b,a
+     397   00:441D  3A D9 C2            		ld		a,(_ticxframe)
+     398   00:4420  80                  		add		a,b
+     399   00:4421  32 F0 C2            		ld		(_ymappos),a
+     400   00:4424  3E 03               		ld	a,3
+     401   00:4426  32 D6 C2            		ld	(_mcstate),a
+     402   00:4429  C9                  		ret
+     403   00:442A                      		
+     404   00:442A                      right:	
+     405   00:442A  3E 04               		ld		a,4
+     406   00:442C  32 CB C2            		ld		(_mcdx),a
+     407   00:442F                      
+     408   00:442F  3E 01               		ld	a,1
+     409   00:4431  32 D6 C2            		ld	(_mcstate),a
+     410   00:4434                      
+     411   00:4434  3A D9 C2            		ld		a,(_ticxframe)
+     412   00:4437  4F                  		ld		c,a
+     413   00:4438  06 00               		ld		b,0
+     414   00:443A  2A F1 C2            		ld		hl,(_xmappos)
+     415   00:443D  09                  		add		hl,bc
+     416   00:443E  22 F1 C2            		ld		(_xmappos),hl
+     417   00:4441  C9                  		ret
+     418   00:4442                      
+     419   00:4442                      left:	
+     420   00:4442  3E FC               		ld		a,-4
+     421   00:4444  32 CB C2            		ld		(_mcdx),a
+     422   00:4447                      
+     423   00:4447  AF                  		xor	a
+     424   00:4448  32 D6 C2            		ld	(_mcstate),a
+     425   00:444B                      		
+     426   00:444B  3A D9 C2            		ld		a,(_ticxframe)
+     427   00:444E  ED 44               		neg
+     428   00:4450  4F                  		ld		c,a
+     429   00:4451  06 FF               		ld		b,-1
+     430   00:4453  2A F1 C2            		ld		hl,(_xmappos)
+     431   00:4456  09                  		add		hl,bc
+     432   00:4457  22 F1 C2            		ld		(_xmappos),hl
+     433   00:445A  C9                  		ret
+     434   00:445B                      
+     435   00:445B                      
+     436   00:445B                      ;-------------------------------------
+     437   00:445B  (00:FC9E)           JIFFY: equ 0xFC9E 
+     438   00:445B                      ;-------------------------------------
+     439   00:445B  E5                  _isr:	push	hl
+     440   00:445C  C5                  		push	bc
+     441   00:445D                      
+     442   00:445D  CD 5B 40            		call	setrompage2
+     443   00:4460  3E 0E               		ld	a, :demo_song
+     444   00:4462                      		setpage_a
+     444   00:4462  32 00 90          >   ld (_kBank3),a
+     444   00:4465  3C                >   inc a
+     444   00:4466  32 00 B0          >   ld (_kBank4),a
+     445   00:4469  CD 20 AA            		call	replay_route		; first outout data
+     446   00:446C  3E 0E               		ld	a, :demo_song
+     447   00:446E                      		setpage_a
+     447   00:446E  32 00 90          >   ld (_kBank3),a
+     447   00:4471  3C                >   inc a
+     447   00:4472  32 00 B0          >   ld (_kBank4),a
+     448   00:4475  CD D3 A0            		call	replay_play			; calculate next output		
+     449   00:4478  CD 61 40            		call	setrampage2
+     450   00:447B  FB                  		ei
+     451   00:447C                      
+     452   00:447C  2A 9E FC            		ld		hl,(JIFFY)
+     453   00:447F                      
+     454   00:447F  3A C9 C2            		ld	a,(SEL_NTSC)
+     455   00:4482  A7                  		and 	a
+     456   00:4483  20 05               		jr		nz,1f
+     457   00:4485                      		
+     458   00:4485  01 CE FF            		ld		bc,-50			; PAL 
+     459   00:4488  18 03               		jr	2f
+     460   00:448A                      1:
+     461   00:448A  01 C4 FF            		ld		bc,-60			; NTSC
+     462   00:448D                      		
+     463   00:448D  09                  2:		add		hl,bc
+     464   00:448E  21 D9 C2            		ld		hl,_ticxframe
+     465   00:4491  34                  		inc		(hl)
+     466   00:4492                      		
+     467   00:4492                      		; ld		a,4
+     468   00:4492                      		; ld		(hl),a
+     469   00:4492                      		
+     470   00:4492  C1                  		pop		bc
+     471   00:4493  E1                  		pop		hl
+     472   00:4494  D0                  		ret	nc
+     473   00:4495                      		
+     474   00:4495  E5                  		push	hl
+     475   00:4496  21 00 00            		ld		hl,0
+     476   00:4499  22 9E FC            		ld		(JIFFY),hl
+     477   00:449C  2A EC C2            		ld		hl,(_nframes)
+     478   00:449F  22 EA C2            		ld		(_fps),hl
+     479   00:44A2  21 00 00            		ld		hl,0
+     480   00:44A5  22 EC C2            		ld		(_nframes),hl
+     481   00:44A8  E1                  		pop		hl
+     482   00:44A9  C9                  		ret
+     483   00:44AA                      ;-------------------------------------
+     484   00:44AA                      ;   Power-up routine for 32K ROM
+     485   00:44AA                      ;   set pages and sub slot
+     486   00:44AA                      ;-------------------------------------
+     487   00:44AA                      powerup:
+     488   00:44AA  CD 10 40                    call    search_slot
+     489   00:44AD  CD 2F 40                    call    search_slotram
+     490   00:44B0  C3 5B 40            		jp		setrompage2
+     491   00:44B3                              
+     492   00:44B3                      
+     493   00:44B3                      ;-------------------------------------
+     494   00:44B3                      
+     495   00:44B3                      
+     496   00:44B3  (00:00D5)           GTSTCK      equ 0x00D5      ;Returns the joystick status
+     497   00:44B3  (00:00D8)           GTTRIG      equ 0x00D8      ;Returns current trigger status
+     498   00:44B3                      
+     499   00:44B3                      
+     500   00:44B3                      _cursors:
+     501   00:44B3                      	
+     502   00:44B3                      ; PSG I/O port A (r#14) – read-only
+     503   00:44B3                      ; Bit	Description	Comment
+     504   00:44B3                      ; 0	Input joystick pin 1	(up)
+     505   00:44B3                      ; 1	Input joystick pin 2	(down)
+     506   00:44B3                      ; 2	Input joystick pin 3	(left)
+     507   00:44B3                      ; 3	Input joystick pin 4	(right)
+     508   00:44B3                      ; 4	Input joystick pin 6	(trigger A)
+     509   00:44B3                      ; 5	Input joystick pin 7	(trigger B)
+     510   00:44B3                      ; 6	Japanese keyboard layout bit	(1=JIS, 0=ANSI)
+     511   00:44B3                      ; 7	Cassette input signal	
+     512   00:44B3                      
+     513   00:44B3                      .rd_joy:
+     514   00:44B3  3E 0F               	ld	a,#0f
+     515   00:44B5  D3 A0               	out	(#a0),a
+     516   00:44B7  3E 8F               	ld	a,0x8F
+     517   00:44B9  D3 A1               	out	(#a1),a		; select port A
+     518   00:44BB  3E 0E               	ld	a,#0e
+     519   00:44BD  D3 A0               	out	(#a0),a
+     520   00:44BF  DB A2               	in	a,(#a2)
+     521   00:44C1                      .rd_key:	
+     522   00:44C1  DD 21 CA C2         	ld	ix,joystick
+     523   00:44C5  DD 77 00            	ld	(ix),a
+     524   00:44C8                      	
+     525   00:44C8  1E 08               	ld  e,8
+     526   00:44CA  CD 9B 41                call    checkkbd
+     527   00:44CD  CB 47               	bit	0,a				; space
+     528   00:44CF  20 04               	jr	nz,1f
+     529   00:44D1  DD CB 00 A6         	res	4,(ix)			; (trigger A)
+     530   00:44D5                      1:
+     531   00:44D5  CB 7F               	bit	7,a				; RIGHT
+     532   00:44D7  20 04               	jr	nz,1f
+     533   00:44D9  DD CB 00 9E         	res	3,(ix)			; (right joy)
+     534   00:44DD                      1:
+     535   00:44DD  CB 77               	bit	6,a				; DOWN
+     536   00:44DF  20 04               	jr	nz,1f
+     537   00:44E1  DD CB 00 8E         	res	1,(ix)			; (down joy)
+     538   00:44E5                      1:
+     539   00:44E5  CB 6F               	bit	5,a				; UP
+     540   00:44E7  20 04               	jr	nz,1f
+     541   00:44E9  DD CB 00 86         	res	0,(ix)			; (up joy)
+     542   00:44ED                      1:
+     543   00:44ED  CB 67               	bit	4,a				; LEFT
+     544   00:44EF  20 04               	jr	nz,1f
+     545   00:44F1  DD CB 00 96         	res	2,(ix)			; (left joy)
+     546   00:44F5                      1:
+     547   00:44F5  1E 05               	ld  e,5
+     548   00:44F7  CD 9B 41                call    checkkbd
+     549   00:44FA  CB 6F               	bit	5,a				; X
+     550   00:44FC  20 04               	jr	nz,1f
+     551   00:44FE  DD CB 00 AE         	res	5,(ix)			; (trigger B)
+     552   00:4502                      1:
+     553   00:4502  CB 7F               	bit	7,a				; Z
+     554   00:4504  20 04               	jr	nz,1f
+     555   00:4506  DD CB 00 A6         	res	4,(ix)			; (trigger A)
+     556   00:450A                      1:
+     557   00:450A  C9                  	ret
+     558   00:450B                      
+     559   00:450B                              
+     560   00:450B                      ;-------------------------------------
+     561   00:450B                      		
+     562   00:450B  (00:0099)           vdpport1 equ 0x99
+     563   00:450B  (00:009A)           vdpport2 equ 0x9A
+     564   00:450B                      
+     565   00:450B                      levelcolors:
+     566   00:450B  (0020)              	incbin "palette.bin"
+     567   00:452B                      
+     568   00:452B                      _SetPalet:   
+     569   00:452B  F3                  	di
+     570   00:452C  AF                  	xor a 			;Set pointer to zero.
+     571   00:452D  D3 99               	out (vdpport1),a        
+     572   00:452F  3E 90               	ld  a,16 | 010000000B
+     573   00:4531  D3 99               	out (vdpport1),a
+     574   00:4533                      
+     575   00:4533  21 0B 45            	ld  hl,levelcolors
+     576   00:4536  01 9A 20            	ld bc,vdpport2+32*256
+     577   00:4539  ED B3               	otir
+     578   00:453B  FB                  	ei
+     579   00:453C  C9                  	ret
+     580   00:453D                      
+     581   00:453D                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     582   00:453D                      
+     583   00:453D                      	include vuitpakker.asm
+       1.  00:453D                      
+       2.  00:453D                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+       3.  00:453D                      
+       4.  00:453D                      
+       5.  00:453D                      _vuitpakker:
+       6.  00:453D  FD E5                   push iy
+       7.  00:453F  DD E5                   push ix
+       8.  00:4541                      
+       9.  00:4541  CD 49 45                call  1f
+      10.  00:4544                      
+      11.  00:4544  DD E1                   pop ix
+      12.  00:4546  FD E1                   pop iy
+      13.  00:4548  C9                      ret
+      14.  00:4549                      
+      15.  00:4549                      1:
+      16.  00:4549                      ; in de input
+      17.  00:4549                      ; in bc VRAM output
+      18.  00:4549                      
+      19.  00:4549  62                      ld h,d
+      20.  00:454A  6B                      ld l,e
+      21.  00:454B  50                      ld d,b
+      22.  00:454C  59                      ld e,c
+      23.  00:454D                      
+      24.  00:454D                      ; pletter v0.5 msx unpacker
+      25.  00:454D                      
+      26.  00:454D                      ;-----------------------------------------------------------
+      27.  00:454D                      ; Pletter 0.5b VRAM Depacker - 64Kb version
+      28.  00:454D                      ; HL = RAM/ROM source ; DE = VRAM destination
+      29.  00:454D                      ;-----------------------------------------------------------
+      30.  00:454D  F3                      di
+      31.  00:454E                      
+      32.  00:454E                      ; VRAM address setup
+      33.  00:454E                      ;    ld  a,e
+      34.  00:454E                      ;    out (0x99),a
+      35.  00:454E                      ;    ld  a,d
+      36.  00:454E                      ;    or  0x40
+      37.  00:454E                      ;    out (0x99),a
+      38.  00:454E  CD 0E 46                call setVwrite
+      39.  00:4551                      
+      40.  00:4551                      ; Initialization
+      41.  00:4551  7E                      ld  a,(hl)
+      42.  00:4552  23                      inc hl
+      43.  00:4553  D9                      exx
+      44.  00:4554  11 00 00                ld  de,0
+      45.  00:4557  87                      add a,a
+      46.  00:4558  3C                      inc a
+      47.  00:4559  CB 13                   rl  e
+      48.  00:455B  87                      add a,a
+      49.  00:455C  CB 13                   rl  e
+      50.  00:455E  87                      add a,a
+      51.  00:455F  CB 13                   rl  e
+      52.  00:4561  CB 13                   rl  e
+      53.  00:4563  21 28 46                ld  hl,__modes
+      54.  00:4566  19                      add hl,de
+      55.  00:4567  5E                      ld  e,(hl)
+      56.  00:4568  DD                      db    0xdd
+      57.  00:4569  6B                      ld  l,e         ; ld ixl,e    
+      58.  00:456A  23                      inc hl
+      59.  00:456B  5E                      ld  e,(hl)
+      60.  00:456C  DD                      db    0xdd
+      61.  00:456D  63                      ld h,e          ; ld  ixh,e
+      62.  00:456E  1E 01                   ld  e,1
+      63.  00:4570  D9                      exx
+      64.  00:4571  FD 21 7A 45             ld  iy,__loop
+      65.  00:4575                      
+      66.  00:4575                      ; Main depack loop
+      67.  00:4575  0E 98               _literal:ld  c,098h
+      68.  00:4577  ED A3                   outi
+      69.  00:4579  13                      inc de
+      70.  00:457A  87                  __loop:   add a,a
+      71.  00:457B  CC 02 46                call    z,_getbit
+      72.  00:457E  30 F5                   jr  nc,_literal
+      73.  00:4580                      
+      74.  00:4580                      ; Compressed data
+      75.  00:4580  D9                      exx
+      76.  00:4581  62                      ld  h,d
+      77.  00:4582  6B                      ld  l,e
+      78.  00:4583  87                  _getlen: add a,a
+      79.  00:4584  CC 06 46                call    z,_getbitexx
+      80.  00:4587  30 1D                   jr  nc,lenok
+      81.  00:4589  87                  lus:    add a,a
+      82.  00:458A  CC 06 46                call    z,_getbitexx
+      83.  00:458D  ED 6A                   adc hl,hl
+      84.  00:458F  D8                      ret c
+      85.  00:4590  87                      add a,a
+      86.  00:4591  CC 06 46                call    z,_getbitexx
+      87.  00:4594  30 10                   jr  nc,lenok
+      88.  00:4596  87                      add a,a
+      89.  00:4597  CC 06 46                call    z,_getbitexx
+      90.  00:459A  ED 6A                   adc hl,hl
+      91.  00:459C  DA 0C 46                jp  c,Depack_out
+      92.  00:459F  87                      add a,a
+      93.  00:45A0  CC 06 46                call    z,_getbitexx
+      94.  00:45A3  DA 89 45                jp  c,lus
+      95.  00:45A6  23                  lenok:  inc hl
+      96.  00:45A7  D9                      exx
+      97.  00:45A8  4E                      ld  c,(hl)
+      98.  00:45A9  23                      inc hl
+      99.  00:45AA  06 00                   ld  b,0
+     100.  00:45AC  CB 79                   bit 7,c
+     101.  00:45AE  CA E1 45                jp  z,offsok
+     102.  00:45B1  DD E9                   jp  (ix)
+     103.  00:45B3                      
+     104.  00:45B3  87                  _mode7:  add a,a
+     105.  00:45B4  CC 02 46                call    z,_getbit
+     106.  00:45B7  CB 10                   rl  b
+     107.  00:45B9  87                  _mode6:  add a,a
+     108.  00:45BA  CC 02 46                call    z,_getbit
+     109.  00:45BD  CB 10                   rl  b
+     110.  00:45BF  87                  _mode5:  add a,a
+     111.  00:45C0  CC 02 46                call    z,_getbit
+     112.  00:45C3  CB 10                   rl  b
+     113.  00:45C5  87                  _mode4:  add a,a
+     114.  00:45C6  CC 02 46                call    z,_getbit
+     115.  00:45C9  CB 10                   rl  b
+     116.  00:45CB  87                  _mode3:  add a,a
+     117.  00:45CC  CC 02 46                call    z,_getbit
+     118.  00:45CF  CB 10                   rl  b
+     119.  00:45D1  87                  _mode2:  add a,a
+     120.  00:45D2  CC 02 46                call    z,_getbit
+     121.  00:45D5  CB 10                   rl  b
+     122.  00:45D7  87                      add a,a
+     123.  00:45D8  CC 02 46                call    z,_getbit
+     124.  00:45DB  30 04                   jr  nc,offsok
+     125.  00:45DD  B7                      or  a
+     126.  00:45DE  04                      inc b
+     127.  00:45DF  CB B9                   res 7,c
+     128.  00:45E1  03                  offsok: inc bc
+     129.  00:45E2  E5                      push    hl
+     130.  00:45E3  D9                      exx
+     131.  00:45E4  E5                      push    hl
+     132.  00:45E5  D9                      exx
+     133.  00:45E6  6B                      ld  l,e
+     134.  00:45E7  62                      ld  h,d
+     135.  00:45E8  ED 42                   sbc hl,bc
+     136.  00:45EA  C1                      pop bc
+     137.  00:45EB  F5                      push    af
+     138.  00:45EC                      _loop: 
+     139.  00:45EC                      ;    ld  a,l
+     140.  00:45EC                      ;    out (0x99),a
+     141.  00:45EC                      ;    ld  a,h
+     142.  00:45EC                      ;    out (0x99),a
+     143.  00:45EC  CD 1A 46                call setVread
+     144.  00:45EF                          
+     145.  00:45EF  DB 98                   in  a,(0x98)
+     146.  00:45F1  08                      ex  af,af'
+     147.  00:45F2                      ;    ld  a,e
+     148.  00:45F2                      ;    out (0x99),a
+     149.  00:45F2                      ;    ld  a,d
+     150.  00:45F2                      ;    or  0x40
+     151.  00:45F2                      ;    out (0x99),a
+     152.  00:45F2  CD 0E 46                call setVwrite
+     153.  00:45F5                          
+     154.  00:45F5  08                      ex  af,af'
+     155.  00:45F6  D3 98                   out (0x98),a
+     156.  00:45F8  13                      inc de
+     157.  00:45F9  ED A1                   cpi
+     158.  00:45FB  EA EC 45                jp  pe,_loop
+     159.  00:45FE  F1                      pop af
+     160.  00:45FF  E1                      pop hl
+     161.  00:4600  FD E9                   jp  (iy)
+     162.  00:4602                      ;
+     163.  00:4602  7E                  _getbit: ld  a,(hl)
+     164.  00:4603  23                      inc hl
+     165.  00:4604  17                      rla
+     166.  00:4605  C9                      ret
+     167.  00:4606                      
+     168.  00:4606                      _getbitexx:
+     169.  00:4606  D9                      exx
+     170.  00:4607  7E                      ld  a,(hl)
+     171.  00:4608  23                      inc hl
+     172.  00:4609  D9                      exx
+     173.  00:460A  17                      rla
+     174.  00:460B  C9                      ret
+     175.  00:460C                      
+     176.  00:460C                      ; De-packer exit
+     177.  00:460C                      Depack_out:
+     178.  00:460C  FB                      ei
+     179.  00:460D  C9                      ret
+     180.  00:460E                      
+     181.  00:460E                      
+     182.  00:460E                      
+     183.  00:460E                      setVwrite:
+     184.  00:460E                      
+     185.  00:460E  D5                      push    de
+     186.  00:460F  C5                      push    bc
+     187.  00:4610  ED 4B EE C2             ld      bc,(_vbit16)
+     188.  00:4614  CD 32 47                call    _vdpsetvramwr
+     189.  00:4617  C1                      pop     bc
+     190.  00:4618  D1                      pop     de
+     191.  00:4619                      
+     192.  00:4619  C9                      ret
+     193.  00:461A                      setVread:    
+     194.  00:461A                      
+     195.  00:461A  D5                      push    de
+     196.  00:461B  C5                      push    bc
+     197.  00:461C  5D                      ld      e,l
+     198.  00:461D  54                      ld      d,h
+     199.  00:461E  ED 4B EE C2             ld      bc,(_vbit16)
+     200.  00:4622  CD 4C 47                call    _vdpsetvramrd
+     201.  00:4625  C1                      pop     bc
+     202.  00:4626  D1                      pop     de
+     203.  00:4627                      
+     204.  00:4627  C9                      ret
+     205.  00:4628                      
+     206.  00:4628                      __modes:
+     207.  00:4628  E1 45                   dw  offsok
+     208.  00:462A  D1 45                   dw  _mode2
+     209.  00:462C  CB 45                   dw  _mode3
+     210.  00:462E  C5 45                   dw  _mode4
+     211.  00:4630  BF 45                   dw  _mode5
+     212.  00:4632  B9 45                   dw  _mode6
+     213.  00:4634  B3 45                   dw  _mode7
+     584   00:4636                      
+     585   00:4636                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     586   00:4636                      
+     587   00:4636                      	include plot_tile.asm
+       1.  00:4636                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+       2.  00:4636                      ; input
+       3.  00:4636                      ; hl  configured in window map 32x24 of uints
+       4.  00:4636                      ; de  tile to be plot
+       5.  00:4636                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+       6.  00:4636                      plot_tile:
+       7.  00:4636                      							
+       8.  00:4636  CB 7A               	bit 	7,d			; test for LMMMM	
+       9.  00:4638  C2 85 46            	jp		nz,plot_trasp_tile
+      10.  00:463B                      	
+      11.  00:463B  7A                  	ld		a,d
+      12.  00:463C  B3                  	or		e
+      13.  00:463D  C2 49 46            	jp		nz,plot_foreground
+      14.  00:4640                      
+      15.  00:4640                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+      16.  00:4640                      ; input
+      17.  00:4640                      ; hl  configured in window map 32x24
+      18.  00:4640                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+      19.  00:4640                      
+      20.  00:4640                      ; plot_background:
+      21.  00:4640                      
+      22.  00:4640  E5                  	push	hl
+      23.  00:4641  11 5E 74            	ld		de,_backmap-32*4-2
+      24.  00:4644  19                  	add		hl,de
+      25.  00:4645  5E                  	ld		e,(hl)
+      26.  00:4646  23                  	inc		hl
+      27.  00:4647  56                  	ld		d,(hl)
+      28.  00:4648  E1                  	pop		hl
+      29.  00:4649                      	
+      30.  00:4649                      	
+      31.  00:4649                      plot_foreground:
+      32.  00:4649                      
+      33.  00:4649  (00:0001)           counter:=1
+      34.  00:4649                      	while counter<NSolidColors
+      35.  00:4649                    < 	ld	a,low SolidTile@#
+      36.  00:4649                    < 	cp	e
+      37.  00:4649                    < 	jr	nz,1f
+      38.  00:4649                    < 	ld	a,high SolidTile@#
+      39.  00:4649                    < 	cp	d
+      40.  00:4649                    < 	ld	a,17*SolidColor@#		; solid color1
+      41.  00:4649                    < 	jp	z,plot_solid_box
+      42.  00:4649                    < 1:	
+      43.  00:4649                    < counter:=counter+1
+      44.  00:4649                    < 	endwhile	
+      44.  00:4649  3E 00 BB 20 08 3E 00 BA 3E 00 CA EA 46 3E 4B BB 
+      44.  00:4659  20 08 3E 00 BA 3E 11 CA EA 46 3E F1 BB 20 08 3E 
+      44.  00:4669  04 BA 3E 44 CA EA 46 3E 45 BB 20 08 3E 06 BA 3E 
+      44.  00:4679  77 CA EA 46 
+      45.  00:467D                      
+      46.  00:467D  CD 9D 46            	call 	vdp_conf
+      47.  00:4680                      
+      48.  00:4680  3E D0               	ld		a,11010000B
+      49.  00:4682  D3 9B               	out 	(0x9B), a		; command HMMM
+      50.  00:4684  C9                  	ret
+      51.  00:4685                      
+      52.  00:4685                      	
+      53.  00:4685                      	
+      54.  00:4685                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+      55.  00:4685                      ; input
+      56.  00:4685                      ; hl   configured in window map 32x24
+      57.  00:4685                      ; de  tile to be plot
+      58.  00:4685                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+      59.  00:4685                      
+      60.  00:4685                      plot_trasp_tile:
+      61.  00:4685                      
+      62.  00:4685  D5                  	push	de
+      63.  00:4686  E5                  	push	hl
+      64.  00:4687                      					;	plot_background
+      65.  00:4687  11 5E 74            	ld		de,_backmap-32*4-2
+      66.  00:468A  19                  	add		hl,de
+      67.  00:468B  5E                  	ld		e,(hl)
+      68.  00:468C  23                  	inc		hl
+      69.  00:468D  56                  	ld		d,(hl)
+      70.  00:468E                      
+      71.  00:468E  E1                  	pop		hl
+      72.  00:468F  E5                  	push	hl
+      73.  00:4690  CD 49 46            	call	plot_foreground
+      74.  00:4693  E1                  	pop		hl
+      75.  00:4694  D1                  	pop		de
+      76.  00:4695                      
+      77.  00:4695  CD 9D 46            	call	vdp_conf
+      78.  00:4698                      
+      79.  00:4698  3E 98               	ld		a,10011000B
+      80.  00:469A  D3 9B               	out 	(0x9B), a		; command LMMM
+      81.  00:469C  C9                  	ret
+      82.  00:469D                      
+      83.  00:469D                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+      84.  00:469D                      ; input
+      85.  00:469D                      ; hl   configured in window map 32x24
+      86.  00:469D                      ; de  tile to be plot
+      87.  00:469D                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+      88.  00:469D                      
+      89.  00:469D                      vdp_conf:	
+      90.  00:469D                      	
+      91.  00:469D  29 29               [2]	add		hl,hl
+      92.  00:469F  4D                  	ld		c,l			; C = dx*8
+      93.  00:46A0  7C                  	ld		a,h
+      94.  00:46A1  87 87 87            [3]	add		a,a
+      95.  00:46A4  47                  	ld		b,a			; B = dy*8
+      96.  00:46A5  C5                  	push	bc			; dx*8 and dy*8 on the stack
+      97.  00:46A6                      	
+      98.  00:46A6                      	; de has the 16 bit tile
+      99.  00:46A6                      	; de = 10 bits = 5 bits for y and 5 bits for x
+     100.  00:46A6                      
+     101.  00:46A6  EB                  	ex		de,hl
+     102.  00:46A7  29 29 29            [3]	add		hl,hl
+     103.  00:46AA                      	
+     104.  00:46AA                      	; now l is sx*8 and h is sy
+     105.  00:46AA                      		
+     106.  00:46AA  7C                  	ld		a,h
+     107.  00:46AB  87 87 87            [3]	add		a,a
+     108.  00:46AE  67                  	ld		h,a
+     109.  00:46AF  F5                  	push	af
+     110.  00:46B0                      	
+     111.  00:46B0                      	; now h is sy*8
+     112.  00:46B0  F3                  	di
+     113.  00:46B1  3E 20               	ld 		a, 32
+     114.  00:46B3  D3 99               	out 	(0x99),a
+     115.  00:46B5  3E 91               	ld 		a, 17+128
+     116.  00:46B7  D3 99               	out 	(0x99),a
+     117.  00:46B9  FB                  	ei
+     118.  00:46BA                      
+     119.  00:46BA  0E 9B               	ld 		c, 0x9B
+     120.  00:46BC                      	
+     121.  00:46BC  CD 7C 47            	call _waitvdp;
+     122.  00:46BF                      	
+     123.  00:46BF  ED 69               	out		(c), l 		; sx
+     124.  00:46C1  AF                  	xor a
+     125.  00:46C2  D3 9B               	out		(0x9B), a 	; sx (high)
+     126.  00:46C4                      	
+     127.  00:46C4  ED 61               	out		(c), h 		; sy
+     128.  00:46C6  F1                  	pop		af
+     129.  00:46C7  3E 02               	ld		a,2			; source page for tiles 32x32=1024 tiles
+     130.  00:46C9  CE 00               	adc		a,0
+     131.  00:46CB  D3 9B               	out 	(0x9B), a 	; sy (high-> page 2)
+     132.  00:46CD                      
+     133.  00:46CD  E1                  	pop		hl			; recover dx*8,dy*8
+     134.  00:46CE                      	
+     135.  00:46CE  ED 69               	out 	(c), l 		; dx
+     136.  00:46D0  AF                  	xor a
+     137.  00:46D1  D3 9B               	out 	(0x9B), a	; dx (high)
+     138.  00:46D3  ED 61               	out 	(c), h 		; dy
+     139.  00:46D5  3A F5 C2            	ld 		a,(_currentpage)	; destination page
+     140.  00:46D8  D3 9B               	out 	(0x9B), a	; dy (high-> page 0 or 1)
+     141.  00:46DA                      
+     142.  00:46DA  2E 08               	ld 		l,8 		; block size
+     143.  00:46DC                      
+     144.  00:46DC  ED 69               	out 	(c), l
+     145.  00:46DE  AF                  	xor a
+     146.  00:46DF  D3 9B               	out 	(0x9B), a
+     147.  00:46E1  ED 69               	out 	(c), l
+     148.  00:46E3  D3 9B               	out 	(0x9B), a
+     149.  00:46E5  D3 9B               	out 	(0x9B), a
+     150.  00:46E7  D3 9B               	out 	(0x9B), a
+     151.  00:46E9  C9                  	ret
+     152.  00:46EA                      
+     153.  00:46EA                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     154.  00:46EA                      ; input
+     155.  00:46EA                      ; hl configured in window map 32x24
+     156.  00:46EA                      ;  a color
+     157.  00:46EA                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     158.  00:46EA                      
+     159.  00:46EA                      plot_solid_box:
+     160.  00:46EA  5F                  	ld		e,a		; solid color
+     161.  00:46EB                      
+     162.  00:46EB  29 29               [2]	add		hl,hl
+     163.  00:46ED  4D                  	ld		c,l			; C = dx*8
+     164.  00:46EE  7C                  	ld		a,h
+     165.  00:46EF  87 87 87            [3]	add		a,a
+     166.  00:46F2  47                  	ld		b,a			; B = dy*8
+     167.  00:46F3  C5                  	push	bc			; dx*8 and dy*8 on the stack
+     168.  00:46F4                      
+     169.  00:46F4  F3                  	di
+     170.  00:46F5  3E 24               	ld 		a, 36
+     171.  00:46F7  D3 99               	out 	(0x99),a
+     172.  00:46F9  3E 91               	ld 		a, 17+128
+     173.  00:46FB  D3 99               	out 	(0x99),a
+     174.  00:46FD  FB                  	ei
+     175.  00:46FE                      
+     176.  00:46FE  0E 9B               	ld 		c, 0x9B
+     177.  00:4700                      	
+     178.  00:4700  CD 7C 47            	call _waitvdp;
+     179.  00:4703  E1                  	pop		hl			; recover dx*8,dy*8
+     180.  00:4704                      	
+     181.  00:4704  ED 69               	out 	(c), l 		; dx
+     182.  00:4706  AF                  	xor a
+     183.  00:4707  D3 9B               	out 	(0x9B), a	; dx (high)
+     184.  00:4709  ED 61               	out 	(c), h 		; dy
+     185.  00:470B  3A F5 C2            	ld 		a,(_currentpage)	; destination page
+     186.  00:470E  D3 9B               	out 	(0x9B), a	; dy (high-> page 0 or 1)
+     187.  00:4710                      
+     188.  00:4710  2E 08               	ld 		l,8 		; block size
+     189.  00:4712                      
+     190.  00:4712  ED 69               	out 	(c), l
+     191.  00:4714  AF                  	xor a
+     192.  00:4715  D3 9B               	out 	(0x9B), a
+     193.  00:4717  ED 69               	out 	(c), l
+     194.  00:4719  D3 9B               	out 	(0x9B), a
+     195.  00:471B  ED 59               	out 	(c), e
+     196.  00:471D  D3 9B               	out 	(0x9B), a
+     197.  00:471F  2E C0               	ld		l,11000000B	; command HMMV
+     198.  00:4721  ED 69               	out 	(c), l
+     199.  00:4723  C9                  	ret
+     588   00:4724                      
+     589   00:4724                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     590   00:4724                      
+     591   00:4724                      _clean_buffs:
+     592   00:4724  01 3F 0C            	ld	bc,2*WinWidth*WinWidth*2-1
+     593   00:4727  21 F6 C2            	ld	hl,_shadow0
+     594   00:472A  36 FF               	ld	(hl),-1
+     595   00:472C  11 F7 C2            	ld	de,_shadow0+1
+     596   00:472F  ED B0               	ldir
+     597   00:4731  C9                  	ret
+     598   00:4732                      	
+     599   00:4732                      ;Set VDP for writing at address CDE (17-bit) 
+     600   00:4732                      
+     601   00:4732                      _vdpsetvramwr:
+     602   00:4732  79                  	ld a,c
+     603   00:4733                      ;Set VDP for writing at address ADE (17-bit) ;
+     604   00:4733  CB 02               	rlc d
+     605   00:4735  17                  	rla
+     606   00:4736  CB 02               	rlc d
+     607   00:4738  17                  	rla
+     608   00:4739  CB 3A               	srl d ; primo shift, il secondo dopo la out
+     609   00:473B                      
+     610   00:473B  D3 99               	out (0x99),a ;set bits 14-16
+     611   00:473D  3E 8E               	ld a,14+128
+     612   00:473F  D3 99               	out (0x99),a
+     613   00:4741                      
+     614   00:4741  CB 3A               	srl d ; secondo shift.            
+     615   00:4743  7B                  	ld a,e ;set bits 0-7
+     616   00:4744  D3 99               	out (0x99),a
+     617   00:4746  7A                  	ld a,d ;set bits 8-13
+     618   00:4747  F6 40               	or 0x40 ; + write access
+     619   00:4749  D3 99               	out (0x99),a
+     620   00:474B  C9                  	ret
+     621   00:474C                      	
+     622   00:474C                      ;Set VDP port #98 to start reading at address CDE (17-bit) ;
+     623   00:474C                      
+     624   00:474C                      _vdpsetvramrd:
+     625   00:474C  79                  	ld a,c
+     626   00:474D                      ;Set VDP port #98 to start reading at address ADE (17-bit) ;
+     627   00:474D  CB 02               	rlc d
+     628   00:474F  17                  	rla
+     629   00:4750  CB 02               	rlc d
+     630   00:4752  17                  	rla
+     631   00:4753  CB 3A               	srl d ; primo shift, il secondo dopo la out
+     632   00:4755                      
+     633   00:4755  D3 99               	out (0x99),a ;set bits 14-16
+     634   00:4757  3E 8E               	ld a,14+128
+     635   00:4759  D3 99               	out (0x99),a
+     636   00:475B                      
+     637   00:475B  CB 3A               	srl d ; secondo shift.            
+     638   00:475D  7B                  	ld a,e ;set bits 0-7
+     639   00:475E  D3 99               	out (0x99),a
+     640   00:4760  7A                  	ld a,d ;set bits 8-13
+     641   00:4761  E6 3F               	and 0x3F
+     642   00:4763  D3 99               	out (0x99),a
+     643   00:4765  C9                  	ret
+     644   00:4766                      
+     645   00:4766                      ;Display page E in screen 5
+     646   00:4766                      _setpage:
+     647   00:4766  7B                  	ld a,e
+     648   00:4767  87                  	add a,a ;x32
+     649   00:4768  87                  	add a,a
+     650   00:4769  87                  	add a,a
+     651   00:476A  87                  	add a,a
+     652   00:476B  87                  	add a,a
+     653   00:476C  C6 1F               	add a,31
+     654   00:476E  F3                  	di
+     655   00:476F  D3 99               	out (0x99),a
+     656   00:4771  3E 82               	ld a,2+128
+     657   00:4773  D3 99               	out (0x99),a
+     658   00:4775  FB                  	ei            
+     659   00:4776  C9                  	ret
+     660   00:4777                      
+     661   00:4777  (00:005F)           chgmod        equ     0x005f      ;change graphic mode
+     662   00:4777  (00:000C)           RDSLT         equ     0x000c      ;read address HL in slot A
+     663   00:4777  (00:0156)           KILBUF        equ     0x0156      ;clear keyboard buffer
+     664   00:4777                      
+     665   00:4777                      _scr:
+     666   00:4777  7B                  	ld  a,e
+     667   00:4778  CD 5F 00            	call	chgmod
+     668   00:477B  C9                  	ret
+     669   00:477C                      
+     670   00:477C                      
+     671   00:477C                      _waitvdp:
+     672   00:477C  F3                  	di
+     673   00:477D  3E 02               	ld a,2
+     674   00:477F  D3 99               	out (0x99),a
+     675   00:4781  3E 8F               	ld a, 0x8f
+     676   00:4783  D3 99               	out (0x99),a
+     677   00:4785                      
+     678   00:4785  DB 99               1:  in a,(0x99)
+     679   00:4787  0F                  	rrca
+     680   00:4788  DA 85 47            	jp c, 1b
+     681   00:478B                      
+     682   00:478B  AF                  	xor a
+     683   00:478C  D3 99               	out (0x99),a
+     684   00:478E  3E 8F               	ld a, 0x8f
+     685   00:4790  D3 99               	out (0x99),a
+     686   00:4792  FB                  	ei
+     687   00:4793  C9                  	ret
+     688   00:4794                      
+     689   00:4794                      _print_probe
+     690   00:4794  3A D8 C2            	ld	a,(_mcprobeb)
+     691   00:4797  5F                  	ld	e,a
+     692   00:4798  16 00               	ld	d,0
+     693   00:479A  21 C0 07            	ld	hl,32*(64-2)
+     694   00:479D  19                  	add	hl,de
+     695   00:479E  EB                  	ex	de,hl
+     696   00:479F  21 C0 05            	ld	hl,2*(23*32+0)
+     697   00:47A2  CD 49 46            	call 	plot_foreground
+     698   00:47A5                      	
+     699   00:47A5  ED 5B D9 C2         	ld	de,(_ticxframe)
+     700   00:47A9  16 00               	ld	d,0
+     701   00:47AB  01 DA C2            	ld	bc,_buffer
+     702   00:47AE  CD 0D 48            	call	int2ascii
+     703   00:47B1                      	
+     704   00:47B1  3A DC C2            	ld	a,(_buffer+2)
+     705   00:47B4  5F                  	ld	e,a
+     706   00:47B5  16 00               	ld	d,0
+     707   00:47B7  21 90 07            	ld	hl,32*(64-2)-'0'
+     708   00:47BA  19                  	add	hl,de
+     709   00:47BB  EB                  	ex	de,hl
+     710   00:47BC  21 80 05            	ld	hl,2*(22*32)
+     711   00:47BF  CD 49 46            	call 	plot_foreground
+     712   00:47C2                      
+     713   00:47C2  3A DD C2            	ld	a,(_buffer+3)
+     714   00:47C5  5F                  	ld	e,a
+     715   00:47C6  16 00               	ld	d,0
+     716   00:47C8  21 90 07            	ld	hl,32*(64-2)-'0'
+     717   00:47CB  19                  	add	hl,de
+     718   00:47CC  EB                  	ex	de,hl
+     719   00:47CD  21 82 05            	ld	hl,2*(22*32+1)
+     720   00:47D0  CD 49 46            	call 	plot_foreground
+     721   00:47D3                      
+     722   00:47D3  3A DE C2            	ld	a,(_buffer+4)
+     723   00:47D6  5F                  	ld	e,a
+     724   00:47D7  16 00               	ld	d,0
+     725   00:47D9  21 90 07            	ld	hl,32*(64-2)-'0'
+     726   00:47DC  19                  	add	hl,de
+     727   00:47DD  EB                  	ex	de,hl
+     728   00:47DE  21 84 05            	ld	hl,2*(22*32+2)
+     729   00:47E1  C3 49 46            	jp 	plot_foreground
+     730   00:47E4                      	
+     731   00:47E4                      	
+     732   00:47E4                      _print_fps:
+     733   00:47E4  3A DD C2            	ld	a,(_buffer+3)
+     734   00:47E7  5F                  	ld	e,a
+     735   00:47E8  16 00               	ld	d,0
+     736   00:47EA  21 90 07            	ld	hl,32*(64-2)-'0'
+     737   00:47ED  19                  	add	hl,de
+     738   00:47EE  EB                  	ex	de,hl
+     739   00:47EF                      	
+     740   00:47EF  21 FC 05            	ld	hl,2*(23*32+30)
+     741   00:47F2  CD 49 46            	call 	plot_foreground
+     742   00:47F5                      
+     743   00:47F5  3A DE C2            	ld	a,(_buffer+4)
+     744   00:47F8  5F                  	ld	e,a
+     745   00:47F9  16 00               	ld	d,0
+     746   00:47FB  21 90 07            	ld	hl,32*(64-2)-'0'
+     747   00:47FE  19                  	add	hl,de
+     748   00:47FF  EB                  	ex	de,hl
+     749   00:4800                      	
+     750   00:4800  21 FE 05            	ld	hl,2*(23*32+31)
+     751   00:4803  C3 49 46            	jp 	plot_foreground
+     752   00:4806                      	
+     753   00:4806                      
+     754   00:4806                      ;-------------------------------------
+     755   00:4806                      _compute_fps:
+     756   00:4806  ED 5B EA C2         	ld	de,(_fps)
+     757   00:480A  01 DA C2            	ld	bc,_buffer
+     758   00:480D                      
+     759   00:480D                      int2ascii:
+     760   00:480D                      	
+     761   00:480D                      ; in de input 
+     762   00:480D                      ; in bc output
+     763   00:480D                      
+     764   00:480D  EB                  	ex  de,hl
+     765   00:480E  59                  	ld  e,c
+     766   00:480F  50                  	ld  d,b
+     767   00:4810                      
+     768   00:4810                      Num2asc:
+     769   00:4810  01 F0 D8            	ld  bc,-10000
+     770   00:4813  CD 29 48            	call    Num1
+     771   00:4816  01 18 FC            	ld  bc,-1000
+     772   00:4819  CD 29 48            	call    Num1
+     773   00:481C  01 9C FF            	ld  bc,-100
+     774   00:481F  CD 29 48            	call    Num1
+     775   00:4822  0E F6               	ld  c,-10
+     776   00:4824  CD 29 48            	call    Num1
+     777   00:4827  0E FF               	ld  c,-1
+     778   00:4829                      
+     779   00:4829                      Num1:   
+     780   00:4829  3E 2F               	ld  a,'0'-1  ; '0' in the tileset
+     781   00:482B                      
+     782   00:482B                      Num2:   
+     783   00:482B  3C                  	inc a
+     784   00:482C  09                  	add hl,bc
+     785   00:482D  38 FC               	jr  c,Num2
+     786   00:482F  ED 42               	sbc hl,bc
+     787   00:4831                      
+     788   00:4831  12                  	ld  (de),a
+     789   00:4832  13                  	inc de
+     790   00:4833  C9                  	ret
+     791   00:4834                      
+     792   00:4834  (01)                	page 1
+     793   01:6000                      _metatable:
+     794   01:6000  (14E0)              	incbin "metatable.bin"
+     795   01:74E0                      _backmap:
+     796   01:74E0  (0400)              	incbin "backmap.bin"
+     797   01:78E0                      
+     798   01:78E0                      	include enemies.asm
+       1.  01:78E0                      
+       2.  01:78E0  (01:0008)           nenemies 	equ	8
+       3.  01:78E0  (01:0080)           sprite_size	equ	8*8*2
+       4.  01:78E0                      
+       5.  01:78E0                      		struct enemy
+       6.  01:78E0                    < type 	db
+       7.  01:78E0                    < state 	db
+       8.  01:78E0                    < frame 	db
+       9.  01:78E0                    < x		dw	
+      10.  01:78E0                    < y		dw
+      11.  01:78E0                    < mappos	dw
+      12.  01:78E0                    < dx		dw
+      13.  01:78E0                    < dy		dw
+      14.  01:78E0                    < nx		db
+      15.  01:78E0                    < ny		db
+      16.  01:78E0                    < buf		ds	sprite_size
+      17.  01:78E0                    < 	endstruct
+      18.  01:78E0                      	
+      19.  01:78E0                      	page 12,13
       20.  0C:8000                      frames:
       21.  0C:8000  1A 00 EB 00 AA 00   		dw 01Ah,0EBh,0AAh
       22.  0C:8006  1A 00 EB 00 AA 00   		dw 01Ah,0EBh,0AAh
@@ -1760,383 +1767,383 @@ Errors: 0
       24.  0C:800C  00 (128)            [63]	ds	sprite_size
       25.  0C:9F8C                      
       26.  0C:9F8C                      	page 0,1
-      27.  01:6000                      int_sprites
-      28.  01:6000  DD 21 F6 DE         	ld	ix,enemylist
-      29.  01:6004  DD 36 03 00         	ld	(ix+enemy.x),0
-      30.  01:6008  DD 36 04 00         	ld	(ix+enemy.x+1),0
-      31.  01:600C                      	
-      32.  01:600C  DD 36 05 00         	ld	(ix+enemy.y),0
-      33.  01:6010  DD 36 06 00         	ld	(ix+enemy.y+1),0
-      34.  01:6014                      	
-      35.  01:6014  DD 36 0D 03         	ld	(ix+enemy.nx),3
-      36.  01:6018  DD 36 0E 02         	ld	(ix+enemy.ny),2
-      37.  01:601C                      	
-      38.  01:601C  DD 36 02 00         	ld	(ix+enemy.frame),0
-      39.  01:6020                      	
-      40.  01:6020  01 02 94            	ld	bc,_levelmap+2+mapWidth*10*2
-      41.  01:6023  DD 71 07            	ld	(ix+enemy.mappos),c
-      42.  01:6026  DD 70 08            	ld	(ix+enemy.mappos+1),b
-      43.  01:6029  C9                  	ret
-      44.  01:602A                      
-      45.  01:602A                      move_sprites
-      46.  01:602A  DD 7E 09            	ld	a,(ix+enemy.dx)
-      47.  01:602D  3D                  	dec	a
-      48.  01:602E  E6 03               	and	3
-      49.  01:6030  DD 77 09            	ld	(ix+enemy.dx),a
-      50.  01:6033  C0                  	ret	nz
-      51.  01:6034                      	
-      52.  01:6034  DD 6E 07            	ld	l,(ix+enemy.mappos)
-      53.  01:6037  DD 66 08            	ld	h,(ix+enemy.mappos+1)
-      54.  01:603A  23 23               [2]	inc	hl
-      55.  01:603C  DD 75 07            	ld	(ix+enemy.mappos),l
-      56.  01:603F  DD 74 08            	ld	(ix+enemy.mappos+1),h
-      57.  01:6042  C9                  	ret
-      58.  01:6043                      
-      59.  01:6043                      	; ld	bc,(ix+enemy.y)
-      60.  01:6043                      	; ld	hl,mapWidth
-      61.  01:6043                      	; call	bcxhl
-      62.  01:6043                      	; ld	bc,(ix+enemy.y)
-      63.  01:6043                      	; add	hl,bc
-      64.  01:6043                      	; ld	bc,_levelmap
-      65.  01:6043                      	; add	hl,bc	
-      66.  01:6043                      
-      67.  01:6043                      ;;;;;;;;;;;;;;;;;;;;;;;;
-      68.  01:6043                      ; save_background
-      69.  01:6043                      ; in 
-      70.  01:6043                      ;  ix destination in enemylist
-      71.  01:6043                      ;;;;;;;;;;;;;;;;;;;;;;;;
-      72.  01:6043                      
-      73.  01:6043                      save_background:
-      74.  01:6043  DD 5E 07            	ld	e,(ix+enemy.mappos)
-      75.  01:6046  DD 56 08            	ld	d,(ix+enemy.mappos+1)
-      76.  01:6049                      	
-      77.  01:6049  DD E5               	push	ix
-      78.  01:604B  E1                  	pop		hl
-      79.  01:604C  01 0F 00            	ld	bc,enemy.buf
-      80.  01:604F  09                  	add	hl,bc
-      81.  01:6050  EB                  	ex	de,hl
-      82.  01:6051                      	
-      83.  01:6051  DD 7E 0E            	ld	a,(ix+enemy.ny)
-      84.  01:6054                      
-      85.  01:6054  06 00               	ld	b,0
-      86.  01:6056                      	
-      87.  01:6056  DD 4E 0D            2:	ld	c,(ix+enemy.nx)
-      88.  01:6059  CB 21               	sla	c
-      89.  01:605B  E5                  	push	hl
-      90.  01:605C  ED B0               	ldir
-      91.  01:605E  E1                  	pop	hl
-      92.  01:605F                      	
-      93.  01:605F  24 24               [2]	inc h	; only if (mapWidth=256)
-      94.  01:6061                      	
-      95.  01:6061  3D                  	dec	a
-      96.  01:6062  C2 56 60            	jp	nz,2b
-      97.  01:6065  C9                  	ret
-      98.  01:6066                      	
-      99.  01:6066                      ;;;;;;;;;;;;;;;;;;;;;;;;
-     100.  01:6066                      ; plot_sprite
-     101.  01:6066                      ; in 
-     102.  01:6066                      ;  ix destination in enemylist
-     103.  01:6066                      ;;;;;;;;;;;;;;;;;;;;;;;;
-     104.  01:6066                      
-     105.  01:6066                      plot_sprite:
-     106.  01:6066  DD 6E 02            	ld	l,(ix+enemy.frame)
-     107.  01:6069  26 00               	ld	h,0
-     108.  01:606B  29 29 29 29 29 29   [6]	add	hl,hl			; sprite_size = 64*2
-     109.  01:6071                      
-     110.  01:6071  3E 0C               	ld	a,:frames
-     111.  01:6073                      	setpage_a
-     111.  01:6073  32 00 90          >   ld (_kBank3),a
-     111.  01:6076  3C                >   inc a
-     111.  01:6077  32 00 B0          >   ld (_kBank4),a
-     112.  01:607A  01 00 80            	ld	bc,frames
-     113.  01:607D  09                  	add	hl,bc			; hl aims to the current frame to be plotted
-     114.  01:607E                      
-     115.  01:607E  C3 88 60            	jp	plot_sprtite_frame
-     116.  01:6081                      	
-     117.  01:6081                      ;;;;;;;;;;;;;;;;;;;;;;;;
-     118.  01:6081                      ; restore_background
-     119.  01:6081                      ; in 
-     120.  01:6081                      ;  ix source in enemylist
-     121.  01:6081                      ;;;;;;;;;;;;;;;;;;;;;;;;
-     122.  01:6081                      
-     123.  01:6081                      restore_background:
-     124.  01:6081  DD E5               	push	ix
-     125.  01:6083  E1                  	pop		hl
-     126.  01:6084  01 0F 00            	ld	bc,enemy.buf
-     127.  01:6087  09                  	add	hl,bc			
-     128.  01:6088                      
-     129.  01:6088                      plot_sprtite_frame:
-     130.  01:6088  DD 5E 07            	ld	e,(ix+enemy.mappos)
-     131.  01:608B  DD 56 08            	ld	d,(ix+enemy.mappos+1)	; hl->buffer, de->_levelmap
-     132.  01:608E                      	
-     133.  01:608E  DD 7E 0E            	ld	a,(ix+enemy.ny)
-     134.  01:6091  06 00               	ld	b,0
-     135.  01:6093                      	
-     136.  01:6093  DD 4E 0D            2:	ld	c,(ix+enemy.nx)
-     137.  01:6096  CB 21               	sla	c
-     138.  01:6098  D5                  	push	de
-     139.  01:6099  ED B0               	ldir
-     140.  01:609B  D1                  	pop	de
-     141.  01:609C                      
-     142.  01:609C  14 14               [2]	inc d	; only if (mapWidth=256)
-     143.  01:609E                      
-     144.  01:609E  3D                  	dec	a
-     145.  01:609F  C2 93 60            	jp	nz,2b
-     146.  01:60A2  C9                  	ret
-     147.  01:60A3                      	
-     148.  01:60A3                      	
-     149.  01:60A3                      	
-     792   01:60A3                      
-     793   01:60A3                      	include hwsprites.asm
-       1.  01:60A3                      
-       2.  01:60A3                      ; SGT = 0x7800 ->#R6 = 0x0F
-       3.  01:60A3                      ; SAT = 0x7600 ->#R5 = 0xEF #R11=0
-       4.  01:60A3                      
-       5.  01:60A3                      _hw_sprite_init:
-       6.  01:60A3                      
-       7.  01:60A3  F3                  		di
-       8.  01:60A4                      		; SGT = 0x7800 ->#R6 = 0x0F
-       9.  01:60A4  3E 0F               		ld		a,0x0F
-      10.  01:60A6  D3 99               		out		(0x99),a
-      11.  01:60A8  3E 86               		ld		a,128+6
-      12.  01:60AA  D3 99               		out		(0x99),a
-      13.  01:60AC                      		
-      14.  01:60AC                      		; SAT = 0x7600 ->#R5 = 0xEF #R11=0
-      15.  01:60AC  3E EF               		ld		a,0xEF
-      16.  01:60AE  D3 99               		out		(0x99),a
-      17.  01:60B0  3E 85               		ld		a,128+5
-      18.  01:60B2  D3 99               		out		(0x99),a
-      19.  01:60B4                      		
-      20.  01:60B4  AF                  		xor	a
-      21.  01:60B5  D3 99               		out		(0x99),a
-      22.  01:60B7  3E 8B               		ld		a,128+11
-      23.  01:60B9  D3 99               		out		(0x99),a
-      24.  01:60BB  FB                  		ei
-      25.  01:60BC                      		
-      26.  01:60BC                      		; unpack level map (meta_tiles)
-      27.  01:60BC  3E 0A               		ld	a, :sprtdata.SPRITES
-      28.  01:60BE                      		setpage_a
-      28.  01:60BE  32 00 90          >   ld (_kBank3),a
-      28.  01:60C1  3C                >   inc a
-      28.  01:60C2  32 00 B0          >   ld (_kBank4),a
-      29.  01:60C5                      		
-      30.  01:60C5  21 00 80            		ld		hl,	sprtdata.SPRITES
-      31.  01:60C8  0E 00               		ld		c,0
-      32.  01:60CA  11 00 78            		ld		de,0x7800
-      33.  01:60CD  CD 2A 47            		call	_vdpsetvramwr
-      34.  01:60D0                      		
-      35.  01:60D0  01 98 00            		ld		bc,0x98
-      36.  01:60D3                      [8]		otir	; 2K
-      36.  01:60D3  ED B3 ED B3 ED B3 ED B3 ED B3 ED B3 ED B3 ED B3 
-      37.  01:60E3                      
-      38.  01:60E3  21 40 82            		ld		hl,	sprtdata.ATRIBUTOS
-      39.  01:60E6  0E 00               		ld		c,0
-      40.  01:60E8  11 00 74            		ld		de,0x7600-512
-      41.  01:60EB  CD 2A 47            		call	_vdpsetvramwr
-      42.  01:60EE                      
-      43.  01:60EE  01 98 00            		ld		bc,0x98
-      44.  01:60F1  ED B3 ED B3         [2]		otir	; 512
-      45.  01:60F5                      
-      46.  01:60F5                      
-      47.  01:60F5  0E 00               		ld		c,0
-      48.  01:60F7  11 00 76            		ld		de,0x7600
-      49.  01:60FA  CD 2A 47            		call	_vdpsetvramwr
-      50.  01:60FD                      		
-      51.  01:60FD  21 06 61            		ld		hl,hwsprt_test		
-      52.  01:6100  01 98 80            		ld		bc,0x8098
-      53.  01:6103  ED B3               		otir			
-      54.  01:6105  C9                  		ret
-      55.  01:6106                      		
-      56.  01:6106                      hwsprt_test
-      57.  01:6106  D8                  		db	0xd8
-      58.  01:6107  40 80 00 0F         		db	64,128,0,15
-      59.  01:610B  40 80 04 0F         		db	64,128,4,15
-      60.  01:610F  40 80 08 0F         		db	64,128,8,15
-      61.  01:6113                      		
-      62.  01:6113  20 80 0C 0F         		db	32,128,12,15
-      63.  01:6117  20 80 10 0F         		db	32,128,16,15
-      64.  01:611B  20 80 14 0F         		db	32,128,20,15
-      65.  01:611F  D8                  		db	0xd8
-     794   01:6120                      	
-     795   01:6120                      	include enemies_LMMM.asm
-       1.  01:6120                      
-       2.  01:6120                      enemies_LMMM:
-       3.  01:6120                      
-       4.  01:6120  21 78 00            	ld	hl,120
-       5.  01:6123  22 CD C2            	ld	(_mcx),hl
-       6.  01:6126  21 50 00            	ld	hl,16+64
-       7.  01:6129  22 CF C2            	ld	(_mcy),hl
-       8.  01:612C                      	
-       9.  01:612C  2A CF C2            	ld	hl,(_mcy)
-      10.  01:612F  7D                  	ld	a,l
-      11.  01:6130  E6 F8               	and	11111000B
-      12.  01:6132  6F                  	ld	l,a
-      13.  01:6133  29 29 29            [3]	add	hl,hl
-      14.  01:6136  EB                  	ex	de,hl
-      15.  01:6137  2A CD C2            	ld	hl,(_mcx)
-      16.  01:613A  7D                  	ld	a,l
-      17.  01:613B  E6 F8               	and	11111000B
-      18.  01:613D  1F 1F               [2]	rra
-      19.  01:613F  6F                  	ld	l,a
-      20.  01:6140  19                  	add	hl,de
-      21.  01:6141                      	
-      22.  01:6141  ED 5B F3 C2         	ld		de,(_shadowbuff)
-      23.  01:6145  19                  	add		hl,de		; HL = pointer to the shadow map
-      24.  01:6146  23                  	inc		hl
-      25.  01:6147  36 7F               	ld		(hl),127
-      26.  01:6149  23 23               [2]	inc		hl
-      27.  01:614B  36 7F               	ld		(hl),127
-      28.  01:614D  11 3E 00            	ld		de,2*32-2
-      29.  01:6150  19                  	add		hl,de		; HL = pointer to the shadow map
-      30.  01:6151  36 7F               	ld		(hl),127
-      31.  01:6153  23 23               [2]	inc		hl
-      32.  01:6155  36 7F               	ld		(hl),127
-      33.  01:6157                      
-      34.  01:6157                      	
-      35.  01:6157  F3                  	di
-      36.  01:6158  3E 20               	ld 		a, 32
-      37.  01:615A  D3 99               	out 	(0x99),a
-      38.  01:615C  3E 91               	ld 		a, 17+128
-      39.  01:615E  D3 99               	out 	(0x99),a
-      40.  01:6160  FB                  	ei
-      41.  01:6161                      
-      42.  01:6161  0E 9B               	ld 		c, 0x9B
-      43.  01:6163                      	
-      44.  01:6163  CD 74 47            	call _waitvdp;
-      45.  01:6166                      
-      46.  01:6166  3A D6 C2            	ld	a,(_mcstate)
-      47.  01:6169  87 87               [2]	add	a,a
-      48.  01:616B  5F                  	ld	e,a
-      49.  01:616C  16 00               	ld	d,0
-      50.  01:616E  21 B4 61            	ld	hl,state0
-      51.  01:6171  19                  	add	hl,de
-      52.  01:6172                      	
-      53.  01:6172  3A D5 C2            	ld	a,(_mcframe)
-      54.  01:6175  3C                  	inc	a
-      55.  01:6176  E6 03               	and	3
-      56.  01:6178  32 D5 C2            	ld	(_mcframe),a
-      57.  01:617B  5F                  	ld	e,a
-      58.  01:617C  16 00               	ld	d,0
-      59.  01:617E  19                  	add	hl,de
-      60.  01:617F  6E                  	ld	l,(hl)
-      61.  01:6180                      
-      62.  01:6180  26 C0               	ld		h,192
-      63.  01:6182  ED 69               	out		(c), l 		; sx
-      64.  01:6184  AF                  	xor a
-      65.  01:6185  D3 9B               	out		(0x9B), a 	; sx (high)
-      66.  01:6187                      	
-      67.  01:6187  ED 61               	out		(c), h 		; sy
-      68.  01:6189  3E 01               	ld		a,1			; source page for sprites
-      69.  01:618B  D3 9B               	out 	(0x9B), a 	; sy (high-> page 3)
-      70.  01:618D                      	
-      71.  01:618D  3A CD C2            	ld		a,(_mcx)
-      72.  01:6190  D3 9B               	out 	(0x9B), a 	; dx
-      73.  01:6192  AF                  	xor a
-      74.  01:6193  D3 9B               	out 	(0x9B), a	; dx (high)
-      75.  01:6195                      	
-      76.  01:6195  3A CF C2            	ld		a,(_mcy)
-      77.  01:6198  D3 9B               	out 	(0x9B), a	; dy
-      78.  01:619A  3A F5 C2            	ld 		a,(_currentpage)	; destination page
-      79.  01:619D  D3 9B               	out 	(0x9B), a	; dy (high-> page 0 or 1)
-      80.  01:619F                      
-      81.  01:619F  21 10 10            	ld 		hl,16*257 	; block size
-      82.  01:61A2                      
-      83.  01:61A2  ED 69               	out 	(c), l
-      84.  01:61A4  AF                  	xor a
-      85.  01:61A5  D3 9B               	out 	(0x9B), a
-      86.  01:61A7  ED 61               	out 	(c), h
-      87.  01:61A9  D3 9B               	out 	(0x9B), a
-      88.  01:61AB  D3 9B               	out 	(0x9B), a
-      89.  01:61AD  D3 9B               	out 	(0x9B), a
-      90.  01:61AF                      
-      91.  01:61AF  3E 98               	ld		a,10011000B
-      92.  01:61B1  D3 9B               	out 	(0x9B), a		; command LMMM
-      93.  01:61B3  C9                  	ret
-      94.  01:61B4                      
-      95.  01:61B4  00 10 00 20         state0		db	0*16,1*16,0*16,2*16
-      96.  01:61B8  30 40 30 50         state1		db	3*16,4*16,3*16,5*16
-      97.  01:61BC  60 70 60 70         state2		db	6*16,7*16,6*16,7*16
-      98.  01:61C0  60 70 60 70         state3		db	6*16,7*16,6*16,7*16
-     796   01:61C4                      	include probe_level.asm
-       1.  01:61C4                      
-       2.  01:61C4                      
-       3.  01:61C4                      probe_level:
-       4.  01:61C4                      	
-       5.  01:61C4  01 F0 FF            	ld	bc,-16		; FRAME!!!
-       6.  01:61C7  2A F1 C2            	ld	hl,(_xmappos)
-       7.  01:61CA  ED 5B CD C2         	ld	de,(_mcx)
-       8.  01:61CE  19                  	add	hl,de
-       9.  01:61CF  09                  	add	hl,bc		; remove frame
-      10.  01:61D0  22 D1 C2            	ld	(_mclx),hl
-      11.  01:61D3                      
-      12.  01:61D3  2A F0 C2            	ld	hl,(_ymappos)
-      13.  01:61D6  26 00               	ld	h,0
-      14.  01:61D8  ED 5B CF C2         	ld	de,(_mcy)
-      15.  01:61DC  19                  	add	hl,de
-      16.  01:61DD  09                  	add	hl,bc		; remove frame
-      17.  01:61DE  22 D3 C2            	ld	(_mcly),hl
-      18.  01:61E1                      	
-      19.  01:61E1  2A D3 C2            	ld	hl,(_mcly)	; ONLY IF mapWidth=256
-      20.  01:61E4  7D                  	ld	a,l
-      21.  01:61E5  E6 FC               	and	11111100B
-      22.  01:61E7  6F                  	ld	l,a
-      23.  01:61E8  29 29 29 29         [4]	add	hl,hl
-      24.  01:61EC                      	
-      25.  01:61EC  EB                  	ex	de,hl
-      26.  01:61ED                      
-      27.  01:61ED  2A D1 C2            	ld	hl,(_mclx)	; ONLY IF mapWidth=256
-      28.  01:61F0  29 29 29            [3]	add	hl,hl	
-      29.  01:61F3  6C                  	ld	l,h
-      30.  01:61F4  26 00               	ld	h,0
-      31.  01:61F6                      	
-      32.  01:61F6  19                  	add	hl,de
-      33.  01:61F7                      	
-      34.  01:61F7  11 F6 CE            	ld	de,_cur_level_bf
-      35.  01:61FA  19                  	add	hl,de
-      36.  01:61FB                      	
-      37.  01:61FB  3A D1 C2            	ld	a,(_mclx)
-      38.  01:61FE  1F 1F               [2]	rra			; x/4
-      39.  01:6200  E6 07               	and	7
-      40.  01:6202  47                  	ld	b,a
-      41.  01:6203  7E                  	ld	a,(hl)
-      42.  01:6204  32 D7 C2            	ld	(_mcprobe),a
-      43.  01:6207  28 03               	jr	z,2f
-      44.  01:6209  1F                  1:	rra
-      45.  01:620A  10 FD               	djnz	1b
-      46.  01:620C  E6 01               2:	and	1
-      47.  01:620E                      
-      48.  01:620E  32 D8 C2            	ld	(_mcprobeb),a
-      49.  01:6211  C9                  	ret
-      50.  01:6212                      	
-     797   01:6212                      
-     798   01:6212                      
-     799   01:6212                      	page 2,3
-     800   02:8000                      _frame:
-     801   02:8000  (0951)              	incbin "_frame.bin"
-     802   02:8951                      _mc_sprites:	
-     803   02:8951  (09E7)              	incbin "_sprites.bin"			
-     804   02:9338                      	
-     805   02:9338  (04)                	page 4
-     806   04:8000                      _tiles0:
-     807   04:8000  (2000)              	incbin "_tiles0.bin",,0x2000
-     808   04:A000  (05)                	page 5
-     809   05:A000  (1365)              	incbin "_tiles0.bin",0x2000
-     810   05:B365                      	
-     811   05:B365  (06)                	page 6
-     812   06:8000                      _tiles1:
-     813   06:8000  (2000)              	incbin "_tiles1.bin",,0x2000
-     814   06:A000  (07)                	page 7
-     815   07:A000  (0A4F)              	incbin "_tiles1.bin",0x2000
-     816   07:AA4F                      
-     817   07:AA4F                      	page 8,9
-     818   08:8000                      _level:
-     819   08:8000  (0A2C)              	incbin "_metamap.bin"
-     820   08:8A2C                      _level_bf:	
-     821   08:8A2C  (1000)              	incbin "BitField.bin"	
-     822   08:9A2C                      	
-     823   08:9A2C                      	page 10,11
-     824   0A:8000                      sprtdata
-     825   0A:8000                      	include 	SPROL.ASM
+      27.  00:4834                      int_sprites
+      28.  00:4834  DD 21 F6 DE         	ld	ix,enemylist
+      29.  00:4838  DD 36 03 00         	ld	(ix+enemy.x),0
+      30.  00:483C  DD 36 04 00         	ld	(ix+enemy.x+1),0
+      31.  00:4840                      	
+      32.  00:4840  DD 36 05 00         	ld	(ix+enemy.y),0
+      33.  00:4844  DD 36 06 00         	ld	(ix+enemy.y+1),0
+      34.  00:4848                      	
+      35.  00:4848  DD 36 0D 03         	ld	(ix+enemy.nx),3
+      36.  00:484C  DD 36 0E 02         	ld	(ix+enemy.ny),2
+      37.  00:4850                      	
+      38.  00:4850  DD 36 02 00         	ld	(ix+enemy.frame),0
+      39.  00:4854                      	
+      40.  00:4854  01 02 94            	ld	bc,_levelmap+2+mapWidth*10*2
+      41.  00:4857  DD 71 07            	ld	(ix+enemy.mappos),c
+      42.  00:485A  DD 70 08            	ld	(ix+enemy.mappos+1),b
+      43.  00:485D  C9                  	ret
+      44.  00:485E                      
+      45.  00:485E                      move_sprites
+      46.  00:485E  DD 7E 09            	ld	a,(ix+enemy.dx)
+      47.  00:4861  3D                  	dec	a
+      48.  00:4862  E6 03               	and	3
+      49.  00:4864  DD 77 09            	ld	(ix+enemy.dx),a
+      50.  00:4867  C0                  	ret	nz
+      51.  00:4868                      	
+      52.  00:4868  DD 6E 07            	ld	l,(ix+enemy.mappos)
+      53.  00:486B  DD 66 08            	ld	h,(ix+enemy.mappos+1)
+      54.  00:486E  23 23               [2]	inc	hl
+      55.  00:4870  DD 75 07            	ld	(ix+enemy.mappos),l
+      56.  00:4873  DD 74 08            	ld	(ix+enemy.mappos+1),h
+      57.  00:4876  C9                  	ret
+      58.  00:4877                      
+      59.  00:4877                      	; ld	bc,(ix+enemy.y)
+      60.  00:4877                      	; ld	hl,mapWidth
+      61.  00:4877                      	; call	bcxhl
+      62.  00:4877                      	; ld	bc,(ix+enemy.y)
+      63.  00:4877                      	; add	hl,bc
+      64.  00:4877                      	; ld	bc,_levelmap
+      65.  00:4877                      	; add	hl,bc	
+      66.  00:4877                      
+      67.  00:4877                      ;;;;;;;;;;;;;;;;;;;;;;;;
+      68.  00:4877                      ; save_background
+      69.  00:4877                      ; in 
+      70.  00:4877                      ;  ix destination in enemylist
+      71.  00:4877                      ;;;;;;;;;;;;;;;;;;;;;;;;
+      72.  00:4877                      
+      73.  00:4877                      save_background:
+      74.  00:4877  DD 5E 07            	ld	e,(ix+enemy.mappos)
+      75.  00:487A  DD 56 08            	ld	d,(ix+enemy.mappos+1)
+      76.  00:487D                      	
+      77.  00:487D  DD E5               	push	ix
+      78.  00:487F  E1                  	pop		hl
+      79.  00:4880  01 0F 00            	ld	bc,enemy.buf
+      80.  00:4883  09                  	add	hl,bc
+      81.  00:4884  EB                  	ex	de,hl
+      82.  00:4885                      	
+      83.  00:4885  DD 7E 0E            	ld	a,(ix+enemy.ny)
+      84.  00:4888                      
+      85.  00:4888  06 00               	ld	b,0
+      86.  00:488A                      	
+      87.  00:488A  DD 4E 0D            2:	ld	c,(ix+enemy.nx)
+      88.  00:488D  CB 21               	sla	c
+      89.  00:488F  E5                  	push	hl
+      90.  00:4890  ED B0               	ldir
+      91.  00:4892  E1                  	pop	hl
+      92.  00:4893                      	
+      93.  00:4893  24 24               [2]	inc h	; only if (mapWidth=256)
+      94.  00:4895                      	
+      95.  00:4895  3D                  	dec	a
+      96.  00:4896  C2 8A 48            	jp	nz,2b
+      97.  00:4899  C9                  	ret
+      98.  00:489A                      	
+      99.  00:489A                      ;;;;;;;;;;;;;;;;;;;;;;;;
+     100.  00:489A                      ; plot_sprite
+     101.  00:489A                      ; in 
+     102.  00:489A                      ;  ix destination in enemylist
+     103.  00:489A                      ;;;;;;;;;;;;;;;;;;;;;;;;
+     104.  00:489A                      
+     105.  00:489A                      plot_sprite:
+     106.  00:489A  DD 6E 02            	ld	l,(ix+enemy.frame)
+     107.  00:489D  26 00               	ld	h,0
+     108.  00:489F  29 29 29 29 29 29   [6]	add	hl,hl			; sprite_size = 64*2
+     109.  00:48A5                      
+     110.  00:48A5  3E 0C               	ld	a,:frames
+     111.  00:48A7                      	setpage_a
+     111.  00:48A7  32 00 90          >   ld (_kBank3),a
+     111.  00:48AA  3C                >   inc a
+     111.  00:48AB  32 00 B0          >   ld (_kBank4),a
+     112.  00:48AE  01 00 80            	ld	bc,frames
+     113.  00:48B1  09                  	add	hl,bc			; hl aims to the current frame to be plotted
+     114.  00:48B2                      
+     115.  00:48B2  C3 BC 48            	jp	plot_sprtite_frame
+     116.  00:48B5                      	
+     117.  00:48B5                      ;;;;;;;;;;;;;;;;;;;;;;;;
+     118.  00:48B5                      ; restore_background
+     119.  00:48B5                      ; in 
+     120.  00:48B5                      ;  ix source in enemylist
+     121.  00:48B5                      ;;;;;;;;;;;;;;;;;;;;;;;;
+     122.  00:48B5                      
+     123.  00:48B5                      restore_background:
+     124.  00:48B5  DD E5               	push	ix
+     125.  00:48B7  E1                  	pop		hl
+     126.  00:48B8  01 0F 00            	ld	bc,enemy.buf
+     127.  00:48BB  09                  	add	hl,bc			
+     128.  00:48BC                      
+     129.  00:48BC                      plot_sprtite_frame:
+     130.  00:48BC  DD 5E 07            	ld	e,(ix+enemy.mappos)
+     131.  00:48BF  DD 56 08            	ld	d,(ix+enemy.mappos+1)	; hl->buffer, de->_levelmap
+     132.  00:48C2                      	
+     133.  00:48C2  DD 7E 0E            	ld	a,(ix+enemy.ny)
+     134.  00:48C5  06 00               	ld	b,0
+     135.  00:48C7                      	
+     136.  00:48C7  DD 4E 0D            2:	ld	c,(ix+enemy.nx)
+     137.  00:48CA  CB 21               	sla	c
+     138.  00:48CC  D5                  	push	de
+     139.  00:48CD  ED B0               	ldir
+     140.  00:48CF  D1                  	pop	de
+     141.  00:48D0                      
+     142.  00:48D0  14 14               [2]	inc d	; only if (mapWidth=256)
+     143.  00:48D2                      
+     144.  00:48D2  3D                  	dec	a
+     145.  00:48D3  C2 C7 48            	jp	nz,2b
+     146.  00:48D6  C9                  	ret
+     147.  00:48D7                      	
+     148.  00:48D7                      	
+     149.  00:48D7                      	
+     799   00:48D7                      
+     800   00:48D7                      	include hwsprites.asm
+       1.  00:48D7                      
+       2.  00:48D7                      ; SGT = 0x7800 ->#R6 = 0x0F
+       3.  00:48D7                      ; SAT = 0x7600 ->#R5 = 0xEF #R11=0
+       4.  00:48D7                      
+       5.  00:48D7                      _hw_sprite_init:
+       6.  00:48D7                      
+       7.  00:48D7  F3                  		di
+       8.  00:48D8                      		; SGT = 0x7800 ->#R6 = 0x0F
+       9.  00:48D8  3E 0F               		ld		a,0x0F
+      10.  00:48DA  D3 99               		out		(0x99),a
+      11.  00:48DC  3E 86               		ld		a,128+6
+      12.  00:48DE  D3 99               		out		(0x99),a
+      13.  00:48E0                      		
+      14.  00:48E0                      		; SAT = 0x7600 ->#R5 = 0xEF #R11=0
+      15.  00:48E0  3E EF               		ld		a,0xEF
+      16.  00:48E2  D3 99               		out		(0x99),a
+      17.  00:48E4  3E 85               		ld		a,128+5
+      18.  00:48E6  D3 99               		out		(0x99),a
+      19.  00:48E8                      		
+      20.  00:48E8  AF                  		xor	a
+      21.  00:48E9  D3 99               		out		(0x99),a
+      22.  00:48EB  3E 8B               		ld		a,128+11
+      23.  00:48ED  D3 99               		out		(0x99),a
+      24.  00:48EF  FB                  		ei
+      25.  00:48F0                      		
+      26.  00:48F0                      		; unpack level map (meta_tiles)
+      27.  00:48F0  3E 0A               		ld	a, :sprtdata.SPRITES
+      28.  00:48F2                      		setpage_a
+      28.  00:48F2  32 00 90          >   ld (_kBank3),a
+      28.  00:48F5  3C                >   inc a
+      28.  00:48F6  32 00 B0          >   ld (_kBank4),a
+      29.  00:48F9                      		
+      30.  00:48F9  21 00 80            		ld		hl,	sprtdata.SPRITES
+      31.  00:48FC  0E 00               		ld		c,0
+      32.  00:48FE  11 00 78            		ld		de,0x7800
+      33.  00:4901  CD 32 47            		call	_vdpsetvramwr
+      34.  00:4904                      		
+      35.  00:4904  01 98 00            		ld		bc,0x98
+      36.  00:4907                      [8]		otir	; 2K
+      36.  00:4907  ED B3 ED B3 ED B3 ED B3 ED B3 ED B3 ED B3 ED B3 
+      37.  00:4917                      
+      38.  00:4917  21 40 82            		ld		hl,	sprtdata.ATRIBUTOS
+      39.  00:491A  0E 00               		ld		c,0
+      40.  00:491C  11 00 74            		ld		de,0x7600-512
+      41.  00:491F  CD 32 47            		call	_vdpsetvramwr
+      42.  00:4922                      
+      43.  00:4922  01 98 00            		ld		bc,0x98
+      44.  00:4925  ED B3 ED B3         [2]		otir	; 512
+      45.  00:4929                      
+      46.  00:4929                      
+      47.  00:4929  0E 00               		ld		c,0
+      48.  00:492B  11 00 76            		ld		de,0x7600
+      49.  00:492E  CD 32 47            		call	_vdpsetvramwr
+      50.  00:4931                      		
+      51.  00:4931  21 3A 49            		ld		hl,hwsprt_test		
+      52.  00:4934  01 98 80            		ld		bc,0x8098
+      53.  00:4937  ED B3               		otir			
+      54.  00:4939  C9                  		ret
+      55.  00:493A                      		
+      56.  00:493A                      hwsprt_test
+      57.  00:493A  D8                  		db	0xd8
+      58.  00:493B  40 80 00 0F         		db	64,128,0,15
+      59.  00:493F  40 80 04 0F         		db	64,128,4,15
+      60.  00:4943  40 80 08 0F         		db	64,128,8,15
+      61.  00:4947                      		
+      62.  00:4947  20 80 0C 0F         		db	32,128,12,15
+      63.  00:494B  20 80 10 0F         		db	32,128,16,15
+      64.  00:494F  20 80 14 0F         		db	32,128,20,15
+      65.  00:4953  D8                  		db	0xd8
+     801   00:4954                      	
+     802   00:4954                      	include enemies_LMMM.asm
+       1.  00:4954                      
+       2.  00:4954                      enemies_LMMM:
+       3.  00:4954                      
+       4.  00:4954  21 78 00            	ld	hl,120
+       5.  00:4957  22 CD C2            	ld	(_mcx),hl
+       6.  00:495A  21 50 00            	ld	hl,16+64
+       7.  00:495D  22 CF C2            	ld	(_mcy),hl
+       8.  00:4960                      	
+       9.  00:4960  2A CF C2            	ld	hl,(_mcy)
+      10.  00:4963  7D                  	ld	a,l
+      11.  00:4964  E6 F8               	and	11111000B
+      12.  00:4966  6F                  	ld	l,a
+      13.  00:4967  29 29 29            [3]	add	hl,hl
+      14.  00:496A  EB                  	ex	de,hl
+      15.  00:496B  2A CD C2            	ld	hl,(_mcx)
+      16.  00:496E  7D                  	ld	a,l
+      17.  00:496F  E6 F8               	and	11111000B
+      18.  00:4971  1F 1F               [2]	rra
+      19.  00:4973  6F                  	ld	l,a
+      20.  00:4974  19                  	add	hl,de
+      21.  00:4975                      	
+      22.  00:4975  ED 5B F3 C2         	ld		de,(_shadowbuff)
+      23.  00:4979  19                  	add		hl,de		; HL = pointer to the shadow map
+      24.  00:497A  23                  	inc		hl
+      25.  00:497B  36 7F               	ld		(hl),127
+      26.  00:497D  23 23               [2]	inc		hl
+      27.  00:497F  36 7F               	ld		(hl),127
+      28.  00:4981  11 3E 00            	ld		de,2*32-2
+      29.  00:4984  19                  	add		hl,de		; HL = pointer to the shadow map
+      30.  00:4985  36 7F               	ld		(hl),127
+      31.  00:4987  23 23               [2]	inc		hl
+      32.  00:4989  36 7F               	ld		(hl),127
+      33.  00:498B                      
+      34.  00:498B                      	
+      35.  00:498B  F3                  	di
+      36.  00:498C  3E 20               	ld 		a, 32
+      37.  00:498E  D3 99               	out 	(0x99),a
+      38.  00:4990  3E 91               	ld 		a, 17+128
+      39.  00:4992  D3 99               	out 	(0x99),a
+      40.  00:4994  FB                  	ei
+      41.  00:4995                      
+      42.  00:4995  0E 9B               	ld 		c, 0x9B
+      43.  00:4997                      	
+      44.  00:4997  CD 7C 47            	call _waitvdp;
+      45.  00:499A                      
+      46.  00:499A  3A D6 C2            	ld	a,(_mcstate)
+      47.  00:499D  87 87               [2]	add	a,a
+      48.  00:499F  5F                  	ld	e,a
+      49.  00:49A0  16 00               	ld	d,0
+      50.  00:49A2  21 E8 49            	ld	hl,state0
+      51.  00:49A5  19                  	add	hl,de
+      52.  00:49A6                      	
+      53.  00:49A6  3A D5 C2            	ld	a,(_mcframe)
+      54.  00:49A9  3C                  	inc	a
+      55.  00:49AA  E6 03               	and	3
+      56.  00:49AC  32 D5 C2            	ld	(_mcframe),a
+      57.  00:49AF  5F                  	ld	e,a
+      58.  00:49B0  16 00               	ld	d,0
+      59.  00:49B2  19                  	add	hl,de
+      60.  00:49B3  6E                  	ld	l,(hl)
+      61.  00:49B4                      
+      62.  00:49B4  26 C0               	ld		h,192
+      63.  00:49B6  ED 69               	out		(c), l 		; sx
+      64.  00:49B8  AF                  	xor a
+      65.  00:49B9  D3 9B               	out		(0x9B), a 	; sx (high)
+      66.  00:49BB                      	
+      67.  00:49BB  ED 61               	out		(c), h 		; sy
+      68.  00:49BD  3E 01               	ld		a,1			; source page for sprites
+      69.  00:49BF  D3 9B               	out 	(0x9B), a 	; sy (high-> page 3)
+      70.  00:49C1                      	
+      71.  00:49C1  3A CD C2            	ld		a,(_mcx)
+      72.  00:49C4  D3 9B               	out 	(0x9B), a 	; dx
+      73.  00:49C6  AF                  	xor a
+      74.  00:49C7  D3 9B               	out 	(0x9B), a	; dx (high)
+      75.  00:49C9                      	
+      76.  00:49C9  3A CF C2            	ld		a,(_mcy)
+      77.  00:49CC  D3 9B               	out 	(0x9B), a	; dy
+      78.  00:49CE  3A F5 C2            	ld 		a,(_currentpage)	; destination page
+      79.  00:49D1  D3 9B               	out 	(0x9B), a	; dy (high-> page 0 or 1)
+      80.  00:49D3                      
+      81.  00:49D3  21 10 10            	ld 		hl,16*257 	; block size
+      82.  00:49D6                      
+      83.  00:49D6  ED 69               	out 	(c), l
+      84.  00:49D8  AF                  	xor a
+      85.  00:49D9  D3 9B               	out 	(0x9B), a
+      86.  00:49DB  ED 61               	out 	(c), h
+      87.  00:49DD  D3 9B               	out 	(0x9B), a
+      88.  00:49DF  D3 9B               	out 	(0x9B), a
+      89.  00:49E1  D3 9B               	out 	(0x9B), a
+      90.  00:49E3                      
+      91.  00:49E3  3E 98               	ld		a,10011000B
+      92.  00:49E5  D3 9B               	out 	(0x9B), a		; command LMMM
+      93.  00:49E7  C9                  	ret
+      94.  00:49E8                      
+      95.  00:49E8  00 10 00 20         state0		db	0*16,1*16,0*16,2*16
+      96.  00:49EC  30 40 30 50         state1		db	3*16,4*16,3*16,5*16
+      97.  00:49F0  60 70 60 70         state2		db	6*16,7*16,6*16,7*16
+      98.  00:49F4  60 70 60 70         state3		db	6*16,7*16,6*16,7*16
+     803   00:49F8                      	include probe_level.asm
+       1.  00:49F8                      
+       2.  00:49F8                      
+       3.  00:49F8                      probe_level:
+       4.  00:49F8                      	
+       5.  00:49F8  01 F0 FF            	ld	bc,-16		; FRAME!!!
+       6.  00:49FB  2A F1 C2            	ld	hl,(_xmappos)
+       7.  00:49FE  ED 5B CD C2         	ld	de,(_mcx)
+       8.  00:4A02  19                  	add	hl,de
+       9.  00:4A03  09                  	add	hl,bc		; remove frame
+      10.  00:4A04  22 D1 C2            	ld	(_mclx),hl
+      11.  00:4A07                      
+      12.  00:4A07  2A F0 C2            	ld	hl,(_ymappos)
+      13.  00:4A0A  26 00               	ld	h,0
+      14.  00:4A0C  ED 5B CF C2         	ld	de,(_mcy)
+      15.  00:4A10  19                  	add	hl,de
+      16.  00:4A11  09                  	add	hl,bc		; remove frame
+      17.  00:4A12  22 D3 C2            	ld	(_mcly),hl
+      18.  00:4A15                      	
+      19.  00:4A15  2A D3 C2            	ld	hl,(_mcly)	; ONLY IF mapWidth=256
+      20.  00:4A18  7D                  	ld	a,l
+      21.  00:4A19  E6 FC               	and	11111100B
+      22.  00:4A1B  6F                  	ld	l,a
+      23.  00:4A1C  29 29 29 29         [4]	add	hl,hl
+      24.  00:4A20                      	
+      25.  00:4A20  EB                  	ex	de,hl
+      26.  00:4A21                      
+      27.  00:4A21  2A D1 C2            	ld	hl,(_mclx)	; ONLY IF mapWidth=256
+      28.  00:4A24  29 29 29            [3]	add	hl,hl	
+      29.  00:4A27  6C                  	ld	l,h
+      30.  00:4A28  26 00               	ld	h,0
+      31.  00:4A2A                      	
+      32.  00:4A2A  19                  	add	hl,de
+      33.  00:4A2B                      	
+      34.  00:4A2B  11 F6 CE            	ld	de,_cur_level_bf
+      35.  00:4A2E  19                  	add	hl,de
+      36.  00:4A2F                      	
+      37.  00:4A2F  3A D1 C2            	ld	a,(_mclx)
+      38.  00:4A32  1F 1F               [2]	rra			; x/4
+      39.  00:4A34  E6 07               	and	7
+      40.  00:4A36  47                  	ld	b,a
+      41.  00:4A37  7E                  	ld	a,(hl)
+      42.  00:4A38  32 D7 C2            	ld	(_mcprobe),a
+      43.  00:4A3B  28 03               	jr	z,2f
+      44.  00:4A3D  1F                  1:	rra
+      45.  00:4A3E  10 FD               	djnz	1b
+      46.  00:4A40  E6 01               2:	and	1
+      47.  00:4A42                      
+      48.  00:4A42  32 D8 C2            	ld	(_mcprobeb),a
+      49.  00:4A45  C9                  	ret
+      50.  00:4A46                      	
+     804   00:4A46                      
+     805   00:4A46                      
+     806   00:4A46                      	page 2,3
+     807   02:8000                      _frame:
+     808   02:8000  (0951)              	incbin "_frame.bin"
+     809   02:8951                      _mc_sprites:	
+     810   02:8951  (09E7)              	incbin "_sprites.bin"			
+     811   02:9338                      	
+     812   02:9338  (04)                	page 4
+     813   04:8000                      _tiles0:
+     814   04:8000  (2000)              	incbin "_tiles0.bin",,0x2000
+     815   04:A000  (05)                	page 5
+     816   05:A000  (16C2)              	incbin "_tiles0.bin",0x2000
+     817   05:B6C2                      	
+     818   05:B6C2  (06)                	page 6
+     819   06:8000                      _tiles1:
+     820   06:8000  (2000)              	incbin "_tiles1.bin",,0x2000
+     821   06:A000  (07)                	page 7
+     822   07:A000  (1FB8)              	incbin "_tiles1.bin",0x2000
+     823   07:BFB8                      
+     824   07:BFB8                      	page 8,9
+     825   08:8000                      _level:
+     826   08:8000  (0AB5)              	incbin "_metamap.bin"
+     827   08:8AB5                      _level_bf:	
+     828   08:8AB5  (1000)              	incbin "BitField.bin"	
+     829   08:9AB5                      	
+     830   08:9AB5                      	page 10,11
+     831   0A:8000                      sprtdata
+     832   0A:8000                      	include 	SPROL.ASM
        1.  0A:8000                      .SPRITES
        2.  0A:8000                      ; --- Slot 0
        3.  0A:8000                      ; mask 00
@@ -2410,10 +2417,10 @@ Errors: 0
      163.  0A:8358  41 41 41 41 00 00 41 00 
      164.  0A:8360                      
      165.  0A:8360                      	
-     826   0A:8360                      	
-     827   0A:8360                      	page 14,15
-     828   0E:8000                      demo_song:
-     829   0E:8000                      	include	".\demosong.asm"
+     833   0A:8360                      	
+     834   0A:8360                      	page 14,15
+     835   0E:8000                      demo_song:
+     836   0E:8000                      	include	".\demosong.asm"
        1.  0E:8000                      ; Compiled using tt_compile.exe V0.1 [02-03-2015]
        2.  0E:8000                      ; Copyright 2015 Richard Cornelisse
        3.  0E:8000                      
@@ -6759,8 +6766,8 @@ Errors: 0
     4299.  0E:91B2  C1                  	db $C1		;[Wait] 2
     4300.  0E:91B3  BF                  	db $BF		;[End-Of-Track]
     4301.  0E:91B4                      ; [ Song sub-track data ]
-     830   0E:91B4                      	page 14,15
-     831   0E:91B4                      	include	"..\code\ttreplayDAT.asm"
+     837   0E:91B4                      	page 14,15
+     838   0E:91B4                      	include	"..\code\ttreplayDAT.asm"
        1.  0E:91B4                      _VOLUME_TABLE 
        2.  0E:91B4  (0100)              	incbin ".\voltable_combined.bin"	
        3.  0E:92B4                      
@@ -6823,8 +6830,8 @@ Errors: 0
       39.  0E:93C4                      	db      0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0	
       39.  0E:93C4  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
       40.  0E:93D4                      	
-     832   0E:93D4  (0F)                	page 15
-     833   0F:A000                      	include	"..\code\ttreplay.asm"
+     839   0E:93D4  (0F)                	page 15
+     840   0F:A000                      	include	"..\code\ttreplay.asm"
        1.  0F:A000                      ;=================================
        2.  0F:A000                      ; TriloTracker re-player v0.2
        3.  0F:A000                      ;
@@ -9356,19 +9363,19 @@ Errors: 0
     2527.  0F:AB94                      	
     2528.  0F:AB94                      
     2529.  0F:AB94                      
-     834   0F:AB94                      
-     835   0F:AB94                      
-     836   0F:AB94                      FINISH:
-     837   0F:AB94                      
-     838   0F:AB94                      
-     839   0F:AB94                      ;---------------------------------------------------------
-     840   0F:AB94                      ; Variables
-     841   0F:AB94                      ;---------------------------------------------------------
+     841   0F:AB94                      
      842   0F:AB94                      
-     843   0F:AB94                      
-     844   0F:AB94                      	
-     845   0F:AB94  (C000)              	MAP 0xC000
-     846   0F:AB94                      	include	"..\code\ttreplayRAM.asm"
+     843   0F:AB94                      FINISH:
+     844   0F:AB94                      
+     845   0F:AB94                      
+     846   0F:AB94                      ;---------------------------------------------------------
+     847   0F:AB94                      ; Variables
+     848   0F:AB94                      ;---------------------------------------------------------
+     849   0F:AB94                      
+     850   0F:AB94                      
+     851   0F:AB94                      	
+     852   0F:AB94  (C000)              	MAP 0xC000
+     853   0F:AB94                      	include	"..\code\ttreplayRAM.asm"
        1.  0F:AB94                      ;================================
        2.  0F:AB94                      ; The new replayer.
        3.  0F:AB94                      ;
@@ -9530,65 +9537,65 @@ Errors: 0
      159.  0F:AB94  (0F:C237)           oldregs:	#(32*4)+(3*5)+1		; a way to int the SCC
      160.  0F:AB94                      
      161.  0F:AB94                      
-     847   0F:AB94                      	
-     848   0F:AB94  (0F:C2C7)           slotvar				#1
-     849   0F:AB94  (0F:C2C8)           slotram				#1
-     850   0F:AB94  (0F:C2C9)           SEL_NTSC			#1
-     851   0F:AB94                      
-     852   0F:AB94  (0F:C2CA)           joystick			#1
-     853   0F:AB94                      
-     854   0F:AB94  (0F:C2CB)           _mcdx				#1
-     855   0F:AB94  (0F:C2CC)           _mcdy				#1
-     856   0F:AB94  (0F:C2CD)           _mcx				#2
-     857   0F:AB94  (0F:C2CF)           _mcy				#2
+     854   0F:AB94                      	
+     855   0F:AB94  (0F:C2C7)           slotvar				#1
+     856   0F:AB94  (0F:C2C8)           slotram				#1
+     857   0F:AB94  (0F:C2C9)           SEL_NTSC			#1
      858   0F:AB94                      
-     859   0F:AB94  (0F:C2D1)           _mclx				#2
-     860   0F:AB94  (0F:C2D3)           _mcly				#2
-     861   0F:AB94                      
-     862   0F:AB94  (0F:C2D5)           _mcframe			#1
-     863   0F:AB94  (0F:C2D6)           _mcstate			#1
-     864   0F:AB94                      
-     865   0F:AB94  (0F:C2D7)           _mcprobe:			#1
-     866   0F:AB94  (0F:C2D8)           _mcprobeb:			#1
-     867   0F:AB94                      
-     868   0F:AB94  (0F:C2D9)           _ticxframe			#1
-     869   0F:AB94                      
-     870   0F:AB94  (0F:C2DA)           _buffer:			#16
-     871   0F:AB94  (0F:C2EA)           _fps:				#2
-     872   0F:AB94  (0F:C2EC)           _nframes:			#2
-     873   0F:AB94  (0F:C2EE)           _vbit16:			#2
+     859   0F:AB94  (0F:C2CA)           joystick			#1
+     860   0F:AB94                      
+     861   0F:AB94  (0F:C2CB)           _mcdx				#1
+     862   0F:AB94  (0F:C2CC)           _mcdy				#1
+     863   0F:AB94  (0F:C2CD)           _mcx				#2
+     864   0F:AB94  (0F:C2CF)           _mcy				#2
+     865   0F:AB94                      
+     866   0F:AB94  (0F:C2D1)           _mclx				#2
+     867   0F:AB94  (0F:C2D3)           _mcly				#2
+     868   0F:AB94                      
+     869   0F:AB94  (0F:C2D5)           _mcframe			#1
+     870   0F:AB94  (0F:C2D6)           _mcstate			#1
+     871   0F:AB94                      
+     872   0F:AB94  (0F:C2D7)           _mcprobe:			#1
+     873   0F:AB94  (0F:C2D8)           _mcprobeb:			#1
      874   0F:AB94                      
-     875   0F:AB94  (0F:C2F0)           _ymappos:			#1
-     876   0F:AB94  (0F:C2F1)           _xmappos:			#2
-     877   0F:AB94                      
-     878   0F:AB94  (0F:C2F3)           _shadowbuff:		#2
-     879   0F:AB94  (0F:C2F5)           _currentpage:		#1
-     880   0F:AB94                      
-     881   0F:AB94  (0F:C2F6)           _shadow0:			#32*24*2
-     882   0F:AB94  (0F:C8F6)           _shadow1:			#32*24*2
-     883   0F:AB94                      
-     884   0F:AB94  (0F:CEF6)           _cur_level_bf:		#mapWidth*mapHeight/2
-     885   0F:AB94                      
-     886   0F:AB94  (0F:DEF6)           enemylist:			#enemy*nenemies
-     887   0F:AB94  (0000)              	ENDMAP
+     875   0F:AB94  (0F:C2D9)           _ticxframe			#1
+     876   0F:AB94                      
+     877   0F:AB94  (0F:C2DA)           _buffer:			#16
+     878   0F:AB94  (0F:C2EA)           _fps:				#2
+     879   0F:AB94  (0F:C2EC)           _nframes:			#2
+     880   0F:AB94  (0F:C2EE)           _vbit16:			#2
+     881   0F:AB94                      
+     882   0F:AB94  (0F:C2F0)           _ymappos:			#1
+     883   0F:AB94  (0F:C2F1)           _xmappos:			#2
+     884   0F:AB94                      
+     885   0F:AB94  (0F:C2F3)           _shadowbuff:		#2
+     886   0F:AB94  (0F:C2F5)           _currentpage:		#1
+     887   0F:AB94                      
+     888   0F:AB94  (0F:C2F6)           _shadow0:			#32*24*2
+     889   0F:AB94  (0F:C8F6)           _shadow1:			#32*24*2
+     890   0F:AB94                      
+     891   0F:AB94  (0F:CEF6)           _cur_level_bf:		#mapWidth*mapHeight/2
+     892   0F:AB94                      
+     893   0F:AB94  (0F:DEF6)           enemylist:			#enemy*nenemies
+     894   0F:AB94  (0000)              	ENDMAP
 
     LABELS
 -------------------------------------------------
-00:00005000 X _kBank1
-00:00007000 X _kBank2
+00:00005000   _kBank1
+00:00007000   _kBank2
 00:00009000   _kBank3
 00:0000B000   _kBank4
-00:0000065F X n_tiles
+00:000007B7 X n_tiles
 00:00000100   mapWidth
 00:00000020   mapHeight
 00:0000001C   WinWidth
 00:00000010   WinHeight
-00:000003C1 X Transp
+00:000004C7 X Transp
 00:00000000   SolidTile0
-00:00000018   SolidTile1
-00:000003E6   SolidTile2
-00:000004ED   SolidTile3
-00:000005CD X SolidTile4
+00:0000004B   SolidTile1
+00:000004F1   SolidTile2
+00:00000645   SolidTile3
+00:00000725 X SolidTile4
 00:00000000   SolidColor0
 00:00000001   SolidColor1
 00:00000004   SolidColor2
@@ -9621,70 +9628,70 @@ Errors: 0
 00:0000419B   checkkbd
 00:000041A6   plot_frame
 00:00004223   START
-00:0000423B   _ntsc
-00:00004393   main_loop
-00:000043FE   up
-00:00004411   dwn
-00:00004422   right
-00:0000443A   left
+00:00004243   _ntsc
+00:0000439B   main_loop
+00:00004406   up
+00:00004419   dwn
+00:0000442A   right
+00:00004442   left
 00:0000FC9E   JIFFY
-00:00004453   _isr
-00:000044A2   powerup
+00:0000445B   _isr
+00:000044AA   powerup
 00:000000D5 X GTSTCK
 00:000000D8 X GTTRIG
-00:000044AB   _cursors
-00:000044AB X _cursors.rd_joy
-00:000044B9 X _cursors.rd_key
+00:000044B3   _cursors
+00:000044B3 X _cursors.rd_joy
+00:000044C1 X _cursors.rd_key
 00:00000099   vdpport1
 00:0000009A   vdpport2
-00:00004503   levelcolors
-00:00004523   _SetPalet
-00:00004535   _vuitpakker
-00:0000456D   _literal
-00:00004572   __loop
-00:0000457B X _getlen
-00:00004581   lus
-00:0000459E   lenok
-00:000045AB   _mode7
-00:000045B1   _mode6
-00:000045B7   _mode5
-00:000045BD   _mode4
-00:000045C3   _mode3
-00:000045C9   _mode2
-00:000045D9   offsok
-00:000045E4   _loop
-00:000045FA   _getbit
-00:000045FE   _getbitexx
-00:00004604   Depack_out
-00:00004606   setVwrite
-00:00004612   setVread
-00:00004620   __modes
-00:0000462E   plot_tile
-00:00004641   plot_foreground
+00:0000450B   levelcolors
+00:0000452B   _SetPalet
+00:0000453D   _vuitpakker
+00:00004575   _literal
+00:0000457A   __loop
+00:00004583 X _getlen
+00:00004589   lus
+00:000045A6   lenok
+00:000045B3   _mode7
+00:000045B9   _mode6
+00:000045BF   _mode5
+00:000045C5   _mode4
+00:000045CB   _mode3
+00:000045D1   _mode2
+00:000045E1   offsok
+00:000045EC   _loop
+00:00004602   _getbit
+00:00004606   _getbitexx
+00:0000460C   Depack_out
+00:0000460E   setVwrite
+00:0000461A   setVread
+00:00004628   __modes
+00:00004636   plot_tile
+00:00004649   plot_foreground
 00:00000005 S counter
-00:0000467D   plot_trasp_tile
-00:00004695   vdp_conf
-00:000046E2   plot_solid_box
-00:0000471C   _clean_buffs
-00:0000472A   _vdpsetvramwr
-00:00004744   _vdpsetvramrd
-00:0000475E   _setpage
+00:00004685   plot_trasp_tile
+00:0000469D   vdp_conf
+00:000046EA   plot_solid_box
+00:00004724   _clean_buffs
+00:00004732   _vdpsetvramwr
+00:0000474C   _vdpsetvramrd
+00:00004766   _setpage
 00:0000005F   chgmod
 00:0000000C X RDSLT
 00:00000156 X KILBUF
-00:0000476F   _scr
-00:00004774   _waitvdp
-00:0000478C   _print_probe
-00:000047DC   _print_fps
-00:000047FE   _compute_fps
-00:00004805   int2ascii
-00:00004808 X Num2asc
-00:00004821   Num1
-00:00004823   Num2
-00:0000482C   _metatable
-00:00005AE4   _backmap
-00:00000008   nenemies
-00:00000080   sprite_size
+00:00004777   _scr
+00:0000477C   _waitvdp
+00:00004794   _print_probe
+00:000047E4   _print_fps
+00:00004806   _compute_fps
+00:0000480D   int2ascii
+00:00004810 X Num2asc
+00:00004829   Num1
+00:0000482B   Num2
+01:00006000   _metatable
+01:000074E0   _backmap
+01:00000008   nenemies
+01:00000080   sprite_size
 00:00000000 X enemy.type
 00:00000001 X enemy.state
 00:00000002   enemy.frame
@@ -9698,26 +9705,26 @@ Errors: 0
 00:0000000F   enemy.buf
 00:0000008F   enemy
 0C:00008000   frames
-01:00006000 X int_sprites
-01:0000602A X move_sprites
-01:00006043 X save_background
-01:00006066 X plot_sprite
-01:00006081 X restore_background
-01:00006088   plot_sprtite_frame
-01:000060A3   _hw_sprite_init
-01:00006106   hwsprt_test
-01:00006120   enemies_LMMM
-01:000061B4   state0
-01:000061B8 X state1
-01:000061BC X state2
-01:000061C0 X state3
-01:000061C4   probe_level
+00:00004834 X int_sprites
+00:0000485E X move_sprites
+00:00004877 X save_background
+00:0000489A X plot_sprite
+00:000048B5 X restore_background
+00:000048BC   plot_sprtite_frame
+00:000048D7   _hw_sprite_init
+00:0000493A   hwsprt_test
+00:00004954   enemies_LMMM
+00:000049E8   state0
+00:000049EC X state1
+00:000049F0 X state2
+00:000049F4 X state3
+00:000049F8   probe_level
 02:00008000   _frame
 02:00008951   _mc_sprites
 04:00008000   _tiles0
 06:00008000   _tiles1
 08:00008000   _level
-08:00008A2C   _level_bf
+08:00008AB5   _level_bf
 0A:00008000 X sprtdata
 0A:00008000   sprtdata.SPRITES
 0A:00008240   sprtdata.ATRIBUTOS
@@ -10129,18 +10136,19 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00004000  Size: 00002000  Used: 00001EE4
+  Org: 00004000  Size: 00002000  Used: 00000A46
 
    Address   Length Align   Label
-   00004000    7908         search_slot
-   00005EE4     284       <empty>
+   00004000    2100         search_slot
+   00004834     530         int_sprites
+   00004A46    5562       <empty>
 
  Page: 01
-  Org: 00006000  Size: 00002000  Used: 00000212
+  Org: 00006000  Size: 00002000  Used: 000018E0
 
    Address   Length Align   Label
-   00006000     530         int_sprites
-   00006212    7662       <empty>
+   00006000    6368         _metatable
+   000078E0    1824       <empty>
 
  Page: 02
   Org: 00008000  Size: 00002000  Used: 00001338
@@ -10161,11 +10169,11 @@ Errors: 0
    00008000    8192         _tiles0
 
  Page: 05
-  Org: 0000A000  Size: 00002000  Used: 00001365
+  Org: 0000A000  Size: 00002000  Used: 000016C2
 
    Address   Length Align   Label
-   0000A000    4965         
-   0000B365    3227       <empty>
+   0000A000    5826         
+   0000B6C2    2366       <empty>
 
  Page: 06
   Org: 00008000  Size: 00002000  Used: 00002000
@@ -10174,18 +10182,18 @@ Errors: 0
    00008000    8192         _tiles1
 
  Page: 07
-  Org: 0000A000  Size: 00002000  Used: 00000A4F
+  Org: 0000A000  Size: 00002000  Used: 00001FB8
 
    Address   Length Align   Label
-   0000A000    2639         
-   0000AA4F    5553       <empty>
+   0000A000    8120         
+   0000BFB8      72       <empty>
 
  Page: 08
-  Org: 00008000  Size: 00002000  Used: 00001A2C
+  Org: 00008000  Size: 00002000  Used: 00001AB5
 
    Address   Length Align   Label
-   00008000    6700         _level
-   00009A2C    1492       <empty>
+   00008000    6837         _level
+   00009AB5    1355       <empty>
 
  Page: 09
   Org: 0000A000  Size: 00002000  Used: 00000000

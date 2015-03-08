@@ -110,6 +110,12 @@ START:
 		call 	_set_r800
         call    powerup
 
+		xor	a
+		ld	(_kBank1),a
+		inc	a
+		ld	(_kBank2),a
+
+
 		ld e,6
 		call	checkkbd
 		ld	a,1
@@ -152,7 +158,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
 		// enable sprites + TP
 		ld		a,(0xFFE7)
-		or		32
+		or		32+2
 		ld		(0xFFE7),a
 		out		(0x99),a
 		ld		a,128+8
@@ -783,6 +789,7 @@ Num2:
 	inc de
 	ret
 
+	page 1
 _metatable:
 	incbin "metatable.bin"
 _backmap:
