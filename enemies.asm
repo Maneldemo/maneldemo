@@ -16,14 +16,14 @@ ny		db
 buf		ds	sprite_size
 	endstruct
 	
-	page 6
+	page 12,13
 frames:
 		dw 01Ah,0EBh,0AAh
 		dw 01Ah,0EBh,0AAh
 
-[127]	ds	sprite_size
+[63]	ds	sprite_size
 
-	page 0
+	page 0,1
 int_sprites
 	ld	ix,enemylist
 	ld	(ix+enemy.x),0
@@ -108,7 +108,7 @@ plot_sprite:
 [6]	add	hl,hl			; sprite_size = 64*2
 
 	ld	a,:frames
-	ld	(_bank2),a
+	setpage_a
 	ld	bc,frames
 	add	hl,bc			; hl aims to the current frame to be plotted
 

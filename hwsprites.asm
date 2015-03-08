@@ -25,7 +25,7 @@ _hw_sprite_init:
 		
 		; unpack level map (meta_tiles)
 		ld	a, :sprtdata.SPRITES
-		ld	(_bank2),a
+		setpage_a
 		
 		ld		hl,	sprtdata.SPRITES
 		ld		c,0

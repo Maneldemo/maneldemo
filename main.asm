@@ -3,15 +3,40 @@
 
         output "maneldem.rom"
 
-		defpage	0,0x4000, 0x4000		; page 0 main code + far call routines
-		defpage	1,0x8000, 0x4000		; swapped data 
-		defpage	2..15
-	
-	;	ascii 16
-	
-_bank1	equ	0x6000 
-_bank2	equ	0x7000
+		defpage	0,0x4000, 0x2000		; page 0 main code + far call routines
+		defpage	1,0x6000, 0x2000		; page 1 main code + far call routines
+		defpage	2,0x8000, 0x2000		; swapped data 
+		defpage	3,0xA000, 0x2000		; swapped data 
+		defpage	4,0x8000, 0x2000		; swapped data 
+		defpage	5,0xA000, 0x2000		; swapped data 
+		defpage	6,0x8000, 0x2000		; swapped data 
+		defpage	7,0xA000, 0x2000		; swapped data 
+		defpage	8,0x8000, 0x2000		; swapped data 
+		defpage	9,0xA000, 0x2000		; swapped data 
+		defpage	10,0x8000, 0x2000		; swapped data 
+		defpage	11,0xA000, 0x2000		; swapped data 
+		defpage	12,0x8000, 0x2000		; swapped data 
+		defpage	13,0xA000, 0x2000		; swapped data 
+		defpage	14,0x8000, 0x2000		; swapped data 
+		defpage	15,0xA000, 0x2000		; swapped data 
+
+		;	konami scc
 		
+_kBank1:	equ 05000h ;- 57FFh (5000h used)
+_kBank2: 	equ 07000h ;- 77FFh (7000h used)
+_kBank3: 	equ 09000h ;- 97FFh (9000h used)
+_kBank4: 	equ 0B000h ;- B7FFh (B000h used)
+	
+;	ascii 16
+; _bank1	equ	0x6000 
+; _bank2	equ	0x7000
+		
+	macro setpage_a
+		ld	(_kBank3),a
+		inc	a
+		ld	(_kBank4),a
+	endmacro
+  
 		page 0
 		
         org 4000h
@@ -164,7 +189,8 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 	
 	;--- initialise demo song
 		ld	a, :demo_song
-		ld	(_bank2),a
+		setpage_a
+		
 		ld	hl,demo_song
 		call	replay_init
 
@@ -176,7 +202,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
 		; unpack level map (bit field for collisions)
 		ld	a, :_level_bf
-		ld	(_bank2),a
+		setpage_a
 		
 		ld	bc,mapWidth*mapHeight/2
 		ld	hl,	_level_bf
@@ -185,7 +211,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 
 		; unpack level map (meta_tiles)
 		ld	a, :_level
-		ld	(_bank2),a
+		setpage_a
 		
 		xor	a
 		ld		(_vbit16 ),a
@@ -211,7 +237,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 				
 		; unpack frame
 		ld		a, :_frame
-		ld		(_bank2),a
+		setpage_a
 		
 		xor	a
 		ld		(_vbit16 ),a
@@ -228,7 +254,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
 		; unpack mc frames
 		ld		a, :_mc_sprites
-		ld		(_bank2),a
+		setpage_a
 		
 		xor	a
 		ld		(_vbit16 ),a
@@ -241,7 +267,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 
 		; unpack tileset
 		ld		a, :_tiles0
-		ld		(_bank2),a
+		setpage_a
 		
 		ld		a,1
 		ld		(_vbit16 ),a
@@ -253,7 +279,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
         call	_setpage
 		
 		ld		a, :_tiles1
-		ld		(_bank2),a
+		setpage_a
 		
 		ld		a,1
 		ld		(_vbit16 ),a
@@ -409,8 +435,10 @@ _isr:	push	hl
 
 		call	setrompage2
 		ld	a, :demo_song
-		ld	(_bank2),a
+		setpage_a
 		call	replay_route		; first outout data
+		ld	a, :demo_song
+		setpage_a
 		call	replay_play			; calculate next output		
 		call	setrampage2
 		ei
@@ -768,35 +796,42 @@ _backmap:
 	include probe_level.asm
 
 
-	page 1
+	page 2,3
 _frame:
 	incbin "_frame.bin"
 _mc_sprites:	
 	incbin "_sprites.bin"			
 	
-	page 2
-_tiles0:
-	incbin "_tiles0.bin"
-	
-	page 3
-_tiles1:
-	incbin "_tiles1.bin"
-
 	page 4
+_tiles0:
+	incbin "_tiles0.bin",,0x2000
+	page 5
+	incbin "_tiles0.bin",0x2000
+	
+	page 6
+_tiles1:
+	incbin "_tiles1.bin",,0x2000
+	page 7
+	incbin "_tiles1.bin",0x2000
+
+	page 8,9
 _level:
 	incbin "_metamap.bin"
 _level_bf:	
 	incbin "BitField.bin"	
 	
-	page 5
+	page 10,11
 sprtdata
 	include 	SPROL.ASM
 	
-	page 7
-	include	"..\code\ttreplay.asm"
-	include	"..\code\ttreplayDAT.asm"
+	page 14,15
 demo_song:
-	include	".\JUDAGEAR.asm"
+	include	".\demosong.asm"
+	page 14,15
+	include	"..\code\ttreplayDAT.asm"
+	page 15
+	include	"..\code\ttreplay.asm"
+
 
 FINISH:
 
