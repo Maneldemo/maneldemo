@@ -40,6 +40,7 @@ Background = imapprox(Background,BackgroundMAP,pale);
 Frame = imapprox(Frame,FrameMAP,pale);   
 
 B = A2(1:256,:);
+C = A2(257:end,:);
 Y = Background;          % background
 F = Frame;               % frame
 
@@ -55,9 +56,15 @@ InpTiles1 = im2col(B(5:end,:),'indexed',[8 8],'distinct');      %InpTiles1 = im2
 InpTiles2 = im2col(B(:,5:end),'indexed',[8 8],'distinct');
 InpTiles3 = im2col(B(5:end,5:end),'indexed',[8 8],'distinct');  %InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
 
+sInpTiles0 = im2col(C,'indexed',[8 8],'distinct');
+sInpTiles1 = im2col(C(5:end,:),'indexed',[8 8],'distinct');      %InpTiles1 = im2col(B(:,3:end),'indexed',[8 8],'distinct');
+sInpTiles2 = im2col(C(:,5:end),'indexed',[8 8],'distinct');
+sInpTiles3 = im2col(C(5:end,5:end),'indexed',[8 8],'distinct');  %InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
+
 InpTilesBK = im2col(Y,'indexed',[8 8],'distinct');
 
 UniqueTiles = unique([InpTiles0 InpTiles1 InpTiles2 InpTiles3 InpTilesBK]','rows');
+UniqueTiles = unique([sInpTiles0 sInpTiles1 sInpTiles2 sInpTiles3 UniqueTiles']','rows');
 %UniqueTiles = unique([InpTiles0 InpTiles2 InpTilesBK]','rows');
 
 fun = @(block_struct) norm(double(block_struct.data));

@@ -436,14 +436,13 @@ left:
 ;-------------------------------------
 JIFFY: equ 0xFC9E 
 ;-------------------------------------
-_isr:	push	hl
-		push	bc
-
-		call	setrompage2
-		ld	a, :demo_song
+_isr:	call	setrompage2
+		
+		ld	a, 14
 		setpage_a
 		call	replay_route		; first outout data
-		ld	a, :demo_song
+		
+		ld	a, 14
 		setpage_a
 		call	replay_play			; calculate next output		
 		call	setrampage2
@@ -467,18 +466,14 @@ _isr:	push	hl
 		; ld		a,4
 		; ld		(hl),a
 		
-		pop		bc
-		pop		hl
 		ret	nc
 		
-		push	hl
 		ld		hl,0
 		ld		(JIFFY),hl
 		ld		hl,(_nframes)
 		ld		(_fps),hl
 		ld		hl,0
 		ld		(_nframes),hl
-		pop		hl
 		ret
 ;-------------------------------------
 ;   Power-up routine for 32K ROM
@@ -788,14 +783,18 @@ Num2:
 	ld  (de),a
 	inc de
 	ret
-
-	page 1
+	
+	
+	include enemies.asm
+	
 _metatable:
 	incbin "metatable.bin"
+	
+	page 1
 _backmap:
 	incbin "backmap.bin"
 
-	include enemies.asm
+
 
 	include hwsprites.asm
 	
@@ -831,15 +830,14 @@ _level_bf:
 sprtdata
 	include 	SPROL.ASM
 	
-	page 14,15
+	page 14
 demo_song:
 	include	".\demosong.asm"
-	page 14,15
-	include	"..\code\ttreplayDAT.asm"
 	page 15
+	include	"..\code\ttreplayDAT.asm"
+	page 0,1
 	include	"..\code\ttreplay.asm"
-
-
+	
 FINISH:
 
 
