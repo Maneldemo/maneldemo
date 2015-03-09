@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.08 - 22:58:08]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.09 - 08:39:16]
 
 main.asm
 Errors: 0
@@ -50,17 +50,17 @@ Errors: 0
       44   00:4010                      
       45   00:4010                      
       46   00:4010                      		include "header.asm"
-       1.  00:4010  (00:07B7)           n_tiles: equ 1975
+       1.  00:4010  (00:0774)           n_tiles: equ 1908
        2.  00:4010  (00:0100)           mapWidth:	equ	256
        3.  00:4010  (00:0020)           mapHeight:	equ	 32
        4.  00:4010  (00:001C)           WinWidth:	equ	 28
        5.  00:4010  (00:0010)           WinHeight:	equ	 16
-       6.  00:4010  (00:04C7)           Transp:	equ	1223
+       6.  00:4010  (00:03D9)           Transp:	equ	985
        7.  00:4010  (00:0000)           SolidTile0	equ	  0
-       8.  00:4010  (00:004B)           SolidTile1	equ	 75
-       9.  00:4010  (00:04F1)           SolidTile2	equ	1265
-      10.  00:4010  (00:0645)           SolidTile3	equ	1605
-      11.  00:4010  (00:0725)           SolidTile4	equ	1829
+       8.  00:4010  (00:0027)           SolidTile1	equ	 39
+       9.  00:4010  (00:03F6)           SolidTile2	equ	1014
+      10.  00:4010  (00:05D3)           SolidTile3	equ	1491
+      11.  00:4010  (00:06D7)           SolidTile4	equ	1751
       12.  00:4010  (00:0000)           SolidColor0	equ	  0
       13.  00:4010  (00:0001)           SolidColor1	equ	  1
       14.  00:4010  (00:0004)           SolidColor2	equ	  4
@@ -719,7 +719,7 @@ Errors: 0
      211   00:42C2  32 00 B0          >   ld (_kBank4),a
      212   00:42C5                      		
      213   00:42C5  01 00 10            		ld	bc,mapWidth*mapHeight/2
-     214   00:42C8  21 B5 8A            		ld	hl,	_level_bf
+     214   00:42C8  21 8F 8A            		ld	hl,	_level_bf
      215   00:42CB  11 F6 CE            		ld	de,	_cur_level_bf
      216   00:42CE  ED B0               		ldir
      217   00:42D0                      
@@ -1349,7 +1349,7 @@ Errors: 0
       20.  00:4640                      ; plot_background:
       21.  00:4640                      
       22.  00:4640  E5                  	push	hl
-      23.  00:4641  11 5E 74            	ld		de,_backmap-32*4-2
+      23.  00:4641  11 4E 74            	ld		de,_backmap-32*4-2
       24.  00:4644  19                  	add		hl,de
       25.  00:4645  5E                  	ld		e,(hl)
       26.  00:4646  23                  	inc		hl
@@ -1371,9 +1371,9 @@ Errors: 0
       42.  00:4649                    < 1:	
       43.  00:4649                    < counter:=counter+1
       44.  00:4649                    < 	endwhile	
-      44.  00:4649  3E 00 BB 20 08 3E 00 BA 3E 00 CA EA 46 3E 4B BB 
-      44.  00:4659  20 08 3E 00 BA 3E 11 CA EA 46 3E F1 BB 20 08 3E 
-      44.  00:4669  04 BA 3E 44 CA EA 46 3E 45 BB 20 08 3E 06 BA 3E 
+      44.  00:4649  3E 00 BB 20 08 3E 00 BA 3E 00 CA EA 46 3E 27 BB 
+      44.  00:4659  20 08 3E 00 BA 3E 11 CA EA 46 3E F6 BB 20 08 3E 
+      44.  00:4669  03 BA 3E 44 CA EA 46 3E D3 BB 20 08 3E 05 BA 3E 
       44.  00:4679  77 CA EA 46 
       45.  00:467D                      
       46.  00:467D  CD 9D 46            	call 	vdp_conf
@@ -1395,7 +1395,7 @@ Errors: 0
       62.  00:4685  D5                  	push	de
       63.  00:4686  E5                  	push	hl
       64.  00:4687                      					;	plot_background
-      65.  00:4687  11 5E 74            	ld		de,_backmap-32*4-2
+      65.  00:4687  11 4E 74            	ld		de,_backmap-32*4-2
       66.  00:468A  19                  	add		hl,de
       67.  00:468B  5E                  	ld		e,(hl)
       68.  00:468C  23                  	inc		hl
@@ -1736,30 +1736,30 @@ Errors: 0
      791   00:4834                      
      792   00:4834  (01)                	page 1
      793   01:6000                      _metatable:
-     794   01:6000  (14E0)              	incbin "metatable.bin"
-     795   01:74E0                      _backmap:
-     796   01:74E0  (0400)              	incbin "backmap.bin"
-     797   01:78E0                      
-     798   01:78E0                      	include enemies.asm
-       1.  01:78E0                      
-       2.  01:78E0  (01:0008)           nenemies 	equ	8
-       3.  01:78E0  (01:0080)           sprite_size	equ	8*8*2
-       4.  01:78E0                      
-       5.  01:78E0                      		struct enemy
-       6.  01:78E0                    < type 	db
-       7.  01:78E0                    < state 	db
-       8.  01:78E0                    < frame 	db
-       9.  01:78E0                    < x		dw	
-      10.  01:78E0                    < y		dw
-      11.  01:78E0                    < mappos	dw
-      12.  01:78E0                    < dx		dw
-      13.  01:78E0                    < dy		dw
-      14.  01:78E0                    < nx		db
-      15.  01:78E0                    < ny		db
-      16.  01:78E0                    < buf		ds	sprite_size
-      17.  01:78E0                    < 	endstruct
-      18.  01:78E0                      	
-      19.  01:78E0                      	page 12,13
+     794   01:6000  (14D0)              	incbin "metatable.bin"
+     795   01:74D0                      _backmap:
+     796   01:74D0  (0400)              	incbin "backmap.bin"
+     797   01:78D0                      
+     798   01:78D0                      	include enemies.asm
+       1.  01:78D0                      
+       2.  01:78D0  (01:0008)           nenemies 	equ	8
+       3.  01:78D0  (01:0080)           sprite_size	equ	8*8*2
+       4.  01:78D0                      
+       5.  01:78D0                      		struct enemy
+       6.  01:78D0                    < type 	db
+       7.  01:78D0                    < state 	db
+       8.  01:78D0                    < frame 	db
+       9.  01:78D0                    < x		dw	
+      10.  01:78D0                    < y		dw
+      11.  01:78D0                    < mappos	dw
+      12.  01:78D0                    < dx		dw
+      13.  01:78D0                    < dy		dw
+      14.  01:78D0                    < nx		db
+      15.  01:78D0                    < ny		db
+      16.  01:78D0                    < buf		ds	sprite_size
+      17.  01:78D0                    < 	endstruct
+      18.  01:78D0                      	
+      19.  01:78D0                      	page 12,13
       20.  0C:8000                      frames:
       21.  0C:8000  1A 00 EB 00 AA 00   		dw 01Ah,0EBh,0AAh
       22.  0C:8006  1A 00 EB 00 AA 00   		dw 01Ah,0EBh,0AAh
@@ -2127,21 +2127,21 @@ Errors: 0
      813   04:8000                      _tiles0:
      814   04:8000  (2000)              	incbin "_tiles0.bin",,0x2000
      815   04:A000  (05)                	page 5
-     816   05:A000  (16C2)              	incbin "_tiles0.bin",0x2000
-     817   05:B6C2                      	
-     818   05:B6C2  (06)                	page 6
+     816   05:A000  (1290)              	incbin "_tiles0.bin",0x2000
+     817   05:B290                      	
+     818   05:B290  (06)                	page 6
      819   06:8000                      _tiles1:
      820   06:8000  (2000)              	incbin "_tiles1.bin",,0x2000
      821   06:A000  (07)                	page 7
-     822   07:A000  (1FB8)              	incbin "_tiles1.bin",0x2000
-     823   07:BFB8                      
-     824   07:BFB8                      	page 8,9
+     822   07:A000  (1F86)              	incbin "_tiles1.bin",0x2000
+     823   07:BF86                      
+     824   07:BF86                      	page 8,9
      825   08:8000                      _level:
-     826   08:8000  (0AB5)              	incbin "_metamap.bin"
-     827   08:8AB5                      _level_bf:	
-     828   08:8AB5  (1000)              	incbin "BitField.bin"	
-     829   08:9AB5                      	
-     830   08:9AB5                      	page 10,11
+     826   08:8000  (0A8F)              	incbin "_metamap.bin"
+     827   08:8A8F                      _level_bf:	
+     828   08:8A8F  (1000)              	incbin "BitField.bin"	
+     829   08:9A8F                      	
+     830   08:9A8F                      	page 10,11
      831   0A:8000                      sprtdata
      832   0A:8000                      	include 	SPROL.ASM
        1.  0A:8000                      .SPRITES
@@ -9585,17 +9585,17 @@ Errors: 0
 00:00007000   _kBank2
 00:00009000   _kBank3
 00:0000B000   _kBank4
-00:000007B7 X n_tiles
+00:00000774 X n_tiles
 00:00000100   mapWidth
 00:00000020   mapHeight
 00:0000001C   WinWidth
 00:00000010   WinHeight
-00:000004C7 X Transp
+00:000003D9 X Transp
 00:00000000   SolidTile0
-00:0000004B   SolidTile1
-00:000004F1   SolidTile2
-00:00000645   SolidTile3
-00:00000725 X SolidTile4
+00:00000027   SolidTile1
+00:000003F6   SolidTile2
+00:000005D3   SolidTile3
+00:000006D7 X SolidTile4
 00:00000000   SolidColor0
 00:00000001   SolidColor1
 00:00000004   SolidColor2
@@ -9689,7 +9689,7 @@ Errors: 0
 00:00004829   Num1
 00:0000482B   Num2
 01:00006000   _metatable
-01:000074E0   _backmap
+01:000074D0   _backmap
 01:00000008   nenemies
 01:00000080   sprite_size
 00:00000000 X enemy.type
@@ -9724,7 +9724,7 @@ Errors: 0
 04:00008000   _tiles0
 06:00008000   _tiles1
 08:00008000   _level
-08:00008AB5   _level_bf
+08:00008A8F   _level_bf
 0A:00008000 X sprtdata
 0A:00008000   sprtdata.SPRITES
 0A:00008240   sprtdata.ATRIBUTOS
@@ -10144,11 +10144,11 @@ Errors: 0
    00004A46    5562       <empty>
 
  Page: 01
-  Org: 00006000  Size: 00002000  Used: 000018E0
+  Org: 00006000  Size: 00002000  Used: 000018D0
 
    Address   Length Align   Label
-   00006000    6368         _metatable
-   000078E0    1824       <empty>
+   00006000    6352         _metatable
+   000078D0    1840       <empty>
 
  Page: 02
   Org: 00008000  Size: 00002000  Used: 00001338
@@ -10169,11 +10169,11 @@ Errors: 0
    00008000    8192         _tiles0
 
  Page: 05
-  Org: 0000A000  Size: 00002000  Used: 000016C2
+  Org: 0000A000  Size: 00002000  Used: 00001290
 
    Address   Length Align   Label
-   0000A000    5826         
-   0000B6C2    2366       <empty>
+   0000A000    4752         
+   0000B290    3440       <empty>
 
  Page: 06
   Org: 00008000  Size: 00002000  Used: 00002000
@@ -10182,18 +10182,18 @@ Errors: 0
    00008000    8192         _tiles1
 
  Page: 07
-  Org: 0000A000  Size: 00002000  Used: 00001FB8
+  Org: 0000A000  Size: 00002000  Used: 00001F86
 
    Address   Length Align   Label
-   0000A000    8120         
-   0000BFB8      72       <empty>
+   0000A000    8070         
+   0000BF86     122       <empty>
 
  Page: 08
-  Org: 00008000  Size: 00002000  Used: 00001AB5
+  Org: 00008000  Size: 00002000  Used: 00001A8F
 
    Address   Length Align   Label
-   00008000    6837         _level
-   00009AB5    1355       <empty>
+   00008000    6799         _level
+   00009A8F    1393       <empty>
 
  Page: 09
   Org: 0000A000  Size: 00002000  Used: 00000000
