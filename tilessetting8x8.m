@@ -65,11 +65,9 @@ InpTilesBK = im2col(Y,'indexed',[8 8],'distinct');
 
 UniqueTiles = unique([InpTiles0 InpTiles1 InpTiles2 InpTiles3 InpTilesBK]','rows');
 UniqueTiles = unique([sInpTiles0 sInpTiles1 sInpTiles2 sInpTiles3 UniqueTiles']','rows');
-%UniqueTiles = unique([InpTiles0 InpTiles2 InpTilesBK]','rows');
 
 fun = @(block_struct) norm(double(block_struct.data));
 C = blockproc(double(UniqueTiles),[1 64],fun);
-
 
 [~,i] = sort(C,1); 
 UniqueTiles = UniqueTiles(i,:);
@@ -112,20 +110,34 @@ BackTiles = im2col(Y,'indexed',[8 8],'distinct');
 [~,InpMap2] = ismember(InpTiles2',UniqueTiles,'rows');
 [~,InpMap3] = ismember(InpTiles3',UniqueTiles,'rows');
 
+[~,sInpMap0] = ismember(sInpTiles0',UniqueTiles,'rows');
+[~,sInpMap1] = ismember(sInpTiles1',UniqueTiles,'rows');
+[~,sInpMap2] = ismember(sInpTiles2',UniqueTiles,'rows');
+[~,sInpMap3] = ismember(sInpTiles3',UniqueTiles,'rows');
+
 InpMap = InpMap0;
 
 FullMetaMap = [InpMap0 InpMap1 InpMap2 InpMap3]; 
+sFullMetaMap = [sInpMap0 sInpMap1 sInpMap2 sInpMap3]; 
 
-UniqueMetaTiles = unique(FullMetaMap,'rows');
+UniqueMetaTiles = unique([FullMetaMap; sFullMetaMap],'rows');
+
+size(UniqueMetaTiles)
 
 [~,MetaMap] = ismember(FullMetaMap,UniqueMetaTiles ,'rows');
-
 MM = reshape(MetaMap,H/8,W/8);
-
 figure;
 image(MM)
 colormap(flag)
 axis equal;
+
+[~,sMetaMap] = ismember(sFullMetaMap,UniqueMetaTiles ,'rows');
+SS = reshape(sMetaMap,H/8/2,W/8);
+figure;
+image(SS)
+colormap(flag)
+axis equal;
+
 
 fid = fopen('metamap.bin','wb');
 for i=1:(H/8)

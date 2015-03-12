@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.10 - 00:44:30]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.12 - 23:54:48]
 
 main.asm
 Errors: 0
@@ -50,17 +50,17 @@ Errors: 0
       44   00:4010                      
       45   00:4010                      
       46   00:4010                      		include "header.asm"
-       1.  00:4010  (00:0774)           n_tiles: equ 1908
+       1.  00:4010  (00:0771)           n_tiles: equ 1905
        2.  00:4010  (00:0100)           mapWidth:	equ	256
        3.  00:4010  (00:0020)           mapHeight:	equ	 32
        4.  00:4010  (00:001C)           WinWidth:	equ	 28
        5.  00:4010  (00:0010)           WinHeight:	equ	 16
-       6.  00:4010  (00:03D9)           Transp:	equ	985
+       6.  00:4010  (00:03D7)           Transp:	equ	983
        7.  00:4010  (00:0000)           SolidTile0	equ	  0
        8.  00:4010  (00:0027)           SolidTile1	equ	 39
-       9.  00:4010  (00:03F6)           SolidTile2	equ	1014
-      10.  00:4010  (00:05D3)           SolidTile3	equ	1491
-      11.  00:4010  (00:06D7)           SolidTile4	equ	1751
+       9.  00:4010  (00:03F3)           SolidTile2	equ	1011
+      10.  00:4010  (00:05D0)           SolidTile3	equ	1488
+      11.  00:4010  (00:06D4)           SolidTile4	equ	1748
       12.  00:4010  (00:0000)           SolidColor0	equ	  0
       13.  00:4010  (00:0001)           SolidColor1	equ	  1
       14.  00:4010  (00:0004)           SolidColor2	equ	  4
@@ -719,7 +719,7 @@ Errors: 0
      211   00:42C2  32 00 B0          >   ld (_kBank4),a
      212   00:42C5                      		
      213   00:42C5  01 00 10            		ld	bc,mapWidth*mapHeight/2
-     214   00:42C8  21 30 89            		ld	hl,	_level_bf
+     214   00:42C8  21 2A 89            		ld	hl,	_level_bf
      215   00:42CB  11 F6 CE            		ld	de,	_cur_level_bf
      216   00:42CE  ED B0               		ldir
      217   00:42D0                      
@@ -1367,8 +1367,8 @@ Errors: 0
       43.  00:4643                    < counter:=counter+1
       44.  00:4643                    < 	endwhile	
       44.  00:4643  3E 00 BB 20 08 3E 00 BA 3E 00 CA E4 46 3E 27 BB 
-      44.  00:4653  20 08 3E 00 BA 3E 11 CA E4 46 3E F6 BB 20 08 3E 
-      44.  00:4663  03 BA 3E 44 CA E4 46 3E D3 BB 20 08 3E 05 BA 3E 
+      44.  00:4653  20 08 3E 00 BA 3E 11 CA E4 46 3E F3 BB 20 08 3E 
+      44.  00:4663  03 BA 3E 44 CA E4 46 3E D0 BB 20 08 3E 05 BA 3E 
       44.  00:4673  77 CA E4 46 
       45.  00:4677                      
       46.  00:4677  CD 97 46            	call 	vdp_conf
@@ -1885,9 +1885,9 @@ Errors: 0
      149.  00:48D1                      	
      789   00:48D1                      	
      790   00:48D1                      _metatable:
-     791   00:48D1  (1050)              	incbin "metatable.bin"
-     792   00:5921                      	
-     793   00:5921  (01)                	page 1
+     791   00:48D1  (1488)              	incbin "metatable.bin"
+     792   00:5D59                      	
+     793   00:5D59  (01)                	page 1
      794   01:6000                      _backmap:
      795   01:6000  (0400)              	incbin "backmap.bin"
      796   01:6400                      
@@ -2126,21 +2126,21 @@ Errors: 0
      812   04:8000                      _tiles0:
      813   04:8000  (2000)              	incbin "_tiles0.bin",,0x2000
      814   04:A000  (05)                	page 5
-     815   05:A000  (1290)              	incbin "_tiles0.bin",0x2000
-     816   05:B290                      	
-     817   05:B290  (06)                	page 6
+     815   05:A000  (12B7)              	incbin "_tiles0.bin",0x2000
+     816   05:B2B7                      	
+     817   05:B2B7  (06)                	page 6
      818   06:8000                      _tiles1:
      819   06:8000  (2000)              	incbin "_tiles1.bin",,0x2000
      820   06:A000  (07)                	page 7
-     821   07:A000  (1F86)              	incbin "_tiles1.bin",0x2000
-     822   07:BF86                      
-     823   07:BF86                      	page 8,9
+     821   07:A000  (1F31)              	incbin "_tiles1.bin",0x2000
+     822   07:BF31                      
+     823   07:BF31                      	page 8,9
      824   08:8000                      _level:
-     825   08:8000  (0930)              	incbin "_metamap.bin"
-     826   08:8930                      _level_bf:	
-     827   08:8930  (1000)              	incbin "BitField.bin"	
-     828   08:9930                      	
-     829   08:9930                      	page 10,11
+     825   08:8000  (092A)              	incbin "_metamap.bin"
+     826   08:892A                      _level_bf:	
+     827   08:892A  (1000)              	incbin "BitField.bin"	
+     828   08:992A                      	
+     829   08:992A                      	page 10,11
      830   0A:8000                      sprtdata
      831   0A:8000                      	include 	SPROL.ASM
        1.  0A:8000                      .SPRITES
@@ -9583,17 +9583,17 @@ Errors: 0
 00:00007000   _kBank2
 00:00009000   _kBank3
 00:0000B000   _kBank4
-00:00000774 X n_tiles
+00:00000771 X n_tiles
 00:00000100   mapWidth
 00:00000020   mapHeight
 00:0000001C   WinWidth
 00:00000010   WinHeight
-00:000003D9 X Transp
+00:000003D7 X Transp
 00:00000000   SolidTile0
 00:00000027   SolidTile1
-00:000003F6   SolidTile2
-00:000005D3   SolidTile3
-00:000006D7 X SolidTile4
+00:000003F3   SolidTile2
+00:000005D0   SolidTile3
+00:000006D4 X SolidTile4
 00:00000000   SolidColor0
 00:00000001   SolidColor1
 00:00000004   SolidColor2
@@ -9722,7 +9722,7 @@ Errors: 0
 04:00008000   _tiles0
 06:00008000   _tiles1
 08:00008000   _level
-08:00008930   _level_bf
+08:0000892A   _level_bf
 0A:00008000 X sprtdata
 0A:00008000   sprtdata.SPRITES
 0A:00008240   sprtdata.ATRIBUTOS
@@ -10134,12 +10134,12 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00004000  Size: 00002000  Used: 00001921
+  Org: 00004000  Size: 00002000  Used: 00001D59
 
    Address   Length Align   Label
    00004000    2094         search_slot
-   0000482E    4339         int_sprites
-   00005921    1759       <empty>
+   0000482E    5419         int_sprites
+   00005D59     679       <empty>
 
  Page: 01
   Org: 00006000  Size: 00002000  Used: 00001103
@@ -10168,11 +10168,11 @@ Errors: 0
    00008000    8192         _tiles0
 
  Page: 05
-  Org: 0000A000  Size: 00002000  Used: 00001290
+  Org: 0000A000  Size: 00002000  Used: 000012B7
 
    Address   Length Align   Label
-   0000A000    4752         
-   0000B290    3440       <empty>
+   0000A000    4791         
+   0000B2B7    3401       <empty>
 
  Page: 06
   Org: 00008000  Size: 00002000  Used: 00002000
@@ -10181,18 +10181,18 @@ Errors: 0
    00008000    8192         _tiles1
 
  Page: 07
-  Org: 0000A000  Size: 00002000  Used: 00001F86
+  Org: 0000A000  Size: 00002000  Used: 00001F31
 
    Address   Length Align   Label
-   0000A000    8070         
-   0000BF86     122       <empty>
+   0000A000    7985         
+   0000BF31     207       <empty>
 
  Page: 08
-  Org: 00008000  Size: 00002000  Used: 00001930
+  Org: 00008000  Size: 00002000  Used: 0000192A
 
    Address   Length Align   Label
-   00008000    6448         _level
-   00009930    1744       <empty>
+   00008000    6442         _level
+   0000992A    1750       <empty>
 
  Page: 09
   Org: 0000A000  Size: 00002000  Used: 00000000
