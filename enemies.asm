@@ -18,10 +18,7 @@ buf		ds	sprite_size
 	
 	page 12,13
 frames:
-		dw 01Ah,0EBh,0AAh
-		dw 01Ah,0EBh,0AAh
-
-[63]	ds	sprite_size
+		incbin smetaframes.bin
 
 	page 0,1
 int_sprites

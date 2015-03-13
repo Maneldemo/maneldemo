@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.12 - 23:54:48]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.13 - 09:06:49]
 
 main.asm
 Errors: 0
@@ -1751,138 +1751,135 @@ Errors: 0
       18.  00:482E                      	
       19.  00:482E                      	page 12,13
       20.  0C:8000                      frames:
-      21.  0C:8000  1A 00 EB 00 AA 00   		dw 01Ah,0EBh,0AAh
-      22.  0C:8006  1A 00 EB 00 AA 00   		dw 01Ah,0EBh,0AAh
-      23.  0C:800C                      
-      24.  0C:800C  00 (128)            [63]	ds	sprite_size
-      25.  0C:9F8C                      
-      26.  0C:9F8C                      	page 0,1
-      27.  00:482E                      int_sprites
-      28.  00:482E  DD 21 F6 DE         	ld	ix,enemylist
-      29.  00:4832  DD 36 03 00         	ld	(ix+enemy.x),0
-      30.  00:4836  DD 36 04 00         	ld	(ix+enemy.x+1),0
-      31.  00:483A                      	
-      32.  00:483A  DD 36 05 00         	ld	(ix+enemy.y),0
-      33.  00:483E  DD 36 06 00         	ld	(ix+enemy.y+1),0
-      34.  00:4842                      	
-      35.  00:4842  DD 36 0D 03         	ld	(ix+enemy.nx),3
-      36.  00:4846  DD 36 0E 02         	ld	(ix+enemy.ny),2
-      37.  00:484A                      	
-      38.  00:484A  DD 36 02 00         	ld	(ix+enemy.frame),0
-      39.  00:484E                      	
-      40.  00:484E  01 02 94            	ld	bc,_levelmap+2+mapWidth*10*2
-      41.  00:4851  DD 71 07            	ld	(ix+enemy.mappos),c
-      42.  00:4854  DD 70 08            	ld	(ix+enemy.mappos+1),b
-      43.  00:4857  C9                  	ret
-      44.  00:4858                      
-      45.  00:4858                      move_sprites
-      46.  00:4858  DD 7E 09            	ld	a,(ix+enemy.dx)
-      47.  00:485B  3D                  	dec	a
-      48.  00:485C  E6 03               	and	3
-      49.  00:485E  DD 77 09            	ld	(ix+enemy.dx),a
-      50.  00:4861  C0                  	ret	nz
-      51.  00:4862                      	
-      52.  00:4862  DD 6E 07            	ld	l,(ix+enemy.mappos)
-      53.  00:4865  DD 66 08            	ld	h,(ix+enemy.mappos+1)
-      54.  00:4868  23 23               [2]	inc	hl
-      55.  00:486A  DD 75 07            	ld	(ix+enemy.mappos),l
-      56.  00:486D  DD 74 08            	ld	(ix+enemy.mappos+1),h
-      57.  00:4870  C9                  	ret
-      58.  00:4871                      
+      21.  0C:8000  (1000)              		incbin smetaframes.bin
+      22.  0C:9000                      
+      23.  0C:9000                      	page 0,1
+      24.  00:482E                      int_sprites
+      25.  00:482E  DD 21 F6 DE         	ld	ix,enemylist
+      26.  00:4832  DD 36 03 00         	ld	(ix+enemy.x),0
+      27.  00:4836  DD 36 04 00         	ld	(ix+enemy.x+1),0
+      28.  00:483A                      	
+      29.  00:483A  DD 36 05 00         	ld	(ix+enemy.y),0
+      30.  00:483E  DD 36 06 00         	ld	(ix+enemy.y+1),0
+      31.  00:4842                      	
+      32.  00:4842  DD 36 0D 03         	ld	(ix+enemy.nx),3
+      33.  00:4846  DD 36 0E 02         	ld	(ix+enemy.ny),2
+      34.  00:484A                      	
+      35.  00:484A  DD 36 02 00         	ld	(ix+enemy.frame),0
+      36.  00:484E                      	
+      37.  00:484E  01 02 94            	ld	bc,_levelmap+2+mapWidth*10*2
+      38.  00:4851  DD 71 07            	ld	(ix+enemy.mappos),c
+      39.  00:4854  DD 70 08            	ld	(ix+enemy.mappos+1),b
+      40.  00:4857  C9                  	ret
+      41.  00:4858                      
+      42.  00:4858                      move_sprites
+      43.  00:4858  DD 7E 09            	ld	a,(ix+enemy.dx)
+      44.  00:485B  3D                  	dec	a
+      45.  00:485C  E6 03               	and	3
+      46.  00:485E  DD 77 09            	ld	(ix+enemy.dx),a
+      47.  00:4861  C0                  	ret	nz
+      48.  00:4862                      	
+      49.  00:4862  DD 6E 07            	ld	l,(ix+enemy.mappos)
+      50.  00:4865  DD 66 08            	ld	h,(ix+enemy.mappos+1)
+      51.  00:4868  23 23               [2]	inc	hl
+      52.  00:486A  DD 75 07            	ld	(ix+enemy.mappos),l
+      53.  00:486D  DD 74 08            	ld	(ix+enemy.mappos+1),h
+      54.  00:4870  C9                  	ret
+      55.  00:4871                      
+      56.  00:4871                      	; ld	bc,(ix+enemy.y)
+      57.  00:4871                      	; ld	hl,mapWidth
+      58.  00:4871                      	; call	bcxhl
       59.  00:4871                      	; ld	bc,(ix+enemy.y)
-      60.  00:4871                      	; ld	hl,mapWidth
-      61.  00:4871                      	; call	bcxhl
-      62.  00:4871                      	; ld	bc,(ix+enemy.y)
-      63.  00:4871                      	; add	hl,bc
-      64.  00:4871                      	; ld	bc,_levelmap
-      65.  00:4871                      	; add	hl,bc	
-      66.  00:4871                      
-      67.  00:4871                      ;;;;;;;;;;;;;;;;;;;;;;;;
-      68.  00:4871                      ; save_background
-      69.  00:4871                      ; in 
-      70.  00:4871                      ;  ix destination in enemylist
-      71.  00:4871                      ;;;;;;;;;;;;;;;;;;;;;;;;
-      72.  00:4871                      
-      73.  00:4871                      save_background:
-      74.  00:4871  DD 5E 07            	ld	e,(ix+enemy.mappos)
-      75.  00:4874  DD 56 08            	ld	d,(ix+enemy.mappos+1)
-      76.  00:4877                      	
-      77.  00:4877  DD E5               	push	ix
-      78.  00:4879  E1                  	pop		hl
-      79.  00:487A  01 0F 00            	ld	bc,enemy.buf
-      80.  00:487D  09                  	add	hl,bc
-      81.  00:487E  EB                  	ex	de,hl
-      82.  00:487F                      	
-      83.  00:487F  DD 7E 0E            	ld	a,(ix+enemy.ny)
-      84.  00:4882                      
-      85.  00:4882  06 00               	ld	b,0
-      86.  00:4884                      	
-      87.  00:4884  DD 4E 0D            2:	ld	c,(ix+enemy.nx)
-      88.  00:4887  CB 21               	sla	c
-      89.  00:4889  E5                  	push	hl
-      90.  00:488A  ED B0               	ldir
-      91.  00:488C  E1                  	pop	hl
-      92.  00:488D                      	
-      93.  00:488D  24 24               [2]	inc h	; only if (mapWidth=256)
-      94.  00:488F                      	
-      95.  00:488F  3D                  	dec	a
-      96.  00:4890  C2 84 48            	jp	nz,2b
-      97.  00:4893  C9                  	ret
-      98.  00:4894                      	
-      99.  00:4894                      ;;;;;;;;;;;;;;;;;;;;;;;;
-     100.  00:4894                      ; plot_sprite
-     101.  00:4894                      ; in 
-     102.  00:4894                      ;  ix destination in enemylist
-     103.  00:4894                      ;;;;;;;;;;;;;;;;;;;;;;;;
-     104.  00:4894                      
-     105.  00:4894                      plot_sprite:
-     106.  00:4894  DD 6E 02            	ld	l,(ix+enemy.frame)
-     107.  00:4897  26 00               	ld	h,0
-     108.  00:4899  29 29 29 29 29 29   [6]	add	hl,hl			; sprite_size = 64*2
-     109.  00:489F                      
-     110.  00:489F  3E 0C               	ld	a,:frames
-     111.  00:48A1                      	setpage_a
-     111.  00:48A1  32 00 90          >   ld (_kBank3),a
-     111.  00:48A4  3C                >   inc a
-     111.  00:48A5  32 00 B0          >   ld (_kBank4),a
-     112.  00:48A8  01 00 80            	ld	bc,frames
-     113.  00:48AB  09                  	add	hl,bc			; hl aims to the current frame to be plotted
-     114.  00:48AC                      
-     115.  00:48AC  C3 B6 48            	jp	plot_sprtite_frame
-     116.  00:48AF                      	
-     117.  00:48AF                      ;;;;;;;;;;;;;;;;;;;;;;;;
-     118.  00:48AF                      ; restore_background
-     119.  00:48AF                      ; in 
-     120.  00:48AF                      ;  ix source in enemylist
-     121.  00:48AF                      ;;;;;;;;;;;;;;;;;;;;;;;;
-     122.  00:48AF                      
-     123.  00:48AF                      restore_background:
-     124.  00:48AF  DD E5               	push	ix
-     125.  00:48B1  E1                  	pop		hl
-     126.  00:48B2  01 0F 00            	ld	bc,enemy.buf
-     127.  00:48B5  09                  	add	hl,bc			
-     128.  00:48B6                      
-     129.  00:48B6                      plot_sprtite_frame:
-     130.  00:48B6  DD 5E 07            	ld	e,(ix+enemy.mappos)
-     131.  00:48B9  DD 56 08            	ld	d,(ix+enemy.mappos+1)	; hl->buffer, de->_levelmap
-     132.  00:48BC                      	
-     133.  00:48BC  DD 7E 0E            	ld	a,(ix+enemy.ny)
-     134.  00:48BF  06 00               	ld	b,0
-     135.  00:48C1                      	
-     136.  00:48C1  DD 4E 0D            2:	ld	c,(ix+enemy.nx)
-     137.  00:48C4  CB 21               	sla	c
-     138.  00:48C6  D5                  	push	de
-     139.  00:48C7  ED B0               	ldir
-     140.  00:48C9  D1                  	pop	de
-     141.  00:48CA                      
-     142.  00:48CA  14 14               [2]	inc d	; only if (mapWidth=256)
-     143.  00:48CC                      
-     144.  00:48CC  3D                  	dec	a
-     145.  00:48CD  C2 C1 48            	jp	nz,2b
-     146.  00:48D0  C9                  	ret
-     147.  00:48D1                      	
-     148.  00:48D1                      	
-     149.  00:48D1                      	
+      60.  00:4871                      	; add	hl,bc
+      61.  00:4871                      	; ld	bc,_levelmap
+      62.  00:4871                      	; add	hl,bc	
+      63.  00:4871                      
+      64.  00:4871                      ;;;;;;;;;;;;;;;;;;;;;;;;
+      65.  00:4871                      ; save_background
+      66.  00:4871                      ; in 
+      67.  00:4871                      ;  ix destination in enemylist
+      68.  00:4871                      ;;;;;;;;;;;;;;;;;;;;;;;;
+      69.  00:4871                      
+      70.  00:4871                      save_background:
+      71.  00:4871  DD 5E 07            	ld	e,(ix+enemy.mappos)
+      72.  00:4874  DD 56 08            	ld	d,(ix+enemy.mappos+1)
+      73.  00:4877                      	
+      74.  00:4877  DD E5               	push	ix
+      75.  00:4879  E1                  	pop		hl
+      76.  00:487A  01 0F 00            	ld	bc,enemy.buf
+      77.  00:487D  09                  	add	hl,bc
+      78.  00:487E  EB                  	ex	de,hl
+      79.  00:487F                      	
+      80.  00:487F  DD 7E 0E            	ld	a,(ix+enemy.ny)
+      81.  00:4882                      
+      82.  00:4882  06 00               	ld	b,0
+      83.  00:4884                      	
+      84.  00:4884  DD 4E 0D            2:	ld	c,(ix+enemy.nx)
+      85.  00:4887  CB 21               	sla	c
+      86.  00:4889  E5                  	push	hl
+      87.  00:488A  ED B0               	ldir
+      88.  00:488C  E1                  	pop	hl
+      89.  00:488D                      	
+      90.  00:488D  24 24               [2]	inc h	; only if (mapWidth=256)
+      91.  00:488F                      	
+      92.  00:488F  3D                  	dec	a
+      93.  00:4890  C2 84 48            	jp	nz,2b
+      94.  00:4893  C9                  	ret
+      95.  00:4894                      	
+      96.  00:4894                      ;;;;;;;;;;;;;;;;;;;;;;;;
+      97.  00:4894                      ; plot_sprite
+      98.  00:4894                      ; in 
+      99.  00:4894                      ;  ix destination in enemylist
+     100.  00:4894                      ;;;;;;;;;;;;;;;;;;;;;;;;
+     101.  00:4894                      
+     102.  00:4894                      plot_sprite:
+     103.  00:4894  DD 6E 02            	ld	l,(ix+enemy.frame)
+     104.  00:4897  26 00               	ld	h,0
+     105.  00:4899  29 29 29 29 29 29   [6]	add	hl,hl			; sprite_size = 64*2
+     106.  00:489F                      
+     107.  00:489F  3E 0C               	ld	a,:frames
+     108.  00:48A1                      	setpage_a
+     108.  00:48A1  32 00 90          >   ld (_kBank3),a
+     108.  00:48A4  3C                >   inc a
+     108.  00:48A5  32 00 B0          >   ld (_kBank4),a
+     109.  00:48A8  01 00 80            	ld	bc,frames
+     110.  00:48AB  09                  	add	hl,bc			; hl aims to the current frame to be plotted
+     111.  00:48AC                      
+     112.  00:48AC  C3 B6 48            	jp	plot_sprtite_frame
+     113.  00:48AF                      	
+     114.  00:48AF                      ;;;;;;;;;;;;;;;;;;;;;;;;
+     115.  00:48AF                      ; restore_background
+     116.  00:48AF                      ; in 
+     117.  00:48AF                      ;  ix source in enemylist
+     118.  00:48AF                      ;;;;;;;;;;;;;;;;;;;;;;;;
+     119.  00:48AF                      
+     120.  00:48AF                      restore_background:
+     121.  00:48AF  DD E5               	push	ix
+     122.  00:48B1  E1                  	pop		hl
+     123.  00:48B2  01 0F 00            	ld	bc,enemy.buf
+     124.  00:48B5  09                  	add	hl,bc			
+     125.  00:48B6                      
+     126.  00:48B6                      plot_sprtite_frame:
+     127.  00:48B6  DD 5E 07            	ld	e,(ix+enemy.mappos)
+     128.  00:48B9  DD 56 08            	ld	d,(ix+enemy.mappos+1)	; hl->buffer, de->_levelmap
+     129.  00:48BC                      	
+     130.  00:48BC  DD 7E 0E            	ld	a,(ix+enemy.ny)
+     131.  00:48BF  06 00               	ld	b,0
+     132.  00:48C1                      	
+     133.  00:48C1  DD 4E 0D            2:	ld	c,(ix+enemy.nx)
+     134.  00:48C4  CB 21               	sla	c
+     135.  00:48C6  D5                  	push	de
+     136.  00:48C7  ED B0               	ldir
+     137.  00:48C9  D1                  	pop	de
+     138.  00:48CA                      
+     139.  00:48CA  14 14               [2]	inc d	; only if (mapWidth=256)
+     140.  00:48CC                      
+     141.  00:48CC  3D                  	dec	a
+     142.  00:48CD  C2 C1 48            	jp	nz,2b
+     143.  00:48D0  C9                  	ret
+     144.  00:48D1                      	
+     145.  00:48D1                      	
+     146.  00:48D1                      	
      789   00:48D1                      	
      790   00:48D1                      _metatable:
      791   00:48D1  (1488)              	incbin "metatable.bin"
@@ -9687,7 +9684,7 @@ Errors: 0
 00:00004823   Num1
 00:00004825   Num2
 00:00000008   nenemies
-00:00000080   sprite_size
+00:00000080 X sprite_size
 00:00000000 X enemy.type
 00:00000001 X enemy.state
 00:00000002   enemy.frame
@@ -10212,11 +10209,11 @@ Errors: 0
    0000A000    8192       <empty>
 
  Page: 0C
-  Org: 00008000  Size: 00002000  Used: 00001F8C
+  Org: 00008000  Size: 00002000  Used: 00001000
 
    Address   Length Align   Label
-   00008000    8076         frames
-   00009F8C     116       <empty>
+   00008000    4096         frames
+   00009000    4096       <empty>
 
  Page: 0D
   Org: 0000A000  Size: 00002000  Used: 00000000

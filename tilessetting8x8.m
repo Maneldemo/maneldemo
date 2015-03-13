@@ -17,7 +17,7 @@ pale = pale/7;
 [BitField,MAP] = imread('map6_bitfiled.bmp');
 [Fonts,FontMAP] = imread('Fonts_small.bmp','bmp');
 [Sprites,SpriteMAP] = imread('sprites.bmp','bmp');
-%[Sprites,SpriteMAP] = imread('Sprites_256x64_probe.bmp','bmp');
+[TiledSprites,TiledSpriteMAP] = imread('Sprites_tiled_512x128.bmp','bmp');
 %[Sprites,SpriteMAP] = imread('Sprites_256x64.bmp','bmp');
 
 [Background,BackgroundMAP] = imread('Background.bmp','bmp');
@@ -37,10 +37,11 @@ end
 Fonts = imapprox(Fonts,FontMAP,pale);
 Sprites = imapprox(Sprites,SpriteMAP,pale);   
 Background = imapprox(Background,BackgroundMAP,pale);   
-Frame = imapprox(Frame,FrameMAP,pale);   
+Frame = imapprox(Frame,FrameMAP,pale); 
+TiledSprites = imapprox(TiledSprites,TiledSpriteMAP,pale); 
 
 B = A2(1:256,:);
-C = A2(257:end,:);
+C = TiledSprites;%A2(257:end,:);
 Y = Background;          % background
 F = Frame;               % frame
 
@@ -132,18 +133,37 @@ colormap(flag)
 axis equal;
 
 [~,sMetaMap] = ismember(sFullMetaMap,UniqueMetaTiles ,'rows');
-SS = reshape(sMetaMap,H/8/2,W/8);
+SS = reshape(sMetaMap,128/8,512/8);
 figure;
 image(SS)
 colormap(flag)
 axis equal;
-
 
 fid = fopen('metamap.bin','wb');
 for i=1:(H/8)
     fwrite(fid,MM(i,:)-1,'uint16');
 end
 fclose(fid);
+
+fid = fopen('smetamap.bin','wb');
+for i=1:(H/8/2)
+    fwrite(fid,SS(i,:)-1,'uint16');
+end
+fclose(fid);
+
+t = im2col(SS',[8 5],'distinct');
+size(t)
+%dec2hex(t(:,1)-1)
+fid = fopen('smetaframes.bin','wb');
+for i=1:size(t,2)
+    fwrite(fid,t(:,i)-1,'uint16');
+    if (size(t,1)<64)
+        fwrite(fid,zeros([64-size(t,1) 1]),'uint16');
+    end
+    
+end
+fclose(fid);
+
 
 i = ismember(UniqueMetaTiles(:),transparentset);
 UniqueMetaTiles(i) = bitor(UniqueMetaTiles(i)-1,2^15)+1;
