@@ -2,7 +2,7 @@
 ; Copyright 2015 Richard Cornelisse
 
 ; Song: Usas Stage1        - Konami     
-; By:   Arr. by Gryzor87        (c) 201
+; By:   Arr. by Gryzor87        (c) 2013
 
 ;	org $c000
 
@@ -19,6 +19,7 @@
 		dw .track_16,.track_24,.track_25,.track_26,.track_27,.track_28,.track_29,.track_30		; Sequence step 3 /pattern 3
 		dw .track_8,.track_31,.track_32,.track_33,.track_34,.track_35,.track_36,.track_37		; Sequence step 4 /pattern 4
 		dw .track_38,.track_39,.track_40,.track_41,.track_42,.track_43,.track_44,.track_45		; Sequence step 5 /pattern 5
+		dw .track_8,.track_31,.track_32,.track_33,.track_34,.track_35,.track_36,.track_37		; Sequence step 6 /pattern 4
 		dw 0x0000, .restart			; End of sequence delimiter + restart address.
 
 .waveform_start:
@@ -301,18 +302,6 @@
 .rst_i18:
 		db $19,$02
 .ins_19:
-		db 9					; Waveform
-		db .rst_i19-(.ins_19 +2)		; Restart
-		db $11,$09
-		db $11,$0A
-		db $11,$0B
-		db $11,$0C
-		db $11,$0E
-		db $11,$0F
-		db $11,$0F
-		db $11,$0F
-.rst_i19:
-		db $19,$0F
 .ins_20:
 		db 10					; Waveform
 		db .rst_i20-(.ins_20 +2)		; Restart
@@ -4081,221 +4070,6 @@
 	db $CB		;[Wait] 12
 	db $BF		;[End-Of-Track]
 .track_46:
-	db $60		;[Note] 97
-	db $EE		;[Wait] 47
-	db $C0		;[Wait] 1
-	db $BF		;[End-Of-Track]
-.track_47:
-	db $60		;[Note] 97
-	db $EF		;[Wait] 48
-	db $BF		;[End-Of-Track]
-.track_48:
-	db $EF		;[Wait] 48
-	db $BF		;[End-Of-Track]
-.track_49:
-	db $1F		;[Note] 32
-	db $6C		;[Volume] 12
-	db $82		;[Instrument] 19
-	db $C1		;[Wait] 2
-	db $21		;[Note] 34
-	db $C5		;[Wait] 6
-	db $1A		;[Note] 27
-	db $66		;[Volume] 6
-	db $C7		;[Wait] 8
-	db $1A		;[Note] 27
-	db $6A		;[Volume] 10
-	db $C1		;[Wait] 2
-	db $1C		;[Note] 29
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $66		;[Volume] 6
-	db $C7		;[Wait] 8
-	db $1A		;[Note] 27
-	db $6A		;[Volume] 10
-	db $C1		;[Wait] 2
-	db $1C		;[Note] 29
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $66		;[Volume] 6
-	db $C7		;[Wait] 8
-	db $BF		;[End-Of-Track]
-.track_50:
-	db $60		;[Note] 97
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $6B		;[Volume] 11
-	db $82		;[Instrument] 19
-	db $C7		;[Wait] 8
-	db $29		;[Note] 42
-	db $69		;[Volume] 9
-				;[Skip delay] 8
-	db $24		;[Note] 37
-	db $6B		;[Volume] 11
-				;[Skip delay] 8
-	db $24		;[Note] 37
-	db $69		;[Volume] 9
-				;[Skip delay] 8
-	db $24		;[Note] 37
-	db $6B		;[Volume] 11
-				;[Skip delay] 8
-	db $24		;[Note] 37
-	db $69		;[Volume] 9
-	db $C3		;[Wait] 4
-	db $BF		;[End-Of-Track]
-.track_51:
-	db $60		;[Note] 97
-	db $C3		;[Wait] 4
-	db $26		;[Note] 39
-	db $6B		;[Volume] 11
-	db $82		;[Instrument] 19
-	db $C7		;[Wait] 8
-	db $26		;[Note] 39
-	db $69		;[Volume] 9
-				;[Skip delay] 8
-	db $28		;[Note] 41
-	db $6B		;[Volume] 11
-				;[Skip delay] 8
-	db $28		;[Note] 41
-	db $69		;[Volume] 9
-				;[Skip delay] 8
-	db $28		;[Note] 41
-	db $6B		;[Volume] 11
-				;[Skip delay] 8
-	db $28		;[Note] 41
-	db $69		;[Volume] 9
-	db $C3		;[Wait] 4
-	db $BF		;[End-Of-Track]
-.track_52:
-	db $4C		;[Note] 77
-	db $6F		;[Volume] 15
-	db $7F		;[Instrument] 16
-	db $94, $01	; vibrato control
-	db $C0		;[Wait] 1
-	db $4D		;[Note] 78
-	db $A6, $01; tone-slide
-				;[Skip delay] 1
-	db $B0, $02; tone-slide rep
-	db $C1		;[Wait] 2
-	db $4A		;[Note] 75
-	db $68		;[Volume] 8
-	db $C3		;[Wait] 4
-	db $64		;[Volume] 4
-	db $A7, $56	;[CMD vibrato]
-	db $C0		;[Wait] 1
-	db $B1, $03	;[CMD vibrato] rep
-	db $C2		;[Wait] 3
-	db $45		;[Note] 70
-	db $6A		;[Volume] 10
-				;[Skip delay] 3
-	db $60		;[Note] 97
-	db $C0		;[Wait] 1
-	db $48		;[Note] 73
-				;[Skip delay] 1
-	db $4C		;[Note] 77
-	db $A6, $01; tone-slide
-				;[Skip delay] 1
-	db $B0, $03; tone-slide rep
-	db $C4		;[Wait] 5
-	db $69		;[Volume] 9
-	db $C0		;[Wait] 1
-	db $A7, $56	;[CMD vibrato]
-				;[Skip delay] 1
-	db $67		;[Volume] 7
-	db $B1, $0D	;[CMD vibrato] rep
-	db $C2		;[Wait] 3
-	db $63		;[Volume] 3
-	db $C9		;[Wait] 10
-	db $60		;[Note] 97
-	db $C1		;[Wait] 2
-	db $4A		;[Note] 75
-	db $6A		;[Volume] 10
-	db $C3		;[Wait] 4
-	db $48		;[Note] 73
-				;[Skip delay] 4
-	db $BF		;[End-Of-Track]
-.track_53:
-	db $C1		;[Wait] 2
-	db $4C		;[Note] 77
-	db $66		;[Volume] 6
-	db $7F		;[Instrument] 16
-	db $C3		;[Wait] 4
-	db $4C		;[Note] 77
-	db $94, $01	; vibrato control
-	db $C0		;[Wait] 1
-	db $4D		;[Note] 78
-	db $A6, $01; tone-slide
-				;[Skip delay] 1
-	db $B0, $02; tone-slide rep
-	db $C1		;[Wait] 2
-	db $4A		;[Note] 75
-	db $C7		;[Wait] 8
-	db $45		;[Note] 70
-	db $C2		;[Wait] 3
-	db $60		;[Note] 97
-	db $C0		;[Wait] 1
-	db $48		;[Note] 73
-				;[Skip delay] 1
-	db $4C		;[Note] 77
-	db $A6, $01; tone-slide
-				;[Skip delay] 1
-	db $B0, $03; tone-slide rep
-	db $D3		;[Wait] 20
-	db $60		;[Note] 97
-	db $C1		;[Wait] 2
-	db $4A		;[Note] 75
-				;[Skip delay] 2
-	db $BF		;[End-Of-Track]
-.track_54:
-	db $40		;[Note] 65
-	db $6F		;[Volume] 15
-	db $7F		;[Instrument] 16
-	db $94, $01	; vibrato control
-	db $C0		;[Wait] 1
-	db $41		;[Note] 66
-	db $A6, $01; tone-slide
-				;[Skip delay] 1
-	db $B0, $01; tone-slide rep
-	db $C1		;[Wait] 2
-	db $68		;[Volume] 8
-	db $C3		;[Wait] 4
-	db $64		;[Volume] 4
-	db $A7, $56	;[CMD vibrato]
-	db $C0		;[Wait] 1
-	db $B1, $01	;[CMD vibrato] rep
-	db $C5		;[Wait] 6
-	db $60		;[Note] 97
-	db $C8		;[Wait] 9
-	db $41		;[Note] 66
-	db $6A		;[Volume] 10
-	db $C0		;[Wait] 1
-	db $43		;[Note] 68
-	db $A6, $01; tone-slide
-				;[Skip delay] 1
-	db $B0, $01; tone-slide rep
-	db $C2		;[Wait] 3
-	db $A5, $02; slide-down
-	db $C0		;[Wait] 1
-	db $AF, $01; slide-down rep
-	db $C1		;[Wait] 2
-	db $3E		;[Note] 63
-	db $C7		;[Wait] 8
-	db $69		;[Volume] 9
-	db $C0		;[Wait] 1
-	db $A7, $56	;[CMD vibrato]
-				;[Skip delay] 1
-	db $B1, $01	;[CMD vibrato] rep
-	db $C1		;[Wait] 2
-	db $67		;[Volume] 7
-	db $C3		;[Wait] 4
-	db $65		;[Volume] 5
-				;[Skip delay] 4
-	db $64		;[Volume] 4
-	db $C2		;[Wait] 3
-	db $63		;[Volume] 3
-				;[Skip delay] 3
-	db $62		;[Volume] 2
-	db $C3		;[Wait] 4
-	db $61		;[Volume] 1
-	db $C1		;[Wait] 2
+	db $FF		;[Wait] 64
 	db $BF		;[End-Of-Track]
 ; [ Song sub-track data ]

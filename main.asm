@@ -15,10 +15,12 @@
 		defpage	9,0xA000, 0x2000		; swapped data 
 		defpage	10,0x8000, 0x2000		; swapped data 
 		defpage	11,0xA000, 0x2000		; swapped data 
-		defpage	12,0x8000, 0x2000		; swapped data 
-		defpage	13,0xA000, 0x2000		; swapped data 
+
 		defpage	14,0x8000, 0x2000		; swapped data 
 		defpage	15,0xA000, 0x2000		; swapped data 
+
+		defpage	12,0x4000, 0x2000		; swapped data 
+		defpage	13,0x6000, 0x2000		; swapped data 
 
 		;	konami scc
 		
@@ -293,8 +295,14 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		bc,0x8000
 		call	_vuitpakker 
 		
-		; call	int_sprites
-
+		di
+		ld	a,:int_sprites
+		ld	(_kBank2),a
+		call	int_sprites
+		ld	a,1
+		ld	(_kBank2),a
+		ei
+		
 		; main init
 		
 		call	setrampage2
@@ -333,21 +341,31 @@ main_loop:
 		ld		hl,_shadow0
 1:		ld		(_shadowbuff),hl
 
-		; ld	ix,enemylist
-		; call save_background
-
-		; ld	ix,enemylist
-		; call plot_sprite
-
+		di
+		ld	a,:save_background
+		ld	(_kBank2),a
+		ld	ix,enemylist
+		call save_background
+		ld	ix,enemylist
+		call plot_sprite
+		ld	a,1
+		ld	(_kBank2),a
+		ei
+		
 		call	plot_frame
 		
 		call	enemies_LMMM
-
-		; ld	ix,enemylist
-		; call restore_background
-
-		; ld	ix,enemylist
-		; call	move_sprites
+		
+		di
+		ld	a,:restore_background
+		ld	(_kBank2),a
+		ld	ix,enemylist
+		call restore_background
+		ld	ix,enemylist
+		call	move_sprites
+		ld	a,1
+		ld	(_kBank2),a
+		ei
 		
 		call	_compute_fps
 		call	_print_fps
@@ -787,6 +805,7 @@ Num2:
 	
 	include enemies.asm
 	
+	page 0,1	
 _metatable:
 	incbin "metatable.bin"
 	

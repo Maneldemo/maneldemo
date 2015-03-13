@@ -20,7 +20,9 @@ pale = pale/7;
 [TiledSprites,TiledSpriteMAP] = imread('Sprites_tiled_512x128.bmp','bmp');
 %[Sprites,SpriteMAP] = imread('Sprites_256x64.bmp','bmp');
 
-[Background,BackgroundMAP] = imread('Background.bmp','bmp');
+%[Background,BackgroundMAP] = imread('Background.bmp','bmp');
+[Background,BackgroundMAP] = imread('Mountains.png');
+
 [Frame,FrameMAP] = imread('frame.bmp','bmp');
 
 if isempty(MAP)
@@ -151,16 +153,15 @@ for i=1:(H/8/2)
 end
 fclose(fid);
 
-t = im2col(SS',[8 5],'distinct');
-size(t)
-%dec2hex(t(:,1)-1)
+tt = im2col(SS',[7 5],'distinct');
+size(tt)
+%dec2hex(tt(:,1)-1)
 fid = fopen('smetaframes.bin','wb');
-for i=1:size(t,2)
-    fwrite(fid,t(:,i)-1,'uint16');
-    if (size(t,1)<64)
-        fwrite(fid,zeros([64-size(t,1) 1]),'uint16');
+for i=1:size(tt,2)
+    fwrite(fid,tt(:,i)-1,'uint16');
+    if (size(tt,1)<64)
+        fwrite(fid,zeros([64-size(tt,1) 1]),'uint16');
     end
-    
 end
 fclose(fid);
 
