@@ -1,5 +1,6 @@
 
 nenemies 	equ	8
+_nenemies 	equ	3
 sprite_size	equ	8*8*2
 
 		struct enemy
@@ -22,15 +23,11 @@ frames:
 
 int_sprites
 	ld	ix,enemylist
-	ld	(ix+enemy.x),0
-	ld	(ix+enemy.x+1),0
-	
-	ld	(ix+enemy.y),0
-	ld	(ix+enemy.y+1),0
-	
+; enemy 0
 	ld	(ix+enemy.nx),7
 	ld	(ix+enemy.ny),5
 	
+	ld	(ix+enemy.type),0
 	ld	(ix+enemy.state),0
 	ld	(ix+enemy.frame),0
 	ld	(ix+enemy.dy),40
@@ -38,9 +35,74 @@ int_sprites
 	ld	bc,_levelmap+(2+mapWidth*3)*2
 	ld	(ix+enemy.mappos),c
 	ld	(ix+enemy.mappos+1),b
+
+; enemy 1	
+	ld	bc,enemy
+	add	ix,bc
+	ld	(ix+enemy.nx),7
+	ld	(ix+enemy.ny),5
+	
+	ld	(ix+enemy.type),0
+	ld	(ix+enemy.state),0
+	ld	(ix+enemy.frame),0
+	ld	(ix+enemy.dy),78
+	
+	ld	bc,_levelmap+(15+mapWidth*1)*2
+	ld	(ix+enemy.mappos),c
+	ld	(ix+enemy.mappos+1),b
+	
+; enemy 2
+	ld	bc,enemy
+	add	ix,bc
+	ld	(ix+enemy.nx),7
+	ld	(ix+enemy.ny),5
+	
+	ld	(ix+enemy.type),1
+	ld	(ix+enemy.state),0
+	ld	(ix+enemy.frame),23
+	ld	(ix+enemy.dy),0
+	
+	ld	bc,_levelmap+(3+mapWidth*11)*2
+	ld	(ix+enemy.mappos),c
+	ld	(ix+enemy.mappos+1),b
+	
 	ret
 
-move_sprites
+move_sprites:
+	ld	ix,enemylist
+	ld	ix,enemylist
+	ld	b,_nenemies
+2:	push	bc
+	ld	a,(ix+enemy.type)
+	and	a
+	jr	nz,1f
+	call	sp_type_0
+	jp	.nextsp
+1:
+	dec	a
+	jr	nz,1f
+	call	sp_type_1
+	jp	.nextsp
+1:
+.nextsp
+	ld	bc,enemy
+	add	ix,bc
+	pop		bc
+	djnz	2b
+	ret
+		
+	
+sp_type_1:
+	ld	a,(ix+enemy.frame)
+	inc	a
+	cp	27
+	ld	(ix+enemy.frame),a
+	ret	nz
+	ld	a,23
+	ld	(ix+enemy.frame),a
+	ret
+
+sp_type_0:
 	ld	a,(ix+enemy.state)
 	and	a
 	jr	z,move_sprite_right
@@ -121,6 +183,17 @@ animate0
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 save_background:
+	ld	ix,enemylist
+	ld	b,_nenemies
+2:	push	bc
+	call	save_background_1f
+	ld	bc,enemy
+	add	ix,bc
+	pop		bc
+	djnz	2b
+	ret
+
+save_background_1f:
 	ld	e,(ix+enemy.mappos)
 	ld	d,(ix+enemy.mappos+1)
 	
@@ -153,17 +226,26 @@ save_background:
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 plot_sprite:
+	ld	ix,enemylist
+	ld	b,_nenemies
+2:	push	bc
+	call	plot_sprite_1f
+	ld	bc,enemy
+	add	ix,bc
+	pop		bc
+	djnz	2b
+	ret
+	
+plot_sprite_1f:
 	ld	l,(ix+enemy.frame)
 	ld	h,0
 [7]	add	hl,hl		; sprite_size = 64*2
 
-	; ld	a,:frames
-	; setpage_a
 	ld	bc,frames
 	add	hl,bc		; hl aims to the current frame to be plotted
 
-	call	plot_sprtite_frame
-	ret
+	jp	plot_sprtite_frame
+	
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ; restore_background
 ; in 
@@ -171,6 +253,17 @@ plot_sprite:
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 restore_background:
+	ld	ix,enemylist
+	ld	b,_nenemies
+2:	push	bc
+	call	restore_background_1f
+	ld	bc,enemy
+	add	ix,bc
+	pop		bc
+	djnz	2b
+	ret
+	
+restore_background_1f:
 	push	ix
 	pop		hl
 	ld	bc,enemy.buf

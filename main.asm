@@ -344,10 +344,8 @@ main_loop:
 		di
 		ld	a,:save_background
 		ld	(_kBank2),a
-		ld	ix,enemylist
-		call save_background
-		ld	ix,enemylist
-		call plot_sprite
+		call 	save_background
+		call 	plot_sprite
 		ld	a,1
 		ld	(_kBank2),a
 		ei
@@ -359,9 +357,7 @@ main_loop:
 		di
 		ld	a,:restore_background
 		ld	(_kBank2),a
-		ld	ix,enemylist
-		call restore_background
-		ld	ix,enemylist
+		call 	restore_background
 		call	move_sprites
 		ld	a,1
 		ld	(_kBank2),a
@@ -479,10 +475,10 @@ _isr:	call	setrompage2
 		
 2:		add		hl,bc
 		ld		hl,_ticxframe
-		inc		(hl)
+		; inc		(hl)
 		
-		; ld		a,4
-		; ld		(hl),a
+		ld		a,4
+		ld		(hl),a
 		
 		ret	nc
 		

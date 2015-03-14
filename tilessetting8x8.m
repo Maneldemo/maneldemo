@@ -20,8 +20,8 @@ pale = pale/7;
 [TiledSprites,TiledSpriteMAP] = imread('Sprites_tiled_512x128.bmp','bmp');
 %[Sprites,SpriteMAP] = imread('Sprites_256x64.bmp','bmp');
 
-%[Background,BackgroundMAP] = imread('Background.bmp','bmp');
-[Background,BackgroundMAP] = imread('Mountains.png');
+[Background,BackgroundMAP] = imread('Background.bmp','bmp');
+%[Background,BackgroundMAP] = imread('Mountains.png');
 
 [Frame,FrameMAP] = imread('frame.bmp','bmp');
 
