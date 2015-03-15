@@ -305,6 +305,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
 		; main init
 		
+		call	init_hero
 		call	setrampage2
 		ei
 
@@ -322,7 +323,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
 		ld		(_nframes),hl
 		ld		(_currentpage),a
-		ld		(_mcdx),a
+		ld		(_mcdx),hl
 		ld		(_mcframe),a
 main_loop:
 		xor		a
@@ -342,115 +343,47 @@ main_loop:
 1:		ld		(_shadowbuff),hl
 
 		di
-		ld	a,:save_background
-		ld	(_kBank2),a
+		ld		a,:save_background
+		ld		(_kBank2),a
 		call 	save_background
 		call 	plot_sprite
-		ld	a,1
-		ld	(_kBank2),a
+		ld		a,1
+		ld		(_kBank2),a
 		ei
 		
 		call	plot_frame
 		
-		call	enemies_LMMM
+		call	plot_hero
 		
 		di
-		ld	a,:restore_background
-		ld	(_kBank2),a
+		ld		a,:restore_background
+		ld		(_kBank2),a
 		call 	restore_background
 		call	move_sprites
-		ld	a,1
-		ld	(_kBank2),a
+		ld		a,1
+		ld		(_kBank2),a
 		ei
 		
 		call	_compute_fps
 		call	_print_fps
-		call	probe_level
 		call	_print_probe
 		
 		ld		hl,(_nframes)
 		inc		hl
 		ld		(_nframes),hl
-		
-		call	_cursors
 
-		bit		0,(ix)
-		call	z,up
-		bit		1,(ix)
-		call	z,dwn
-		bit		3,(ix)
-		call	z,right
-		bit		2,(ix)
-		call	z,left
-		
-		ld		a,(ix)
-		and		15
-		cp		15
-		jp      nz,main_loop
-				
-		ld		a,-1
-		ld		(_mcframe),a
+		call	manage_hero
+
 		jp      main_loop
 
         ret
-
-up:		
-		ld		a,(_ymappos)
-		ld		b,a
-		ld		a,(_ticxframe)
-		neg
-		add		a,b
-		ld		(_ymappos),a
-		ld	a,2
-		ld	(_mcstate),a
-		ret
-
-dwn:	
-		ld		a,(_ymappos)
-		ld		b,a
-		ld		a,(_ticxframe)
-		add		a,b
-		ld		(_ymappos),a
-		ld	a,3
-		ld	(_mcstate),a
-		ret
-		
-right:	
-		ld		a,4
-		ld		(_mcdx),a
-
-		ld	a,1
-		ld	(_mcstate),a
-
-		ld		a,(_ticxframe)
-		ld		c,a
-		ld		b,0
-		ld		hl,(_xmappos)
-		add		hl,bc
-		ld		(_xmappos),hl
-		ret
-
-left:	
-		ld		a,-4
-		ld		(_mcdx),a
-
-		xor	a
-		ld	(_mcstate),a
-		
-		ld		a,(_ticxframe)
-		neg
-		ld		c,a
-		ld		b,-1
-		ld		hl,(_xmappos)
-		add		hl,bc
-		ld		(_xmappos),hl
-		ret
 
 
 ;-------------------------------------
 JIFFY: equ 0xFC9E 
 ;-------------------------------------
-_isr:	call	setrompage2
+_isr:	
+		call	setrompage2
 		
 		ld	a, 14
 		setpage_a
@@ -498,72 +431,6 @@ powerup:
         call    search_slotram
 		jp		setrompage2
         
-
-;-------------------------------------
-
-
-GTSTCK      equ 0x00D5      ;Returns the joystick status
-GTTRIG      equ 0x00D8      ;Returns current trigger status
-
-
-_cursors:
-	
-; PSG I/O port A (r#14) – read-only
-; Bit	Description	Comment
-; 0	Input joystick pin 1	(up)
-; 1	Input joystick pin 2	(down)
-; 2	Input joystick pin 3	(left)
-; 3	Input joystick pin 4	(right)
-; 4	Input joystick pin 6	(trigger A)
-; 5	Input joystick pin 7	(trigger B)
-; 6	Japanese keyboard layout bit	(1=JIS, 0=ANSI)
-; 7	Cassette input signal	
-
-.rd_joy:
-	ld	a,#0f
-	out	(#a0),a
-	ld	a,0x8F
-	out	(#a1),a		; select port A
-	ld	a,#0e
-	out	(#a0),a
-	in	a,(#a2)
-.rd_key:	
-	ld	ix,joystick
-	ld	(ix),a
-	
-	ld  e,8
-    call    checkkbd
-	bit	0,a				; space
-	jr	nz,1f
-	res	4,(ix)			; (trigger A)
-1:
-	bit	7,a				; RIGHT
-	jr	nz,1f
-	res	3,(ix)			; (right joy)
-1:
-	bit	6,a				; DOWN
-	jr	nz,1f
-	res	1,(ix)			; (down joy)
-1:
-	bit	5,a				; UP
-	jr	nz,1f
-	res	0,(ix)			; (up joy)
-1:
-	bit	4,a				; LEFT
-	jr	nz,1f
-	res	2,(ix)			; (left joy)
-1:
-	ld  e,5
-    call    checkkbd
-	bit	5,a				; X
-	jr	nz,1f
-	res	5,(ix)			; (trigger B)
-1:
-	bit	7,a				; Z
-	jr	nz,1f
-	res	4,(ix)			; (trigger A)
-1:
-	ret
 
         
 ;-------------------------------------
@@ -803,17 +670,15 @@ Num2:
 	
 	page 0,1	
 _metatable:
-	incbin "metatable.bin"
+	incbin 	metatable.bin
 	
 	page 1
 _backmap:
-	incbin "backmap.bin"
-
-
+	incbin	backmap.bin
 
 	include hwsprites.asm
 	
-	include enemies_LMMM.asm
+	include mainhero_LMMM.asm
 	include probe_level.asm
 
 
@@ -864,23 +729,27 @@ FINISH:
 	
 	MAP 0xC000
 	include	"..\code\ttreplayRAM.asm"
-	
+
+_cur_level_bf:		#mapWidth*mapHeight/2
+enemylist:			#enemy*nenemies
+
 slotvar				#1
 slotram				#1
 SEL_NTSC			#1
 
 joystick			#1
 
-_mcdx				#1
-_mcdy				#1
-_mcx				#2
+_mcx				#2	; relative with in the frame on the screen
 _mcy				#2
 
-_mclx				#2
+_mclx				#2	; absolute with the level in ram
 _mcly				#2
 
 _mcframe			#1
 _mcstate			#1
+
+_mcdx				#2
+_mcdy				#2
 
 _mcprobe:			#1
 _mcprobeb:			#1
@@ -901,7 +770,5 @@ _currentpage:		#1
 _shadow0:			#32*24*2
 _shadow1:			#32*24*2
 
-_cur_level_bf:		#mapWidth*mapHeight/2
 
-enemylist:			#enemy*nenemies
 	ENDMAP

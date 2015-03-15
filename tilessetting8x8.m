@@ -43,7 +43,7 @@ Frame = imapprox(Frame,FrameMAP,pale);
 TiledSprites = imapprox(TiledSprites,TiledSpriteMAP,pale); 
 
 B = A2(1:256,:);
-C = TiledSprites;%A2(257:end,:);
+C = TiledSprites;
 Y = Background;          % background
 F = Frame;               % frame
 
@@ -92,11 +92,16 @@ end
 solid_tile 
 solid_color
 
+
+%BitField = 15*(B>1);
+
 BitField = im2col(BitField,'indexed',[4 4],'distinct');
 BitField = reshape(mode(double(BitField)),64,512)>1;
 
 figure
 image(BitField);
+colormap(flag)
+axis equal
 
 fid = fopen('BitField.bin','wb');
 for y=1:64

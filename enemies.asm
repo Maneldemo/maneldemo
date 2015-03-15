@@ -1,5 +1,5 @@
 
-nenemies 	equ	8
+nenemies 	equ	3
 _nenemies 	equ	3
 sprite_size	equ	8*8*2
 
@@ -69,7 +69,6 @@ int_sprites
 	ret
 
 move_sprites:
-	ld	ix,enemylist
 	ld	ix,enemylist
 	ld	b,_nenemies
 2:	push	bc

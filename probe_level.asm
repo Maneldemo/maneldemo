@@ -2,19 +2,6 @@
 
 probe_level:
 	
-	ld	bc,-16		; FRAME!!!
-	ld	hl,(_xmappos)
-	ld	de,(_mcx)
-	add	hl,de
-	add	hl,bc		; remove frame
-	ld	(_mclx),hl
-
-	ld	hl,(_ymappos)
-	ld	h,0
-	ld	de,(_mcy)
-	add	hl,de
-	add	hl,bc		; remove frame
-	ld	(_mcly),hl
 	
 	ld	hl,(_mcly)	; ONLY IF mapWidth=256
 	ld	a,l

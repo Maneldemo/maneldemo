@@ -2,14 +2,14 @@
 plot_frame:
 		ld		c,WinHeight
 		
-		ld	l,0
-		ld	a,(_ymappos)
+		ld		l,0
+		ld		a,(_ymappos)
 
 [2]		rra
 		and	00111110B				; ONLY IF mapWidth=256
 		ld	h,a
 
-		ld	de,(_xmappos)
+		ld		de,(_xmappos)
 		repeat 2		; X /8 * 2
 		srl		d
 		rr		e
