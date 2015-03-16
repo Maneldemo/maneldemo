@@ -1,6 +1,6 @@
 
 up:		
-		ld		hl,-2
+		ld		hl,-4
 		ld		(_mcdy),hl
 		
 		ld	a,2
@@ -16,7 +16,7 @@ sup
 		ret
 
 dwn:	
-		ld		hl,2
+		ld		hl,4
 		ld		(_mcdy),hl
 		
 		ld	a,3
@@ -31,7 +31,7 @@ sdwn
 		ret
 		
 right:	
-		ld		hl,2
+		ld		hl,4
 		ld		(_mcdx),hl
 
 		ld	a,1
@@ -47,7 +47,7 @@ sright:
 		ret
 
 left:	
-		ld		hl,-2
+		ld		hl,-4
 		ld		(_mcdx),hl
 
 		xor	a
@@ -102,6 +102,8 @@ manage_hero:
 	sbc	hl,de
 	call	c,sup
 
+	call	new_dirs
+	
 	ld	de,(_mclx)
 	ld	hl,(_mcdx)
 	add	hl,de
@@ -111,8 +113,9 @@ manage_hero:
 	ld	hl,(_mcdy)
 	add	hl,de
 	ld	(_mcly),hl
-
+	ret
 	
+new_dirs:
 	call	probe_level
 	
 	call	_cursors
