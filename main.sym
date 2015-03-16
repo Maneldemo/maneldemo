@@ -153,7 +153,7 @@ _cursors.rd_joy: equ 00006671h
 _cursors.rd_key: equ 0000667Fh
 probe_level: equ 000066C9h
 _frame: equ 00008000h
-_mc_sprites: equ 00008951h
+_mc_sprites: equ 00008BD6h
 _tiles0: equ 00008000h
 _tiles1: equ 00008000h
 _level: equ 00008000h

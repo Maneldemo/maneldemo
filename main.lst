@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.16 - 00:24:02]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.17 - 00:03:19]
 
 main.asm
 Errors: 0
@@ -781,7 +781,7 @@ Errors: 0
      266   00:432F                      		
      267   00:432F  AF                  		xor	a
      268   00:4330  32 9D D4            		ld		(_vbit16 ),a
-     269   00:4333  11 51 89            		ld		de,	_mc_sprites
+     269   00:4333  11 D6 8B            		ld		de,	_mc_sprites
      270   00:4336  01 00 E0            		ld		bc,192*128+256*128
      271   00:4339  CD 94 44            		call	_vuitpakker 
      272   00:433C                      				
@@ -2369,11 +2369,11 @@ Errors: 0
      684   01:66FA                      
      685   01:66FA                      	page 2,3
      686   02:8000                      _frame:
-     687   02:8000  (0951)              	incbin "_frame.bin"
-     688   02:8951                      _mc_sprites:	
-     689   02:8951  (09E7)              	incbin "_sprites.bin"			
-     690   02:9338                      	
-     691   02:9338  (04)                	page 4
+     687   02:8000  (0BD6)              	incbin "_frame.bin"
+     688   02:8BD6                      _mc_sprites:	
+     689   02:8BD6  (09E7)              	incbin "_sprites.bin"			
+     690   02:95BD                      	
+     691   02:95BD  (04)                	page 4
      692   04:8000                      _tiles0:
      693   04:8000  (2000)              	incbin "_tiles0.bin",,0x2000
      694   04:A000  (05)                	page 5
@@ -9762,7 +9762,7 @@ Errors: 0
 01:0000667F X _cursors.rd_key
 01:000066C9   probe_level
 02:00008000   _frame
-02:00008951   _mc_sprites
+02:00008BD6   _mc_sprites
 04:00008000   _tiles0
 06:00008000   _tiles1
 08:00008000   _level
@@ -10185,11 +10185,11 @@ Errors: 0
    0000728E    3442       <empty>
 
  Page: 02
-  Org: 00008000  Size: 00002000  Used: 00001338
+  Org: 00008000  Size: 00002000  Used: 000015BD
 
    Address   Length Align   Label
-   00008000    4920         _frame
-   00009338    3272       <empty>
+   00008000    5565         _frame
+   000095BD    2627       <empty>
 
  Page: 03
   Org: 0000A000  Size: 00002000  Used: 00000000
