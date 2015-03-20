@@ -1,6 +1,10 @@
 
 up:		
-		ld		hl,-4
+		ld		de,(_ticxframe)
+		ld		d,0
+		ld		hl,0
+		and		a
+		sbc		hl,de
 		ld		(_mcdy),hl
 		
 		ld	a,2
@@ -16,7 +20,8 @@ sup
 		ret
 
 dwn:	
-		ld		hl,4
+		ld		hl,(_ticxframe)
+		ld		h,0
 		ld		(_mcdy),hl
 		
 		ld	a,3
@@ -31,7 +36,8 @@ sdwn
 		ret
 		
 right:	
-		ld		hl,4
+		ld		hl,(_ticxframe)
+		ld		h,0
 		ld		(_mcdx),hl
 
 		ld	a,1
@@ -47,7 +53,11 @@ sright:
 		ret
 
 left:	
-		ld		hl,-4
+		ld		de,(_ticxframe)
+		ld		d,0
+		ld		hl,0
+		and		a
+		sbc		hl,de
 		ld		(_mcdx),hl
 
 		xor	a
@@ -101,8 +111,6 @@ manage_hero:
 	and	a
 	sbc	hl,de
 	call	c,sup
-
-	call	new_dirs
 	
 	ld	de,(_mclx)
 	ld	hl,(_mcdx)
@@ -113,8 +121,11 @@ manage_hero:
 	ld	hl,(_mcdy)
 	add	hl,de
 	ld	(_mcly),hl
+
+	call	new_dirs
 	ret
-	
+;-------------------------------------
+
 new_dirs:
 	call	probe_level
 	
@@ -284,7 +295,7 @@ GTTRIG      equ 0x00D8      ;Returns current trigger status
 
 _cursors:
 	
-; PSG I/O port A (r#14) â€“ read-only
+; PSG I/O port A (r#14) – read-only
 ; Bit	Description	Comment
 ; 0	Input joystick pin 1	(up)
 ; 1	Input joystick pin 2	(down)

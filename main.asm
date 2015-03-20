@@ -408,10 +408,10 @@ _isr:
 		
 2:		add		hl,bc
 		ld		hl,_ticxframe
-		; inc		(hl)
+		inc		(hl)
 		
-		ld		a,4
-		ld		(hl),a
+		; ld		a,4
+		; ld		(hl),a
 		
 		ret	nc
 		

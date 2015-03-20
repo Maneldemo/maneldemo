@@ -19,7 +19,7 @@
 		dw .track_16,.track_24,.track_25,.track_26,.track_27,.track_28,.track_29,.track_30		; Sequence step 3 /pattern 3
 		dw .track_8,.track_31,.track_32,.track_33,.track_34,.track_35,.track_36,.track_37		; Sequence step 4 /pattern 4
 		dw .track_38,.track_39,.track_40,.track_41,.track_42,.track_43,.track_44,.track_45		; Sequence step 5 /pattern 5
-		dw .track_8,.track_31,.track_32,.track_33,.track_34,.track_35,.track_36,.track_37		; Sequence step 6 /pattern 4
+		dw .track_0,.track_1,.track_2,.track_3,.track_4,.track_5,.track_6,.track_7		; Sequence step 6 /pattern 0
 		dw 0x0000, .restart			; End of sequence delimiter + restart address.
 
 .waveform_start:
