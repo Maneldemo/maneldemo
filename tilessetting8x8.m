@@ -14,6 +14,8 @@ fclose(fid);
 pale = pale/7;
 
 [X,MAP] = imread('map6.png');
+
+%[X,MAP] = imread('bmp\post-35226-0-57364200-1426197839.png');
 [BitField,MAP] = imread('map6_bitfiled.bmp');
 [Fonts,FontMAP] = imread('Fonts_small.bmp','bmp');
 [Sprites,SpriteMAP] = imread('sprites.bmp','bmp');

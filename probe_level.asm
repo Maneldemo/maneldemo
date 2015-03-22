@@ -4,6 +4,8 @@ probe_level:
 	
 	
 	ld	hl,(_mcly)	; ONLY IF mapWidth=256
+	; ld	bc,16-4
+	; add	hl,bc
 	ld	a,l
 	and	11111100B
 	ld	l,a

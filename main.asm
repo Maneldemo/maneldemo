@@ -22,6 +22,9 @@
 		defpage	12,0x4000, 0x2000		; swapped data 
 		defpage	13,0x6000, 0x2000		; swapped data 
 
+		defpage	16,0x8000, 0x2000		; swapped code
+		defpage	17,0xA000, 0x2000		; swapped code 
+		
 		;	konami scc
 		
 _kBank1:	equ 05000h ;- 57FFh (5000h used)
@@ -315,6 +318,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		LD	(0xFD9F),A
 		LD	(0xFDA0),HL
 		EI
+
 		
 		ld		hl,0
 		ld		a,h
@@ -325,6 +329,16 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld		(_currentpage),a
 		ld		(_mcdx),hl
 		ld		(_mcframe),a
+
+		; test to print some text
+		
+		call	setrompage2
+		ld	a, :_print_string
+		setpage_a
+		call	_print_string
+		call	setrampage2
+		EI
+		
 main_loop:
 		xor		a
 		ld		(_ticxframe),a
@@ -352,8 +366,10 @@ main_loop:
 		ei
 		
 		call	plot_frame
-		
+
 		call	plot_hero
+		
+	
 		
 		di
 		ld		a,:restore_background
@@ -363,6 +379,8 @@ main_loop:
 		ld		a,1
 		ld		(_kBank2),a
 		ei
+
+		call	manage_hero		
 		
 		call	_compute_fps
 		call	_print_fps
@@ -372,7 +390,7 @@ main_loop:
 		inc		hl
 		ld		(_nframes),hl
 
-		call	manage_hero
+
 
 		jp      main_loop
 
@@ -407,11 +425,13 @@ _isr:
 		ld		bc,-60			; NTSC
 		
 2:		add		hl,bc
+
 		ld		hl,_ticxframe
-		inc		(hl)
-		
-		; ld		a,4
-		; ld		(hl),a
+
+		; inc		(hl)
+		ld		a,4
+
+		ld		(hl),a
 		
 		ret	nc
 		
@@ -665,8 +685,10 @@ Num2:
 	inc de
 	ret
 	
-	
 	include enemies.asm
+	
+	page 16,17	
+	include text.asm	
 	
 	page 0,1	
 _metatable:

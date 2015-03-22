@@ -1,6 +1,6 @@
 
-nenemies 	equ	3
-_nenemies 	equ	3
+nenemies 	equ	3		; max number of enemies
+_nenemies 	equ	2		; actual number of enemies
 sprite_size	equ	8*8*2
 
 		struct enemy
@@ -23,6 +23,7 @@ frames:
 
 int_sprites
 	ld	ix,enemylist
+	
 ; enemy 0
 	ld	(ix+enemy.nx),7
 	ld	(ix+enemy.ny),5

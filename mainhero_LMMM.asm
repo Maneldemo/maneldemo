@@ -75,6 +75,11 @@ sleft:
 
 ;-------------------------------------
 
+xmax_on_screen		equ		256-16-16-64
+xmin_on_screen		equ		16+64
+ymin_on_screen		equ		16+32
+ymax_on_screen		equ		128+16-32-16
+
 manage_hero:
 
 	ld	bc,16
@@ -84,12 +89,12 @@ manage_hero:
 	sbc	hl,de
 	add	hl,bc
 	ld	(_mcx),hl
-	ld	de,256-80+3
+	ld	de,xmax_on_screen;	256-80+3
 	and	a
 	sbc	hl,de
 	call	nc,sright
 	ld	hl,(_mcx)
-	ld	de,64
+	ld	de,xmin_on_screen;	64
 	and	a
 	sbc	hl,de
 	call	c,sleft
@@ -102,16 +107,18 @@ manage_hero:
 	sbc	hl,de
 	add	hl,bc
 	ld	(_mcy),hl
-	ld	de,160-48+3
+	ld	de,ymax_on_screen;160-48+3
 	and	a
 	sbc	hl,de
 	call	nc,sdwn
 	ld	hl,(_mcy)
-	ld	de,32
+	ld	de,ymin_on_screen;32
 	and	a
 	sbc	hl,de
 	call	c,sup
 	
+
+	call	new_dirs
 	ld	de,(_mclx)
 	ld	hl,(_mcdx)
 	add	hl,de
@@ -120,14 +127,13 @@ manage_hero:
 	ld	de,(_mcly)
 	ld	hl,(_mcdy)
 	add	hl,de
-	ld	(_mcly),hl
+	ld	(_mcly),hl	
 
-	call	new_dirs
+	call	probe_level
 	ret
 ;-------------------------------------
 
 new_dirs:
-	call	probe_level
 	
 	call	_cursors
 
@@ -165,11 +171,9 @@ new_dirs:
 ;-------------------------------------
 	
 init_hero
-	ld	hl,120
-	ld	(_mcx),hl
+	ld	hl,64
 	ld	(_mclx),hl
-	ld	hl,16+64
-	ld	(_mcy),hl
+	ld	hl,64
 	ld	(_mcly),hl
 	xor		a
 	ld		(_mcframe),a
