@@ -102,12 +102,13 @@ checkkbd:
 		ret
 		
 ;-------------------------------------		
-		
+		; page 0
 		include plot_frame.asm
 		
 ;-------------------------------------
 ; Entry point
 ;-------------------------------------
+		; page 0
 START:
         ld		e,5
 		call	_scr
@@ -129,10 +130,6 @@ START:
 		xor	a
 _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
-		; ld	e,7
-		; call	checkkbd
-		; and	0x04				; ESC
-		; jp 	z,_mballon_start
 		
 		ld		de,0
 		ld		c,e
@@ -189,16 +186,9 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ei
 
 		call _hw_sprite_init
-
-	;clear RAM (first kb only)
-		; ld	bc,1024
-		; ld	hl,0xc000
-		; ld	de,0xc001
-
-		; ld	(hl),0
-		; ldir
 	
 	;--- initialise demo song
+	
 		ld	a, :demo_song
 		setpage_a
 		
@@ -336,7 +326,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld	a, :_print_string
 		setpage_a
 		call	_print_string
-		call	setrampage2
+		; call	setrampage2
 		EI
 		
 main_loop:
@@ -365,12 +355,12 @@ main_loop:
 		ld		(_kBank2),a
 		ei
 		
+		call	setrampage2
+		ei
 		call	plot_frame
 
 		call	plot_hero
-		
-	
-		
+			
 		di
 		ld		a,:restore_background
 		ld		(_kBank2),a
@@ -389,9 +379,6 @@ main_loop:
 		ld		hl,(_nframes)
 		inc		hl
 		ld		(_nframes),hl
-
-
-
 		jp      main_loop
 
         ret
@@ -403,11 +390,11 @@ JIFFY: equ 0xFC9E
 _isr:	
 		call	setrompage2
 		
-		ld	a, 14
+		ld	a,:demo_song
 		setpage_a
-		call	replay_route		; first outout data
+		call	replay_route		; first output data
 		
-		ld	a, 14
+		ld	a,:demo_song
 		setpage_a
 		call	replay_play			; calculate next output		
 		call	setrampage2
@@ -737,7 +724,7 @@ demo_song:
 	include	".\demosong.asm"
 	page 15
 	include	"..\code\ttreplayDAT.asm"
-	page 0,1
+	page 1
 	include	"..\code\ttreplay.asm"
 	
 FINISH:
