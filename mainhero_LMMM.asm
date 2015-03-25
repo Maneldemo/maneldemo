@@ -251,7 +251,7 @@ plot_hero:
 	add	hl,de
 	ld	l,(hl)
 
-	ld		h,192
+	ld		h,212
 	out		(c), l 		; sx
 	xor a
 	out		(0x9B), a 	; sx (high)

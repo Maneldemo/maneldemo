@@ -110,17 +110,6 @@ checkkbd:
 ;-------------------------------------
 		; page 0
 START:
-        ld		e,5
-		call	_scr
-
-		call 	_set_r800
-        call    powerup
-
-		xor	a
-		ld	(_kBank1),a
-		inc	a
-		ld	(_kBank2),a
-
 
 		ld e,6
 		call	checkkbd
@@ -129,68 +118,25 @@ START:
 		jp	nc,_ntsc
 		xor	a
 _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
-		
-		
-		ld		de,0
-		ld		c,e
-		di
-		call	_vdpsetvramwr
-		ld		bc,0x0000
-1:		xor		a
-		out		(0x98),a
-		dec		bc
-		ld		a,b
-		or		c
-		jr	nz,1b
-		
-		di
-		// sprites 16x16
-		ld	a,(0xF3E0)
-		or	2
-		ld	(0xF3E0),a
-		out		(0x99),a
-		ld		a,128+1
-		out		(0x99),a
+	
+		call	_scr5
+		call	_cls
 
-		// border color
-		ld		a,0x55
-		out		(0x99),a
-		ld		a,128+7
-		out		(0x99),a
-		
-		// enable sprites + TP
-		ld		a,(0xFFE7)
-		or		32+2
-		ld		(0xFFE7),a
-		out		(0x99),a
-		ld		a,128+8
-		out		(0x99),a
-		
-		// Set 192 lines @50Hz (PAL assumed!)
-		ld	a,(SEL_NTSC)
-		and 	a
-		jr		nz,1f
-		
-		ld		a,(0xFFE8)		; PAL
-		and		01111111B
-		or		2
-		ld		(0xFFE8),a
-		jr	2f
-1:		ld		a,(0xFFE8)		; NTSC
-		and		01111101B
-		ld		(0xFFE8),a
-2:	
-		out		(0x99),a
-		ld		a,128+9
-		out		(0x99),a
-		ei
+		call 	_set_r800
+        call    powerup
 
+		xor	a
+		ld	(_kBank1),a
+		inc	a
+		ld	(_kBank2),a
+	
+		
 		call _hw_sprite_init
 	
 	;--- initialise demo song
 	
-		ld	a, :demo_song
-		setpage_a
+		ld	a, 15
+		ld	(_kBank4),a
 		
 		ld	hl,demo_song
 		call	replay_init
@@ -235,7 +181,16 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		jr	nz,1b
 
 		call	setrompage2
-				
+
+		; unpack mc frames
+		ld		a, :_mc_sprites
+		setpage_a
+		xor	a
+		ld		(_vbit16 ),a
+		ld		de,	_mc_sprites
+		ld		bc,212*128+256*128
+		call	_vuitpakker 
+
 		; unpack frame
 		ld		a, :_frame
 		setpage_a
@@ -248,20 +203,10 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 
 		ld		e,1
         call	_setpage
-
 		ld		de,	_frame
 		ld		bc,0x8000
 		call	_vuitpakker 
-		
-		; unpack mc frames
-		ld		a, :_mc_sprites
-		setpage_a
-		
-		xor	a
-		ld		(_vbit16 ),a
-		ld		de,	_mc_sprites
-		ld		bc,192*128+256*128
-		call	_vuitpakker 
+
 				
 		ld		e,2
         call	_setpage
@@ -390,12 +335,10 @@ JIFFY: equ 0xFC9E
 _isr:	
 		call	setrompage2
 		
-		ld	a,:demo_song
-		setpage_a
+		ld	a,15
+		ld	(_kBank4),a
 		call	replay_route		; first output data
-		
-		ld	a,:demo_song
-		setpage_a
+
 		call	replay_play			; calculate next output		
 		call	setrampage2
 		ei
@@ -407,7 +350,7 @@ _isr:
 		jr		nz,1f
 		
 		ld		bc,-50			; PAL 
-		jr	2f
+		jr		2f
 1:
 		ld		bc,-60			; NTSC
 		
@@ -545,10 +488,66 @@ chgmod        equ     0x005f      ;change graphic mode
 RDSLT         equ     0x000c      ;read address HL in slot A
 KILBUF        equ     0x0156      ;clear keyboard buffer
 
-_scr:
-	ld  a,e
-	call	chgmod
-	ret
+_scr5:
+		ld  a,5
+		call	chgmod
+		
+		di
+		// sprites 16x16
+		ld	a,(0xF3E0)
+		or	2
+		ld	(0xF3E0),a
+		out		(0x99),a
+		ld		a,128+1
+		out		(0x99),a
+
+		// border color
+		ld		a,0x55
+		out		(0x99),a
+		ld		a,128+7
+		out		(0x99),a
+		
+		// enable sprites + TP
+		ld		a,(0xFFE7)
+		or		32+2
+		ld		(0xFFE7),a
+		out		(0x99),a
+		ld		a,128+8
+		out		(0x99),a
+		
+		// Set 192/212 lines @50Hz (PAL assumed!)
+		ld	a,(SEL_NTSC)
+		and 	a
+		jr		nz,1f
+		
+		ld		a,(0xFFE8)		; PAL
+		and		01111111B
+		or		2+128
+		ld		(0xFFE8),a
+		jr	2f
+1:		ld		a,(0xFFE8)		; NTSC
+		and		01111101B
+		ld		(0xFFE8),a
+2:	
+		out		(0x99),a
+		ld		a,128+9
+		out		(0x99),a
+		ei
+
+		ret
+_cls:
+		ld		de,0
+		ld		c,e
+		di
+		call	_vdpsetvramwr
+		ld		bc,0x0000
+1:		xor		a
+		out		(0x98),a
+		dec		bc
+		ld		a,b
+		or		c
+		jr	nz,1b
+		ret
 
 
 _waitvdp:
@@ -719,10 +718,12 @@ _level_bf:
 sprtdata
 	include 	SPROL.ASM
 	
-	page 14
+
+
+	page 15
 demo_song:
 	include	".\demosong.asm"
-	page 15
+	page 1
 	include	"..\code\ttreplayDAT.asm"
 	page 1
 	include	"..\code\ttreplay.asm"
