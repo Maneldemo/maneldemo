@@ -1,8 +1,9 @@
 
-text	db	"This is a TEST",0
+text	db	"This is a TEST.",0
 
 _font_a	equ	32*63+6-'a'
 _font_A	equ	32*62+11-'A'
+_font_.	equ 32*63+6-1
 
 _print_string:
 
@@ -23,7 +24,7 @@ _print_string:
 	cp	'.'
 	jr	nz,3f
 	
-	ld	de,_font_a-1
+	ld	de,_font_.
 	jr	2f
 	
 3:	cp	'Z'+1
@@ -42,7 +43,17 @@ _small:
 	ld	d,a
 2:	push	hl
 	push	bc
-	call 	plot_foreground
+
+	LD	A,0xC9
+	LD	(0xFD9F),A
+		
+	call 	vdp_conf
+	ld		a,11010000B
+	out 	(0x9B), a		; command HMMM
+
+	LD	A,0xC3
+	LD	(0xFD9F),A
+
 	pop	bc
 	pop	hl
 	inc	bc

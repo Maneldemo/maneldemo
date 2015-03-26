@@ -66,6 +66,14 @@ sInpTiles1 = im2col(C(5:end,:),'indexed',[8 8],'distinct');      %InpTiles1 = im
 sInpTiles2 = im2col(C(:,5:end),'indexed',[8 8],'distinct');
 sInpTiles3 = im2col(C(5:end,5:end),'indexed',[8 8],'distinct');  %InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
 
+% InpTiles1 = InpTiles0;
+% InpTiles2 = InpTiles0;
+% InpTiles3 = InpTiles0;
+% 
+% sInpTiles1 = sInpTiles0;
+% sInpTiles2 = sInpTiles0;
+% sInpTiles3 = sInpTiles0;
+
 InpTilesBK = im2col(Y,'indexed',[8 8],'distinct');
 
 UniqueTiles = unique([InpTiles0 InpTiles1 InpTiles2 InpTiles3 InpTilesBK]','rows');

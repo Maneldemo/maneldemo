@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.25 - 23:30:36]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2015.03.26 - 22:53:59]
 
 main.asm
 Errors: 0
@@ -791,7 +791,7 @@ Errors: 0
      272   00:4356  32 00 90          >   ld (_kBank3),a
      272   00:4359  3C                >   inc a
      272   00:435A  32 00 B0          >   ld (_kBank4),a
-     273   00:435D  CD 0F 80            		call	_print_string
+     273   00:435D  CD 10 80            		call	_print_string
      274   00:4360                      		; call	setrampage2
      275   00:4360  FB                  		EI
      276   00:4361                      		
@@ -1905,58 +1905,69 @@ Errors: 0
      676   0D:75B5                      	page 16,17	
      677   10:8000                      	include text.asm	
        1.  10:8000                      
-       2.  10:8000                      text	db	"This is a TEST",0
-       2.  10:8000  54 68 69 73 20 69 73 20 61 20 54 45 53 54 00 
-       3.  10:800F                      
-       4.  10:800F  (10:0785)           _font_a	equ	32*63+6-'a'
-       5.  10:800F  (10:078A)           _font_A	equ	32*62+11-'A'
-       6.  10:800F                      
-       7.  10:800F                      _print_string:
-       8.  10:800F                      
-       9.  10:800F  01 00 80            	ld	bc,text
-      10.  10:8012  21 50 05            	ld	hl,2*(21*32+8)
-      11.  10:8015  AF                  	xor	a
-      12.  10:8016  32 A4 D4            	ld		(_currentpage),a
-      13.  10:8019  CD 27 80            	call	1f
-      14.  10:801C  01 00 80            	ld	bc,text
-      15.  10:801F  21 50 05            	ld	hl,2*(21*32+8)
-      16.  10:8022  3E 01               	ld	a,1
-      17.  10:8024  32 A4 D4            	ld		(_currentpage),a
-      18.  10:8027                      	
-      19.  10:8027                      	
-      20.  10:8027  0A                  1:	ld	a,(bc)
-      21.  10:8028  A7                  	and	a
-      22.  10:8029  C8                  	ret	z
-      23.  10:802A  FE 2E               	cp	'.'
-      24.  10:802C  20 05               	jr	nz,3f
-      25.  10:802E                      	
-      26.  10:802E  11 84 07            	ld	de,_font_a-1
-      27.  10:8031  18 16               	jr	2f
-      28.  10:8033                      	
-      29.  10:8033  FE 5B               3:	cp	'Z'+1
-      30.  10:8035  30 0A               	jr	nc,_small
-      31.  10:8037  C6 8A               	add	a,low _font_A
-      32.  10:8039  5F                  	ld	e,a
-      33.  10:803A  3E 07               	ld	a,high	_font_A
-      34.  10:803C  CE 00               	adc	a,0
-      35.  10:803E  57                  	ld	d,a
-      36.  10:803F  18 08               	jr	2f
-      37.  10:8041                      _small:	
-      38.  10:8041  C6 85               	add	a,low _font_a
-      39.  10:8043  5F                  	ld	e,a
-      40.  10:8044  3E 07               	ld	a,high	_font_a
-      41.  10:8046  CE 00               	adc	a,0
-      42.  10:8048  57                  	ld	d,a
-      43.  10:8049  E5                  2:	push	hl
-      44.  10:804A  C5                  	push	bc
-      45.  10:804B  CD 4B 45            	call 	plot_foreground
-      46.  10:804E  C1                  	pop	bc
-      47.  10:804F  E1                  	pop	hl
-      48.  10:8050  03                  	inc	bc
-      49.  10:8051  23 23               [2]	inc	hl
-      50.  10:8053  18 D2               	jr	1b
-     678   10:8055                      	
-     679   10:8055                      	page 0,1	
+       2.  10:8000                      text	db	"This is a TEST.",0
+       2.  10:8000  54 68 69 73 20 69 73 20 61 20 54 45 53 54 2E 00 
+       3.  10:8010                      
+       4.  10:8010  (10:0785)           _font_a	equ	32*63+6-'a'
+       5.  10:8010  (10:078A)           _font_A	equ	32*62+11-'A'
+       6.  10:8010  (10:07E5)           _font_.	equ 32*63+6-1
+       7.  10:8010                      
+       8.  10:8010                      _print_string:
+       9.  10:8010                      
+      10.  10:8010  01 00 80            	ld	bc,text
+      11.  10:8013  21 50 05            	ld	hl,2*(21*32+8)
+      12.  10:8016  AF                  	xor	a
+      13.  10:8017  32 A4 D4            	ld		(_currentpage),a
+      14.  10:801A  CD 28 80            	call	1f
+      15.  10:801D  01 00 80            	ld	bc,text
+      16.  10:8020  21 50 05            	ld	hl,2*(21*32+8)
+      17.  10:8023  3E 01               	ld	a,1
+      18.  10:8025  32 A4 D4            	ld		(_currentpage),a
+      19.  10:8028                      	
+      20.  10:8028                      	
+      21.  10:8028  0A                  1:	ld	a,(bc)
+      22.  10:8029  A7                  	and	a
+      23.  10:802A  C8                  	ret	z
+      24.  10:802B  FE 2E               	cp	'.'
+      25.  10:802D  20 05               	jr	nz,3f
+      26.  10:802F                      	
+      27.  10:802F  11 E5 07            	ld	de,_font_.
+      28.  10:8032  18 16               	jr	2f
+      29.  10:8034                      	
+      30.  10:8034  FE 5B               3:	cp	'Z'+1
+      31.  10:8036  30 0A               	jr	nc,_small
+      32.  10:8038  C6 8A               	add	a,low _font_A
+      33.  10:803A  5F                  	ld	e,a
+      34.  10:803B  3E 07               	ld	a,high	_font_A
+      35.  10:803D  CE 00               	adc	a,0
+      36.  10:803F  57                  	ld	d,a
+      37.  10:8040  18 08               	jr	2f
+      38.  10:8042                      _small:	
+      39.  10:8042  C6 85               	add	a,low _font_a
+      40.  10:8044  5F                  	ld	e,a
+      41.  10:8045  3E 07               	ld	a,high	_font_a
+      42.  10:8047  CE 00               	adc	a,0
+      43.  10:8049  57                  	ld	d,a
+      44.  10:804A  E5                  2:	push	hl
+      45.  10:804B  C5                  	push	bc
+      46.  10:804C                      
+      47.  10:804C  3E C9               	LD	A,0xC9
+      48.  10:804E  32 9F FD            	LD	(0xFD9F),A
+      49.  10:8051                      		
+      50.  10:8051  CD 92 45            	call 	vdp_conf
+      51.  10:8054  3E D0               	ld		a,11010000B
+      52.  10:8056  D3 9B               	out 	(0x9B), a		; command HMMM
+      53.  10:8058                      
+      54.  10:8058  3E C3               	LD	A,0xC3
+      55.  10:805A  32 9F FD            	LD	(0xFD9F),A
+      56.  10:805D                      
+      57.  10:805D  C1                  	pop	bc
+      58.  10:805E  E1                  	pop	hl
+      59.  10:805F  03                  	inc	bc
+      60.  10:8060  23 23               [2]	inc	hl
+      61.  10:8062  18 C4               	jr	1b
+     678   10:8064                      	
+     679   10:8064                      	page 0,1	
      680   00:4784                      _metatable:
      681   00:4784  (0E60)              	incbin 	metatable.bin
      682   00:55E4                      	
@@ -9812,8 +9823,9 @@ Errors: 0
 10:00008000   text
 10:00000785   _font_a
 10:0000078A   _font_A
-10:0000800F   _print_string
-10:00008041   _small
+10:000007E5   _font_.
+10:00008010   _print_string
+10:00008042   _small
 00:00004784   _metatable
 01:00006B94   _backmap
 01:00006F94   _hw_sprite_init
@@ -10355,11 +10367,11 @@ Errors: 0
    0000B0DF    3873       <empty>
 
  Page: 10
-  Org: 00008000  Size: 00002000  Used: 00000055
+  Org: 00008000  Size: 00002000  Used: 00000064
 
    Address   Length Align   Label
-   00008000      85         text
-   00008055    8107       <empty>
+   00008000     100         text
+   00008064    8092       <empty>
 
  Page: 11
   Org: 0000A000  Size: 00002000  Used: 00000000
