@@ -132,7 +132,7 @@ _font_a: equ 00000785h
 _font_A: equ 0000078Ah
 _font_.: equ 000007E5h
 _print_string: equ 00008010h
-_small: equ 00008042h
+_small: equ 00008050h
 _metatable: equ 00004784h
 _backmap: equ 00006B94h
 _hw_sprite_init: equ 00006F94h

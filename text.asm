@@ -6,6 +6,8 @@ _font_A	equ	32*62+11-'A'
 _font_.	equ 32*63+6-1
 
 _print_string:
+	LD	A,0xC9
+	LD	(0xFD9F),A
 
 	ld	bc,text
 	ld	hl,2*(21*32+8)
@@ -16,7 +18,11 @@ _print_string:
 	ld	hl,2*(21*32+8)
 	ld	a,1
 	ld		(_currentpage),a
+	call	1f
 	
+	LD	A,0xC3
+	LD	(0xFD9F),A
+	ret
 	
 1:	ld	a,(bc)
 	and	a
@@ -43,16 +49,11 @@ _small:
 	ld	d,a
 2:	push	hl
 	push	bc
-
-	LD	A,0xC9
-	LD	(0xFD9F),A
 		
 	call 	vdp_conf
 	ld		a,11010000B
 	out 	(0x9B), a		; command HMMM
 
-	LD	A,0xC3
-	LD	(0xFD9F),A
 
 	pop	bc
 	pop	hl
