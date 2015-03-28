@@ -112,6 +112,10 @@ setrompage0:
 	ld		a,(slotvar)
 	jp		setslotpage0
 
+setrampage0:
+	ld		a,(slotram)
+	jp		setslotpage0
+
 setrompage2:
 	ld		a,(slotvar)
 	jp		setslotpage2

@@ -57,27 +57,21 @@ colormap(MAP);
 axis equal;
 
 InpTiles0 = im2col(B,'indexed',[8 8],'distinct');
-InpTiles1 = im2col(B(5:end,:),'indexed',[8 8],'distinct');      %InpTiles1 = im2col(B(:,3:end),'indexed',[8 8],'distinct');
-InpTiles2 = im2col(B(:,5:end),'indexed',[8 8],'distinct');
-InpTiles3 = im2col(B(5:end,5:end),'indexed',[8 8],'distinct');  %InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
+% InpTiles1 = im2col(B(5:end,:),'indexed',[8 8],'distinct');      %InpTiles1 = im2col(B(:,3:end),'indexed',[8 8],'distinct');
+% InpTiles2 = im2col(B(:,5:end),'indexed',[8 8],'distinct');
+% InpTiles3 = im2col(B(5:end,5:end),'indexed',[8 8],'distinct');  %InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
 
 sInpTiles0 = im2col(C,'indexed',[8 8],'distinct');
-sInpTiles1 = im2col(C(5:end,:),'indexed',[8 8],'distinct');      %InpTiles1 = im2col(B(:,3:end),'indexed',[8 8],'distinct');
-sInpTiles2 = im2col(C(:,5:end),'indexed',[8 8],'distinct');
-sInpTiles3 = im2col(C(5:end,5:end),'indexed',[8 8],'distinct');  %InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
-
-% InpTiles1 = InpTiles0;
-% InpTiles2 = InpTiles0;
-% InpTiles3 = InpTiles0;
-% 
-% sInpTiles1 = sInpTiles0;
-% sInpTiles2 = sInpTiles0;
-% sInpTiles3 = sInpTiles0;
+% sInpTiles1 = im2col(C(5:end,:),'indexed',[8 8],'distinct');      %InpTiles1 = im2col(B(:,3:end),'indexed',[8 8],'distinct');
+% sInpTiles2 = im2col(C(:,5:end),'indexed',[8 8],'distinct');
+% sInpTiles3 = im2col(C(5:end,5:end),'indexed',[8 8],'distinct');  %InpTiles3 = im2col(B(:,7:end),'indexed',[8 8],'distinct');
 
 InpTilesBK = im2col(Y,'indexed',[8 8],'distinct');
 
-UniqueTiles = unique([InpTiles0 InpTiles1 InpTiles2 InpTiles3 InpTilesBK]','rows');
-UniqueTiles = unique([sInpTiles0 sInpTiles1 sInpTiles2 sInpTiles3 UniqueTiles']','rows');
+% UniqueTiles = unique([InpTiles0 InpTiles1 InpTiles2 InpTiles3 InpTilesBK]','rows');
+% UniqueTiles = unique([sInpTiles0 sInpTiles1 sInpTiles2 sInpTiles3 UniqueTiles']','rows');
+
+UniqueTiles = unique([InpTiles0 sInpTiles0 InpTilesBK]','rows');
 
 fun = @(block_struct) norm(double(block_struct.data));
 C = blockproc(double(UniqueTiles),[1 64],fun);
@@ -124,19 +118,22 @@ fclose(fid);
 BackTiles = im2col(Y,'indexed',[8 8],'distinct');
 
 [~,InpMap0] = ismember(InpTiles0',UniqueTiles,'rows');
-[~,InpMap1] = ismember(InpTiles1',UniqueTiles,'rows');
-[~,InpMap2] = ismember(InpTiles2',UniqueTiles,'rows');
-[~,InpMap3] = ismember(InpTiles3',UniqueTiles,'rows');
+% [~,InpMap1] = ismember(InpTiles1',UniqueTiles,'rows');
+% [~,InpMap2] = ismember(InpTiles2',UniqueTiles,'rows');
+% [~,InpMap3] = ismember(InpTiles3',UniqueTiles,'rows');
 
 [~,sInpMap0] = ismember(sInpTiles0',UniqueTiles,'rows');
-[~,sInpMap1] = ismember(sInpTiles1',UniqueTiles,'rows');
-[~,sInpMap2] = ismember(sInpTiles2',UniqueTiles,'rows');
-[~,sInpMap3] = ismember(sInpTiles3',UniqueTiles,'rows');
+% [~,sInpMap1] = ismember(sInpTiles1',UniqueTiles,'rows');
+% [~,sInpMap2] = ismember(sInpTiles2',UniqueTiles,'rows');
+% [~,sInpMap3] = ismember(sInpTiles3',UniqueTiles,'rows');
 
 InpMap = InpMap0;
 
-FullMetaMap = [InpMap0 InpMap1 InpMap2 InpMap3]; 
-sFullMetaMap = [sInpMap0 sInpMap1 sInpMap2 sInpMap3]; 
+% FullMetaMap = [InpMap0 InpMap1 InpMap2 InpMap3]; 
+% sFullMetaMap = [sInpMap0 sInpMap1 sInpMap2 sInpMap3]; 
+
+FullMetaMap = InpMap0 ; 
+sFullMetaMap = sInpMap0 ; 
 
 UniqueMetaTiles = unique([FullMetaMap; sFullMetaMap],'rows');
 
@@ -162,11 +159,11 @@ for i=1:(H/8)
 end
 fclose(fid);
 
-fid = fopen('smetamap.bin','wb');
-for i=1:(H/8/2)
-    fwrite(fid,SS(i,:)-1,'uint16');
-end
-fclose(fid);
+% fid = fopen('smetamap.bin','wb');
+% for i=1:(H/8/2)
+%     fwrite(fid,SS(i,:)-1,'uint16');
+% end
+% fclose(fid);
 
 tt = im2col(SS',[7 5],'distinct');
 size(tt)

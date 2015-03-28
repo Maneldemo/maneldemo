@@ -19,8 +19,8 @@
 		defpage	14,0x8000, 0x2000		; swapped data 
 		defpage	15,0xA000, 0x2000		; swapped data 
 
-		defpage	12,0x4000, 0x2000		; swapped data 
-		defpage	13,0x6000, 0x2000		; swapped data 
+		defpage	12,0x4000, 0x2000		; swapped code
+		defpage	13,0x6000, 0x2000		; swapped code 
 
 		defpage	16,0x8000, 0x2000		; swapped code
 		defpage	17,0xA000, 0x2000		; swapped code 
@@ -135,13 +135,15 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 	
 	;--- initialise demo song
 	
-		ld	a, 15
-		ld	(_kBank4),a
+		ld	a, :_demo_song
+		setpage_a
+		ld	de,demo_song
+		ld	hl,0x8000
+		ld	bc,_enddemo_song-_demo_song+1
+		ldir
 		
 		ld	hl,demo_song
 		call	replay_init
-
-		call	_clean_buffs
 
 		call	_SetPalet
 		ld		e,0
@@ -250,8 +252,8 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		LD	A,0xC3
 		LD	HL,_isr
 		DI
-		LD	(0xFD9F),A
-		LD	(0xFDA0),HL
+		LD	(0x0038),A
+		LD	(0x0038+1),HL
 		EI
 
 		
@@ -271,7 +273,7 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		ld	a, :_print_string
 		setpage_a
 		call	_print_string
-		; call	setrampage2
+		call	setrampage2
 		EI
 		
 main_loop:
@@ -298,9 +300,6 @@ main_loop:
 		call 	plot_sprite
 		ld		a,1
 		ld		(_kBank2),a
-		ei
-		
-		call	setrampage2
 		ei
 		call	plot_frame
 
@@ -333,19 +332,59 @@ main_loop:
 JIFFY: equ 0xFC9E 
 ;-------------------------------------
 _isr:	
+		push   hl     
+		push   de     
+		push   bc     
+		push   af     
+		exx           
+		ex     af,af' 
+		push   hl     
+		push   de     
+		push   bc     
+		push   af     
+		push   iy     
+		push   ix     
+		
+		in     a,(0x99)
+		
+		call	manage_music
+		call	manage_counters
+		
+		pop    ix     
+		pop    iy     
+		pop    af     		
+		pop    bc     		
+		pop    de     		
+		pop    hl     		
+		ex     af,af' 		
+		exx           		
+		pop    af     		
+		pop    bc     		
+		pop    de     		
+		pop    hl     		
+		ei            		
+		ret
+		
+		
+		
+manage_music:
+
 		call	setrompage2
 		
-		ld	a,15
-		ld	(_kBank4),a
+		; ld	a,15
+		; ld	(_kBank4),a
 		call	replay_route		; first output data
 
 		call	replay_play			; calculate next output		
 		call	setrampage2
-		ei
-
+		ret
+		
+manage_counters:
 		ld		hl,(JIFFY)
-
-		ld	a,(SEL_NTSC)
+		inc		hl
+		ld		(JIFFY),hl
+		
+		ld		a,(SEL_NTSC)
 		and 	a
 		jr		nz,1f
 		
@@ -356,12 +395,8 @@ _isr:
 		
 2:		add		hl,bc
 
-		ld		hl,_ticxframe
-
-		; inc		(hl)
 		ld		a,4
-
-		ld		(hl),a
+		ld		(_ticxframe),a
 		
 		ret	nc
 		
@@ -379,7 +414,11 @@ _isr:
 powerup:
         call    search_slot
         call    search_slotram
-		jp		setrompage2
+		call	setrompage2
+		call	setrampage0
+		ld	hl,0x0038
+		ld	(hl),0xC9
+		ret
         
 
         
@@ -414,14 +453,6 @@ _SetPalet:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-_clean_buffs:
-	ld	bc,2*WinWidth*WinWidth*2-1
-	ld	hl,_shadow0
-	ld	(hl),-1
-	ld	de,_shadow0+1
-	ldir
-	ret
-	
 ;Set VDP for writing at address CDE (17-bit) 
 
 _vdpsetvramwr:
@@ -698,15 +729,15 @@ _mc_sprites:
 	
 	page 4
 _tiles0:
-	incbin "_tiles0.bin",,0x2000
+	incbin "_tiles0.bin";,,0x2000
 	page 5
-	incbin "_tiles0.bin",0x2000
+	; incbin "_tiles0.bin",0x2000
 	
 	page 6
 _tiles1:
-	incbin "_tiles1.bin",,0x2000
+	incbin "_tiles1.bin";,,0x2000
 	page 7
-	incbin "_tiles1.bin",0x2000
+	; incbin "_tiles1.bin",0x2000
 
 	page 8,9
 _level:
@@ -720,11 +751,12 @@ sprtdata
 	
 
 
-	page 15
-demo_song:
+	page 14,15
+	org	0x0040
+_demo_song:
 	include	".\demosong.asm"
-	page 1
 	include	"..\code\ttreplayDAT.asm"
+_enddemo_song:
 	page 1
 	include	"..\code\ttreplay.asm"
 	
@@ -735,13 +767,23 @@ FINISH:
 ; Variables
 ;---------------------------------------------------------
 
+	
+	MAP 0x0040
+demo_song:			#(_enddemo_song-_demo_song+1)
+	
 
+_shadow0:			#32*24*2
+_shadow1:			#32*24*2
+
+enemylist:			#enemy*nenemies
+
+_cur_level_bf:		#mapWidth*mapHeight/2
+
+	ENDMAP
+	
 	
 	MAP 0xC000
 	include	"..\code\ttreplayRAM.asm"
-
-_cur_level_bf:		#mapWidth*mapHeight/2
-enemylist:			#enemy*nenemies
 
 slotvar				#1
 slotram				#1
@@ -777,8 +819,6 @@ _xmappos:			#2
 _shadowbuff:		#2
 _currentpage:		#1
 
-_shadow0:			#32*24*2
-_shadow1:			#32*24*2
 
 
 	ENDMAP

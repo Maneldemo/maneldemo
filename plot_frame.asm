@@ -25,11 +25,11 @@ plot_frame:
 		ld		a,(_xmappos)
 		and		00000100B
 		ld		b,a
-		ld		a,(_ymappos)
-		and		00000100B
-		rra
-		add		a,b
-		ld		ixl,a			; ixl -> scroll offset
+		; ld		a,(_ymappos)
+		; and		00000100B
+		; rra
+		; add		a,b
+		; ld		ixl,a			; ixl -> scroll offset
 		
 		
 2:		ld		b,WinWidth
@@ -44,11 +44,13 @@ plot_frame:
 		ld		d,(hl)		; DE = meta tile
 		
 		ex		de,hl
-[3]		add		hl,hl
+
+[1]		add		hl,hl
+; [3]		add		hl,hl
 		
-		ld	a,ixl
-		or	l
-		ld	l,a
+		; ld	a,ixl
+		; or	l
+		; ld	l,a
 		
 		ld		de,_metatable
 		add		hl,de

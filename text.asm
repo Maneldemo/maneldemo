@@ -7,7 +7,7 @@ _font_.	equ 32*63+6-1
 
 _print_string:
 	LD	A,0xC9
-	LD	(0xFD9F),A
+	LD	(0x0038),A
 
 	ld	bc,text
 	ld	hl,2*(21*32+8)
@@ -21,7 +21,7 @@ _print_string:
 	call	1f
 	
 	LD	A,0xC3
-	LD	(0xFD9F),A
+	LD	(0x0038),A
 	ret
 	
 1:	ld	a,(bc)
