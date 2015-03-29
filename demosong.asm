@@ -1,29 +1,50 @@
 ; Compiled using tt_compile.exe V0.1 [02-03-2015]
 ; Copyright 2015 Richard Cornelisse
 
-; Song: Zelda Theme -just a test song-  
-; By:   Huey <org:maktone,natan1>   2013
+; Song: A N A L - M A U L               
+; By:   Arr. John Hassink 2009-2013     
 
 ;	org $c000
 
 ; [ Song start data ]
-	db $08				; Initial song speed.
+	db $06				; Initial song speed.
 	dw .waveform_start 			; Start of the waveform data.
 	dw .instrument_start 			; Start of the instrument data.
 
 ; [ Song order pointer list ]
-		dw .track_0,.track_1,.track_2,.track_2,.track_3,.track_4,.track_5,.track_6		; Sequence step 0 /pattern 0
-		dw .track_7,.track_8,.track_9,.track_10,.track_11,.track_12,.track_13,.track_14		; Sequence step 1 /pattern 1
+		dw .track_0,.track_1,.track_2,.track_3,.track_4,.track_5,.track_6,.track_7		; Sequence step 0 /pattern 0
+		dw .track_8,.track_9,.track_10,.track_11,.track_12,.track_13,.track_14,.track_15		; Sequence step 1 /pattern 1
 .restart:
-		dw .track_15,.track_16,.track_17,.track_18,.track_19,.track_20,.track_21,.track_22		; Sequence step 2 /pattern 2
-		dw .track_23,.track_24,.track_25,.track_26,.track_27,.track_28,.track_29,.track_30		; Sequence step 3 /pattern 3
-		dw .track_31,.track_32,.track_33,.track_34,.track_35,.track_36,.track_37,.track_38		; Sequence step 4 /pattern 4
-		dw .track_39,.track_40,.track_41,.track_42,.track_43,.track_44,.track_45,.track_46		; Sequence step 5 /pattern 5
-		dw .track_47,.track_48,.track_49,.track_50,.track_51,.track_52,.track_53,.track_54		; Sequence step 6 /pattern 6
-		dw .track_55,.track_56,.track_57,.track_57,.track_58,.track_59,.track_60,.track_61		; Sequence step 7 /pattern 7
-		dw .track_62,.track_63,.track_64,.track_65,.track_66,.track_67,.track_68,.track_69		; Sequence step 8 /pattern 8
-		dw .track_70,.track_71,.track_72,.track_73,.track_74,.track_75,.track_76,.track_77		; Sequence step 9 /pattern 9
-		dw .track_0,.track_1,.track_2,.track_2,.track_3,.track_4,.track_5,.track_6		; Sequence step 10 /pattern 0
+		dw .track_16,.track_17,.track_18,.track_19,.track_20,.track_21,.track_22,.track_23		; Sequence step 2 /pattern 2
+		dw .track_16,.track_24,.track_25,.track_26,.track_27,.track_28,.track_29,.track_30		; Sequence step 3 /pattern 3
+		dw .track_16,.track_31,.track_32,.track_26,.track_20,.track_21,.track_33,.track_34		; Sequence step 4 /pattern 4
+		dw .track_35,.track_36,.track_37,.track_26,.track_38,.track_39,.track_37,.track_40		; Sequence step 5 /pattern 5
+		dw .track_16,.track_31,.track_41,.track_42,.track_20,.track_21,.track_41,.track_43		; Sequence step 6 /pattern 6
+		dw .track_16,.track_44,.track_45,.track_46,.track_27,.track_28,.track_47,.track_48		; Sequence step 7 /pattern 7
+		dw .track_16,.track_31,.track_49,.track_50,.track_51,.track_21,.track_52,.track_53		; Sequence step 8 /pattern 8
+		dw .track_54,.track_55,.track_56,.track_57,.track_58,.track_59,.track_56,.track_60		; Sequence step 9 /pattern 9
+		dw .track_61,.track_62,.track_63,.track_19,.track_64,.track_65,.track_66,.track_67		; Sequence step 10 /pattern 10
+		dw .track_68,.track_69,.track_70,.track_26,.track_71,.track_72,.track_73,.track_74		; Sequence step 11 /pattern 11
+		dw .track_75,.track_76,.track_77,.track_26,.track_78,.track_79,.track_80,.track_81		; Sequence step 12 /pattern 12
+		dw .track_82,.track_83,.track_84,.track_26,.track_85,.track_86,.track_87,.track_88		; Sequence step 13 /pattern 13
+		dw .track_16,.track_17,.track_18,.track_19,.track_20,.track_21,.track_22,.track_23		; Sequence step 14 /pattern 2
+		dw .track_16,.track_24,.track_25,.track_26,.track_27,.track_28,.track_29,.track_30		; Sequence step 15 /pattern 3
+		dw .track_16,.track_31,.track_32,.track_26,.track_20,.track_21,.track_33,.track_34		; Sequence step 16 /pattern 4
+		dw .track_35,.track_36,.track_37,.track_26,.track_38,.track_39,.track_37,.track_40		; Sequence step 17 /pattern 5
+		dw .track_16,.track_31,.track_41,.track_42,.track_20,.track_21,.track_41,.track_43		; Sequence step 18 /pattern 6
+		dw .track_16,.track_44,.track_45,.track_46,.track_27,.track_28,.track_47,.track_48		; Sequence step 19 /pattern 7
+		dw .track_16,.track_31,.track_49,.track_50,.track_51,.track_21,.track_52,.track_53		; Sequence step 20 /pattern 8
+		dw .track_54,.track_55,.track_56,.track_57,.track_58,.track_59,.track_56,.track_60		; Sequence step 21 /pattern 9
+		dw .track_61,.track_62,.track_63,.track_19,.track_64,.track_65,.track_66,.track_67		; Sequence step 22 /pattern 10
+		dw .track_68,.track_69,.track_70,.track_26,.track_71,.track_72,.track_73,.track_74		; Sequence step 23 /pattern 11
+		dw .track_75,.track_76,.track_77,.track_129,.track_78,.track_79,.track_80,.track_81		; Sequence step 24 /pattern 20
+		dw .track_82,.track_83,.track_89,.track_90,.track_85,.track_86,.track_91,.track_92		; Sequence step 25 /pattern 14
+		dw .track_93,.track_94,.track_95,.track_96,.track_97,.track_21,.track_95,.track_98		; Sequence step 26 /pattern 15
+		dw .track_99,.track_100,.track_101,.track_102,.track_103,.track_28,.track_104,.track_105		; Sequence step 27 /pattern 16
+		dw .track_106,.track_107,.track_108,.track_109,.track_110,.track_111,.track_112,.track_113		; Sequence step 28 /pattern 17
+		dw .track_114,.track_115,.track_116,.track_117,.track_118,.track_119,.track_120,.track_121		; Sequence step 29 /pattern 18
+		dw .track_122,.track_123,.track_124,.track_125,.track_126,.track_127,.track_128,.track_128		; Sequence step 30 /pattern 19
+		dw .track_0,.track_1,.track_2,.track_3,.track_4,.track_5,.track_6,.track_7		; Sequence step 31 /pattern 0
 		dw 0x0000, .restart			; End of sequence delimiter + restart address.
 
 .waveform_start:
@@ -61,15 +82,15 @@
 	db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00	; Waveform 31
 
 .instrument_start:
-	dw .ins_1,.ins_2,.ins_3,.ins_4,.ins_5,.ins_6,.ins_7,.ins_8,.ins_9,.ins_10,.ins_11,.ins_12,.ins_13,.ins_14,.ins_15,.ins_16,.ins_17,.ins_18,.ins_19,.ins_20
+	dw .ins_1,.ins_2,.ins_3,.ins_4,.ins_5,.ins_6,.ins_7,.ins_8,.ins_9,.ins_10,.ins_11,.ins_12,.ins_13,.ins_14,.ins_15,.ins_16,.ins_17,.ins_18,.ins_19,.ins_20,.ins_21,.ins_22
 .ins_1:
-		db 7					; Waveform
+		db 1					; Waveform
 		db .rst_i1-(.ins_1 +2)		; Restart
-		db $11,$0E
-		db $11,$0E
-		db $11,$0E
-		db $11,$0E
-		db $11,$0D
+		db $11,$0A
+		db $11,$0A
+		db $11,$0B
+		db $11,$0B
+		db $11,$0C
 		db $11,$0C
 		db $11,$0C
 		db $11,$0A
@@ -84,48 +105,85 @@
 		db $15,$07,$02,$00
 		db $1D,$07,$01,$00
 .ins_2:
-		db 13					; Waveform
+		db 2					; Waveform
 		db .rst_i2-(.ins_2 +2)		; Restart
+		db $11,$0C
+		db $11,$0B
+		db $11,$0C
+		db $11,$0B
+		db $11,$0B
+		db $11,$0B
+		db $11,$0B
 		db $11,$0A
 		db $11,$09
-		db $11,$0A
+.rst_i2:
 		db $11,$08
 		db $11,$08
-		db $11,$08
-		db $11,$08
+		db $19,$08
+.ins_3:
+.ins_4:
+		db 4					; Waveform
+		db .rst_i4-(.ins_4 +2)		; Restart
+		db $11,$03
+		db $11,$03
+		db $11,$04
+		db $11,$04
+		db $11,$05
+		db $11,$05
+		db $11,$06
+		db $11,$06
+		db $11,$07
 		db $11,$07
 		db $11,$06
-.rst_i2:
-		db $11,$05
-		db $11,$05
-		db $19,$04
-.ins_3:
-		db 6					; Waveform
-		db .rst_i3-(.ins_3 +2)		; Restart
-		db $11,$0E
-		db $11,$0F
-		db $11,$0F
+.rst_i4:
+		db $15,$05,$01,$00
+		db $15,$05,$02,$00
+		db $15,$05,$FD,$FF
+		db $15,$05,$FF,$FF
+		db $15,$05,$FE,$FF
+		db $1D,$05,$03,$00
+.ins_5:
+		db 5					; Waveform
+		db .rst_i5-(.ins_5 +2)		; Restart
 		db $11,$0D
+		db $11,$0A
+		db $11,$0C
+		db $11,$0B
 		db $11,$0B
 		db $11,$0B
 		db $11,$0B
 		db $11,$0A
 		db $11,$09
+.rst_i5:
 		db $11,$08
 		db $11,$08
-.rst_i3:
-		db $15,$07,$01,$00
-		db $15,$07,$02,$00
-		db $15,$07,$FE,$FF
-		db $15,$07,$FF,$FF
-		db $15,$07,$FF,$FF
-		db $15,$07,$FE,$FF
-		db $15,$07,$02,$00
-		db $15,$07,$01,$00
-		db $19,$07
-.ins_4:
-.ins_5:
+		db $15,$08,$01,$00
+		db $15,$08,$02,$00
+		db $15,$08,$FD,$FF
+		db $15,$08,$FF,$FF
+		db $15,$08,$FE,$FF
+		db $1D,$08,$03,$00
 .ins_6:
+		db 6					; Waveform
+		db .rst_i6-(.ins_6 +2)		; Restart
+		db $11,$0C
+		db $11,$0A
+		db $11,$0C
+		db $11,$0B
+		db $11,$0B
+		db $11,$0B
+		db $11,$0B
+		db $11,$0A
+		db $11,$09
+.rst_i6:
+		db $11,$08
+		db $11,$08
+		db $15,$07,$01,$00
+		db $15,$07,$02,$00
+		db $15,$07,$FD,$FF
+		db $15,$07,$FF,$FF
+		db $15,$07,$FE,$FF
+		db $1D,$07,$03,$00
 .ins_7:
 .ins_8:
 .ins_9:
@@ -134,23 +192,48 @@
 .ins_12:
 .ins_13:
 .ins_14:
+		db 14					; Waveform
+		db .rst_i14-(.ins_14 +2)		; Restart
+		db $11,$0C
+		db $11,$0B
+		db $11,$0C
+		db $11,$0B
+		db $11,$0B
+		db $11,$0B
+		db $11,$0B
+		db $11,$0A
+		db $11,$09
+.rst_i14:
+		db $15,$08,$01,$00
+		db $15,$08,$02,$00
+		db $15,$07,$FE,$FF
+		db $15,$07,$FF,$FF
+		db $15,$07,$FF,$FF
+		db $15,$07,$FE,$FF
+		db $15,$07,$02,$00
+		db $1D,$07,$01,$00
 .ins_15:
 .ins_16:
-		db 22					; Waveform
+		db 14					; Waveform
 		db .rst_i16-(.ins_16 +2)		; Restart
-		db $11,$0F
-		db $11,$0F
-		db $11,$0E
-		db $11,$0D
+		db $15,$0F,$28,$01
+		db $15,$0B,$D8,$FE
 		db $11,$0C
+		db $11,$0B
+		db $11,$0B
+		db $11,$0B
 		db $11,$0B
 		db $11,$0A
 		db $11,$09
 .rst_i16:
 		db $15,$08,$01,$00
-		db $11,$08
-		db $15,$08,$FF,$FF
-		db $19,$08
+		db $15,$08,$02,$00
+		db $15,$07,$FE,$FF
+		db $15,$07,$FF,$FF
+		db $15,$07,$FF,$FF
+		db $15,$07,$FE,$FF
+		db $15,$07,$02,$00
+		db $1D,$07,$01,$00
 .ins_17:
 		db 31					; Waveform
 		db .rst_i17-(.ins_17 +2)		; Restart
@@ -161,3197 +244,4029 @@
 		db 31					; Waveform
 		db .rst_i18-(.ins_18 +2)		; Restart
 		db $91,$0F
-		db $81,$0D
-		db $81,$0D
-		db $81,$0D
-		db $81,$09
-		db $81,$09
-		db $81,$09
+		db $91,$0E
+		db $81,$0E
+		db $81,$0E
+		db $81,$0C
+		db $81,$0C
+		db $81,$0C
 .rst_i18:
-		db $09,$00
+		db $88
 .ins_19:
+		db 31					; Waveform
+		db .rst_i19-(.ins_19 +2)		; Restart
+		db $15,$0F,$2F,$00
+		db $15,$0E,$2F,$00
+		db $15,$0D,$2F,$00
+.rst_i19:
+		db $1C,$2F,$00
 .ins_20:
 		db 31					; Waveform
 		db .rst_i20-(.ins_20 +2)		; Restart
-		db $81,$0F
+		db $81,$0E
 .rst_i20:
 		db $09,$00
+.ins_21:
+		db 31					; Waveform
+		db .rst_i21-(.ins_21 +2)		; Restart
+		db $E1,$0E,$01
+		db $E1,$0B,$01
+		db $E1,$0B,$01
+.rst_i21:
+		db $88
+.ins_22:
+		db 31					; Waveform
+		db .rst_i22-(.ins_22 +2)		; Restart
+		db $81,$0F
+		db $81,$0D
+.rst_i22:
+		db $88
 
 ; [ Song track data ]
 .track_0:
-	db $18		;[Note] 25
+	db $34		;[Note] 53
 	db $6F		;[Volume] 15
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
+	db $84		;[Instrument] 21
+	db $CF		;[Wait] 16
+	db $26		;[Note] 39
+	db $82		;[Instrument] 19
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $22		;[Note] 35
+	db $6F		;[Volume] 15
+				;[Skip delay] 3
+	db $22		;[Note] 35
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+				;[Skip delay] 3
+	db $1E		;[Note] 31
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $84		;[Instrument] 21
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
+	db $82		;[Instrument] 19
 	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $2A		;[Note] 43
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $26		;[Note] 39
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $26		;[Note] 39
+	db $6F		;[Volume] 15
 	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C3		;[Wait] 4
+	db $22		;[Note] 35
+	db $C2		;[Wait] 3
+	db $22		;[Note] 35
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
 	db $BF		;[End-Of-Track]
 .track_1:
-	db $07		;[Note] 8
-	db $6F		;[Volume] 15
-	db $7F		;[Instrument] 16
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $05		;[Note] 6
-	db $C5		;[Wait] 6
-	db $05		;[Note] 6
-	db $C1		;[Wait] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $05		;[Note] 6
-	db $C5		;[Wait] 6
-	db $05		;[Note] 6
-	db $C1		;[Wait] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $03		;[Note] 4
-	db $C5		;[Wait] 6
-	db $03		;[Note] 4
-	db $C1		;[Wait] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $03		;[Note] 4
-	db $C3		;[Wait] 4
-	db $BF		;[End-Of-Track]
-.track_2:
-	db $13		;[Note] 20
-	db $6F		;[Volume] 15
-	db $7F		;[Instrument] 16
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $11		;[Note] 18
-	db $C5		;[Wait] 6
-	db $11		;[Note] 18
-	db $C1		;[Wait] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $11		;[Note] 18
-	db $C5		;[Wait] 6
-	db $11		;[Note] 18
-	db $C1		;[Wait] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $0F		;[Note] 16
-	db $C5		;[Wait] 6
-	db $0F		;[Note] 16
-	db $C1		;[Wait] 2
-	db $0F		;[Note] 16
-				;[Skip delay] 2
-	db $0F		;[Note] 16
-				;[Skip delay] 2
-	db $0F		;[Note] 16
-	db $C3		;[Wait] 4
-	db $BF		;[End-Of-Track]
-.track_3:
-	db $65		;[Volume] 5
-	db $72		;[Instrument] 3
-	db $C0		;[Wait] 1
-	db $23		;[Note] 36
-	db $CF		;[Wait] 16
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $21		;[Note] 34
-	db $C3		;[Wait] 4
-	db $21		;[Note] 34
-	db $C1		;[Wait] 2
-	db $21		;[Note] 34
-	db $C9		;[Wait] 10
-	db $21		;[Note] 34
-	db $C1		;[Wait] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $22		;[Note] 35
-	db $C3		;[Wait] 4
-	db $22		;[Note] 35
-	db $C1		;[Wait] 2
-	db $22		;[Note] 35
-	db $C8		;[Wait] 9
-	db $BF		;[End-Of-Track]
-.track_4:
-	db $23		;[Note] 36
+	db $17		;[Note] 24
 	db $6E		;[Volume] 14
-	db $72		;[Instrument] 3
-	db $CF		;[Wait] 16
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $21		;[Note] 34
-	db $C3		;[Wait] 4
-	db $21		;[Note] 34
-	db $C1		;[Wait] 2
-	db $21		;[Note] 34
-	db $C9		;[Wait] 10
-	db $21		;[Note] 34
-	db $C1		;[Wait] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $22		;[Note] 35
-	db $C3		;[Wait] 4
-	db $22		;[Note] 35
-	db $C1		;[Wait] 2
-	db $22		;[Note] 35
-	db $C9		;[Wait] 10
-	db $BF		;[End-Of-Track]
-.track_5:
-	db $2B		;[Note] 44
-	db $6E		;[Volume] 14
-	db $70		;[Instrument] 1
-	db $CF		;[Wait] 16
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C9		;[Wait] 10
-	db $BF		;[End-Of-Track]
-.track_6:
-	db $65		;[Volume] 5
-	db $70		;[Instrument] 1
+	db $7D		;[Instrument] 14
+	db $CE		;[Wait] 15
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $2B		;[Note] 44
-	db $CF		;[Wait] 16
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C8		;[Wait] 9
-	db $BF		;[End-Of-Track]
-.track_7:
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $18		;[Note] 25
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $18		;[Note] 25
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C2		;[Wait] 3
-	db $18		;[Note] 25
-	db $6A		;[Volume] 10
-	db $81		;[Instrument] 18
-				;[Skip delay] 3
-	db $18		;[Note] 25
-	db $6F		;[Volume] 15
-				;[Skip delay] 3
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-				;[Skip delay] 3
-	db $18		;[Note] 25
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-				;[Skip delay] 6
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-				;[Skip delay] 6
-	db $35		;[Note] 54
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_8:
-	db $C1		;[Wait] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $03		;[Note] 4
-	db $C5		;[Wait] 6
-	db $02		;[Note] 3
-				;[Skip delay] 6
-	db $02		;[Note] 3
-				;[Skip delay] 6
-	db $04		;[Note] 5
-	db $C2		;[Wait] 3
-	db $06		;[Note] 7
-				;[Skip delay] 3
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-				;[Skip delay] 6
-	db $05		;[Note] 6
-				;[Skip delay] 6
-	db $05		;[Note] 6
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_9:
-	db $6F		;[Volume] 15
-	db $71		;[Instrument] 2
-	db $D0		;[Wait] 17
-	db $98, $09	; Speed 
-	db $C6		;[Wait] 7
-	db $98, $10	; Speed 
-	db $C0		;[Wait] 1
-	db $98, $09	; Speed 
-				;[Skip delay] 1
-	db $98, $10	; Speed 
-				;[Skip delay] 1
-	db $98, $09	; Speed 
-				;[Skip delay] 1
-	db $98, $10	; Speed 
-				;[Skip delay] 1
-	db $98, $09	; Speed 
-				;[Skip delay] 1
-	db $98, $10	; Speed 
-	db $C1		;[Wait] 2
-	db $98, $08	; Speed 
-	db $C0		;[Wait] 1
-	db $2B		;[Note] 44
-				;[Skip delay] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3B		;[Note] 60
-	db $C1		;[Wait] 2
-	db $3B		;[Note] 60
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
+	db $17		;[Note] 24
 	db $C4		;[Wait] 5
-	db $2B		;[Note] 44
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3B		;[Note] 60
-	db $C1		;[Wait] 2
-	db $3B		;[Note] 60
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $39		;[Note] 58
-	db $C1		;[Wait] 2
-	db $39		;[Note] 58
-	db $C0		;[Wait] 1
-	db $BF		;[End-Of-Track]
-.track_10:
-	db $C1		;[Wait] 2
-	db $0F		;[Note] 16
-				;[Skip delay] 2
-	db $0F		;[Note] 16
-				;[Skip delay] 2
-	db $0F		;[Note] 16
-				;[Skip delay] 2
-	db $0F		;[Note] 16
-	db $C5		;[Wait] 6
-	db $0E		;[Note] 15
-				;[Skip delay] 6
-	db $0E		;[Note] 15
-				;[Skip delay] 6
-	db $10		;[Note] 17
-	db $C2		;[Wait] 3
-	db $12		;[Note] 19
-				;[Skip delay] 3
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-				;[Skip delay] 6
-	db $11		;[Note] 18
-				;[Skip delay] 6
-	db $11		;[Note] 18
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_11:
-	db $66		;[Volume] 6
-	db $C0		;[Wait] 1
-	db $22		;[Note] 35
-	db $C1		;[Wait] 2
-	db $22		;[Note] 35
-				;[Skip delay] 2
-	db $22		;[Note] 35
-				;[Skip delay] 2
-	db $22		;[Note] 35
-				;[Skip delay] 2
-	db $22		;[Note] 35
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $03	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $04	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-				;[Skip delay] 3
-	db $23		;[Note] 36
-	db $C5		;[Wait] 6
-	db $23		;[Note] 36
+	db $17		;[Note] 24
 	db $C1		;[Wait] 2
 	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $21		;[Note] 34
+	db $83		;[Instrument] 20
 				;[Skip delay] 2
 	db $23		;[Note] 36
-	db $C3		;[Wait] 4
+				;[Skip delay] 2
+	db $17		;[Note] 24
+	db $7D		;[Instrument] 14
+				;[Skip delay] 2
 	db $23		;[Note] 36
+	db $83		;[Instrument] 20
+				;[Skip delay] 2
+	db $19		;[Note] 26
+	db $7D		;[Instrument] 14
+	db $CD		;[Wait] 14
+	db $60		;[Note] 97
 	db $C1		;[Wait] 2
-	db $23		;[Note] 36
+	db $19		;[Note] 26
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $24		;[Note] 37
-	db $A1, $02	; note delay
+	db $1A		;[Note] 27
 	db $C1		;[Wait] 2
 	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $27		;[Note] 40
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
+	db $83		;[Instrument] 20
 	db $C3		;[Wait] 4
-	db $2B		;[Note] 44
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_2:
+	db $60		;[Note] 97
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $9E, $00	; short arp
+	db $C2		;[Wait] 3
+	db $2F		;[Note] 48
+	db $67		;[Volume] 7
+	db $71		;[Instrument] 2
+	db $95, $03	; track detune
 	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $26		;[Note] 39
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $28		;[Note] 41
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $39		;[Note] 58
+				;[Skip delay] 2
+	db $37		;[Note] 56
+				;[Skip delay] 2
+	db $32		;[Note] 51
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_3:
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+	db $74		;[Instrument] 5
+	db $CF		;[Wait] 16
+	db $1E		;[Note] 31
+	db $C5		;[Wait] 6
+	db $21		;[Note] 34
+				;[Skip delay] 6
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $21		;[Note] 34
+	db $CF		;[Wait] 16
+	db $25		;[Note] 38
+	db $C5		;[Wait] 6
+	db $21		;[Note] 34
+				;[Skip delay] 6
+	db $25		;[Note] 38
+	db $C3		;[Wait] 4
+	db $BF		;[End-Of-Track]
+.track_4:
+	db $2F		;[Note] 48
+	db $6D		;[Volume] 13
+	db $71		;[Instrument] 2
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $26		;[Note] 39
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $28		;[Note] 41
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $39		;[Note] 58
+				;[Skip delay] 2
+	db $37		;[Note] 56
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $BF		;[End-Of-Track]
+.track_5:
+	db $0B		;[Note] 12
+	db $6E		;[Volume] 14
+	db $7D		;[Instrument] 14
+	db $CE		;[Wait] 15
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $0B		;[Note] 12
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $0B		;[Note] 12
+	db $C3		;[Wait] 4
+	db $60		;[Note] 97
+	db $C1		;[Wait] 2
+	db $0B		;[Note] 12
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $0D		;[Note] 14
+	db $CD		;[Wait] 14
+	db $60		;[Note] 97
+	db $C1		;[Wait] 2
+	db $0D		;[Note] 14
+	db $C3		;[Wait] 4
+	db $60		;[Note] 97
+	db $C1		;[Wait] 2
+	db $0E		;[Note] 15
+	db $C3		;[Wait] 4
+	db $60		;[Note] 97
+	db $C1		;[Wait] 2
+	db $10		;[Note] 17
+	db $C3		;[Wait] 4
+	db $BF		;[End-Of-Track]
+.track_6:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $74		;[Instrument] 5
+	db $CF		;[Wait] 16
+	db $23		;[Note] 36
+	db $C5		;[Wait] 6
+	db $25		;[Note] 38
+				;[Skip delay] 6
+	db $26		;[Note] 39
+	db $C3		;[Wait] 4
+	db $25		;[Note] 38
+	db $CF		;[Wait] 16
+	db $28		;[Note] 41
+	db $C5		;[Wait] 6
+	db $25		;[Note] 38
+				;[Skip delay] 6
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $BF		;[End-Of-Track]
+.track_7:
+	db $66		;[Volume] 6
+	db $74		;[Instrument] 5
+	db $95, $03	; track detune
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $CF		;[Wait] 16
+	db $23		;[Note] 36
+	db $C5		;[Wait] 6
+	db $25		;[Note] 38
+				;[Skip delay] 6
+	db $26		;[Note] 39
+	db $C3		;[Wait] 4
+	db $25		;[Note] 38
+	db $CF		;[Wait] 16
+	db $28		;[Note] 41
+	db $C5		;[Wait] 6
+	db $25		;[Note] 38
+				;[Skip delay] 6
+	db $28		;[Note] 41
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_8:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $84		;[Instrument] 21
+	db $C7		;[Wait] 8
+	db $23		;[Note] 36
+				;[Skip delay] 8
+	db $23		;[Note] 36
+				;[Skip delay] 8
+	db $23		;[Note] 36
+				;[Skip delay] 8
+	db $23		;[Note] 36
+	db $C5		;[Wait] 6
+	db $23		;[Note] 36
+				;[Skip delay] 6
+	db $23		;[Note] 36
+				;[Skip delay] 6
+	db $23		;[Note] 36
+				;[Skip delay] 6
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $84		;[Instrument] 21
+	db $C3		;[Wait] 4
+	db $BF		;[End-Of-Track]
+.track_9:
+	db $1E		;[Note] 31
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $1E		;[Note] 31
+				;[Skip delay] 2
+	db $1C		;[Note] 29
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $1C		;[Note] 29
+				;[Skip delay] 2
+	db $1A		;[Note] 27
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1A		;[Note] 27
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $1A		;[Note] 27
+				;[Skip delay] 2
+	db $19		;[Note] 26
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $19		;[Note] 26
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $19		;[Note] 26
+				;[Skip delay] 2
+	db $1F		;[Note] 32
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1F		;[Note] 32
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $1F		;[Note] 32
+				;[Skip delay] 2
+	db $1C		;[Note] 29
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $1C		;[Note] 29
+				;[Skip delay] 2
+	db $21		;[Note] 34
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $21		;[Note] 34
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $7D		;[Instrument] 14
+				;[Skip delay] 2
+	db $25		;[Note] 38
+	db $C3		;[Wait] 4
+	db $25		;[Note] 38
+	db $C1		;[Wait] 2
+	db $25		;[Note] 38
+				;[Skip delay] 2
+	db $BF		;[End-Of-Track]
+.track_10:
+	db $C0		;[Wait] 1
+	db $34		;[Note] 53
+	db $C1		;[Wait] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $39		;[Note] 58
+				;[Skip delay] 2
+	db $37		;[Note] 56
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $37		;[Note] 56
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $37		;[Note] 56
+				;[Skip delay] 2
+	db $3B		;[Note] 60
+				;[Skip delay] 2
+	db $39		;[Note] 58
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $39		;[Note] 58
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_11:
+	db $25		;[Note] 38
+	db $C1		;[Wait] 2
+	db $60		;[Note] 97
+	db $C3		;[Wait] 4
+	db $21		;[Note] 34
+	db $C1		;[Wait] 2
+	db $25		;[Note] 38
+	db $CF		;[Wait] 16
+	db $25		;[Note] 38
+	db $C2		;[Wait] 3
+	db $25		;[Note] 38
+				;[Skip delay] 3
+	db $25		;[Note] 38
+	db $C1		;[Wait] 2
+	db $26		;[Note] 39
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
+	db $C7		;[Wait] 8
+	db $2D		;[Note] 46
+	db $C6		;[Wait] 7
 	db $C0		;[Wait] 1
 	db $BF		;[End-Of-Track]
 .track_12:
-	db $22		;[Note] 35
+	db $36		;[Note] 55
 	db $C1		;[Wait] 2
-	db $22		;[Note] 35
-				;[Skip delay] 2
-	db $22		;[Note] 35
-				;[Skip delay] 2
-	db $22		;[Note] 35
-				;[Skip delay] 2
-	db $22		;[Note] 35
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $03	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $04	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-				;[Skip delay] 3
-	db $23		;[Note] 36
-	db $C5		;[Wait] 6
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $23		;[Note] 36
-	db $C3		;[Wait] 4
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-	db $C0		;[Wait] 1
-	db $24		;[Note] 37
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $27		;[Note] 40
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-	db $C3		;[Wait] 4
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
 	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-				;[Skip delay] 1
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $36		;[Note] 55
+				;[Skip delay] 2
+	db $39		;[Note] 58
+				;[Skip delay] 2
+	db $37		;[Note] 56
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $37		;[Note] 56
+				;[Skip delay] 2
+	db $32		;[Note] 51
+				;[Skip delay] 2
+	db $37		;[Note] 56
+				;[Skip delay] 2
+	db $3B		;[Note] 60
+				;[Skip delay] 2
+	db $39		;[Note] 58
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $31		;[Note] 50
+				;[Skip delay] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $39		;[Note] 58
+				;[Skip delay] 2
+	db $3D		;[Note] 62
+				;[Skip delay] 2
 	db $BF		;[End-Of-Track]
 .track_13:
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $03	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $04	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $2B		;[Note] 44
-	db $C5		;[Wait] 6
-	db $26		;[Note] 39
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2F		;[Note] 48
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $C7		;[Wait] 8
-	db $BF		;[End-Of-Track]
-.track_14:
-	db $66		;[Volume] 6
-	db $C0		;[Wait] 1
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $03	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $04	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $2B		;[Note] 44
-	db $C5		;[Wait] 6
-	db $26		;[Note] 39
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2F		;[Note] 48
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $C6		;[Wait] 7
-	db $BF		;[End-Of-Track]
-.track_15:
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $BF		;[End-Of-Track]
-.track_16:
-	db $05		;[Note] 6
-	db $C1		;[Wait] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $05		;[Note] 6
-	db $C5		;[Wait] 6
-	db $05		;[Note] 6
-				;[Skip delay] 6
-	db $03		;[Note] 4
-				;[Skip delay] 6
-	db $03		;[Note] 4
-	db $C1		;[Wait] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $01		;[Note] 2
-				;[Skip delay] 2
-	db $03		;[Note] 4
-	db $C5		;[Wait] 6
-	db $03		;[Note] 4
-				;[Skip delay] 6
-	db $0A		;[Note] 11
-				;[Skip delay] 6
-	db $0A		;[Note] 11
-	db $C1		;[Wait] 2
-	db $0A		;[Note] 11
-				;[Skip delay] 2
-	db $08		;[Note] 9
-				;[Skip delay] 2
-	db $0A		;[Note] 11
-	db $C5		;[Wait] 6
-	db $0A		;[Note] 11
-				;[Skip delay] 6
-	db $BF		;[End-Of-Track]
-.track_17:
-	db $35		;[Note] 54
-	db $C4		;[Wait] 5
-	db $29		;[Note] 42
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $39		;[Note] 58
-	db $C1		;[Wait] 2
-	db $39		;[Note] 58
-	db $C0		;[Wait] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $2D		;[Note] 46
-				;[Skip delay] 1
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3A		;[Note] 59
-				;[Skip delay] 1
-	db $2D		;[Note] 46
-	db $C1		;[Wait] 2
-	db $3A		;[Note] 59
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
+	db $12		;[Note] 19
 	db $C3		;[Wait] 4
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3A		;[Note] 59
+	db $12		;[Note] 19
 	db $C1		;[Wait] 2
-	db $3A		;[Note] 59
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-	db $C0		;[Wait] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $3A		;[Note] 59
-	db $C1		;[Wait] 2
-	db $3A		;[Note] 59
-	db $C0		;[Wait] 1
-	db $35		;[Note] 54
-	db $C4		;[Wait] 5
-	db $29		;[Note] 42
-	db $C0		;[Wait] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $3A		;[Note] 59
-	db $C1		;[Wait] 2
-	db $3A		;[Note] 59
-	db $C0		;[Wait] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $29		;[Note] 42
-				;[Skip delay] 1
-	db $BF		;[End-Of-Track]
-.track_18:
-	db $11		;[Note] 18
-	db $C1		;[Wait] 2
-	db $0F		;[Note] 16
+	db $12		;[Note] 19
 				;[Skip delay] 2
-	db $11		;[Note] 18
-	db $C5		;[Wait] 6
-	db $11		;[Note] 18
-				;[Skip delay] 6
-	db $0F		;[Note] 16
-				;[Skip delay] 6
-	db $0F		;[Note] 16
+	db $10		;[Note] 17
+	db $C3		;[Wait] 4
+	db $10		;[Note] 17
 	db $C1		;[Wait] 2
-	db $0F		;[Note] 16
+	db $10		;[Note] 17
+				;[Skip delay] 2
+	db $0E		;[Note] 15
+	db $C3		;[Wait] 4
+	db $0E		;[Note] 15
+	db $C1		;[Wait] 2
+	db $0E		;[Note] 15
 				;[Skip delay] 2
 	db $0D		;[Note] 14
-				;[Skip delay] 2
-	db $0F		;[Note] 16
-	db $C5		;[Wait] 6
-	db $0F		;[Note] 16
-				;[Skip delay] 6
-	db $16		;[Note] 23
-				;[Skip delay] 6
-	db $16		;[Note] 23
+	db $C3		;[Wait] 4
+	db $0D		;[Note] 14
 	db $C1		;[Wait] 2
-	db $16		;[Note] 23
+	db $0D		;[Note] 14
 				;[Skip delay] 2
-	db $14		;[Note] 21
+	db $13		;[Note] 20
+	db $C3		;[Wait] 4
+	db $13		;[Note] 20
+	db $C1		;[Wait] 2
+	db $13		;[Note] 20
 				;[Skip delay] 2
-	db $16		;[Note] 23
+	db $10		;[Note] 17
+	db $C3		;[Wait] 4
+	db $10		;[Note] 17
+	db $C1		;[Wait] 2
+	db $10		;[Note] 17
+				;[Skip delay] 2
+	db $15		;[Note] 22
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $15		;[Note] 22
+				;[Skip delay] 2
+	db $19		;[Note] 26
+	db $C3		;[Wait] 4
+	db $19		;[Note] 26
+	db $C1		;[Wait] 2
+	db $19		;[Note] 26
+				;[Skip delay] 2
+	db $BF		;[End-Of-Track]
+.track_14:
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $60		;[Note] 97
+	db $C3		;[Wait] 4
+	db $25		;[Note] 38
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $28		;[Note] 41
+				;[Skip delay] 3
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2B		;[Note] 44
+	db $CF		;[Wait] 16
+	db $2D		;[Note] 46
+	db $C7		;[Wait] 8
+	db $31		;[Note] 50
+				;[Skip delay] 8
+	db $BF		;[End-Of-Track]
+.track_15:
+	db $C2		;[Wait] 3
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $60		;[Note] 97
+	db $C3		;[Wait] 4
+	db $25		;[Note] 38
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $28		;[Note] 41
+				;[Skip delay] 3
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2B		;[Note] 44
+	db $CF		;[Wait] 16
+	db $2D		;[Note] 46
+	db $C7		;[Wait] 8
+	db $31		;[Note] 50
+	db $C4		;[Wait] 5
+	db $BF		;[End-Of-Track]
+.track_16:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+				;[Skip delay] 2
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+				;[Skip delay] 2
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $BF		;[End-Of-Track]
+.track_17:
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
 	db $C5		;[Wait] 6
-	db $16		;[Note] 23
-				;[Skip delay] 6
+	db $17		;[Note] 24
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $21		;[Note] 34
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $15		;[Note] 22
+	db $C5		;[Wait] 6
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_18:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $9E, $00	; short arp
+	db $CB		;[Wait] 12
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $28		;[Note] 41
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D7		;[Wait] 24
 	db $BF		;[End-Of-Track]
 .track_19:
-	db $C1		;[Wait] 2
-	db $2F		;[Note] 48
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $C3		;[Wait] 4
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2D		;[Note] 46
-				;[Skip delay] 2
-	db $2E		;[Note] 47
-	db $C3		;[Wait] 4
-	db $27		;[Note] 40
-	db $C1		;[Wait] 2
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2E		;[Note] 47
-				;[Skip delay] 2
-	db $2E		;[Note] 47
-	db $C3		;[Wait] 4
-	db $2E		;[Note] 47
-	db $C1		;[Wait] 2
-	db $2D		;[Note] 46
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2E		;[Note] 47
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $27		;[Note] 40
-				;[Skip delay] 2
-	db $29		;[Note] 42
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $27		;[Note] 40
-				;[Skip delay] 2
-	db $29		;[Note] 42
+	db $60		;[Note] 97
+	db $FE		;[Wait] 63
 	db $C0		;[Wait] 1
 	db $BF		;[End-Of-Track]
 .track_20:
-	db $C0		;[Wait] 1
 	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $30		;[Note] 49
+	db $6D		;[Volume] 13
+	db $73		;[Instrument] 4
+	db $CD		;[Wait] 14
+	db $60		;[Note] 97
 	db $C1		;[Wait] 2
-	db $32		;[Note] 51
+	db $2F		;[Note] 48
+	db $C5		;[Wait] 6
+	db $3B		;[Note] 60
+				;[Skip delay] 6
+	db $36		;[Note] 55
 	db $C3		;[Wait] 4
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2D		;[Note] 46
-				;[Skip delay] 2
-	db $2E		;[Note] 47
-	db $C3		;[Wait] 4
-	db $27		;[Note] 40
-	db $C1		;[Wait] 2
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2E		;[Note] 47
-				;[Skip delay] 2
-	db $2E		;[Note] 47
-	db $C3		;[Wait] 4
-	db $2E		;[Note] 47
-	db $C1		;[Wait] 2
-	db $2D		;[Note] 46
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2E		;[Note] 47
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $27		;[Note] 40
-				;[Skip delay] 2
-	db $29		;[Note] 42
-	db $C3		;[Wait] 4
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $27		;[Note] 40
-				;[Skip delay] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
+	db $39		;[Note] 58
+	db $CF		;[Wait] 16
+	db $34		;[Note] 53
+				;[Skip delay] 16
 	db $BF		;[End-Of-Track]
 .track_21:
-	db $C7		;[Wait] 8
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-				;[Skip delay] 2
-	db $33		;[Note] 52
-				;[Skip delay] 2
-	db $35		;[Note] 54
-				;[Skip delay] 2
-	db $37		;[Note] 56
-	db $CD		;[Wait] 14
-	db $37		;[Note] 56
-	db $C1		;[Wait] 2
-	db $37		;[Note] 56
-				;[Skip delay] 2
-	db $37		;[Note] 56
-				;[Skip delay] 2
-	db $35		;[Note] 54
-				;[Skip delay] 2
-	db $33		;[Note] 52
-				;[Skip delay] 2
-	db $35		;[Note] 54
-	db $C3		;[Wait] 4
-	db $33		;[Note] 52
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $CB		;[Wait] 12
-	db $32		;[Note] 51
+	db $0B		;[Note] 12
 	db $C5		;[Wait] 6
+	db $0B		;[Note] 12
+	db $C1		;[Wait] 2
+	db $17		;[Note] 24
+	db $C3		;[Wait] 4
+	db $0B		;[Note] 12
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $09		;[Note] 10
+	db $C5		;[Wait] 6
+	db $09		;[Note] 10
+	db $C1		;[Wait] 2
+	db $15		;[Note] 22
+	db $C3		;[Wait] 4
+	db $09		;[Note] 10
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
 	db $BF		;[End-Of-Track]
 .track_22:
-	db $C8		;[Wait] 9
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-				;[Skip delay] 2
-	db $33		;[Note] 52
-				;[Skip delay] 2
-	db $35		;[Note] 54
-				;[Skip delay] 2
-	db $37		;[Note] 56
-	db $CD		;[Wait] 14
-	db $37		;[Note] 56
-	db $C1		;[Wait] 2
-	db $37		;[Note] 56
-				;[Skip delay] 2
-	db $37		;[Note] 56
-				;[Skip delay] 2
-	db $35		;[Note] 54
-				;[Skip delay] 2
-	db $33		;[Note] 52
-				;[Skip delay] 2
-	db $35		;[Note] 54
-	db $C3		;[Wait] 4
-	db $33		;[Note] 52
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $74		;[Instrument] 5
 	db $CB		;[Wait] 12
-	db $32		;[Note] 51
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
 	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $28		;[Note] 41
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D7		;[Wait] 24
 	db $BF		;[End-Of-Track]
 .track_23:
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $30		;[Note] 49
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $30		;[Note] 49
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
+	db $60		;[Note] 97
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $66		;[Volume] 6
+	db $74		;[Instrument] 5
+	db $95, $03	; track detune
+	db $CB		;[Wait] 12
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
 	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $28		;[Note] 41
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D4		;[Wait] 21
 	db $BF		;[End-Of-Track]
 .track_24:
-	db $08		;[Note] 9
+	db $13		;[Note] 20
+	db $7F		;[Instrument] 16
 	db $C5		;[Wait] 6
-	db $08		;[Note] 9
+	db $13		;[Note] 20
 	db $C1		;[Wait] 2
-	db $08		;[Note] 9
-				;[Skip delay] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $08		;[Note] 9
-	db $C5		;[Wait] 6
-	db $08		;[Note] 9
-	db $C1		;[Wait] 2
-	db $08		;[Note] 9
-				;[Skip delay] 2
-	db $08		;[Note] 9
-				;[Skip delay] 2
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $09		;[Note] 10
-	db $C5		;[Wait] 6
-	db $09		;[Note] 10
-	db $C1		;[Wait] 2
-	db $09		;[Note] 10
-				;[Skip delay] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $09		;[Note] 10
+	db $1F		;[Note] 32
 	db $C3		;[Wait] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $1E		;[Note] 31
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $1F		;[Note] 32
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $15		;[Note] 22
+	db $C5		;[Wait] 6
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $25		;[Note] 38
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
 	db $BF		;[End-Of-Track]
 .track_25:
+	db $28		;[Note] 41
+	db $CB		;[Wait] 12
+	db $2A		;[Note] 43
 	db $C0		;[Wait] 1
-	db $2C		;[Note] 45
+	db $60		;[Note] 97
 				;[Skip delay] 1
-	db $30		;[Note] 49
+	db $2B		;[Note] 44
 				;[Skip delay] 1
-	db $33		;[Note] 52
+	db $60		;[Note] 97
 				;[Skip delay] 1
-	db $38		;[Note] 57
-				;[Skip delay] 1
-	db $3C		;[Note] 61
-	db $C1		;[Wait] 2
-	db $3C		;[Note] 61
-	db $C0		;[Wait] 1
-	db $38		;[Note] 57
+	db $2A		;[Note] 43
 	db $C4		;[Wait] 5
-	db $2C		;[Note] 45
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $3C		;[Note] 61
-	db $C1		;[Wait] 2
-	db $3C		;[Note] 61
-	db $C0		;[Wait] 1
-	db $38		;[Note] 57
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $30		;[Note] 49
-				;[Skip delay] 1
-	db $2C		;[Note] 45
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $3A		;[Note] 59
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3E		;[Note] 63
-	db $C1		;[Wait] 2
-	db $3E		;[Note] 63
-	db $C0		;[Wait] 1
-	db $3A		;[Note] 59
+	db $28		;[Note] 41
 	db $C4		;[Wait] 5
-	db $2B		;[Note] 44
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
+	db $25		;[Note] 38
+	db $C3		;[Wait] 4
+	db $26		;[Note] 39
+	db $C7		;[Wait] 8
+	db $28		;[Note] 41
+				;[Skip delay] 8
+	db $2A		;[Note] 43
+				;[Skip delay] 8
 	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3A		;[Note] 59
-	db $C1		;[Wait] 2
-	db $3A		;[Note] 59
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2D		;[Note] 46
-	db $C0		;[Wait] 1
-	db $31		;[Note] 50
-				;[Skip delay] 1
-	db $34		;[Note] 53
-				;[Skip delay] 1
-	db $39		;[Note] 58
-				;[Skip delay] 1
-	db $3D		;[Note] 62
-	db $C1		;[Wait] 2
-	db $3D		;[Note] 62
-	db $C0		;[Wait] 1
-	db $39		;[Note] 58
-	db $C8		;[Wait] 9
+	db $6B		;[Volume] 11
+	db $84		;[Instrument] 21
+				;[Skip delay] 8
 	db $BF		;[End-Of-Track]
 .track_26:
-	db $14		;[Note] 21
-	db $C5		;[Wait] 6
-	db $14		;[Note] 21
-	db $C1		;[Wait] 2
-	db $14		;[Note] 21
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $14		;[Note] 21
-	db $C5		;[Wait] 6
-	db $14		;[Note] 21
-	db $C1		;[Wait] 2
-	db $14		;[Note] 21
-				;[Skip delay] 2
-	db $14		;[Note] 21
-				;[Skip delay] 2
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $15		;[Note] 22
-	db $C5		;[Wait] 6
-	db $15		;[Note] 22
-	db $C1		;[Wait] 2
-	db $15		;[Note] 22
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $15		;[Note] 22
-	db $C3		;[Wait] 4
+	db $FE		;[Wait] 63
+	db $C0		;[Wait] 1
 	db $BF		;[End-Of-Track]
 .track_27:
-	db $C0		;[Wait] 1
-	db $27		;[Note] 40
-	db $C2		;[Wait] 3
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $27		;[Note] 40
-	db $C3		;[Wait] 4
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C5		;[Wait] 6
-	db $29		;[Note] 42
-	db $C2		;[Wait] 3
-	db $27		;[Note] 40
-				;[Skip delay] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $24		;[Note] 37
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C1		;[Wait] 2
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-	db $C5		;[Wait] 6
-	db $27		;[Note] 40
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $25		;[Note] 38
-	db $C5		;[Wait] 6
-	db $25		;[Note] 38
-	db $C3		;[Wait] 4
-	db $26		;[Note] 39
-	db $C1		;[Wait] 2
-	db $28		;[Note] 41
-	db $C2		;[Wait] 3
+	db $32		;[Note] 51
+	db $CF		;[Wait] 16
+	db $2F		;[Note] 48
+				;[Skip delay] 16
+	db $39		;[Note] 58
+				;[Skip delay] 16
+	db $34		;[Note] 53
+				;[Skip delay] 16
 	db $BF		;[End-Of-Track]
 .track_28:
-	db $27		;[Note] 40
-	db $C2		;[Wait] 3
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $27		;[Note] 40
-	db $C3		;[Wait] 4
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-				;[Skip delay] 1
-	db $2B		;[Note] 44
+	db $07		;[Note] 8
 	db $C5		;[Wait] 6
-	db $29		;[Note] 42
-	db $C2		;[Wait] 3
-	db $27		;[Note] 40
-				;[Skip delay] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $24		;[Note] 37
-	db $A1, $02	; note delay
+	db $07		;[Note] 8
 	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C1		;[Wait] 2
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-	db $C5		;[Wait] 6
-	db $27		;[Note] 40
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $25		;[Note] 38
-	db $C5		;[Wait] 6
-	db $25		;[Note] 38
+	db $13		;[Note] 20
 	db $C3		;[Wait] 4
-	db $26		;[Note] 39
+	db $07		;[Note] 8
+				;[Skip delay] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $10		;[Note] 17
+				;[Skip delay] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $09		;[Note] 10
+	db $C5		;[Wait] 6
+	db $09		;[Note] 10
 	db $C1		;[Wait] 2
-	db $28		;[Note] 41
+	db $15		;[Note] 22
 	db $C3		;[Wait] 4
+	db $09		;[Note] 10
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $19		;[Note] 26
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
 	db $BF		;[End-Of-Track]
 .track_29:
-	db $30		;[Note] 49
-	db $C2		;[Wait] 3
-	db $30		;[Note] 49
-	db $C0		;[Wait] 1
-	db $32		;[Note] 51
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $33		;[Note] 52
+	db $28		;[Note] 41
 	db $CB		;[Wait] 12
-	db $32		;[Note] 51
-	db $C2		;[Wait] 3
-	db $30		;[Note] 49
-				;[Skip delay] 3
-	db $2E		;[Note] 47
-				;[Skip delay] 3
-	db $2E		;[Note] 47
+	db $2A		;[Note] 43
 	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $D1		;[Wait] 18
-	db $2D		;[Note] 46
-	db $C2		;[Wait] 3
-	db $2D		;[Note] 46
-	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $31		;[Note] 50
-	db $C9		;[Wait] 10
-	db $BF		;[End-Of-Track]
-.track_30:
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $C2		;[Wait] 3
-	db $30		;[Note] 49
-	db $C0		;[Wait] 1
-	db $32		;[Note] 51
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $33		;[Note] 52
-	db $CB		;[Wait] 12
-	db $32		;[Note] 51
-	db $C2		;[Wait] 3
-	db $30		;[Note] 49
-				;[Skip delay] 3
-	db $2E		;[Note] 47
-				;[Skip delay] 3
-	db $2E		;[Note] 47
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $D1		;[Wait] 18
-	db $2D		;[Note] 46
-	db $C2		;[Wait] 3
-	db $2D		;[Note] 46
-	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $31		;[Note] 50
-	db $C8		;[Wait] 9
-	db $BF		;[End-Of-Track]
-.track_31:
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-				;[Skip delay] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C2		;[Wait] 3
-	db $0C		;[Note] 13
-	db $C0		;[Wait] 1
-	db $0C		;[Note] 13
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C2		;[Wait] 3
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C0		;[Wait] 1
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $C2		;[Wait] 3
-	db $0C		;[Note] 13
-				;[Skip delay] 3
-	db $0C		;[Note] 13
-	db $C5		;[Wait] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C3		;[Wait] 4
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C7		;[Wait] 8
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C5		;[Wait] 6
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C4		;[Wait] 5
-	db $81		;[Instrument] 18
-	db $C0		;[Wait] 1
-	db $0C		;[Note] 13
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_32:
-	db $C1		;[Wait] 2
-	db $09		;[Note] 10
-				;[Skip delay] 2
-	db $09		;[Note] 10
-				;[Skip delay] 2
-	db $09		;[Note] 10
-				;[Skip delay] 2
-	db $02		;[Note] 3
-	db $C5		;[Wait] 6
-	db $02		;[Note] 3
-				;[Skip delay] 6
-	db $02		;[Note] 3
-				;[Skip delay] 6
-	db $04		;[Note] 5
-	db $C2		;[Wait] 3
-	db $06		;[Note] 7
-				;[Skip delay] 3
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-				;[Skip delay] 6
-	db $05		;[Note] 6
-				;[Skip delay] 6
-	db $05		;[Note] 6
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_33:
 	db $60		;[Note] 97
-	db $DA		;[Wait] 27
-	db $32		;[Note] 51
-	db $C0		;[Wait] 1
-	db $33		;[Note] 52
-	db $C1		;[Wait] 2
-	db $35		;[Note] 54
-	db $C0		;[Wait] 1
-	db $36		;[Note] 55
-	db $C1		;[Wait] 2
+				;[Skip delay] 1
 	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
 				;[Skip delay] 1
-	db $32		;[Note] 51
+	db $60		;[Note] 97
 				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3B		;[Note] 60
-	db $C1		;[Wait] 2
-	db $3B		;[Note] 60
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
+	db $2A		;[Note] 43
 	db $C4		;[Wait] 5
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3B		;[Note] 60
-	db $C1		;[Wait] 2
-	db $3B		;[Note] 60
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $39		;[Note] 58
-	db $C1		;[Wait] 2
-	db $39		;[Note] 58
-	db $C0		;[Wait] 1
-	db $BF		;[End-Of-Track]
-.track_34:
-	db $C1		;[Wait] 2
-	db $15		;[Note] 22
-				;[Skip delay] 2
-	db $15		;[Note] 22
-				;[Skip delay] 2
-	db $15		;[Note] 22
-				;[Skip delay] 2
-	db $0E		;[Note] 15
-	db $C5		;[Wait] 6
-	db $0E		;[Note] 15
-				;[Skip delay] 6
-	db $0E		;[Note] 15
-				;[Skip delay] 6
-	db $10		;[Note] 17
-	db $C2		;[Wait] 3
-	db $12		;[Note] 19
-				;[Skip delay] 3
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-				;[Skip delay] 6
-	db $11		;[Note] 18
-				;[Skip delay] 6
-	db $11		;[Note] 18
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_35:
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
 	db $28		;[Note] 41
-				;[Skip delay] 1
-	db $2A		;[Note] 43
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C2		;[Wait] 3
-	db $2D		;[Note] 46
-				;[Skip delay] 3
-	db $2A		;[Note] 43
-				;[Skip delay] 3
-	db $1E		;[Note] 31
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-				;[Skip delay] 3
-	db $23		;[Note] 36
-	db $C5		;[Wait] 6
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $23		;[Note] 36
+	db $25		;[Note] 38
 	db $C3		;[Wait] 4
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-	db $C0		;[Wait] 1
-	db $24		;[Note] 37
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
 	db $26		;[Note] 39
+	db $C7		;[Wait] 8
+	db $28		;[Note] 41
+				;[Skip delay] 8
+	db $2A		;[Note] 43
+	db $CF		;[Wait] 16
+	db $BF		;[End-Of-Track]
+.track_30:
+	db $C2		;[Wait] 3
+	db $28		;[Note] 41
+	db $CB		;[Wait] 12
+	db $2A		;[Note] 43
 	db $C0		;[Wait] 1
-	db $27		;[Note] 40
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2B		;[Note] 44
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $25		;[Note] 38
 	db $C3		;[Wait] 4
-	db $2B		;[Note] 44
+	db $26		;[Note] 39
+	db $C7		;[Wait] 8
+	db $28		;[Note] 41
+				;[Skip delay] 8
+	db $2A		;[Note] 43
+	db $CC		;[Wait] 13
+	db $BF		;[End-Of-Track]
+.track_31:
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
 	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $21		;[Note] 34
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $15		;[Note] 22
+	db $C5		;[Wait] 6
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+	db $C1		;[Wait] 2
+	db $1F		;[Note] 32
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_32:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $CB		;[Wait] 12
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $28		;[Note] 41
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D7		;[Wait] 24
+	db $BF		;[End-Of-Track]
+.track_33:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $CB		;[Wait] 12
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $28		;[Note] 41
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D7		;[Wait] 24
+	db $BF		;[End-Of-Track]
+.track_34:
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $66		;[Volume] 6
+	db $CB		;[Wait] 12
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $28		;[Note] 41
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D4		;[Wait] 21
+	db $BF		;[End-Of-Track]
+.track_35:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+				;[Skip delay] 2
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+	db $82		;[Instrument] 19
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $29		;[Note] 42
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $26		;[Note] 39
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $26		;[Note] 39
+	db $6F		;[Volume] 15
+	db $C1		;[Wait] 2
+	db $22		;[Note] 35
+	db $C2		;[Wait] 3
+	db $22		;[Note] 35
+	db $67		;[Volume] 7
 	db $C0		;[Wait] 1
 	db $BF		;[End-Of-Track]
 .track_36:
-	db $28		;[Note] 41
-	db $C0		;[Wait] 1
-	db $2A		;[Note] 43
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C2		;[Wait] 3
-	db $2D		;[Note] 46
-				;[Skip delay] 3
-	db $2A		;[Note] 43
-				;[Skip delay] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-				;[Skip delay] 3
-	db $23		;[Note] 36
+	db $13		;[Note] 20
+	db $7F		;[Instrument] 16
 	db $C5		;[Wait] 6
-	db $23		;[Note] 36
+	db $13		;[Note] 20
 	db $C1		;[Wait] 2
-	db $23		;[Note] 36
+	db $1F		;[Note] 32
+	db $C3		;[Wait] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $1E		;[Note] 31
+	db $80		;[Instrument] 17
 				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $1F		;[Note] 32
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $17		;[Note] 24
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
+	db $C1		;[Wait] 2
 	db $23		;[Note] 36
 	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
 	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-	db $C0		;[Wait] 1
-	db $24		;[Note] 37
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
+				;[Skip delay] 4
+	db $25		;[Note] 38
+				;[Skip delay] 4
 	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $27		;[Note] 40
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-	db $C3		;[Wait] 4
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-				;[Skip delay] 1
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
 	db $BF		;[End-Of-Track]
 .track_37:
-	db $C1		;[Wait] 2
-	db $34		;[Note] 53
-	db $C5		;[Wait] 6
-	db $32		;[Note] 51
-	db $C2		;[Wait] 3
 	db $26		;[Note] 39
+	db $CB		;[Wait] 12
+	db $28		;[Note] 41
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2A		;[Note] 43
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $28		;[Note] 41
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
 	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $2B		;[Note] 44
-	db $C5		;[Wait] 6
-	db $26		;[Note] 39
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2F		;[Note] 48
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $C7		;[Wait] 8
+	db $25		;[Note] 38
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+	db $DF		;[Wait] 32
 	db $BF		;[End-Of-Track]
 .track_38:
-	db $C2		;[Wait] 3
+	db $32		;[Note] 51
+	db $CB		;[Wait] 12
 	db $34		;[Note] 53
-	db $C5		;[Wait] 6
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $36		;[Note] 55
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $34		;[Note] 53
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
 	db $32		;[Note] 51
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $2B		;[Note] 44
-	db $C5		;[Wait] 6
-	db $26		;[Note] 39
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
 	db $2F		;[Note] 48
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $C6		;[Wait] 7
+	db $DF		;[Wait] 32
 	db $BF		;[End-Of-Track]
 .track_39:
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C7		;[Wait] 8
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
+	db $07		;[Note] 8
 	db $C5		;[Wait] 6
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-				;[Skip delay] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
+	db $07		;[Note] 8
+	db $C1		;[Wait] 2
+	db $13		;[Note] 20
 	db $C3		;[Wait] 4
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
+	db $07		;[Note] 8
+				;[Skip delay] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $10		;[Note] 17
+				;[Skip delay] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $0B		;[Note] 12
 	db $C5		;[Wait] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 6
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
+	db $0B		;[Note] 12
+	db $C1		;[Wait] 2
+	db $17		;[Note] 24
 	db $C3		;[Wait] 4
-	db $0C		;[Note] 13
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-	db $C5		;[Wait] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 6
+	db $0B		;[Note] 12
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $19		;[Note] 26
+				;[Skip delay] 4
+	db $1A		;[Note] 27
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
 	db $BF		;[End-Of-Track]
 .track_40:
-	db $05		;[Note] 6
-	db $C1		;[Wait] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $05		;[Note] 6
-	db $C5		;[Wait] 6
-	db $05		;[Note] 6
-				;[Skip delay] 6
-	db $03		;[Note] 4
-				;[Skip delay] 6
-	db $03		;[Note] 4
-	db $C1		;[Wait] 2
-	db $03		;[Note] 4
-				;[Skip delay] 2
-	db $01		;[Note] 2
-				;[Skip delay] 2
-	db $03		;[Note] 4
-	db $C5		;[Wait] 6
-	db $03		;[Note] 4
-				;[Skip delay] 6
-	db $02		;[Note] 3
-				;[Skip delay] 6
-	db $02		;[Note] 3
-	db $C1		;[Wait] 2
-	db $02		;[Note] 3
-				;[Skip delay] 2
-	db $00		;[Note] 1
-				;[Skip delay] 2
-	db $02		;[Note] 3
-	db $C5		;[Wait] 6
-	db $02		;[Note] 3
-				;[Skip delay] 6
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $CB		;[Wait] 12
+	db $28		;[Note] 41
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2A		;[Note] 43
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $28		;[Note] 41
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $26		;[Note] 39
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $25		;[Note] 38
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+	db $DC		;[Wait] 29
 	db $BF		;[End-Of-Track]
 .track_41:
-	db $35		;[Note] 54
-	db $C3		;[Wait] 4
-	db $39		;[Note] 58
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $CA		;[Wait] 11
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-				;[Skip delay] 1
 	db $2D		;[Note] 46
 				;[Skip delay] 1
-	db $32		;[Note] 51
+	db $60		;[Note] 97
 				;[Skip delay] 1
-	db $35		;[Note] 54
+	db $2F		;[Note] 48
 				;[Skip delay] 1
-	db $39		;[Note] 58
-	db $C1		;[Wait] 2
-	db $39		;[Note] 58
-	db $C0		;[Wait] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $32		;[Note] 51
+	db $60		;[Note] 97
 				;[Skip delay] 1
 	db $2D		;[Note] 46
-				;[Skip delay] 1
-	db $29		;[Note] 42
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3A		;[Note] 59
-	db $C1		;[Wait] 2
-	db $3A		;[Note] 59
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
 	db $C4		;[Wait] 5
-	db $2B		;[Note] 44
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3A		;[Note] 59
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $28		;[Note] 41
 	db $C1		;[Wait] 2
-	db $3A		;[Note] 59
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $33		;[Note] 52
-				;[Skip delay] 1
-	db $2E		;[Note] 47
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2E		;[Note] 47
-	db $D5		;[Wait] 22
+	db $2A		;[Note] 43
+	db $D7		;[Wait] 24
 	db $BF		;[End-Of-Track]
 .track_42:
-	db $11		;[Note] 18
+	db $60		;[Note] 97
+	db $EB		;[Wait] 44
+	db $23		;[Note] 36
+	db $6E		;[Volume] 14
+	db $75		;[Instrument] 6
 	db $C1		;[Wait] 2
-	db $0F		;[Note] 16
+	db $26		;[Note] 39
 				;[Skip delay] 2
-	db $11		;[Note] 18
-	db $C5		;[Wait] 6
-	db $11		;[Note] 18
-				;[Skip delay] 6
-	db $0F		;[Note] 16
-				;[Skip delay] 6
-	db $0F		;[Note] 16
-	db $C1		;[Wait] 2
-	db $0F		;[Note] 16
-				;[Skip delay] 2
-	db $0D		;[Note] 14
-				;[Skip delay] 2
-	db $0F		;[Note] 16
-	db $C5		;[Wait] 6
-	db $0F		;[Note] 16
-				;[Skip delay] 6
-	db $0E		;[Note] 15
-				;[Skip delay] 6
-	db $0E		;[Note] 15
-	db $C1		;[Wait] 2
-	db $0E		;[Note] 15
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-				;[Skip delay] 2
-	db $0E		;[Note] 15
-	db $C5		;[Wait] 6
-	db $0E		;[Note] 15
-				;[Skip delay] 6
+	db $2D		;[Note] 46
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+				;[Skip delay] 4
+	db $26		;[Note] 39
+				;[Skip delay] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $C0		;[Wait] 1
 	db $BF		;[End-Of-Track]
 .track_43:
-	db $C1		;[Wait] 2
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $66		;[Volume] 6
+	db $CA		;[Wait] 11
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2D		;[Note] 46
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
 	db $2F		;[Note] 48
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $C3		;[Wait] 4
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
 	db $2D		;[Note] 46
-				;[Skip delay] 2
-	db $2E		;[Note] 47
-	db $C3		;[Wait] 4
-	db $27		;[Note] 40
-	db $C1		;[Wait] 2
-	db $27		;[Note] 40
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
 	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2E		;[Note] 47
-	db $C5		;[Wait] 6
-	db $31		;[Note] 50
-				;[Skip delay] 6
-	db $30		;[Note] 49
-				;[Skip delay] 6
-	db $2D		;[Note] 46
-	db $CB		;[Wait] 12
 	db $2A		;[Note] 43
 	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $28		;[Note] 41
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D4		;[Wait] 21
 	db $BF		;[End-Of-Track]
 .track_44:
-	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $C3		;[Wait] 4
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-				;[Skip delay] 2
-	db $2B		;[Note] 44
-				;[Skip delay] 2
-	db $2D		;[Note] 46
-				;[Skip delay] 2
-	db $2E		;[Note] 47
-	db $C3		;[Wait] 4
-	db $27		;[Note] 40
-	db $C1		;[Wait] 2
-	db $27		;[Note] 40
-	db $C0		;[Wait] 1
-	db $29		;[Note] 42
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2E		;[Note] 47
+	db $13		;[Note] 20
+	db $7F		;[Instrument] 16
 	db $C5		;[Wait] 6
-	db $31		;[Note] 50
-				;[Skip delay] 6
-	db $30		;[Note] 49
-				;[Skip delay] 6
-	db $2D		;[Note] 46
-	db $CB		;[Wait] 12
-	db $2A		;[Note] 43
+	db $13		;[Note] 20
+	db $C1		;[Wait] 2
+	db $1F		;[Note] 32
+	db $C3		;[Wait] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C1		;[Wait] 2
+	db $1E		;[Note] 31
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $1F		;[Note] 32
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $15		;[Note] 22
 	db $C5		;[Wait] 6
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $25		;[Note] 38
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
 	db $BF		;[End-Of-Track]
 .track_45:
-	db $C7		;[Wait] 8
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-				;[Skip delay] 2
-	db $33		;[Note] 52
-				;[Skip delay] 2
-	db $35		;[Note] 54
-				;[Skip delay] 2
-	db $37		;[Note] 56
-	db $D1		;[Wait] 18
-	db $37		;[Note] 56
-	db $C5		;[Wait] 6
-	db $37		;[Note] 56
-				;[Skip delay] 6
-	db $36		;[Note] 55
+	db $28		;[Note] 41
 	db $CB		;[Wait] 12
-	db $32		;[Note] 51
+	db $2A		;[Note] 43
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2B		;[Note] 44
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
 	db $C5		;[Wait] 6
+	db $25		;[Note] 38
+	db $C3		;[Wait] 4
+	db $26		;[Note] 39
+	db $C7		;[Wait] 8
+	db $28		;[Note] 41
+				;[Skip delay] 8
+	db $2A		;[Note] 43
+				;[Skip delay] 8
+	db $32		;[Note] 51
+	db $6B		;[Volume] 11
+	db $84		;[Instrument] 21
+				;[Skip delay] 8
 	db $BF		;[End-Of-Track]
 .track_46:
-	db $C8		;[Wait] 9
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-				;[Skip delay] 2
-	db $33		;[Note] 52
-				;[Skip delay] 2
-	db $35		;[Note] 54
-				;[Skip delay] 2
-	db $37		;[Note] 56
-	db $D1		;[Wait] 18
-	db $37		;[Note] 56
-	db $C5		;[Wait] 6
-	db $37		;[Note] 56
-				;[Skip delay] 6
-	db $36		;[Note] 55
-	db $CB		;[Wait] 12
-	db $32		;[Note] 51
-	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $DF		;[Wait] 32
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $74		;[Instrument] 5
+	db $C7		;[Wait] 8
+	db $25		;[Note] 38
+				;[Skip delay] 8
+	db $26		;[Note] 39
+	db $CE		;[Wait] 15
+	db $C0		;[Wait] 1
 	db $BF		;[End-Of-Track]
 .track_47:
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $C3		;[Wait] 4
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-				;[Skip delay] 2
-	db $0C		;[Note] 13
+	db $28		;[Note] 41
+	db $CB		;[Wait] 12
+	db $2A		;[Note] 43
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2B		;[Note] 44
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
 	db $C5		;[Wait] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 6
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-				;[Skip delay] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 6
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
+	db $25		;[Note] 38
 	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $C3		;[Wait] 4
+	db $26		;[Note] 39
+	db $C7		;[Wait] 8
+	db $28		;[Note] 41
+				;[Skip delay] 8
+	db $2A		;[Note] 43
+	db $CF		;[Wait] 16
 	db $BF		;[End-Of-Track]
 .track_48:
-	db $01		;[Note] 2
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $0A		;[Note] 11
-				;[Skip delay] 2
-	db $0D		;[Note] 14
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $16		;[Note] 23
-				;[Skip delay] 2
-	db $19		;[Note] 26
+	db $C2		;[Wait] 3
+	db $28		;[Note] 41
 	db $CB		;[Wait] 12
-	db $1A		;[Note] 27
+	db $2A		;[Note] 43
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2B		;[Note] 44
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $28		;[Note] 41
 	db $C5		;[Wait] 6
-	db $02		;[Note] 3
-	db $C1		;[Wait] 2
-	db $02		;[Note] 3
-				;[Skip delay] 2
-	db $02		;[Note] 3
-				;[Skip delay] 2
-	db $02		;[Note] 3
-	db $CB		;[Wait] 12
-	db $01		;[Note] 2
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $0A		;[Note] 11
-				;[Skip delay] 2
-	db $0D		;[Note] 14
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $16		;[Note] 23
-				;[Skip delay] 2
-	db $19		;[Note] 26
+	db $25		;[Note] 38
 	db $C3		;[Wait] 4
+	db $26		;[Note] 39
+	db $C7		;[Wait] 8
+	db $28		;[Note] 41
+				;[Skip delay] 8
+	db $2A		;[Note] 43
+	db $CC		;[Wait] 13
 	db $BF		;[End-Of-Track]
 .track_49:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $CB		;[Wait] 12
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
 	db $60		;[Note] 97
-	db $FF		;[Wait] 64
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D7		;[Wait] 24
 	db $BF		;[End-Of-Track]
 .track_50:
-	db $0D		;[Note] 14
+	db $60		;[Note] 97
+	db $EF		;[Wait] 48
+	db $23		;[Note] 36
+	db $6E		;[Volume] 14
+	db $75		;[Instrument] 6
 	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $16		;[Note] 23
-				;[Skip delay] 2
-	db $19		;[Note] 26
-				;[Skip delay] 2
-	db $1F		;[Note] 32
-				;[Skip delay] 2
-	db $22		;[Note] 35
-				;[Skip delay] 2
-	db $25		;[Note] 38
-	db $CB		;[Wait] 12
 	db $26		;[Note] 39
-	db $C5		;[Wait] 6
-	db $0E		;[Note] 15
-	db $C1		;[Wait] 2
-	db $0E		;[Note] 15
 				;[Skip delay] 2
-	db $0E		;[Note] 15
+	db $28		;[Note] 41
 				;[Skip delay] 2
-	db $0E		;[Note] 15
-	db $CB		;[Wait] 12
-	db $0D		;[Note] 14
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
+	db $2A		;[Note] 43
 				;[Skip delay] 2
-	db $16		;[Note] 23
+	db $2F		;[Note] 48
 				;[Skip delay] 2
-	db $19		;[Note] 26
+	db $2D		;[Note] 46
 				;[Skip delay] 2
-	db $1F		;[Note] 32
+	db $2B		;[Note] 44
 				;[Skip delay] 2
-	db $22		;[Note] 35
+	db $2A		;[Note] 43
 				;[Skip delay] 2
-	db $25		;[Note] 38
-	db $C3		;[Wait] 4
 	db $BF		;[End-Of-Track]
 .track_51:
-	db $C0		;[Wait] 1
-	db $2C		;[Note] 45
-	db $D1		;[Wait] 18
-	db $2E		;[Note] 47
+	db $2F		;[Note] 48
+	db $6D		;[Volume] 13
+	db $73		;[Instrument] 4
+	db $D5		;[Wait] 22
+	db $3B		;[Note] 60
 	db $C5		;[Wait] 6
-	db $2D		;[Note] 46
-				;[Skip delay] 6
-	db $2A		;[Note] 43
-	db $CB		;[Wait] 12
-	db $2A		;[Note] 43
-	db $C5		;[Wait] 6
-	db $2C		;[Note] 45
-	db $CE		;[Wait] 15
+	db $36		;[Note] 55
+	db $C3		;[Wait] 4
+	db $39		;[Note] 58
+	db $CF		;[Wait] 16
+	db $3D		;[Note] 62
+				;[Skip delay] 16
 	db $BF		;[End-Of-Track]
 .track_52:
-	db $2C		;[Note] 45
-	db $D1		;[Wait] 18
-	db $2E		;[Note] 47
-	db $C5		;[Wait] 6
-	db $2D		;[Note] 46
-				;[Skip delay] 6
-	db $2A		;[Note] 43
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
 	db $CB		;[Wait] 12
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
 	db $2A		;[Note] 43
-	db $C5		;[Wait] 6
-	db $2C		;[Note] 45
-	db $CF		;[Wait] 16
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D7		;[Wait] 24
 	db $BF		;[End-Of-Track]
 .track_53:
-	db $33		;[Note] 52
-	db $D1		;[Wait] 18
-	db $37		;[Note] 56
-	db $C5		;[Wait] 6
-	db $36		;[Note] 55
-				;[Skip delay] 6
-	db $32		;[Note] 51
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $66		;[Volume] 6
 	db $CB		;[Wait] 12
-	db $32		;[Note] 51
-	db $C5		;[Wait] 6
-	db $33		;[Note] 52
-	db $CF		;[Wait] 16
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2F		;[Note] 48
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $2D		;[Note] 46
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $C4		;[Wait] 5
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $C2		;[Wait] 3
+	db $60		;[Note] 97
+				;[Skip delay] 3
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+	db $D4		;[Wait] 21
 	db $BF		;[End-Of-Track]
 .track_54:
-	db $C0		;[Wait] 1
-	db $33		;[Note] 52
-	db $D1		;[Wait] 18
-	db $37		;[Note] 56
-	db $C5		;[Wait] 6
-	db $36		;[Note] 55
-				;[Skip delay] 6
-	db $32		;[Note] 51
-	db $CB		;[Wait] 12
-	db $32		;[Note] 51
-	db $C5		;[Wait] 6
-	db $33		;[Note] 52
-	db $CE		;[Wait] 15
-	db $BF		;[End-Of-Track]
-.track_55:
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-	db $C5		;[Wait] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 6
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-				;[Skip delay] 6
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C3		;[Wait] 4
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C3		;[Wait] 4
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-				;[Skip delay] 2
-	db $BF		;[End-Of-Track]
-.track_56:
-	db $C7		;[Wait] 8
-	db $1A		;[Note] 27
-	db $C5		;[Wait] 6
-	db $02		;[Note] 3
-	db $C1		;[Wait] 2
-	db $02		;[Note] 3
-				;[Skip delay] 2
-	db $02		;[Note] 3
-				;[Skip delay] 2
-	db $02		;[Note] 3
-	db $CB		;[Wait] 12
-	db $08		;[Note] 9
-	db $C5		;[Wait] 6
-	db $08		;[Note] 9
-	db $C1		;[Wait] 2
-	db $08		;[Note] 9
-				;[Skip delay] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $08		;[Note] 9
-	db $C5		;[Wait] 6
-	db $08		;[Note] 9
-	db $C1		;[Wait] 2
-	db $08		;[Note] 9
-				;[Skip delay] 2
-	db $08		;[Note] 9
-				;[Skip delay] 2
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_57:
-	db $C7		;[Wait] 8
-	db $26		;[Note] 39
-	db $C5		;[Wait] 6
-	db $0E		;[Note] 15
-	db $C1		;[Wait] 2
-	db $0E		;[Note] 15
-				;[Skip delay] 2
-	db $0E		;[Note] 15
-				;[Skip delay] 2
-	db $0E		;[Note] 15
-	db $CB		;[Wait] 12
-	db $14		;[Note] 21
-	db $C5		;[Wait] 6
-	db $14		;[Note] 21
-	db $C1		;[Wait] 2
-	db $14		;[Note] 21
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $14		;[Note] 21
-	db $C5		;[Wait] 6
-	db $14		;[Note] 21
-	db $C1		;[Wait] 2
-	db $14		;[Note] 21
-				;[Skip delay] 2
-	db $14		;[Note] 21
-				;[Skip delay] 2
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_58:
+	db $2A		;[Note] 43
+	db $6F		;[Volume] 15
+	db $82		;[Instrument] 19
 	db $C2		;[Wait] 3
-	db $2E		;[Note] 47
-	db $C5		;[Wait] 6
-	db $2D		;[Note] 46
-				;[Skip delay] 6
 	db $2A		;[Note] 43
-	db $CB		;[Wait] 12
-	db $2A		;[Note] 43
-	db $C5		;[Wait] 6
-	db $27		;[Note] 40
-	db $D1		;[Wait] 18
-	db $2C		;[Note] 45
-	db $C5		;[Wait] 6
-	db $2B		;[Note] 44
-				;[Skip delay] 6
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $BF		;[End-Of-Track]
-.track_59:
-	db $C1		;[Wait] 2
-	db $2E		;[Note] 47
-	db $C5		;[Wait] 6
-	db $2D		;[Note] 46
-				;[Skip delay] 6
-	db $2A		;[Note] 43
-	db $CB		;[Wait] 12
-	db $2A		;[Note] 43
-	db $C5		;[Wait] 6
-	db $27		;[Note] 40
-	db $D1		;[Wait] 18
-	db $2C		;[Note] 45
-	db $C5		;[Wait] 6
-	db $2B		;[Note] 44
-				;[Skip delay] 6
-	db $26		;[Note] 39
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_60:
-	db $C1		;[Wait] 2
-	db $37		;[Note] 56
-	db $C5		;[Wait] 6
-	db $36		;[Note] 55
-				;[Skip delay] 6
-	db $32		;[Note] 51
-	db $CB		;[Wait] 12
-	db $2F		;[Note] 48
-	db $C5		;[Wait] 6
-	db $30		;[Note] 49
-	db $D1		;[Wait] 18
-	db $33		;[Note] 52
-	db $C5		;[Wait] 6
-	db $32		;[Note] 51
-				;[Skip delay] 6
-	db $2E		;[Note] 47
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_61:
-	db $C2		;[Wait] 3
-	db $37		;[Note] 56
-	db $C5		;[Wait] 6
-	db $36		;[Note] 55
-				;[Skip delay] 6
-	db $32		;[Note] 51
-	db $CB		;[Wait] 12
-	db $2F		;[Note] 48
-	db $C5		;[Wait] 6
-	db $30		;[Note] 49
-	db $D1		;[Wait] 18
-	db $33		;[Note] 52
-	db $C5		;[Wait] 6
-	db $32		;[Note] 51
-				;[Skip delay] 6
-	db $2E		;[Note] 47
-	db $C0		;[Wait] 1
-	db $BF		;[End-Of-Track]
-.track_62:
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C3		;[Wait] 4
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-	db $C1		;[Wait] 2
-	db $0C		;[Note] 13
-	db $81		;[Instrument] 18
-	db $C5		;[Wait] 6
-	db $0C		;[Note] 13
-	db $80		;[Instrument] 17
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_63:
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $09		;[Note] 10
-	db $C5		;[Wait] 6
-	db $09		;[Note] 10
-	db $C1		;[Wait] 2
-	db $09		;[Note] 10
-				;[Skip delay] 2
-	db $09		;[Note] 10
-				;[Skip delay] 2
-	db $09		;[Note] 10
-	db $C5		;[Wait] 6
-	db $09		;[Note] 10
-	db $C1		;[Wait] 2
-	db $09		;[Note] 10
-				;[Skip delay] 2
-	db $09		;[Note] 10
-				;[Skip delay] 2
-	db $02		;[Note] 3
-				;[Skip delay] 2
-	db $BF		;[End-Of-Track]
-.track_64:
-	db $E8		;[Wait] 41
-	db $C0		;[Wait] 1
-	db $BF		;[End-Of-Track]
-.track_65:
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $15		;[Note] 22
-	db $C5		;[Wait] 6
-	db $15		;[Note] 22
-	db $C1		;[Wait] 2
-	db $15		;[Note] 22
-				;[Skip delay] 2
-	db $15		;[Note] 22
-				;[Skip delay] 2
-	db $15		;[Note] 22
-	db $C5		;[Wait] 6
-	db $15		;[Note] 22
-	db $C1		;[Wait] 2
-	db $15		;[Note] 22
-				;[Skip delay] 2
-	db $15		;[Note] 22
-				;[Skip delay] 2
-	db $0E		;[Note] 15
-				;[Skip delay] 2
-	db $BF		;[End-Of-Track]
-.track_66:
-	db $CA		;[Wait] 11
+	db $67		;[Volume] 7
+				;[Skip delay] 3
 	db $22		;[Note] 35
-	db $C5		;[Wait] 6
-	db $25		;[Note] 38
-				;[Skip delay] 6
-	db $25		;[Note] 38
-	db $C3		;[Wait] 4
-	db $26		;[Note] 39
-	db $C1		;[Wait] 2
-	db $28		;[Note] 41
-	db $C3		;[Wait] 4
-	db $28		;[Note] 41
-	db $C0		;[Wait] 1
-	db $2A		;[Note] 43
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C2		;[Wait] 3
-	db $2D		;[Note] 46
-				;[Skip delay] 3
-	db $2C		;[Note] 45
-	db $C0		;[Wait] 1
-	db $BF		;[End-Of-Track]
-.track_67:
-	db $C9		;[Wait] 10
-	db $22		;[Note] 35
-	db $C5		;[Wait] 6
-	db $25		;[Note] 38
-				;[Skip delay] 6
-	db $25		;[Note] 38
-	db $C3		;[Wait] 4
-	db $26		;[Note] 39
-	db $C1		;[Wait] 2
-	db $28		;[Note] 41
-	db $C3		;[Wait] 4
-	db $28		;[Note] 41
-	db $C0		;[Wait] 1
-	db $2A		;[Note] 43
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C2		;[Wait] 3
-	db $2D		;[Note] 46
-				;[Skip delay] 3
-	db $2C		;[Note] 45
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_68:
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
-	db $C5		;[Wait] 6
-	db $2D		;[Note] 46
-	db $C2		;[Wait] 3
-	db $2D		;[Note] 46
-	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $31		;[Note] 50
-	db $CB		;[Wait] 12
-	db $34		;[Note] 53
-	db $C5		;[Wait] 6
-	db $32		;[Note] 51
-	db $C1		;[Wait] 2
-	db $BF		;[End-Of-Track]
-.track_69:
-	db $CA		;[Wait] 11
-	db $2B		;[Note] 44
-	db $C5		;[Wait] 6
-	db $2D		;[Note] 46
-	db $C2		;[Wait] 3
-	db $2D		;[Note] 46
-	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $31		;[Note] 50
-	db $CB		;[Wait] 12
-	db $34		;[Note] 53
-	db $C5		;[Wait] 6
-	db $32		;[Note] 51
-	db $C0		;[Wait] 1
-	db $BF		;[End-Of-Track]
-.track_70:
-	db $C3		;[Wait] 4
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
-	db $C1		;[Wait] 2
-	db $18		;[Note] 25
-	db $83		;[Instrument] 20
-				;[Skip delay] 2
-	db $18		;[Note] 25
-				;[Skip delay] 2
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
-	db $C2		;[Wait] 3
-	db $18		;[Note] 25
-	db $6A		;[Volume] 10
-	db $81		;[Instrument] 18
-				;[Skip delay] 3
-	db $18		;[Note] 25
 	db $6F		;[Volume] 15
 				;[Skip delay] 3
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
+	db $22		;[Note] 35
+	db $67		;[Volume] 7
 				;[Skip delay] 3
-	db $18		;[Note] 25
-	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
+	db $39		;[Note] 58
+	db $6F		;[Volume] 15
+	db $84		;[Instrument] 21
 	db $C3		;[Wait] 4
-	db $18		;[Note] 25
+	db $26		;[Note] 39
+	db $82		;[Instrument] 19
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+				;[Skip delay] 3
+	db $1E		;[Note] 31
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $39		;[Note] 58
+	db $6F		;[Volume] 15
+	db $84		;[Instrument] 21
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+	db $83		;[Instrument] 20
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+	db $82		;[Instrument] 19
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+	db $C2		;[Wait] 3
+	db $2A		;[Note] 43
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $2A		;[Note] 43
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $6F		;[Volume] 15
+	db $C1		;[Wait] 2
+	db $26		;[Note] 39
+				;[Skip delay] 2
+	db $22		;[Note] 35
+				;[Skip delay] 2
+	db $BF		;[End-Of-Track]
+.track_55:
+	db $13		;[Note] 20
+	db $7D		;[Instrument] 14
+	db $C5		;[Wait] 6
+	db $13		;[Note] 20
+	db $C1		;[Wait] 2
+	db $1F		;[Note] 32
+	db $C3		;[Wait] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $15		;[Note] 22
+	db $C5		;[Wait] 6
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_56:
+	db $2B		;[Note] 44
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $2B		;[Note] 44
+	db $C3		;[Wait] 4
+	db $2D		;[Note] 46
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $DF		;[Wait] 32
+	db $BF		;[End-Of-Track]
+.track_57:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $74		;[Instrument] 5
+	db $C5		;[Wait] 6
+	db $2A		;[Note] 43
+				;[Skip delay] 6
+	db $28		;[Note] 41
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $C5		;[Wait] 6
+	db $2A		;[Note] 43
+				;[Skip delay] 6
+	db $2D		;[Note] 46
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $DE		;[Wait] 31
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_58:
+	db $37		;[Note] 56
+	db $C5		;[Wait] 6
+	db $3B		;[Note] 60
+				;[Skip delay] 6
+	db $37		;[Note] 56
+	db $C3		;[Wait] 4
+	db $39		;[Note] 58
+	db $C5		;[Wait] 6
+	db $3B		;[Note] 60
+				;[Skip delay] 6
+	db $3D		;[Note] 62
+	db $C3		;[Wait] 4
+	db $3B		;[Note] 60
+	db $DF		;[Wait] 32
+	db $BF		;[End-Of-Track]
+.track_59:
+	db $07		;[Note] 8
+	db $C5		;[Wait] 6
+	db $07		;[Note] 8
+	db $C1		;[Wait] 2
+	db $13		;[Note] 20
+	db $C3		;[Wait] 4
+	db $07		;[Note] 8
+				;[Skip delay] 4
+	db $09		;[Note] 10
+	db $C5		;[Wait] 6
+	db $09		;[Note] 10
+	db $C1		;[Wait] 2
+	db $15		;[Note] 22
+	db $C3		;[Wait] 4
+	db $09		;[Note] 10
+				;[Skip delay] 4
+	db $0B		;[Note] 12
+	db $C5		;[Wait] 6
+	db $0B		;[Note] 12
+	db $C1		;[Wait] 2
+	db $17		;[Note] 24
+	db $C3		;[Wait] 4
+	db $0B		;[Note] 12
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_60:
+	db $C2		;[Wait] 3
+	db $2B		;[Note] 44
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $2B		;[Note] 44
+	db $C3		;[Wait] 4
+	db $2D		;[Note] 46
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $DC		;[Wait] 29
+	db $BF		;[End-Of-Track]
+.track_61:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $CA		;[Wait] 11
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $CC		;[Wait] 13
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C6		;[Wait] 7
+	db $BF		;[End-Of-Track]
+.track_62:
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+	db $7F		;[Instrument] 16
+	db $C1		;[Wait] 2
+	db $1F		;[Note] 32
+				;[Skip delay] 2
+	db $60		;[Note] 97
+				;[Skip delay] 2
+	db $1F		;[Note] 32
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $1E		;[Note] 31
+	db $7F		;[Instrument] 16
+	db $C1		;[Wait] 2
+	db $1F		;[Note] 32
+	db $7D		;[Instrument] 14
+				;[Skip delay] 2
+	db $60		;[Note] 97
+	db $C5		;[Wait] 6
+	db $1F		;[Note] 32
 	db $80		;[Instrument] 17
 	db $C1		;[Wait] 2
-	db $18		;[Note] 25
+	db $1F		;[Note] 32
 	db $C5		;[Wait] 6
-	db $18		;[Note] 25
-	db $81		;[Instrument] 18
+	db $21		;[Note] 34
+	db $C3		;[Wait] 4
+	db $21		;[Note] 34
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $23		;[Note] 36
+	db $7D		;[Instrument] 14
 				;[Skip delay] 6
-	db $18		;[Note] 25
-	db $80		;[Instrument] 17
+	db $25		;[Note] 38
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $26		;[Note] 39
+	db $C5		;[Wait] 6
+	db $25		;[Note] 38
+	db $7D		;[Instrument] 14
 				;[Skip delay] 6
-	db $0C		;[Note] 13
+	db $21		;[Note] 34
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $BF		;[End-Of-Track]
+.track_63:
+	db $2B		;[Note] 44
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $C5		;[Wait] 6
+	db $3B		;[Note] 60
+	db $6B		;[Volume] 11
+	db $84		;[Instrument] 21
+	db $C9		;[Wait] 10
+	db $2B		;[Note] 44
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $C5		;[Wait] 6
+	db $2D		;[Note] 46
+				;[Skip delay] 6
+	db $2F		;[Note] 48
+	db $C3		;[Wait] 4
+	db $31		;[Note] 50
+	db $C5		;[Wait] 6
+	db $3B		;[Note] 60
+	db $6B		;[Volume] 11
+	db $84		;[Instrument] 21
+	db $C9		;[Wait] 10
+	db $2D		;[Note] 46
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $C5		;[Wait] 6
+	db $3B		;[Note] 60
+	db $6B		;[Volume] 11
+	db $84		;[Instrument] 21
+	db $C9		;[Wait] 10
+	db $BF		;[End-Of-Track]
+.track_64:
+	db $37		;[Note] 56
+	db $6B		;[Volume] 11
+	db $73		;[Instrument] 4
+	db $CF		;[Wait] 16
+	db $34		;[Note] 53
+				;[Skip delay] 16
+	db $39		;[Note] 58
+				;[Skip delay] 16
+	db $3D		;[Note] 62
+				;[Skip delay] 16
+	db $BF		;[End-Of-Track]
+.track_65:
+	db $12		;[Note] 19
+	db $C1		;[Wait] 2
+	db $13		;[Note] 20
+				;[Skip delay] 2
+	db $60		;[Note] 97
+				;[Skip delay] 2
+	db $13		;[Note] 20
+	db $C3		;[Wait] 4
+	db $12		;[Note] 19
+	db $C1		;[Wait] 2
+	db $13		;[Note] 20
+				;[Skip delay] 2
+	db $60		;[Note] 97
+	db $D1		;[Wait] 18
+	db $15		;[Note] 22
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
+				;[Skip delay] 6
+	db $19		;[Note] 26
+	db $C3		;[Wait] 4
+	db $1A		;[Note] 27
+	db $C5		;[Wait] 6
+	db $19		;[Note] 26
+				;[Skip delay] 6
+	db $15		;[Note] 22
+	db $C3		;[Wait] 4
+	db $BF		;[End-Of-Track]
+.track_66:
+	db $2B		;[Note] 44
+	db $CF		;[Wait] 16
+	db $2B		;[Note] 44
+	db $C5		;[Wait] 6
+	db $2D		;[Note] 46
+				;[Skip delay] 6
+	db $2F		;[Note] 48
+	db $C3		;[Wait] 4
+	db $31		;[Note] 50
+	db $CF		;[Wait] 16
+	db $2D		;[Note] 46
+				;[Skip delay] 16
+	db $BF		;[End-Of-Track]
+.track_67:
+	db $C2		;[Wait] 3
+	db $2B		;[Note] 44
+	db $CF		;[Wait] 16
+	db $2B		;[Note] 44
+	db $C5		;[Wait] 6
+	db $2D		;[Note] 46
+				;[Skip delay] 6
+	db $2F		;[Note] 48
+	db $C3		;[Wait] 4
+	db $31		;[Note] 50
+	db $CF		;[Wait] 16
+	db $2D		;[Note] 46
+	db $CC		;[Wait] 13
+	db $BF		;[End-Of-Track]
+.track_68:
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $C3		;[Wait] 4
+	db $23		;[Note] 36
 	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
 	db $C0		;[Wait] 1
-				;[Skip delay] 1
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $26		;[Note] 39
+	db $6F		;[Volume] 15
+	db $82		;[Instrument] 19
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+				;[Skip delay] 3
+	db $1E		;[Note] 31
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $22		;[Note] 35
+	db $82		;[Instrument] 19
+	db $C2		;[Wait] 3
+	db $22		;[Note] 35
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+				;[Skip delay] 3
+	db $1E		;[Note] 31
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $BF		;[End-Of-Track]
+.track_69:
+	db $1C		;[Note] 29
+	db $6F		;[Volume] 15
+	db $7F		;[Instrument] 16
+	db $C1		;[Wait] 2
+	db $1E		;[Note] 31
+				;[Skip delay] 2
+	db $60		;[Note] 97
+				;[Skip delay] 2
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $1C		;[Note] 29
+	db $7F		;[Instrument] 16
+	db $C1		;[Wait] 2
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+				;[Skip delay] 2
+	db $60		;[Note] 97
+	db $C5		;[Wait] 6
+	db $1F		;[Note] 32
+	db $80		;[Instrument] 17
+	db $C1		;[Wait] 2
+	db $1F		;[Note] 32
+	db $C5		;[Wait] 6
+	db $21		;[Note] 34
+	db $C3		;[Wait] 4
+	db $1F		;[Note] 32
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $1A		;[Note] 27
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+				;[Skip delay] 4
+	db $1A		;[Note] 27
+	db $C1		;[Wait] 2
+	db $7D		;[Instrument] 14
+				;[Skip delay] 2
+	db $1C		;[Note] 29
+	db $C3		;[Wait] 4
+	db $1E		;[Note] 31
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_70:
+	db $2A		;[Note] 43
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
+	db $C5		;[Wait] 6
+	db $2B		;[Note] 44
+				;[Skip delay] 6
+	db $2D		;[Note] 46
+	db $C3		;[Wait] 4
+	db $2B		;[Note] 44
+	db $C7		;[Wait] 8
+	db $3B		;[Note] 60
+	db $84		;[Instrument] 21
+				;[Skip delay] 8
+	db $2A		;[Note] 43
+				;[Skip delay] 8
+	db $3B		;[Note] 60
+				;[Skip delay] 8
 	db $BF		;[End-Of-Track]
 .track_71:
-	db $C3		;[Wait] 4
-	db $02		;[Note] 3
-	db $C5		;[Wait] 6
-	db $02		;[Note] 3
-				;[Skip delay] 6
-	db $04		;[Note] 5
-	db $C2		;[Wait] 3
-	db $06		;[Note] 7
-				;[Skip delay] 3
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-	db $C1		;[Wait] 2
-	db $07		;[Note] 8
-				;[Skip delay] 2
-	db $05		;[Note] 6
-				;[Skip delay] 2
-	db $07		;[Note] 8
-	db $C5		;[Wait] 6
-	db $07		;[Note] 8
-				;[Skip delay] 6
-	db $05		;[Note] 6
-				;[Skip delay] 6
-	db $05		;[Note] 6
-	db $C1		;[Wait] 2
+	db $36		;[Note] 55
+	db $CF		;[Wait] 16
+	db $32		;[Note] 51
+				;[Skip delay] 16
+	db $37		;[Note] 56
+				;[Skip delay] 16
+	db $36		;[Note] 55
+				;[Skip delay] 16
 	db $BF		;[End-Of-Track]
 .track_72:
-	db $C6		;[Wait] 7
-	db $98, $09	; Speed 
-				;[Skip delay] 7
-	db $98, $10	; Speed 
-	db $C0		;[Wait] 1
-	db $98, $09	; Speed 
-				;[Skip delay] 1
-	db $98, $10	; Speed 
-				;[Skip delay] 1
-	db $98, $09	; Speed 
-				;[Skip delay] 1
-	db $98, $10	; Speed 
-				;[Skip delay] 1
-	db $98, $09	; Speed 
-				;[Skip delay] 1
-	db $98, $10	; Speed 
+	db $10		;[Note] 17
 	db $C1		;[Wait] 2
-	db $98, $08	; Speed 
-	db $C0		;[Wait] 1
-	db $2B		;[Note] 44
-				;[Skip delay] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3B		;[Note] 60
+	db $12		;[Note] 19
+				;[Skip delay] 2
+	db $60		;[Note] 97
+				;[Skip delay] 2
+	db $12		;[Note] 19
+	db $C3		;[Wait] 4
+	db $10		;[Note] 17
 	db $C1		;[Wait] 2
-	db $3B		;[Note] 60
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
-	db $C4		;[Wait] 5
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $3B		;[Note] 60
-	db $C1		;[Wait] 2
-	db $3B		;[Note] 60
-	db $C0		;[Wait] 1
-	db $37		;[Note] 56
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $2F		;[Note] 48
-				;[Skip delay] 1
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-				;[Skip delay] 1
-	db $32		;[Note] 51
-				;[Skip delay] 1
-	db $35		;[Note] 54
-				;[Skip delay] 1
-	db $39		;[Note] 58
-	db $C1		;[Wait] 2
-	db $39		;[Note] 58
-	db $C0		;[Wait] 1
+	db $12		;[Note] 19
+				;[Skip delay] 2
+	db $60		;[Note] 97
+	db $D1		;[Wait] 18
+	db $13		;[Note] 20
+	db $C3		;[Wait] 4
+	db $0E		;[Note] 15
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $13		;[Note] 20
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $0E		;[Note] 15
+				;[Skip delay] 4
+	db $10		;[Note] 17
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
 	db $BF		;[End-Of-Track]
 .track_73:
+	db $2A		;[Note] 43
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
+	db $C5		;[Wait] 6
+	db $2B		;[Note] 44
+				;[Skip delay] 6
+	db $2D		;[Note] 46
 	db $C3		;[Wait] 4
-	db $0E		;[Note] 15
-	db $C5		;[Wait] 6
-	db $0E		;[Note] 15
-				;[Skip delay] 6
-	db $10		;[Note] 17
-	db $C2		;[Wait] 3
-	db $12		;[Note] 19
-				;[Skip delay] 3
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-	db $C1		;[Wait] 2
-	db $13		;[Note] 20
-				;[Skip delay] 2
-	db $11		;[Note] 18
-				;[Skip delay] 2
-	db $13		;[Note] 20
-	db $C5		;[Wait] 6
-	db $13		;[Note] 20
-				;[Skip delay] 6
-	db $11		;[Note] 18
-				;[Skip delay] 6
-	db $11		;[Note] 18
-	db $C1		;[Wait] 2
+	db $2B		;[Note] 44
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
+				;[Skip delay] 16
 	db $BF		;[End-Of-Track]
 .track_74:
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
 	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $03	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $04	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-				;[Skip delay] 3
-	db $23		;[Note] 36
+	db $2A		;[Note] 43
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
 	db $C5		;[Wait] 6
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $23		;[Note] 36
-	db $C3		;[Wait] 4
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-	db $C0		;[Wait] 1
-	db $24		;[Note] 37
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $27		;[Note] 40
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
+	db $2B		;[Note] 44
+				;[Skip delay] 6
+	db $2D		;[Note] 46
 	db $C3		;[Wait] 4
 	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
+	db $CF		;[Wait] 16
+	db $2A		;[Note] 43
+	db $CC		;[Wait] 13
 	db $BF		;[End-Of-Track]
 .track_75:
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-				;[Skip delay] 1
-	db $1E		;[Note] 31
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $03	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-	db $C0		;[Wait] 1
-	db $1E		;[Note] 31
-	db $A1, $04	; note delay
-	db $C1		;[Wait] 2
-	db $1E		;[Note] 31
-	db $C2		;[Wait] 3
-	db $1E		;[Note] 31
-				;[Skip delay] 3
-	db $23		;[Note] 36
+	db $2F		;[Note] 48
+	db $83		;[Instrument] 20
 	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
 	db $23		;[Note] 36
-	db $C1		;[Wait] 2
+	db $6F		;[Volume] 15
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
 	db $23		;[Note] 36
-				;[Skip delay] 2
-	db $21		;[Note] 34
-				;[Skip delay] 2
-	db $23		;[Note] 36
-	db $C3		;[Wait] 4
-	db $23		;[Note] 36
-	db $C1		;[Wait] 2
-	db $23		;[Note] 36
-	db $C0		;[Wait] 1
-	db $24		;[Note] 37
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
 	db $26		;[Note] 39
+	db $6F		;[Volume] 15
+	db $82		;[Instrument] 19
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
 	db $C0		;[Wait] 1
-	db $27		;[Note] 40
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $29		;[Note] 42
+	db $22		;[Note] 35
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $22		;[Note] 35
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $1E		;[Note] 31
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $2F		;[Note] 48
+	db $83		;[Instrument] 20
 	db $C3		;[Wait] 4
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
+	db $23		;[Note] 36
+	db $6F		;[Volume] 15
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
 	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-				;[Skip delay] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
 	db $BF		;[End-Of-Track]
 .track_76:
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-				;[Skip delay] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $03	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $04	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $2B		;[Note] 44
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
 	db $C5		;[Wait] 6
-	db $26		;[Note] 39
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
+	db $1C		;[Note] 29
+	db $74		;[Instrument] 5
 	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2F		;[Note] 48
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
+	db $60		;[Note] 97
+	db $C3		;[Wait] 4
+	db $1C		;[Note] 29
+	db $70		;[Instrument] 1
 	db $C7		;[Wait] 8
+	db $1A		;[Note] 27
+	db $C3		;[Wait] 4
+	db $19		;[Note] 26
+				;[Skip delay] 4
+	db $1C		;[Note] 29
+				;[Skip delay] 4
+	db $1D		;[Note] 30
+	db $C5		;[Wait] 6
+	db $1D		;[Note] 30
+	db $C1		;[Wait] 2
+	db $60		;[Note] 97
+	db $C3		;[Wait] 4
+	db $1D		;[Note] 30
+	db $C7		;[Wait] 8
+	db $1A		;[Note] 27
+	db $7F		;[Instrument] 16
+	db $C1		;[Wait] 2
+	db $1A		;[Note] 27
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $19		;[Note] 26
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $1D		;[Note] 30
+				;[Skip delay] 4
 	db $BF		;[End-Of-Track]
 .track_77:
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $03	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-	db $C0		;[Wait] 1
-	db $26		;[Note] 39
-	db $A1, $04	; note delay
-	db $C1		;[Wait] 2
-	db $26		;[Note] 39
-	db $C2		;[Wait] 3
-	db $26		;[Note] 39
-				;[Skip delay] 3
-	db $2B		;[Note] 44
-	db $C5		;[Wait] 6
-	db $26		;[Note] 39
-	db $C9		;[Wait] 10
-	db $2B		;[Note] 44
-	db $C1		;[Wait] 2
-	db $2B		;[Note] 44
-	db $C0		;[Wait] 1
-	db $2D		;[Note] 46
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $2F		;[Note] 48
-	db $C0		;[Wait] 1
-	db $30		;[Note] 49
-	db $A1, $02	; note delay
-	db $C1		;[Wait] 2
-	db $32		;[Note] 51
-	db $C6		;[Wait] 7
+	db $28		;[Note] 41
+	db $70		;[Instrument] 1
+	db $CB		;[Wait] 12
+	db $3B		;[Note] 60
+	db $6B		;[Volume] 11
+	db $84		;[Instrument] 21
+	db $C3		;[Wait] 4
+	db $25		;[Note] 38
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $C7		;[Wait] 8
+	db $39		;[Note] 58
+	db $84		;[Instrument] 21
+				;[Skip delay] 8
+	db $29		;[Note] 42
+	db $70		;[Instrument] 1
+	db $CB		;[Wait] 12
+	db $39		;[Note] 58
+	db $6B		;[Volume] 11
+	db $84		;[Instrument] 21
+	db $C3		;[Wait] 4
+	db $25		;[Note] 38
+	db $6F		;[Volume] 15
+	db $70		;[Instrument] 1
+	db $C7		;[Wait] 8
+	db $39		;[Note] 58
+	db $84		;[Instrument] 21
+				;[Skip delay] 8
 	db $BF		;[End-Of-Track]
 .track_78:
+	db $34		;[Note] 53
+	db $D3		;[Wait] 20
+	db $32		;[Note] 51
+	db $C3		;[Wait] 4
+	db $31		;[Note] 50
+				;[Skip delay] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $35		;[Note] 54
+	db $D3		;[Wait] 20
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $30		;[Note] 49
+				;[Skip delay] 4
+	db $35		;[Note] 54
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_79:
+	db $10		;[Note] 17
+	db $C5		;[Wait] 6
+	db $10		;[Note] 17
+	db $C1		;[Wait] 2
+	db $60		;[Note] 97
+	db $C3		;[Wait] 4
+	db $10		;[Note] 17
+	db $C7		;[Wait] 8
+	db $0E		;[Note] 15
+	db $C3		;[Wait] 4
+	db $0D		;[Note] 14
+				;[Skip delay] 4
+	db $10		;[Note] 17
+				;[Skip delay] 4
+	db $11		;[Note] 18
+	db $C5		;[Wait] 6
+	db $11		;[Note] 18
+	db $C1		;[Wait] 2
+	db $60		;[Note] 97
+	db $C3		;[Wait] 4
+	db $11		;[Note] 18
+	db $C7		;[Wait] 8
+	db $0E		;[Note] 15
+	db $C3		;[Wait] 4
+	db $0D		;[Note] 14
+				;[Skip delay] 4
+	db $11		;[Note] 18
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_80:
+	db $28		;[Note] 41
+	db $CF		;[Wait] 16
+	db $25		;[Note] 38
+				;[Skip delay] 16
+	db $29		;[Note] 42
+				;[Skip delay] 16
+	db $25		;[Note] 38
+				;[Skip delay] 16
+	db $BF		;[End-Of-Track]
+.track_81:
+	db $C2		;[Wait] 3
+	db $28		;[Note] 41
+	db $CF		;[Wait] 16
+	db $25		;[Note] 38
+				;[Skip delay] 16
+	db $29		;[Note] 42
+				;[Skip delay] 16
+	db $25		;[Note] 38
+	db $CC		;[Wait] 13
+	db $BF		;[End-Of-Track]
+.track_82:
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C7		;[Wait] 8
+	db $2F		;[Note] 48
+				;[Skip delay] 8
+	db $2F		;[Note] 48
+				;[Skip delay] 8
+	db $2F		;[Note] 48
+				;[Skip delay] 8
+	db $2F		;[Note] 48
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $82		;[Instrument] 19
+	db $C2		;[Wait] 3
+	db $2A		;[Note] 43
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $22		;[Note] 35
+	db $6F		;[Volume] 15
+				;[Skip delay] 3
+	db $22		;[Note] 35
+	db $67		;[Volume] 7
+				;[Skip delay] 3
+	db $26		;[Note] 39
+	db $6F		;[Volume] 15
+	db $C1		;[Wait] 2
+	db $26		;[Note] 39
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+	db $C1		;[Wait] 2
+	db $2F		;[Note] 48
+	db $83		;[Instrument] 20
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+				;[Skip delay] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_83:
+	db $1E		;[Note] 31
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1E		;[Note] 31
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1C		;[Note] 29
+	db $7F		;[Instrument] 16
+	db $C3		;[Wait] 4
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1C		;[Note] 29
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1A		;[Note] 27
+	db $C3		;[Wait] 4
+	db $1A		;[Note] 27
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $1A		;[Note] 27
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $19		;[Note] 26
+	db $C1		;[Wait] 2
+	db $19		;[Note] 26
+	db $80		;[Instrument] 17
+				;[Skip delay] 2
+	db $19		;[Note] 26
+	db $7D		;[Instrument] 14
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $19		;[Note] 26
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $BF		;[End-Of-Track]
+.track_84:
+	db $2A		;[Note] 43
+	db $70		;[Instrument] 1
+	db $FB		;[Wait] 60
+	db $3B		;[Note] 60
+	db $6B		;[Volume] 11
+	db $84		;[Instrument] 21
+	db $C3		;[Wait] 4
+	db $BF		;[End-Of-Track]
+.track_85:
+	db $36		;[Note] 55
 	db $FF		;[Wait] 64
+	db $BF		;[End-Of-Track]
+.track_86:
+	db $12		;[Note] 19
+	db $C3		;[Wait] 4
+	db $12		;[Note] 19
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+	db $C3		;[Wait] 4
+	db $12		;[Note] 19
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+	db $C3		;[Wait] 4
+	db $12		;[Note] 19
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+	db $C3		;[Wait] 4
+	db $12		;[Note] 19
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+	db $C3		;[Wait] 4
+	db $12		;[Note] 19
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $12		;[Note] 19
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $10		;[Note] 17
+	db $C3		;[Wait] 4
+	db $10		;[Note] 17
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $10		;[Note] 17
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $0E		;[Note] 15
+	db $C3		;[Wait] 4
+	db $0E		;[Note] 15
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $0E		;[Note] 15
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $0D		;[Note] 14
+	db $C3		;[Wait] 4
+	db $0D		;[Note] 14
+	db $C0		;[Wait] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $0D		;[Note] 14
+				;[Skip delay] 1
+	db $60		;[Note] 97
+				;[Skip delay] 1
+	db $BF		;[End-Of-Track]
+.track_87:
+	db $2A		;[Note] 43
+	db $FF		;[Wait] 64
+	db $BF		;[End-Of-Track]
+.track_88:
+	db $C2		;[Wait] 3
+	db $2A		;[Note] 43
+	db $FC		;[Wait] 61
+	db $BF		;[End-Of-Track]
+.track_89:
+	db $2A		;[Note] 43
+	db $70		;[Instrument] 1
+	db $F6		;[Wait] 55
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2B		;[Note] 44
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $BF		;[End-Of-Track]
+.track_90:
+	db $1E		;[Note] 31
+	db $FD		;[Wait] 62
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+				;[Skip delay] 1
+	db $BF		;[End-Of-Track]
+.track_91:
+	db $2A		;[Note] 43
+	db $F6		;[Wait] 55
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2B		;[Note] 44
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $BF		;[End-Of-Track]
+.track_92:
+	db $C2		;[Wait] 3
+	db $2A		;[Note] 43
+	db $F6		;[Wait] 55
+	db $60		;[Note] 97
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2B		;[Note] 44
+				;[Skip delay] 2
+	db $2D		;[Note] 46
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_93:
+	db $34		;[Note] 53
+	db $6F		;[Volume] 15
+	db $84		;[Instrument] 21
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $34		;[Note] 53
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $BF		;[End-Of-Track]
+.track_94:
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $15		;[Note] 22
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_95:
+	db $2F		;[Note] 48
+	db $CF		;[Wait] 16
+	db $2F		;[Note] 48
+	db $C7		;[Wait] 8
+	db $32		;[Note] 51
+				;[Skip delay] 8
+	db $31		;[Note] 50
+	db $CF		;[Wait] 16
+	db $2D		;[Note] 46
+				;[Skip delay] 16
+	db $BF		;[End-Of-Track]
+.track_96:
+	db $3B		;[Note] 60
+	db $6D		;[Volume] 13
+	db $71		;[Instrument] 2
+	db $C2		;[Wait] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $36		;[Note] 55
+	db $C1		;[Wait] 2
+	db $39		;[Note] 58
+	db $C2		;[Wait] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+	db $C0		;[Wait] 1
+				;[Skip delay] 1
+	db $BF		;[End-Of-Track]
+.track_97:
+	db $3B		;[Note] 60
+	db $6B		;[Volume] 11
+	db $73		;[Instrument] 4
+	db $CF		;[Wait] 16
+	db $36		;[Note] 55
+	db $C7		;[Wait] 8
+	db $3E		;[Note] 63
+				;[Skip delay] 8
+	db $3D		;[Note] 62
+	db $CF		;[Wait] 16
+	db $39		;[Note] 58
+				;[Skip delay] 16
+	db $BF		;[End-Of-Track]
+.track_98:
+	db $C0		;[Wait] 1
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2F		;[Note] 48
+	db $CF		;[Wait] 16
+	db $2F		;[Note] 48
+	db $C7		;[Wait] 8
+	db $32		;[Note] 51
+				;[Skip delay] 8
+	db $31		;[Note] 50
+	db $CF		;[Wait] 16
+	db $2D		;[Note] 46
+	db $CC		;[Wait] 13
+	db $BF		;[End-Of-Track]
+.track_99:
+	db $34		;[Note] 53
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $34		;[Note] 53
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $26		;[Note] 39
+	db $82		;[Instrument] 19
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $1E		;[Note] 31
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_100:
+	db $13		;[Note] 20
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $13		;[Note] 20
+	db $C1		;[Wait] 2
+	db $1F		;[Note] 32
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $13		;[Note] 20
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+				;[Skip delay] 4
+	db $1C		;[Note] 29
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $1F		;[Note] 32
+				;[Skip delay] 4
+	db $15		;[Note] 22
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $25		;[Note] 38
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_101:
+	db $2B		;[Note] 44
+	db $70		;[Instrument] 1
+	db $CF		;[Wait] 16
+	db $2B		;[Note] 44
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $32		;[Note] 51
+	db $C3		;[Wait] 4
+	db $31		;[Note] 50
+	db $C5		;[Wait] 6
+	db $32		;[Note] 51
+				;[Skip delay] 6
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2D		;[Note] 46
+	db $C7		;[Wait] 8
+	db $2D		;[Note] 46
+	db $85		;[Instrument] 22
+				;[Skip delay] 8
+	db $BF		;[End-Of-Track]
+.track_102:
+	db $37		;[Note] 56
+	db $C2		;[Wait] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $2F		;[Note] 48
+				;[Skip delay] 3
+	db $37		;[Note] 56
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $2F		;[Note] 48
+				;[Skip delay] 3
+	db $37		;[Note] 56
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $2F		;[Note] 48
+				;[Skip delay] 3
+	db $37		;[Note] 56
+				;[Skip delay] 3
+	db $32		;[Note] 51
+	db $C1		;[Wait] 2
+	db $39		;[Note] 58
+	db $C2		;[Wait] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+	db $C0		;[Wait] 1
+				;[Skip delay] 1
+	db $BF		;[End-Of-Track]
+.track_103:
+	db $37		;[Note] 56
+	db $CF		;[Wait] 16
+	db $34		;[Note] 53
+	db $C7		;[Wait] 8
+	db $37		;[Note] 56
+				;[Skip delay] 8
+	db $39		;[Note] 58
+	db $CF		;[Wait] 16
+	db $34		;[Note] 53
+	db $C7		;[Wait] 8
+	db $39		;[Note] 58
+				;[Skip delay] 8
+	db $BF		;[End-Of-Track]
+.track_104:
+	db $2B		;[Note] 44
+	db $CF		;[Wait] 16
+	db $2B		;[Note] 44
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $32		;[Note] 51
+	db $C3		;[Wait] 4
+	db $31		;[Note] 50
+	db $C5		;[Wait] 6
+	db $32		;[Note] 51
+				;[Skip delay] 6
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2D		;[Note] 46
+	db $C7		;[Wait] 8
+	db $2A		;[Note] 43
+				;[Skip delay] 8
+	db $BF		;[End-Of-Track]
+.track_105:
+	db $C2		;[Wait] 3
+	db $2B		;[Note] 44
+	db $CF		;[Wait] 16
+	db $2B		;[Note] 44
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $32		;[Note] 51
+	db $C3		;[Wait] 4
+	db $31		;[Note] 50
+	db $C5		;[Wait] 6
+	db $32		;[Note] 51
+				;[Skip delay] 6
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2D		;[Note] 46
+	db $C7		;[Wait] 8
+	db $2A		;[Note] 43
+	db $C4		;[Wait] 5
+	db $BF		;[End-Of-Track]
+.track_106:
+	db $34		;[Note] 53
+	db $6F		;[Volume] 15
+	db $84		;[Instrument] 21
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $83		;[Instrument] 20
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $34		;[Note] 53
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $2F		;[Note] 48
+				;[Skip delay] 4
+	db $2A		;[Note] 43
+	db $82		;[Instrument] 19
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $22		;[Note] 35
+				;[Skip delay] 2
+	db $1E		;[Note] 31
+				;[Skip delay] 2
+	db $BF		;[End-Of-Track]
+.track_107:
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $15		;[Note] 22
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $15		;[Note] 22
+	db $C1		;[Wait] 2
+	db $21		;[Note] 34
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $25		;[Note] 38
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_108:
+	db $2F		;[Note] 48
+	db $70		;[Instrument] 1
+	db $CB		;[Wait] 12
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+	db $C7		;[Wait] 8
+	db $36		;[Note] 55
+				;[Skip delay] 8
+	db $34		;[Note] 53
+	db $CB		;[Wait] 12
+	db $32		;[Note] 51
+	db $C1		;[Wait] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $31		;[Note] 50
+	db $C7		;[Wait] 8
+	db $2D		;[Note] 46
+	db $85		;[Instrument] 22
+				;[Skip delay] 8
+	db $BF		;[End-Of-Track]
+.track_109:
+	db $3B		;[Note] 60
+	db $C2		;[Wait] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $36		;[Note] 55
+	db $C1		;[Wait] 2
+	db $39		;[Note] 58
+	db $C2		;[Wait] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+				;[Skip delay] 3
+	db $31		;[Note] 50
+				;[Skip delay] 3
+	db $39		;[Note] 58
+				;[Skip delay] 3
+	db $34		;[Note] 53
+	db $C0		;[Wait] 1
+				;[Skip delay] 1
+	db $BF		;[End-Of-Track]
+.track_110:
+	db $3B		;[Note] 60
+	db $CF		;[Wait] 16
+	db $36		;[Note] 55
+	db $C7		;[Wait] 8
+	db $42		;[Note] 67
+				;[Skip delay] 8
+	db $40		;[Note] 65
+	db $CF		;[Wait] 16
+	db $3D		;[Note] 62
+				;[Skip delay] 16
+	db $BF		;[End-Of-Track]
+.track_111:
+	db $0B		;[Note] 12
+	db $C5		;[Wait] 6
+	db $0B		;[Note] 12
+	db $C1		;[Wait] 2
+	db $17		;[Note] 24
+	db $C3		;[Wait] 4
+	db $0B		;[Note] 12
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $09		;[Note] 10
+	db $C5		;[Wait] 6
+	db $09		;[Note] 10
+	db $C1		;[Wait] 2
+	db $15		;[Note] 22
+	db $C3		;[Wait] 4
+	db $09		;[Note] 10
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $19		;[Note] 26
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_112:
+	db $2F		;[Note] 48
+	db $CB		;[Wait] 12
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+	db $C7		;[Wait] 8
+	db $36		;[Note] 55
+				;[Skip delay] 8
+	db $34		;[Note] 53
+	db $CB		;[Wait] 12
+	db $32		;[Note] 51
+	db $C1		;[Wait] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $31		;[Note] 50
+	db $CF		;[Wait] 16
+	db $BF		;[End-Of-Track]
+.track_113:
+	db $C2		;[Wait] 3
+	db $2F		;[Note] 48
+	db $CB		;[Wait] 12
+	db $2A		;[Note] 43
+	db $C1		;[Wait] 2
+	db $2D		;[Note] 46
+				;[Skip delay] 2
+	db $2F		;[Note] 48
+	db $C7		;[Wait] 8
+	db $36		;[Note] 55
+				;[Skip delay] 8
+	db $34		;[Note] 53
+	db $CB		;[Wait] 12
+	db $32		;[Note] 51
+	db $C1		;[Wait] 2
+	db $34		;[Note] 53
+				;[Skip delay] 2
+	db $31		;[Note] 50
+	db $C0		;[Wait] 1
+	db $36		;[Note] 55
+	db $6C		;[Volume] 12
+	db $9E, $00	; short arp
+	db $C3		;[Wait] 4
+	db $34		;[Note] 53
+				;[Skip delay] 4
+	db $32		;[Note] 51
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_114:
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+				;[Skip delay] 6
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C4		;[Wait] 5
+	db $BF		;[End-Of-Track]
+.track_115:
+	db $13		;[Note] 20
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $13		;[Note] 20
+				;[Skip delay] 6
+	db $13		;[Note] 20
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $15		;[Note] 22
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $12		;[Note] 19
+				;[Skip delay] 6
+	db $15		;[Note] 22
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $17		;[Note] 24
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_116:
+	db $2B		;[Note] 44
+	db $70		;[Instrument] 1
+	db $C5		;[Wait] 6
+	db $36		;[Note] 55
+				;[Skip delay] 6
+	db $34		;[Note] 53
+	db $C3		;[Wait] 4
+	db $32		;[Note] 51
+	db $C5		;[Wait] 6
+	db $31		;[Note] 50
+				;[Skip delay] 6
+	db $2D		;[Note] 46
+	db $85		;[Instrument] 22
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $70		;[Instrument] 1
+	db $DF		;[Wait] 32
+	db $BF		;[End-Of-Track]
+.track_117:
+	db $37		;[Note] 56
+	db $C2		;[Wait] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $3E		;[Note] 63
+				;[Skip delay] 3
+	db $3D		;[Note] 62
+				;[Skip delay] 3
+	db $3E		;[Note] 63
+				;[Skip delay] 3
+	db $40		;[Note] 65
+				;[Skip delay] 3
+	db $42		;[Note] 67
+				;[Skip delay] 3
+	db $40		;[Note] 65
+				;[Skip delay] 3
+	db $3E		;[Note] 63
+				;[Skip delay] 3
+	db $40		;[Note] 65
+				;[Skip delay] 3
+	db $3E		;[Note] 63
+	db $C1		;[Wait] 2
+	db $3B		;[Note] 60
+	db $C2		;[Wait] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $2F		;[Note] 48
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $2F		;[Note] 48
+				;[Skip delay] 3
+	db $32		;[Note] 51
+	db $C0		;[Wait] 1
+				;[Skip delay] 1
+	db $BF		;[End-Of-Track]
+.track_118:
+	db $37		;[Note] 56
+	db $C5		;[Wait] 6
+	db $42		;[Note] 67
+				;[Skip delay] 6
+	db $40		;[Note] 65
+	db $C3		;[Wait] 4
+	db $3E		;[Note] 63
+	db $C5		;[Wait] 6
+	db $3D		;[Note] 62
+				;[Skip delay] 6
+	db $40		;[Note] 65
+	db $C3		;[Wait] 4
+	db $3B		;[Note] 60
+	db $DF		;[Wait] 32
+	db $BF		;[End-Of-Track]
+.track_119:
+	db $07		;[Note] 8
+	db $C5		;[Wait] 6
+	db $07		;[Note] 8
+				;[Skip delay] 6
+	db $07		;[Note] 8
+	db $C3		;[Wait] 4
+	db $09		;[Note] 10
+	db $C5		;[Wait] 6
+	db $06		;[Note] 7
+				;[Skip delay] 6
+	db $09		;[Note] 10
+	db $C3		;[Wait] 4
+	db $0B		;[Note] 12
+	db $C5		;[Wait] 6
+	db $0B		;[Note] 12
+	db $C1		;[Wait] 2
+	db $17		;[Note] 24
+	db $C3		;[Wait] 4
+	db $0B		;[Note] 12
+				;[Skip delay] 4
+	db $0B		;[Note] 12
+	db $C5		;[Wait] 6
+	db $0B		;[Note] 12
+	db $C1		;[Wait] 2
+	db $17		;[Note] 24
+	db $C3		;[Wait] 4
+	db $0B		;[Note] 12
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_120:
+	db $2B		;[Note] 44
+	db $C5		;[Wait] 6
+	db $36		;[Note] 55
+				;[Skip delay] 6
+	db $34		;[Note] 53
+	db $C3		;[Wait] 4
+	db $32		;[Note] 51
+	db $C5		;[Wait] 6
+	db $31		;[Note] 50
+				;[Skip delay] 6
+	db $34		;[Note] 53
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $DF		;[Wait] 32
+	db $BF		;[End-Of-Track]
+.track_121:
+	db $26		;[Note] 39
+	db $6F		;[Volume] 15
+	db $9E, $00	; short arp
+	db $C5		;[Wait] 6
+	db $32		;[Note] 51
+				;[Skip delay] 6
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $C5		;[Wait] 6
+	db $2D		;[Note] 46
+				;[Skip delay] 6
+	db $31		;[Note] 50
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $DF		;[Wait] 32
+	db $BF		;[End-Of-Track]
+.track_122:
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C5		;[Wait] 6
+	db $2F		;[Note] 48
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $81		;[Instrument] 18
+	db $C2		;[Wait] 3
+	db $23		;[Note] 36
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $2F		;[Note] 48
+	db $6F		;[Volume] 15
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $2A		;[Note] 43
+	db $82		;[Instrument] 19
+	db $C1		;[Wait] 2
+	db $2A		;[Note] 43
+				;[Skip delay] 2
+	db $22		;[Note] 35
+	db $C2		;[Wait] 3
+	db $22		;[Note] 35
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $26		;[Note] 39
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $26		;[Note] 39
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $1E		;[Note] 31
+	db $6F		;[Volume] 15
+	db $C2		;[Wait] 3
+	db $1E		;[Note] 31
+	db $67		;[Volume] 7
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_123:
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+	db $C5		;[Wait] 6
+	db $17		;[Note] 24
+	db $C1		;[Wait] 2
+	db $23		;[Note] 36
+	db $7D		;[Instrument] 14
+	db $C3		;[Wait] 4
+	db $17		;[Note] 24
+	db $7F		;[Instrument] 16
+				;[Skip delay] 4
+	db $23		;[Note] 36
+	db $7D		;[Instrument] 14
+				;[Skip delay] 4
+	db $21		;[Note] 34
+				;[Skip delay] 4
+	db $1E		;[Note] 31
+				;[Skip delay] 4
+	db $23		;[Note] 36
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_124:
+	db $CF		;[Wait] 16
+	db $2F		;[Note] 48
+	db $83		;[Instrument] 20
+	db $C3		;[Wait] 4
+	db $2F		;[Note] 48
+	db $CB		;[Wait] 12
+	db $BF		;[End-Of-Track]
+.track_125:
+	db $3B		;[Note] 60
+	db $C2		;[Wait] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $2F		;[Note] 48
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $3B		;[Note] 60
+				;[Skip delay] 3
+	db $36		;[Note] 55
+				;[Skip delay] 3
+	db $32		;[Note] 51
+				;[Skip delay] 3
+	db $2F		;[Note] 48
+				;[Skip delay] 3
+	db $32		;[Note] 51
+	db $C0		;[Wait] 1
+				;[Skip delay] 1
+	db $BF		;[End-Of-Track]
+.track_126:
+	db $DD		;[Wait] 30
+	db $60		;[Note] 97
+	db $C1		;[Wait] 2
+	db $BF		;[End-Of-Track]
+.track_127:
+	db $0B		;[Note] 12
+	db $C5		;[Wait] 6
+	db $0B		;[Note] 12
+	db $C1		;[Wait] 2
+	db $17		;[Note] 24
+	db $C3		;[Wait] 4
+	db $0B		;[Note] 12
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $15		;[Note] 22
+				;[Skip delay] 4
+	db $12		;[Note] 19
+				;[Skip delay] 4
+	db $17		;[Note] 24
+				;[Skip delay] 4
+	db $BF		;[End-Of-Track]
+.track_128:
+	db $DF		;[Wait] 32
+	db $BF		;[End-Of-Track]
+.track_129:
+	db $60		;[Note] 97
+	db $CF		;[Wait] 16
+	db $23		;[Note] 36
+	db $6D		;[Volume] 13
+	db $74		;[Instrument] 5
+				;[Skip delay] 16
+	db $24		;[Note] 37
+	db $D7		;[Wait] 24
+	db $21		;[Note] 34
+	db $C6		;[Wait] 7
+	db $C0		;[Wait] 1
+	db $BF		;[End-Of-Track]
+.track_130:
 	db $BF		;[End-Of-Track]
 ; [ Song sub-track data ]
