@@ -1,4 +1,4 @@
-; Compiled using tt_compile.exe V0.1 [02-03-2015]
+; Compiled using tt_compile.exe V0.2.1 [30-03-2015]
 ; Copyright 2015 Richard Cornelisse
 
 ; Song: A N A L - M A U L               
@@ -8,8 +8,8 @@
 
 ; [ Song start data ]
 	db $06				; Initial song speed.
-	dw .waveform_start 			; Start of the waveform data.
-	dw .instrument_start 			; Start of the instrument data.
+	dw .waveform_start 		; Start of the waveform data.
+	dw .instrument_start 		; Start of the instrument data.
 
 ; [ Song order pointer list ]
 		dw .track_0,.track_1,.track_2,.track_3,.track_4,.track_5,.track_6,.track_7		; Sequence step 0 /pattern 0
@@ -44,7 +44,6 @@
 		dw .track_106,.track_107,.track_108,.track_109,.track_110,.track_111,.track_112,.track_113		; Sequence step 28 /pattern 17
 		dw .track_114,.track_115,.track_116,.track_117,.track_118,.track_119,.track_120,.track_121		; Sequence step 29 /pattern 18
 		dw .track_122,.track_123,.track_124,.track_125,.track_126,.track_127,.track_128,.track_128		; Sequence step 30 /pattern 19
-		dw .track_0,.track_1,.track_2,.track_3,.track_4,.track_5,.track_6,.track_7		; Sequence step 31 /pattern 0
 		dw 0x0000, .restart			; End of sequence delimiter + restart address.
 
 .waveform_start:
@@ -82,8 +81,8 @@
 	db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00	; Waveform 31
 
 .instrument_start:
-	dw .ins_1,.ins_2,.ins_3,.ins_4,.ins_5,.ins_6,.ins_7,.ins_8,.ins_9,.ins_10,.ins_11,.ins_12,.ins_13,.ins_14,.ins_15,.ins_16,.ins_17,.ins_18,.ins_19,.ins_20,.ins_21,.ins_22
-.ins_1:
+	dw .ins_1,.ins_2,.ins_3,.ins_4,.ins_5,.ins_6,.ins_7,.ins_8,.ins_9,.ins_10,.ins_11,.ins_12,.ins_13,.ins_14,.ins_15,.ins_16,.ins_17,.ins_18,.ins_19,.ins_20,.ins_21,.ins_22,.ins_23,.ins_24,.ins_25,.ins_26,.ins_27,.ins_28,.ins_29,.ins_30,.ins_31
+.ins_1:						; Violin          
 		db 1					; Waveform
 		db .rst_i1-(.ins_1 +2)		; Restart
 		db $11,$0A
@@ -104,7 +103,7 @@
 		db $15,$07,$FE,$FF
 		db $15,$07,$02,$00
 		db $1D,$07,$01,$00
-.ins_2:
+.ins_2:						; Guitar          
 		db 2					; Waveform
 		db .rst_i2-(.ins_2 +2)		; Restart
 		db $11,$0C
@@ -120,8 +119,8 @@
 		db $11,$08
 		db $11,$08
 		db $19,$08
-.ins_3:
-.ins_4:
+.ins_3:						; Piano           
+.ins_4:						; Flute           
 		db 4					; Waveform
 		db .rst_i4-(.ins_4 +2)		; Restart
 		db $11,$03
@@ -142,7 +141,7 @@
 		db $15,$05,$FF,$FF
 		db $15,$05,$FE,$FF
 		db $1D,$05,$03,$00
-.ins_5:
+.ins_5:						; Clarinet        
 		db 5					; Waveform
 		db .rst_i5-(.ins_5 +2)		; Restart
 		db $11,$0D
@@ -163,7 +162,7 @@
 		db $15,$08,$FF,$FF
 		db $15,$08,$FE,$FF
 		db $1D,$08,$03,$00
-.ins_6:
+.ins_6:						; Oboe            
 		db 6					; Waveform
 		db .rst_i6-(.ins_6 +2)		; Restart
 		db $11,$0C
@@ -184,14 +183,14 @@
 		db $15,$07,$FF,$FF
 		db $15,$07,$FE,$FF
 		db $1D,$07,$03,$00
-.ins_7:
-.ins_8:
-.ins_9:
-.ins_10:
-.ins_11:
-.ins_12:
-.ins_13:
-.ins_14:
+.ins_7:						; Trumpet         
+.ins_8:						; Organ           
+.ins_9:						; Horn            
+.ins_10:						; Synth           
+.ins_11:						; Harpsichord     
+.ins_12:						; Vibraphone      
+.ins_13:						; Synth Bass      
+.ins_14:						; Acoustic Bass   
 		db 14					; Waveform
 		db .rst_i14-(.ins_14 +2)		; Restart
 		db $11,$0C
@@ -212,8 +211,8 @@
 		db $15,$07,$FE,$FF
 		db $15,$07,$02,$00
 		db $1D,$07,$01,$00
-.ins_15:
-.ins_16:
+.ins_15:						; Electric Guitar 
+.ins_16:						; USER            
 		db 14					; Waveform
 		db .rst_i16-(.ins_16 +2)		; Restart
 		db $15,$0F,$28,$01
@@ -234,13 +233,13 @@
 		db $15,$07,$FE,$FF
 		db $15,$07,$02,$00
 		db $1D,$07,$01,$00
-.ins_17:
+.ins_17:						; Bass drum       
 		db 31					; Waveform
 		db .rst_i17-(.ins_17 +2)		; Restart
 		db $15,$0F,$28,$01
 .rst_i17:
 		db $09,$00
-.ins_18:
+.ins_18:						; Snare drum      
 		db 31					; Waveform
 		db .rst_i18-(.ins_18 +2)		; Restart
 		db $91,$0F
@@ -251,36 +250,49 @@
 		db $81,$0C
 		db $81,$0C
 .rst_i18:
-		db $88
-.ins_19:
+		db $8B,$FF
+.ins_19:						; Tom             
 		db 31					; Waveform
 		db .rst_i19-(.ins_19 +2)		; Restart
 		db $15,$0F,$2F,$00
 		db $15,$0E,$2F,$00
 		db $15,$0D,$2F,$00
 .rst_i19:
-		db $1C,$2F,$00
-.ins_20:
+		db $1F,$FF,$2F,$00
+.ins_20:						; Closed hi-hat   
 		db 31					; Waveform
 		db .rst_i20-(.ins_20 +2)		; Restart
 		db $81,$0E
 .rst_i20:
 		db $09,$00
-.ins_21:
+.ins_21:						; Cymbal          
 		db 31					; Waveform
 		db .rst_i21-(.ins_21 +2)		; Restart
 		db $E1,$0E,$01
 		db $E1,$0B,$01
 		db $E1,$0B,$01
 .rst_i21:
-		db $88
-.ins_22:
+		db $8B,$FF
+.ins_22:						; Open hi-hat     
 		db 31					; Waveform
 		db .rst_i22-(.ins_22 +2)		; Restart
 		db $81,$0F
 		db $81,$0D
 .rst_i22:
-		db $88
+		db $8B,$FF
+.ins_23:						;                 
+.ins_24:						;                 
+.ins_25:						;                 
+.ins_26:						;                 
+.ins_27:						;                 
+.ins_28:						;                 
+.ins_29:						;                 
+.ins_30:						;                 
+.ins_31:						;                 
+		db 0					; Waveform
+		db .rst_i31-(.ins_31 +2)		; Restart
+.rst_i31:
+		db $09,$00
 
 ; [ Song track data ]
 .track_0:

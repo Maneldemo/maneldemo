@@ -144,6 +144,8 @@ _ntsc:	ld	(SEL_NTSC),a	; if set NSTC, if reset PAL
 		
 		ld	hl,demo_song
 		call	replay_init
+		ld	hl,demo_song
+		call	replay_loadsong
 
 		call	_SetPalet
 		ld		e,0
