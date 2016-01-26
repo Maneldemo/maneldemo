@@ -757,10 +757,10 @@ sprtdata
 	org	0x0040
 _demo_song:
 	include	".\demosong.asm"
-	include	"..\code\ttreplayDAT.asm"
+	include	"code\ttreplayDAT.asm"
 _enddemo_song:
 	page 1
-	include	"..\code\ttreplay.asm"
+	include	"code\ttreplay.asm"
 	
 FINISH:
 
@@ -785,7 +785,7 @@ _cur_level_bf:		#mapWidth*mapHeight/2
 	
 	
 	MAP 0xC000
-	include	"..\code\ttreplayRAM.asm"
+	include	"code\ttreplayRAM.asm"
 
 slotvar				#1
 slotram				#1

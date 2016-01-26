@@ -1,2 +1,1 @@
-sjasm\sjasm.exe -s main.asm 
-
+sjasm.exe -iD:\TriloTracker-Re-player -s main.asm 
